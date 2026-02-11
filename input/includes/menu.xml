@@ -1,0 +1,19 @@
+<ul xmlns="http://www.w3.org/1999/xhtml" class="nav navbar-nav">
+  <li><a href="index.html">Home</a></li>
+  <li><a href="toc.html">Table of Contents</a></li>
+  <li><a href="artifacts.html">Artifacts</a></li>
+  <li><a href="use_cases.html">Background</a></li>
+  <li><a href="use_cases.html">Use Cases</a></li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Other</a>
+    <ul class="dropdown-menu">
+     <li><a href="about.html">About</a></li>
+     <li><a href="downloads.html">Downloads</a></li>
+     
+     <li><a target="_blank" href="https://prenudge.at/">PreNUDGE Project</a></li>
+     <li><a target="_blank" href="https://portal.dev.prenudge.at/">Dev. Portal</a></li>
+
+     <li><a target="_blank" href="{{site.data.fhir.path}}index.html">FHIR Spec</a></li>
+    </ul>
+  </li> 
+</ul>
