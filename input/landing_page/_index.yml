@@ -1,0 +1,6 @@
+- name: JoanneumResearch-PreNUDGE-AppData-R4
+- version: 0.1.0
+- description: FHIR&reg; R4 Implementation Guide for the PreNUDGE API for Data Provider / Data from Apps.
+- last_published: %%date%%
+- branch: %%branch%%
+- type: draft
