@@ -1,24 +1,14 @@
 Profile: AtPrenudgeObservationStepCount
-Parent: AtApsObservation
+Parent: AtPrenudgeObservation
 Id: at-prenudge-stepcount-observation
 Title: "AT PreNUDGE Observation Step Count"
-Description: "This FHIR profile is defining the Step Count Observation, similar to the Observation Social History - Alcohol Use from the IPS."
+Description: "This FHIR profile is defining the Step Count Observation, similar to the Observation Social History - Alcohol Use from the IPS. The step count option only allowes values inbetween 0 and 300 000."
 
-* code = http://loinc.org#41950-7
-* valueQuantity 0..1
-* valueQuantity only Quantity
-* valueQuantity ^sliceName = "valueQuantity"
-* component ..0
-* component ^mustSupport = false
+* code = http://loinc.org#41950-7 "Number of steps in 24 hour Measured"
+* valueInteger 1..1
+* obeys stepcount-range
 
-// * code.coding MS
-// * code.coding[0] MS
-// * code.coding[0] from observation-codes (example)
-// * code.coding[0].system 1..1 MS
-// * code.coding[0].system = "http://loinc.org"
-// * code.coding[0].code 1..1 MS
-// * code.coding[0].code = #41950-7
-// * effectiveDateTime MS
-// * value[x] only Quantity
-// * valueQuantity MS
-// * component 0..0
+Invariant: stepcount-range
+Severity: #error
+Description: "Step count must be inbetween 0 and 300 000."
+Expression: "valueInteger >= 0 and valueInteger <= 300000"
