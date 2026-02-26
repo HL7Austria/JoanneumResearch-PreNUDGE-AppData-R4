@@ -10,5 +10,5 @@ Description: "This FHIR profile is defining the Step Count Observation, similar 
 
 Invariant: stepcount-range
 Severity: #error
-Description: "Step count must be inbetween 0 and 300 000."
-Expression: "valueInteger >= 0 and valueInteger <= 300000"
+Description: "Step count must be inbetween 0 and 150 000."
+Expression: "valueInteger >= 0 and valueInteger <= 150000"

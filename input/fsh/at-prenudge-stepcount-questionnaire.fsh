@@ -21,7 +21,7 @@ Usage: #definition
   * extension[0].url = "http://hl7.org/fhir/StructureDefinition/minValue"
   * extension[=].valueInteger = 0
   * extension[+].url = "http://hl7.org/fhir/StructureDefinition/maxValue" 
-  * extension[=].valueInteger = 300000
+  * extension[=].valueInteger = 150000
   * item[+]
     * linkId = "comment"
     * text = "Haben Sie zu Ihrer Antwort noch einen Kommentar oder etwas hinzuzufügen?"

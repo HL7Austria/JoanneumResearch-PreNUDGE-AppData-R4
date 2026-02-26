@@ -1,6 +1,7 @@
 ValueSet: AtPrenudgeValueSetAlcoholUseFrequencySnomedVS
 Id: at-prenudge-alcoholuse-valueset-frequency
 Title: "SNOMED CT AlcoholUse-Frequency"
+* ^url = "https://termgit.elga.gv.at/ValueSet/prenudge-alcoholuse-frequency"
 * ^status = #active
 * http://snomed.info/sct#69620002  "Daily" 
 * http://snomed.info/sct#69620002  ^designation.use = http://snomed.info/sct#405672008 "Direct questioning"

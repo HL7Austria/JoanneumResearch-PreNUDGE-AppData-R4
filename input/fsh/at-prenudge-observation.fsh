@@ -7,7 +7,7 @@ Description: "This FHIR profile is defining the overall Observation for PreNUDGE
 * identifier 1..
 * identifier ^short = "Business Identifier for observation, at least one is assigned by the data provider"
 * identifier.system 1..
-* identifier.system ^short = "The namespace for the identifier value, if no other information is given, use your website url"
+* identifier.system ^short = "The namespace for the identifier value, if no other specifications are given, use your website url"
 * identifier.value 1..
 
 * method 1..
