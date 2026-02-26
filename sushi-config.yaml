@@ -53,8 +53,8 @@ pages:
     title: Home
   background.md:
     title: Background
-  use_cases.md:
-    title: Use Cases
+  workflow.md:
+    title: Workflow
   about.md:
     title: About
   downloads.md:
