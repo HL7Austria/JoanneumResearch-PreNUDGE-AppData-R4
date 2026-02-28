@@ -33,6 +33,7 @@ contact:
 dependencies:
   #TODO change to the latest version
   hl7.at.fhir.elga.aps.r4: current
+  hl7.fhir.uv.sdc: 3.0.0
   # hl7.fhir.uv.ips: 2.0.0
   # hl7.fhir.uv.ipa: 1.1.0
   # hl7.at.fhir.core.r4: 2.0.0
