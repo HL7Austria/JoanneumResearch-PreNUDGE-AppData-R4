@@ -9,4 +9,4 @@ Description: "This FHIR profile is defining the overall Questionnaire for PreNUD
 Invariant: at-prenudge-every-item-has-comment
 Description: "Jedes top-level Item muss genau ein Unter-Item enthalten, dessen linkId auf 'comment' endet"
 Severity: #error
-Expression: "item.where(linkId.endsWith('comment') and type = 'string').count() = 1"
+Expression: "type = 'display' or item.where(linkId.endsWith('comment') and type = 'string').count() = 1"

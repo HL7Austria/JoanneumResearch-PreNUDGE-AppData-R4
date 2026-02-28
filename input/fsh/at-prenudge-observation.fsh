@@ -16,6 +16,4 @@ Description: "This FHIR profile is defining the overall Observation for PreNUDGE
 * note MS 
 * note ^short = "Comments about the observation including patient comments have to be possible"
 
-* component ..0
-* component ^mustSupport = false
-* component ^short = "Component results are not allowed as groupings for values will be handeled case by case; create only flat observations"
+* component ^short = "Components should only be used when multiple values are inseparably connected to a single measurement (e.g., score domains)."
