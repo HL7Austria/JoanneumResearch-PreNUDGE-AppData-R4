@@ -1,8 +1,10 @@
 ValueSet: AtPrenudgeValueSetAlcoholUseFrequencySnomedVS
-Id: at-prenudge-alcoholuse-valueset-frequency
+Id: prenudge-alcoholuse-frequency
 Title: "SNOMED CT AlcoholUse-Frequency"
-* ^url = "https://termgit.elga.gv.at/ValueSet/prenudge-alcoholuse-frequency"
+Description: "ValueSet containing SNOMED CT codes for differentiating frequencies used in the PreNUDGE alcoholuse questionnaire."
+* ^url = "https://fhir.hl7.at/prenudge/appdata/r4/ValueSet/prenudge-alcoholuse-frequency"
 * ^status = #active
+* ^experimental = false
 * http://snomed.info/sct#69620002  "Daily" 
 * http://snomed.info/sct#69620002  ^designation.use = http://snomed.info/sct#405672008 "Direct questioning"
 * http://snomed.info/sct#69620002  ^designation.value = "Täglich oder fast jeden Tag im letzten Jahr"
