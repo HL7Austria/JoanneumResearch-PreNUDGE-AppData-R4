@@ -8,19 +8,27 @@ Usage: #definition
 * status = #active
 * experimental = false
 * subjectType = #Patient
-* description = "A simple questionnaire for asking how high the blood glucose level is right now. The blood glucose option only allowes values inbetween 12 and 1200."
+* description = "A simple questionnaire for asking how high the blood glucose level is right now. The blood glucose option only allows values inbetween 12 and 1200 mg/dL."
 
 * item[+]
   * linkId = "blood-glucose-now"
   * code = http://loinc.org#1556-0
-  * text = "Wie hoch ist ihr Blutzucker in mg/dL aktuell?"
-  * type = #integer
+  * text = "Wie hoch ist Ihr Blutzucker aktuell?"
+  * type = #quantity
   * required = true
   * repeats = false
-  * extension[0].url = "http://hl7.org/fhir/StructureDefinition/minValue"
-  * extension[=].valueInteger = 12
-  * extension[+].url = "http://hl7.org/fhir/StructureDefinition/maxValue" 
-  * extension[=].valueInteger = 1200
+  * extension[+]
+    * url = "http://hl7.org/fhir/StructureDefinition/questionnaire-unitOption"
+    * valueCoding
+      * system = "http://unitsofmeasure.org"
+      * code = #mg/dL
+      * display = "mg/dL"
+  * extension[+]
+    * url = "http://hl7.org/fhir/StructureDefinition/minValue"
+    * valueDecimal = 12
+  * extension[+]
+    * url = "http://hl7.org/fhir/StructureDefinition/maxValue"
+    * valueDecimal = 1200
   * item[+]
     * linkId = "comment"
     * text = "Haben Sie zu Ihrer Antwort noch einen Kommentar oder etwas hinzuzufügen?"

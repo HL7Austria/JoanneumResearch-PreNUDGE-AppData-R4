@@ -38,3 +38,5 @@ General information and deadlines according to HL7 Austria voting procedures:
 
 We look forward to your active participation in the balloting process, which makes a vital contribution to quality assurance and the success of Austrian e-health applications.  
 Thank you very much for your commitment!
+
+For more, see [Background](background.html).

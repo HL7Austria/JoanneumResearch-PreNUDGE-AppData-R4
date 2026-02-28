@@ -1,35 +1,47 @@
-Instance: BloodGlucoseQuestionnaireResponse1
-InstanceOf: AtPrenudgeQuestionnaireResponse
+Instance: bloodglucose-response-normal-example
+InstanceOf: QuestionnaireResponse
 Usage: #example
+Title: "Blood Glucose QuestionnaireResponse - Normal Example"
+Description: "Beispiel einer normalen Nüchtern-Blutzucker-Messung (95 mg/dL) als QuestionnaireResponse."
 
-* identifier.system = "urn:ietf:rfc:3986"
-* identifier.value = "urn:uuid:b1e2f3a4-5678-9abc-def0-1234567890ab"
 * questionnaire = Canonical(BloodGlucoseQuestionnaire)
 * status = #completed
-* authored = "2026-02-26T08:30:00+01:00"
 * subject = Reference(Patient/example)
+* authored = "2026-02-28T07:30:00Z"
 
-* item[+]
+* item[0]
   * linkId = "blood-glucose-now"
-  * answer[+]
-    * valueInteger = 95
-
-Instance: BloodGlucoseQuestionnaireResponse2
-InstanceOf: AtPrenudgeQuestionnaireResponse
-Usage: #example
-
-* identifier.system = "urn:ietf:rfc:3986"
-* identifier.value = "urn:uuid:c2d3e4f5-6789-0abc-def1-234567890abc"
-* questionnaire = Canonical(BloodGlucoseQuestionnaire)
-* status = #completed
-* authored = "2026-02-26T12:15:00+01:00"
-* subject = Reference(Patient/example)
-
-* item[+]
-  * linkId = "blood-glucose-now"
-  * answer[+]
-    * valueInteger = 210
+  * text = "Wie hoch ist Ihr Blutzucker aktuell?"
+  * answer[0]
+    * valueQuantity
+      * value = 95
+      * unit = "mg/dL"
+      * system = "http://unitsofmeasure.org"
+      * code = #mg/dL
     * item[+]
       * linkId = "comment"
-      * answer[+]
-        * valueString = "Wert nach dem Mittagessen, etwas erhöht."
+      * answer[0].valueString = "Nüchtern gemessen."
+
+Instance: bloodglucose-response-elevated-example
+InstanceOf: QuestionnaireResponse
+Usage: #example
+Title: "Blood Glucose QuestionnaireResponse - Elevated Example"
+Description: "Beispiel einer erhöhten Nüchtern-Blutzucker-Messung (142 mg/dL) als QuestionnaireResponse."
+
+* questionnaire = Canonical(BloodGlucoseQuestionnaire)
+* status = #completed
+* subject = Reference(Patient/example)
+* authored = "2026-02-28T07:45:00Z"
+
+* item[0]
+  * linkId = "blood-glucose-now"
+  * text = "Wie hoch ist Ihr Blutzucker aktuell?"
+  * answer[0]
+    * valueQuantity
+      * value = 142
+      * unit = "mg/dL"
+      * system = "http://unitsofmeasure.org"
+      * code = #mg/dL
+    * item[+]
+      * linkId = "comment"
+      * answer[0].valueString = "Patient berichtet, gestern Abend spät gegessen zu haben."
