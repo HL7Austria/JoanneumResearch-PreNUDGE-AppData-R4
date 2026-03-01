@@ -13,6 +13,8 @@ Description: "This FHIR profile is defining the Blood Glucose Observation, simil
 * valueQuantity.system = "http://unitsofmeasure.org"
 * valueQuantity.code = #mg/dL
 
+* component 0..
+
 * obeys bloodglucose-range
 
 Invariant: bloodglucose-range

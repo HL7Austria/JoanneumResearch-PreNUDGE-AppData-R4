@@ -13,6 +13,8 @@ Description: "This FHIR profile is defining the Step Count Observation. The step
 * valueQuantity.system = "http://unitsofmeasure.org"
 * valueQuantity.code = #{steps}/d
 
+* component 0..
+
 * obeys stepcount-range
 
 Invariant: stepcount-range
