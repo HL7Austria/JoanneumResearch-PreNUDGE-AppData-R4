@@ -1,12 +1,12 @@
 The transmission of health profile data from the qualified apps to the **PräNUDGE platform** is optional.
 
-Health profile data will only be sent once citizens establish the connection within the app and give their **consent**.  See [section App Pairing](#App-Pairing) for more.
+Health profile data will only be sent once citizens establish the connection within the app and give their **consent**.  See [section App Pairing](#app-pairing) for more.
 
-Before health profile data reaches PräNUDGE, the FHIR MPI module (via Reverse Proxy) creates an App Patient from the token's Subject-ID, links it to a protected Person resource via Person.link, and shields sensitive identity data from apps. See [section Patient Identity Provisioning and MPI Resolution](#Patient-Identity-Provisioning-and-MPI-Resolution) for more.
+Before health profile data reaches PräNUDGE, the FHIR MPI module (via Reverse Proxy) creates an App Patient from the token's Subject-ID, links it to a protected Person resource via Person.link, and shields sensitive identity data from apps. See [section Patient Identity Provisioning and MPI Resolution](#patient-identity-provisioning-and-mpi-resolution) for more.
 
-After the app pairing and the patient identity provisioning is successfully completed, the mobile application can communicate with the **PreNUDGE platform** through standard **FHIR RESTful interactions** that must comply with this **Implementation Guide (IG)**.  See [FHIR Communication](#FHIR-Communication) for more.
+After the app pairing and the patient identity provisioning is successfully completed, the mobile application can communicate with the **PreNUDGE platform** through standard **FHIR RESTful interactions** that must comply with this **Implementation Guide (IG)**.  See [FHIR Communication](#fhir-communication) for more.
 
-Additional there are current and planed requirements for data providers, see [Dataprovider Qualification Matrix](#Dataprovider-Qualification-Matrix) for more.
+Additional there are current and planed requirements for data providers, see [Dataprovider Qualification Matrix](#dataprovider-qualification-matrix) for more.
 
 ### App Pairing
 
