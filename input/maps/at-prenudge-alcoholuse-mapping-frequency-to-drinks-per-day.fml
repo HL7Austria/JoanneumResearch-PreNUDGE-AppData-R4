@@ -1,0 +1,61 @@
+/// url = "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/AlcoholQuestionnaireResponseToObservation"
+/// name = "AlcoholQuestionnaireResponseToObservation"
+/// title = "Alcohol Use QuestionnaireResponse to Observation"
+/// status = "active"
+
+uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" alias QR as source
+uses "http://hl7.org/fhir/StructureDefinition/Observation" alias Obs as target
+
+imports "http://hl7.org/fhir/StructureMap/*"
+
+group AlcoholQuestionnaireResponseToObservation(source src : QR, target tgt : Obs) {
+
+  // Status
+  src -> tgt.status = 'final' "SetStatus";
+
+  // Code
+  src -> tgt.code as code, code.coding as coding then {
+    src -> coding.system = 'http://loinc.org' "SetCodeSystem";
+    src -> coding.code = '74013-4' "SetCodeCode";
+    src -> coding.display = 'Alcoholic drinks per day' "SetCodeDisplay";
+  } "SetCode";
+
+  // Subject
+  src.subject as subject -> tgt.subject = subject "SetSubject";
+
+  // EffectiveDateTime from authored
+  src.authored as authored -> tgt.effective = authored "SetEffective";
+
+  // Process items
+  src.item as item where linkId = 'alcohol-frequency' then MapAlcoholFrequency(item, tgt) "ProcessItem";
+}
+
+group MapAlcoholFrequency(source src, target tgt : Obs) {
+
+  src.answer as answer then {
+
+    // Map frequency code to drinks/day
+    answer.valueCoding as coding -> tgt.value = create('Quantity') as qty then {
+      coding where code = '69620002' -> qty.value = 1 "MapDaily";
+      coding where code = '307447001' -> qty.value = 0.79 "MapSixTimesWeekly";
+      coding where code = '396113003' -> qty.value = 0.5 "MapThreeToFourTimesWeekly";
+      coding where code = '229800002' -> qty.value = 0.21 "MapTwiceWeekly";
+      coding where code = '307452006' -> qty.value = 0.08 "MapThreeTimesMonthly";
+      coding where code = '307450003' -> qty.value = 0.03 "MapOnceMonthly";
+      coding where code = '445547001' -> qty.value = 0.02 "MapEveryTwoMonths";
+      coding where code = '105542008' -> qty.value = 0.001 "MapCurrentNonDrinker";
+      coding where code = '783261004' -> qty.value = 0 "MapLifetimeNonDrinker";
+      coding -> qty.unit = 'drinks/day' "SetUnit";
+      coding -> qty.system = 'http://unitsofmeasure.org' "SetUnitSystem";
+      coding -> qty.code = '{drinks}/d' "SetUnitCode";
+    } "MapValueQuantity";
+
+    // Map comment to note
+    answer.item as commentItem where linkId = 'comment' then {
+      commentItem.answer as commentAnswer then {
+        commentAnswer.value as commentValue -> tgt.note as note, note.text = commentValue "SetNote";
+      } "ProcessCommentAnswer";
+    } "ProcessComment";
+
+  } "ProcessAnswer";
+}
