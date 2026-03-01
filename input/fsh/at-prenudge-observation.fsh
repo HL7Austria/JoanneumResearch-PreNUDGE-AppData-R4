@@ -2,7 +2,9 @@ Profile: AtPrenudgeObservation
 Parent: AtApsObservation
 Id: at-prenudge-observation
 Title: "AT PreNUDGE Observation"
-Description: "This FHIR profile is defining the overall Observation for PreNUDGE."
+Description: "This FHIR profile is defining the overall Observation for PreNUDGE. It is abstract, so no instances of this profile directly are allowed."
+
+* ^abstract = true
 
 * identifier 1..
 * identifier ^short = "Business Identifier for observation, at least one is assigned by the data provider"

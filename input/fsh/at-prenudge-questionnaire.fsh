@@ -4,6 +4,7 @@ Id: at-prenudge-questionnaire
 Title: "AT PreNUDGE Questionnaire"
 Description: "This FHIR profile is defining the overall Questionnaire for PreNUDGE. Every top level item requires one comment subitem, with the linkId ending or equal 'comment'."
 
+* ^abstract = true
 * item obeys at-prenudge-every-item-has-comment
 
 Invariant: at-prenudge-every-item-has-comment
