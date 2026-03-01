@@ -1,7 +1,7 @@
 Instance: whoqol-bref-response-example
 InstanceOf: QuestionnaireResponse
 Usage: #example
-Title: "WHOQOL-BREF QuestionnaireResponse - Example"
+Title: "WHOQOL-BREF QuestionnaireResponse"
 Description: "Example of a completed WHOQOL-BREF QuestionnaireResponse including all 26 items and calculated scores."
 
 * questionnaire = "https://fhir.hl7.at/prenudge/appdata/r4/Questionnaire/QolQuestionnaire"

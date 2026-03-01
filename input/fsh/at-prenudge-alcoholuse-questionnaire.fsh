@@ -4,7 +4,7 @@ Usage: #definition
 
 * url = "https://fhir.hl7.at/prenudge/appdata/r4/Questionnaire/AtPrenudgeQuestionnaireAlcoholUse"
 * name = "AtPrenudgeQuestionnaireAlcoholUse"
-* title = "Alkoholkonsum-Frequenz (letztes Jahr)"
+* title = "Alkoholkonsum im letzten Jahr"
 * status = #active
 * subjectType = #Patient
 * description = "Categorical variable for the frequency of alcohol consumption in the last year (IPS compatible)."

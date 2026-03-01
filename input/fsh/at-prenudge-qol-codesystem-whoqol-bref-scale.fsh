@@ -1,6 +1,6 @@
 CodeSystem: WHOQOLBrefScale
 Id: whoqol-bref-scale
-Title: "WHOQOL-BREF Answer Scales"
+Title: "AT PreNUDGE WHOQOL-BREF Answer Scales"
 Description: "Consolidated CodeSystem for all answer scales of the WHOQOL-BREF questionnaire."
 * ^url = "https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/whoqol-bref-scale"
 * ^status = #active

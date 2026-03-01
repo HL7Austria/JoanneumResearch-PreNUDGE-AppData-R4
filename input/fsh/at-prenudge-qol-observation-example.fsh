@@ -1,7 +1,7 @@
 Instance: whoqol-bref-score-example
 InstanceOf: AtPrenudgeObservationWHOQOLBrefScore
 Usage: #example
-Title: "WHOQOL-BREF Score - Example"
+Title: "WHOQOL-BREF Score"
 Description: "Example of a WHOQOL-BREF score observation with a general score and all four domain scores."
 
 * identifier[+]

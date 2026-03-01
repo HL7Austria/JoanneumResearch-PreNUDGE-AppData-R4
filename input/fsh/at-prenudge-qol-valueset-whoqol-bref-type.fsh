@@ -1,6 +1,6 @@
 ValueSet: AtPrenudgeValueSetQolWHOQOLBrefScoreTypeVS
 Id:  prenudge-whoqol-bref-score-type
-Title: "WHOQOL-BREF Score Type ValueSet"
+Title: "AT PreNUDGE WHOQOL-BREF Score Type ValueSet"
 Description: "ValueSet containing SNOMED CT codes for differentiating WHOQOL-BREF overall and domain scores."
 * ^url = "https://fhir.hl7.at/prenudge/appdata/r4/ValueSet/prenudge-whoqol-bref-score-type"
 * ^status = #active

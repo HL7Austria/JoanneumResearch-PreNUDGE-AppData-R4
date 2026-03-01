@@ -1,6 +1,6 @@
 ValueSet: AtPrenudgeValueSetMethodManualAutomated
 Id: prenudge-observation-method
-Title: "WHOQOL-BREF Score Type ValueSet"
+Title: "AT PreNUDGE Observation Methods"
 Description: "ValueSet containing SNOMED CT codes for differentiating methods used in the PreNUDGE observation."
 * ^url = "https://fhir.hl7.at/prenudge/appdata/r4/ValueSet/prenudge-observation-method"
 * ^status = #active

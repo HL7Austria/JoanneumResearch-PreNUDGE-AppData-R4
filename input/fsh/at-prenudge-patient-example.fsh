@@ -1,4 +1,4 @@
-Instance: PatientExample
+Instance: AtApsPatient-example
 InstanceOf: AtApsPatient
 Description: "An example of a patient with a license to krill."
 * id = "example"

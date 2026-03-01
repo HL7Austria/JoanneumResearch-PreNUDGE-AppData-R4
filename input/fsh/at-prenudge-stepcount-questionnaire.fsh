@@ -4,7 +4,7 @@ Usage: #definition
 
 * url = "https://fhir.hl7.at/prenudge/appdata/r4/Questionnaire/StepCountQuestionnaire"
 * name = "StepCountQuestionnaire"
-* title = "Schrittzahl"
+* title = "Schrittzahl am heutigen Tag"
 * status = #active
 * experimental = false
 * subjectType = #Patient

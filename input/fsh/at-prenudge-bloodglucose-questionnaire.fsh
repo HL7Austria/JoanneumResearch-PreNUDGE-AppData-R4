@@ -4,7 +4,7 @@ Usage: #definition
 
 * url = "https://fhir.hl7.at/prenudge/appdata/r4/Questionnaire/BloodGlucoseQuestionnaire"
 * name = "BloodGlucoseQuestionnaire"
-* title = "Blutzucker"
+* title = "Blutzucker bei der letzten Messung"
 * status = #active
 * experimental = false
 * subjectType = #Patient

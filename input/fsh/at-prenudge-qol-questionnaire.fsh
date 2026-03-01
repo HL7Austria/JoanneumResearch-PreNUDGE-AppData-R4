@@ -8,8 +8,8 @@ Usage: #definition
 
 * url = "https://fhir.hl7.at/prenudge/appdata/r4/Questionnaire/QolQuestionnaire"
 * version = "1.0.0"
-* name = "QoLByWHOQOLBREF"
-* title = "Quality of life Fragebogen WHOQOL-BREF - World Health Organization Quality of Life Kurzversion"
+* name = "AtPrenudgeQoLByWHOQOLBREF"
+* title = "Lebensstil Selbsteinschätzung"
 * status = #active
 * experimental = false
 * description = "The WHOQOL-BREF is a 26-item instrument for assessing subjective quality of life in four domains: physical, psychological, social relationships, and environment. Developed by the WHO."

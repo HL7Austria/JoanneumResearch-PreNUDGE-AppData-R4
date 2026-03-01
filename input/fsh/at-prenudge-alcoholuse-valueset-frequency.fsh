@@ -1,7 +1,7 @@
 ValueSet: AtPrenudgeValueSetAlcoholUseFrequencySnomedVS
 Id: prenudge-alcoholuse-frequency
-Title: "SNOMED CT AlcoholUse-Frequency"
-Description: "ValueSet containing SNOMED CT codes for differentiating frequencies used in the PreNUDGE alcoholuse questionnaire."
+Title: "AT PreNUDGE Alcohol Use Frequency"
+Description: "Frequencies used in the PreNUDGE alcoholuse questionnaire."
 * ^url = "https://fhir.hl7.at/prenudge/appdata/r4/ValueSet/prenudge-alcoholuse-frequency"
 * ^status = #active
 * ^experimental = false

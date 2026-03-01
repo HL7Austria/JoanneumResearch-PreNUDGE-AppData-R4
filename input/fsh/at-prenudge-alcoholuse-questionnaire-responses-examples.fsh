@@ -1,6 +1,8 @@
 Instance: AlcoholResponseDaily
 InstanceOf: AtPrenudgeQuestionnaireResponse
+Title: "Alcohol Use Q - Daily"
 Usage: #example
+Description: "QuestionnaireResponse example of an alcohol use observation for an daily drinker."
 
 * questionnaire = Canonical(AtPrenudgeQuestionnaireAlcoholUse)
 * status = #completed
@@ -17,7 +19,9 @@ Usage: #example
 
 Instance: AlcoholResponseNever
 InstanceOf: AtPrenudgeQuestionnaireResponse
+Title: "Alcohol Use Q - Non-Drinker"
 Usage: #example
+Description: "QuestionnaireResponse example of an alcohol use observation for a lifetime non-drinker ."
 
 * questionnaire = Canonical(AtPrenudgeQuestionnaireAlcoholUse)
 * status = #completed
@@ -34,4 +38,4 @@ Usage: #example
     * valueCoding.display = "Lifetime non-drinker of alcohol"
     * item[+]
       * linkId = "comment"
-      * answer[0].valueString = "Ich bin als Kind in ein Fass hausgemachten Schnaps gefallen. Zählt das?"
+      * answer[0].valueString = "Ich trinke zwar nicht, bin aber als Kind in ein Fass hausgemachten Schnaps gefallen. Zählt das?"
