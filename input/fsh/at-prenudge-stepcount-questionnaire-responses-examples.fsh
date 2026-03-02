@@ -1,13 +1,15 @@
 Instance: stepcount-response-normal-example
 InstanceOf: QuestionnaireResponse
 Usage: #example
-Title: "Step Count QuestionnaireResponse - Normal Example"
+Title: "Step Count Q - Normal Example"
 Description: "Beispiel einer normalen Schrittzahl (8,432 Schritte) als QuestionnaireResponse."
 
 * questionnaire = Canonical(StepCountQuestionnaire)
 * status = #completed
 * subject = Reference(Patient/example)
 * authored = "2026-02-28T20:00:00Z"
+* identifier.system = "https://www.joanneum.at"
+* identifier.value = "qr-sc-2026-02-28-001"
 
 * item[0]
   * linkId = "step-count-today"
@@ -25,13 +27,15 @@ Description: "Beispiel einer normalen Schrittzahl (8,432 Schritte) als Questionn
 Instance: stepcount-response-low-example
 InstanceOf: QuestionnaireResponse
 Usage: #example
-Title: "Step Count QuestionnaireResponse - Low Example"
-Description: "Beispiel einer niedrigen Schrittzahl (2,150 Schritte) als QuestionnaireResponse."
+Title: "Step Count Q - High Example"
+Description: "Beispiel einer hohen Schrittzahl (133,519 Schritte) als QuestionnaireResponse."
 
 * questionnaire = Canonical(StepCountQuestionnaire)
 * status = #completed
 * subject = Reference(Patient/example)
 * authored = "2026-02-28T20:15:00Z"
+* identifier.system = "https://www.joanneum.at"
+* identifier.value = "qr-sc-2026-02-28-002"
 
 * item[0]
   * linkId = "step-count-today"

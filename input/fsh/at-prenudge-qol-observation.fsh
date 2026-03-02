@@ -1,7 +1,7 @@
 Profile: AtPrenudgeObservationWHOQOLBrefScore
 Parent: AtPrenudgeObservation
 Id:  at-prenudge-whoqol-bref-score-observation
-Title: " AT PreNUDGE Observation WHOQOL-BREF Score"
+Title: "AT PreNUDGE Observation WHOQOL-BREF Score"
 Description: "Observation profile for recording WHOQOL-BREF domain scores. The overall score is represented in Observation.value, individual domain scores are recorded as components."
 
 * code = http://snomed.info/sct#405152002

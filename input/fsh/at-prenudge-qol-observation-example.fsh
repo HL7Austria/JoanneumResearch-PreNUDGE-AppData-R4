@@ -1,17 +1,17 @@
 Instance: whoqol-bref-score-example
 InstanceOf: AtPrenudgeObservationWHOQOLBrefScore
 Usage: #example
-Title: "WHOQOL-BREF Score"
+Title: "WHOQOL-BREF O Score only"
 Description: "Example of a WHOQOL-BREF score observation with a general score and all four domain scores."
 
 * identifier[+]
-  * system = "http://cdehealth.org/fhir/observation-id"
-  * value = "whoqol-bref-2026-02-28-001"
+  * system = "https://www.joanneum.at"
+  * value = "obs-whoqol-2026-02-28-001"
 * status = #final
 * code = http://snomed.info/sct#405152002
 * subject = Reference(Patient/example)
-* effectiveDateTime = "2026-02-28"
-* method = http://snomed.info/sct#8359006 "Automated"
+* effectiveDateTime = "2026-02-28T10:30:00Z"
+* method = http://snomed.info/sct#87982008 "Manual"
 * derivedFrom = Reference(QuestionnaireResponse/whoqol-bref-response-example)
 
 * component[generalized]

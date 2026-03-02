@@ -2,14 +2,14 @@ Instance: AlcoholResponseDaily
 InstanceOf: AtPrenudgeQuestionnaireResponse
 Title: "Alcohol Use Q - Daily"
 Usage: #example
-Description: "QuestionnaireResponse example of an alcohol use observation for an daily drinker."
+Description: "QuestionnaireResponse example of an alcohol use observation for a daily drinker."
 
 * questionnaire = Canonical(AtPrenudgeQuestionnaireAlcoholUse)
 * status = #completed
 * subject = Reference(Patient/example)
-* authored = 2026-02-26
+* authored = 2026-02-20
 * identifier.system = "https://www.joanneum.at"
-* identifier.value = "qr-alc-2026-02-26-001"
+* identifier.value = "qr-alc-2026-02-20-001"
 
 * item[0]
   * linkId = "alcohol-frequency"
@@ -21,7 +21,7 @@ Instance: AlcoholResponseNever
 InstanceOf: AtPrenudgeQuestionnaireResponse
 Title: "Alcohol Use Q - Non-Drinker"
 Usage: #example
-Description: "QuestionnaireResponse example of an alcohol use observation for a lifetime non-drinker ."
+Description: "QuestionnaireResponse example of an alcohol use observation for a lifetime non-drinker."
 
 * questionnaire = Canonical(AtPrenudgeQuestionnaireAlcoholUse)
 * status = #completed

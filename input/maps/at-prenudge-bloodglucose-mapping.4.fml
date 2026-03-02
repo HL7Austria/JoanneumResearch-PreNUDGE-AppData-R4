@@ -1,0 +1,57 @@
+/// url = "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/BloodGlucoseQuestionnaireResponseToObservation"
+/// name = "BloodGlucoseQuestionnaireResponseToObservation"
+/// title = "Blood Glucose Q to O"
+/// status = "active"
+
+uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" alias QR as source
+uses "http://hl7.org/fhir/StructureDefinition/Observation" alias Obs as target
+uses "http://hl7.org/fhir/StructureDefinition/Quantity" alias Quantity as source
+
+imports "http://hl7.org/fhir/StructureMap/*"
+
+group BloodGlucoseQuestionnaireResponseToObservation(source src : QR, target tgt : Obs) {
+
+  // Status
+  src.status as s -> tgt.status = 'final' "SetStatus";
+
+  // Code
+  src.status as s -> tgt.code as code then {
+    s as x -> code.coding as coding, coding.system = 'http://loinc.org', coding.code = '1556-0', coding.display = 'Fasting glucose [Mass/volume] in Capillary blood' "SetCodeCoding";
+  } "SetCode";
+
+  // Method - questionnaires are always manually filled
+  src.status as s -> tgt.method as method then {
+    s as x -> method.coding as mc, mc.system = 'http://snomed.info/sct', mc.code = '87982008', mc.display = 'Manual' "SetMethodCoding";
+  } "SetMethod";
+
+  // Subject
+  src.subject as subject -> tgt.subject = subject "SetSubject";
+
+  // EffectiveDateTime from authored
+  src.authored as authored -> tgt.effective = authored "SetEffective";
+
+  // Process items
+  src.item as item where linkId = 'blood-glucose-now' then MapBloodGlucose(item, tgt) "ProcessItem";
+}
+
+group MapBloodGlucose(source src, target tgt : Obs) {
+
+  src.answer as answer then {
+
+    // Map valueQuantity directly (1:1 mapping)
+    answer.value : Quantity as srcQty then MapQuantity(srcQty, tgt) "MapValueQuantity";
+
+    // Map comment to note
+    answer.item as commentItem where linkId = 'comment' then {
+      commentItem.answer as commentAnswer then {
+        commentAnswer.value as commentValue -> tgt.note as note, note.text = commentValue "SetNote";
+      } "ProcessCommentAnswer";
+    } "ProcessComment";
+
+  } "ProcessAnswer";
+}
+
+group MapQuantity(source srcQty : Quantity, target tgt : Obs) {
+
+  srcQty.value as v -> tgt.value = create('Quantity') as qty, qty.value = v, qty.unit = 'mg/dL', qty.system = 'http://unitsofmeasure.org', qty.code = 'mg/dL' "MapQuantityValue";
+}

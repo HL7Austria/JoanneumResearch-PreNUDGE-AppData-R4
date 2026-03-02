@@ -1,13 +1,15 @@
 Instance: whoqol-bref-response-example
 InstanceOf: QuestionnaireResponse
 Usage: #example
-Title: "WHOQOL-BREF QuestionnaireResponse"
+Title: "WHOQOL-BREF Q"
 Description: "Example of a completed WHOQOL-BREF QuestionnaireResponse including all 26 items and calculated scores."
 
 * questionnaire = "https://fhir.hl7.at/prenudge/appdata/r4/Questionnaire/QolQuestionnaire"
 * status = #completed
 * authored = "2026-02-28T10:30:00Z"
 * subject = Reference(Patient/example)
+* identifier.system = "https://www.joanneum.at"
+* identifier.value = "qr-whoqol-2026-02-28-001"
 
 // ============================================================
 // Allgemeine Lebensqualität und Gesundheit

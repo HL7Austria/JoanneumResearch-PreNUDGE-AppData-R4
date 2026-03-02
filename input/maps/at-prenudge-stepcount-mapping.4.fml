@@ -1,0 +1,60 @@
+/// url = "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/StepCountQuestionnaireResponseToObservation"
+/// name = "StepCountQuestionnaireResponseToObservation"
+/// title = "Step Count Q to O"
+/// status = "active"
+
+map "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/StepCountQuestionnaireResponseToObservation" = "StepCountQuestionnaireResponseToObservation"
+
+uses "http://hl7.org/fhir/4.3/StructureDefinition/QuestionnaireResponse" alias QR as source
+uses "http://hl7.org/fhir/4.3/StructureDefinition/Observation" alias Obs as target
+uses "http://hl7.org/fhir/4.3/StructureDefinition/Quantity" alias Quantity as source
+
+imports "http://hl7.org/fhir/StructureMap/*"
+
+group StepCountQuestionnaireResponseToObservation(source src : QR, target tgt : Obs) {
+
+  src -> tgt.status = 'final' "SetStatus";
+
+  src -> tgt.code = cc('http://loinc.org', '41950-7', 'Number of steps in 24 hour Measured') "SetCode";
+
+  src -> tgt.method = cc('http://snomed.info/sct', '87982008', 'Manual') "SetMethod";
+
+  src.subject as subject -> tgt.subject = create('Reference') as ref then {
+    subject.reference as r -> ref.reference = r "CopySubjectRef";
+  } "SetSubject";
+
+  src.authored as authored -> tgt.effectiveDateTime = create('dateTime') as dt, dt.value = authored "SetEffective";
+
+  src.item as item where linkId = 'step-count-today' then MapStepCount(item, tgt) "ProcessItem";
+}
+
+group MapStepCount(source src : QR, target tgt : Obs) {
+
+  src.answer as answer then {
+
+    // Map valueQuantity directly
+    answer.valueQuantity as srcQty then MapQuantity(srcQty, tgt) "MapValueQuantity";
+
+    // TODO: Note mapping disabled due to MaLaC-HD bug - copy markdown fails with None source type
+    // See: https://gitlab.com/cdehealth/malac-hd/-/issues/XXX
+
+    // Map comment to note
+    // answer.item as commentItem where linkId = 'comment' then {
+    //   commentItem.answer as commentAnswer then {
+    //     commentAnswer.valueString as commentText then {
+    //       commentText.value as tv -> tgt.note as note, note.text = tv "SetNoteText";
+    //     } "ExtractText";
+    //   } "ProcessCommentAnswer";
+    // } "ProcessComment";
+
+  } "ProcessAnswer";
+}
+
+group MapQuantity(source srcQty : Quantity, target tgt : Obs) {
+  srcQty.value as v -> tgt.value = create('Quantity') as qty then {
+    v.value as numVal -> qty.value = numVal "SetValue";
+    srcQty -> qty.unit = '{steps}/d' "SetUnit";
+    srcQty -> qty.system = 'http://unitsofmeasure.org' "SetSystem";
+    srcQty -> qty.code = '{steps}/d' "SetCode";
+  } "MapQuantityValue";
+}
