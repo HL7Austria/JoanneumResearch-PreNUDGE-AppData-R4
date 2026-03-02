@@ -13,18 +13,20 @@ imports "http://hl7.org/fhir/StructureMap/*"
 
 group StepCountQuestionnaireResponseToObservation(source src : QR, target tgt : Obs) {
 
+  // Fixed values
   src -> tgt.status = 'final' "SetStatus";
-
   src -> tgt.code = cc('http://loinc.org', '41950-7', 'Number of steps in 24 hour Measured') "SetCode";
-
   src -> tgt.method = cc('http://snomed.info/sct', '87982008', 'Manual') "SetMethod";
 
+  // Subject reference
   src.subject as subject -> tgt.subject = create('Reference') as ref then {
     subject.reference as r -> ref.reference = r "CopySubjectRef";
   } "SetSubject";
 
+  // EffectiveDateTime from authored
   src.authored as authored -> tgt.effectiveDateTime = create('dateTime') as dt, dt.value = authored "SetEffective";
 
+  // Process answer items
   src.item as item where linkId = 'step-count-today' then MapStepCount(item, tgt) "ProcessItem";
 }
 
@@ -36,7 +38,7 @@ group MapStepCount(source src : QR, target tgt : Obs) {
     answer.valueQuantity as srcQty then MapQuantity(srcQty, tgt) "MapValueQuantity";
 
     // TODO: Note mapping disabled due to MaLaC-HD bug - copy markdown fails with None source type
-    // See: https://gitlab.com/cdehealth/malac-hd/-/issues/XXX
+    // See: https://gitlab.com/cdehealth/malac-hd/-/issues/128
 
     // Map comment to note
     // answer.item as commentItem where linkId = 'comment' then {

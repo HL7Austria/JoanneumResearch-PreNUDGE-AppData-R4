@@ -3,63 +3,51 @@
 /// title = "Alcohol Use Q mapping frequency to O drinks per day"
 /// status = "active"
 
-uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" alias QR as source
-uses "http://hl7.org/fhir/StructureDefinition/Observation" alias Obs as target
-uses "http://hl7.org/fhir/StructureDefinition/Coding" alias Coding as source
+map "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/AlcoholQuestionnaireResponseToObservation" = "AlcoholQuestionnaireResponseToObservation"
+
+uses "http://hl7.org/fhir/4.3/StructureDefinition/QuestionnaireResponse" alias QR as source
+uses "http://hl7.org/fhir/4.3/StructureDefinition/Observation" alias Obs as target
+uses "http://hl7.org/fhir/4.3/StructureDefinition/Coding" alias Coding as source
 
 imports "http://hl7.org/fhir/StructureMap/*"
 
 group AlcoholQuestionnaireResponseToObservation(source src : QR, target tgt : Obs) {
 
-  // Status
-  src.status as s -> tgt.status = 'final' "SetStatus";
+  // Fixed values
+  src -> tgt.status = 'final' "SetStatus";
+  src -> tgt.code = cc('http://loinc.org', '74013-4', 'Alcoholic drinks per day') "SetCode";
+  src -> tgt.method = cc('http://snomed.info/sct', '87982008', 'Manual') "SetMethod";
 
-  // Code
-  src.status as s -> tgt.code as code then {
-    s as x -> code.coding as coding, coding.system = 'http://loinc.org', coding.code = '74013-4', coding.display = 'Alcoholic drinks per day' "SetCodeCoding";
-  } "SetCode";
-
-  // Method - questionnaires are always manually filled
-  src.status as s -> tgt.method as method then {
-    s as x -> method.coding as mc, mc.system = 'http://snomed.info/sct', mc.code = '87982008', mc.display = 'Manual' "SetMethodCoding";
-  } "SetMethod";
-
-  // Subject
-  src.subject as subject -> tgt.subject = subject "SetSubject";
+  // Subject reference
+  src.subject as subject -> tgt.subject = create('Reference') as ref then {
+    subject.reference as r -> ref.reference = r "CopySubjectRef";
+  } "SetSubject";
 
   // EffectiveDateTime from authored
-  src.authored as authored -> tgt.effective = authored "SetEffective";
+  src.authored as authored -> tgt.effectiveDateTime = create('dateTime') as dt, dt.value = authored "SetEffective";
 
-  // Process items
+  // Process answer items
   src.item as item where linkId = 'alcohol-frequency' then MapAlcoholFrequency(item, tgt) "ProcessItem";
 }
 
-group MapAlcoholFrequency(source src, target tgt : Obs) {
-
+group MapAlcoholFrequency(source src : QR, target tgt : Obs) {
   src.answer as answer then {
-
-    // Map frequency code to drinks/day
-    answer.value : Coding as coding then MapCodingToQuantity(coding, tgt) "MapValueQuantity";
-
-    // Map comment to note
-    answer.item as commentItem where linkId = 'comment' then {
-      commentItem.answer as commentAnswer then {
-        commentAnswer.value as commentValue -> tgt.note as note, note.text = commentValue "SetNote";
-      } "ProcessCommentAnswer";
-    } "ProcessComment";
-
+    answer.valueCoding as coding then MapCodingToQuantity(coding, tgt) "MapValueCoding";
   } "ProcessAnswer";
+
+  // TODO: Note mapping disabled due to MaLaC-HD limitation
+  // Annotation.text (markdown) target not supported with FHIR string source
+  // See: https://gitlab.com/cdehealth/malac-hd/-/issues/128
 }
 
 group MapCodingToQuantity(source coding : Coding, target tgt : Obs) {
-
-  coding.code as c where $this = '69620002' -> tgt.value = create('Quantity') as qty, qty.value = 1, qty.unit = 'drinks/day', qty.system = 'http://unitsofmeasure.org', qty.code = '{drinks}/d' "MapDaily";
-  coding.code as c where $this = '307447001' -> tgt.value = create('Quantity') as qty, qty.value = 0.79, qty.unit = 'drinks/day', qty.system = 'http://unitsofmeasure.org', qty.code = '{drinks}/d' "MapSixTimesWeekly";
-  coding.code as c where $this = '396113003' -> tgt.value = create('Quantity') as qty, qty.value = 0.5, qty.unit = 'drinks/day', qty.system = 'http://unitsofmeasure.org', qty.code = '{drinks}/d' "MapThreeToFourTimesWeekly";
-  coding.code as c where $this = '229800002' -> tgt.value = create('Quantity') as qty, qty.value = 0.21, qty.unit = 'drinks/day', qty.system = 'http://unitsofmeasure.org', qty.code = '{drinks}/d' "MapTwiceWeekly";
-  coding.code as c where $this = '307452006' -> tgt.value = create('Quantity') as qty, qty.value = 0.08, qty.unit = 'drinks/day', qty.system = 'http://unitsofmeasure.org', qty.code = '{drinks}/d' "MapThreeTimesMonthly";
-  coding.code as c where $this = '307450003' -> tgt.value = create('Quantity') as qty, qty.value = 0.03, qty.unit = 'drinks/day', qty.system = 'http://unitsofmeasure.org', qty.code = '{drinks}/d' "MapOnceMonthly";
-  coding.code as c where $this = '445547001' -> tgt.value = create('Quantity') as qty, qty.value = 0.02, qty.unit = 'drinks/day', qty.system = 'http://unitsofmeasure.org', qty.code = '{drinks}/d' "MapEveryTwoMonths";
-  coding.code as c where $this = '105542008' -> tgt.value = create('Quantity') as qty, qty.value = 0, qty.unit = 'drinks/day', qty.system = 'http://unitsofmeasure.org', qty.code = '{drinks}/d' "MapCurrentNonDrinker";
-  coding.code as c where $this = '783261004' -> tgt.value = create('Quantity') as qty, qty.value = 0, qty.unit = 'drinks/day', qty.system = 'http://unitsofmeasure.org', qty.code = '{drinks}/d' "MapLifetimeNonDrinker";
+  coding.code as c where $this = '69620002' -> tgt.value = qty('1', 'drinks/day', 'http://unitsofmeasure.org', '{drinks}/d') "MapDaily";
+  coding.code as c where $this = '307447001' -> tgt.value = qty('0.79', 'drinks/day', 'http://unitsofmeasure.org', '{drinks}/d') "MapSixTimesWeekly";
+  coding.code as c where $this = '396113003' -> tgt.value = qty('0.5', 'drinks/day', 'http://unitsofmeasure.org', '{drinks}/d') "MapThreeToFourTimesWeekly";
+  coding.code as c where $this = '229800002' -> tgt.value = qty('0.21', 'drinks/day', 'http://unitsofmeasure.org', '{drinks}/d') "MapTwiceWeekly";
+  coding.code as c where $this = '307452006' -> tgt.value = qty('0.08', 'drinks/day', 'http://unitsofmeasure.org', '{drinks}/d') "MapThreeTimesMonthly";
+  coding.code as c where $this = '307450003' -> tgt.value = qty('0.03', 'drinks/day', 'http://unitsofmeasure.org', '{drinks}/d') "MapOnceMonthly";
+  coding.code as c where $this = '445547001' -> tgt.value = qty('0.02', 'drinks/day', 'http://unitsofmeasure.org', '{drinks}/d') "MapEveryTwoMonths";
+  coding.code as c where $this = '105542008' -> tgt.value = qty('0', 'drinks/day', 'http://unitsofmeasure.org', '{drinks}/d') "MapCurrentNonDrinker";
+  coding.code as c where $this = '783261004' -> tgt.value = qty('0', 'drinks/day', 'http://unitsofmeasure.org', '{drinks}/d') "MapLifetimeNonDrinker";
 }
