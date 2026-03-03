@@ -1,0 +1,36 @@
+/// url = "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/QuestionnaireResponseToObservationBase"
+/// name = "QuestionnaireResponseToObservationBase"
+/// title = "Shared base mapping for QuestionnaireResponse to Observation"
+/// status = "active"
+
+map "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/QuestionnaireResponseToObservationBase" = "QuestionnaireResponseToObservationBase"
+
+uses "http://hl7.org/fhir/4.3/StructureDefinition/QuestionnaireResponse" alias QR as source
+uses "http://hl7.org/fhir/4.3/StructureDefinition/Observation" alias Obs as target
+
+group SetObservationBase(source src : QR, target tgt : Obs) {
+
+  // Fixed values
+  src -> tgt.status = 'final' "SetStatus";
+  src -> tgt.method = cc('http://snomed.info/sct', '87982008', 'Manual') "SetMethod";
+
+  // Copy identifier from QuestionnaireResponse to Observation
+  src.identifier as srcId -> tgt.identifier = create('Identifier') as tgtId then {
+    srcId.system as s -> tgtId.system = s "CopyIdSystem";
+    srcId.value as v -> tgtId.value = v "CopyIdValue";
+    srcId.use as u -> tgtId.use = u "CopyIdUse";
+  } "CopyIdentifier";
+
+  // Set derivedFrom reference back to the QuestionnaireResponse
+  src.id as srcRefId -> tgt.derivedFrom = create('Reference') as ref,
+    ref.reference = append('QuestionnaireResponse/', srcRefId) "SetDerivedFrom";
+
+  // Subject reference
+  src.subject as subject -> tgt.subject = create('Reference') as ref then {
+    subject.reference as r -> ref.reference = r "CopySubjectRef";
+  } "SetSubject";
+
+  // EffectiveDateTime from authored
+  src.authored as authored -> tgt.effectiveDateTime = create('dateTime') as dt,
+    dt.value = authored "SetEffective";
+}

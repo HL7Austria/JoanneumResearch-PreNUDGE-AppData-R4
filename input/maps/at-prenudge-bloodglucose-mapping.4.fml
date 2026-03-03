@@ -10,29 +10,19 @@ uses "http://hl7.org/fhir/4.3/StructureDefinition/Observation" alias Obs as targ
 uses "http://hl7.org/fhir/4.3/StructureDefinition/Quantity" alias Quantity as source
 
 imports "http://hl7.org/fhir/StructureMap/*"
+imports "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/QuestionnaireResponseToObservationBase"
 
 group BloodGlucoseQuestionnaireResponseToObservation(source src : QR, target tgt : Obs) {
-
-  // Fixed values
-  src -> tgt.status = 'final' "SetStatus";
+  src then SetObservationBase(src, tgt) "Base";
+  src -> tgt.meta = create('Meta') as meta,
+    meta.profile = 'https://fhir.hl7.at/prenudge/appdata/r4/StructureDefinition/at-prenudge-bloodglucose-observation' "SetProfile";
   src -> tgt.code = cc('http://loinc.org', '1556-0', 'Fasting glucose [Mass/volume] in Capillary blood') "SetCode";
-  src -> tgt.method = cc('http://snomed.info/sct', '87982008', 'Manual') "SetMethod";
-
-  // Subject reference
-  src.subject as subject -> tgt.subject = create('Reference') as ref then {
-    subject.reference as r -> ref.reference = r "CopySubjectRef";
-  } "SetSubject";
-
-  // EffectiveDateTime from authored
-  src.authored as authored -> tgt.effectiveDateTime = create('dateTime') as dt, dt.value = authored "SetEffective";
-
-  // Process answer items
   src.item as item where linkId = 'blood-glucose-now' then MapBloodGlucose(item, tgt) "ProcessItem";
 }
 
 group MapBloodGlucose(source src : QR, target tgt : Obs) {
   src.answer as answer then {
-    answer.valueQuantity as srcQty then MapQuantity(srcQty, tgt) "MapValueQuantity";
+    answer.valueQuantity as srcQty then MapBloodGlucoseQuantity(srcQty, tgt) "MapValueQuantity";
   } "ProcessAnswer";
 
   // TODO: Note mapping disabled due to MaLaC-HD limitation
@@ -49,8 +39,12 @@ group MapBloodGlucose(source src : QR, target tgt : Obs) {
   // } "ProcessComment";
 }
 
-group MapQuantity(source srcQty : Quantity, target tgt : Obs) {
+group MapBloodGlucoseQuantity(source srcQty : Quantity, target tgt : Obs) {
   srcQty.value as v then {
-    v.value as numVal -> tgt.value = create('Quantity') as qty, qty.value = numVal, qty.unit = 'mg/dL', qty.system = 'http://unitsofmeasure.org', qty.code = 'mg/dL' "SetQuantity";
+    v.value as numVal -> tgt.value = create('Quantity') as qty,
+      qty.value = numVal,
+      qty.unit = 'mg/dL',
+      qty.system = 'http://unitsofmeasure.org',
+      qty.code = 'mg/dL' "SetQuantity";
   } "ExtractValue";
 }

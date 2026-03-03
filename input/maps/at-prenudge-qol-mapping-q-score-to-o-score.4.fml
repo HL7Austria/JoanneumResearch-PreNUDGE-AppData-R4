@@ -9,95 +9,54 @@ uses "http://hl7.org/fhir/4.3/StructureDefinition/QuestionnaireResponse" alias Q
 uses "http://hl7.org/fhir/4.3/StructureDefinition/Observation" alias Obs as target
 
 imports "http://hl7.org/fhir/StructureMap/*"
+imports "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/QuestionnaireResponseToObservationBase"
 
 group WHOQOLBrefQuestionnaireResponseToObservation(source src : QR, target tgt : Obs) {
-
-  // Fixed values
-  src -> tgt.status = 'final' "SetStatus";
+  src then SetObservationBase(src, tgt) "Base";
+  src -> tgt.meta = create('Meta') as meta,
+    meta.profile = 'https://fhir.hl7.at/prenudge/appdata/r4/StructureDefinition/at-prenudge-whoqol-bref-score-observation' "SetProfile";
   src -> tgt.code = cc('http://snomed.info/sct', '405152002', 'Quality of life assessment') "SetCode";
-  src -> tgt.method = cc('http://snomed.info/sct', '87982008', 'Manual') "SetMethod";
 
-  // Subject reference
-  src.subject as subject -> tgt.subject = create('Reference') as ref then {
-    subject.reference as r -> ref.reference = r "CopySubjectRef";
-  } "SetSubject";
-
-  // EffectiveDateTime from authored
-  src.authored as authored -> tgt.effectiveDateTime = create('dateTime') as dt, dt.value = authored "SetEffective";
-
-  // Process general group for generalized score
   src.item as generalGroup where linkId = 'general' then {
-    generalGroup.item as scoreItem where linkId = 'general-score' then MapGeneralScore(scoreItem, tgt) "MapGeneralScore";
+    generalGroup.item as scoreItem where linkId = 'general-score'
+      then MapScoreComponent(scoreItem, tgt, '60132005', 'Generalized') "MapGeneralScore";
   } "ProcessGeneral";
 
-  // Process domain1 group for physical score
   src.item as domain1Group where linkId = 'domain1' then {
-    domain1Group.item as scoreItem where linkId = 'domain1-score' then MapPhysicalScore(scoreItem, tgt) "MapDomain1Score";
+    domain1Group.item as scoreItem where linkId = 'domain1-score'
+      then MapScoreComponent(scoreItem, tgt, '19388002', 'Physical') "MapDomain1Score";
   } "ProcessDomain1";
 
-  // Process domain2 group for psychological score
   src.item as domain2Group where linkId = 'domain2' then {
-    domain2Group.item as scoreItem where linkId = 'domain2-score' then MapPsychologicalScore(scoreItem, tgt) "MapDomain2Score";
+    domain2Group.item as scoreItem where linkId = 'domain2-score'
+      then MapScoreComponent(scoreItem, tgt, '60224009', 'Psychologic') "MapDomain2Score";
   } "ProcessDomain2";
 
-  // Process domain3 group for relationships score
   src.item as domain3Group where linkId = 'domain3' then {
-    domain3Group.item as scoreItem where linkId = 'domain3-score' then MapRelationshipsScore(scoreItem, tgt) "MapDomain3Score";
+    domain3Group.item as scoreItem where linkId = 'domain3-score'
+      then MapScoreComponent(scoreItem, tgt, '272151006', 'Relationships') "MapDomain3Score";
   } "ProcessDomain3";
 
-  // Process domain4 group for environment score
   src.item as domain4Group where linkId = 'domain4' then {
-    domain4Group.item as scoreItem where linkId = 'domain4-score' then MapEnvironmentScore(scoreItem, tgt) "MapDomain4Score";
+    domain4Group.item as scoreItem where linkId = 'domain4-score'
+      then MapScoreComponent(scoreItem, tgt, '276339004', 'Environment') "MapDomain4Score";
   } "ProcessDomain4";
 
   // TODO: Comment/Note mapping disabled due to MaLaC-HD limitation
-  // Group comments (general-comment, domain1-comment, domain2-comment,
-  // domain3-comment, domain4-comment) cannot be mapped to Observation.note
-  // because Annotation.text (markdown) target is not supported with FHIR string source
   // See: https://gitlab.com/cdehealth/malac-hd/-/issues/128
 }
 
-// Generalized score component
-group MapGeneralScore(source src : QR, target tgt : Obs) {
+// Shared parametrisierte Score-to-Component Gruppe
+group MapScoreComponent(source src : QR, target tgt : Obs, source snomedCode : string, source displayName : string) {
   src.answer as answer then {
     answer.valueDecimal as val then {
-      val.value as numVal -> tgt.component as comp, comp.code = cc('http://snomed.info/sct', '60132005', 'Generalized'), comp.value = create('Quantity') as qty, qty.value = numVal, qty.unit = 'score', qty.system = 'http://unitsofmeasure.org', qty.code = '{score}' "SetGeneralComponent";
+      val.value as numVal -> tgt.component as comp,
+        comp.code = cc('http://snomed.info/sct', snomedCode, displayName),
+        comp.value = create('Quantity') as qty,
+        qty.value = numVal,
+        qty.unit = 'score',
+        qty.system = 'http://unitsofmeasure.org',
+        qty.code = '{score}' "SetScoreComponent";
     } "ExtractValue";
-  } "ProcessGeneralAnswer";
-}
-
-// Physical health score component
-group MapPhysicalScore(source src : QR, target tgt : Obs) {
-  src.answer as answer then {
-    answer.valueDecimal as val then {
-      val.value as numVal -> tgt.component as comp, comp.code = cc('http://snomed.info/sct', '19388002', 'Physical'), comp.value = create('Quantity') as qty, qty.value = numVal, qty.unit = 'score', qty.system = 'http://unitsofmeasure.org', qty.code = '{score}' "SetPhysicalComponent";
-    } "ExtractValue";
-  } "ProcessPhysicalAnswer";
-}
-
-// Psychological well-being score component
-group MapPsychologicalScore(source src : QR, target tgt : Obs) {
-  src.answer as answer then {
-    answer.valueDecimal as val then {
-      val.value as numVal -> tgt.component as comp, comp.code = cc('http://snomed.info/sct', '60224009', 'Psychologic'), comp.value = create('Quantity') as qty, qty.value = numVal, qty.unit = 'score', qty.system = 'http://unitsofmeasure.org', qty.code = '{score}' "SetPsychologicalComponent";
-    } "ExtractValue";
-  } "ProcessPsychologicalAnswer";
-}
-
-// Social relationships score component
-group MapRelationshipsScore(source src : QR, target tgt : Obs) {
-  src.answer as answer then {
-    answer.valueDecimal as val then {
-      val.value as numVal -> tgt.component as comp, comp.code = cc('http://snomed.info/sct', '272151006', 'Relationships'), comp.value = create('Quantity') as qty, qty.value = numVal, qty.unit = 'score', qty.system = 'http://unitsofmeasure.org', qty.code = '{score}' "SetRelationshipsComponent";
-    } "ExtractValue";
-  } "ProcessRelationshipsAnswer";
-}
-
-// Environment score component
-group MapEnvironmentScore(source src : QR, target tgt : Obs) {
-  src.answer as answer then {
-    answer.valueDecimal as val then {
-      val.value as numVal -> tgt.component as comp, comp.code = cc('http://snomed.info/sct', '276339004', 'Environment'), comp.value = create('Quantity') as qty, qty.value = numVal, qty.unit = 'score', qty.system = 'http://unitsofmeasure.org', qty.code = '{score}' "SetEnvironmentComponent";
-    } "ExtractValue";
-  } "ProcessEnvironmentAnswer";
+  } "ProcessScoreAnswer";
 }
