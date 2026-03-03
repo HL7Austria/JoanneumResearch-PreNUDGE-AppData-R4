@@ -1,5 +1,5 @@
 == Suppressed Messages ==
 
-# Add warning and/or information messages here after you've confirmed that they aren't really a problem
-# (And include comments like this justifying why)
-# See https://github.com/FHIR/sample-ig/blob/master/input/ignoreWarnings.txt for examples
+# StructureMap BackboneElement path validation: QuestionnaireResponse.item sub-elements cannot be typed as a group input in FML R4. The path src.answer actually refers to QuestionnaireResponse.item.answer which is valid, but the IG Publisher validates against the declared group input type (QuestionnaireResponse) instead of the actual passed element.
+Der Quellpfad src.answer bezieht sich auf den Pfad QuestionnaireResponse.answer, der unbekannt ist
+Der Zielpfad tgt.effectiveDateTime bezieht sich auf den Pfad Observation.effectiveDateTime, der unbekannt ist
