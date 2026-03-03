@@ -1,12 +1,12 @@
-/// url = "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/QuestionnaireResponseToObservationBase"
-/// name = "QuestionnaireResponseToObservationBase"
-/// title = "Shared base mapping for QuestionnaireResponse to Observation"
-/// status = "active"
-
 map "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/QuestionnaireResponseToObservationBase" = "QuestionnaireResponseToObservationBase"
 
-uses "http://hl7.org/fhir/4.3/StructureDefinition/QuestionnaireResponse" alias QR as source
-uses "http://hl7.org/fhir/4.3/StructureDefinition/Observation" alias Obs as target
+/// url = "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/QuestionnaireResponseToObservationBase"
+/// name = "QuestionnaireResponseToObservationBase"
+/// title = "Shared base for Q to O"
+/// status = "active"
+
+uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" alias QR as source
+uses "http://hl7.org/fhir/StructureDefinition/Observation" alias Obs as target
 
 group SetObservationBase(source src : QR, target tgt : Obs) {
 

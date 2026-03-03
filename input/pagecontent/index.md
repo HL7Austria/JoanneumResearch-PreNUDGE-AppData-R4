@@ -4,22 +4,25 @@ The core concept is to create a **modular platform** that collects and structure
 
 PräNUDGE focuses on the **prevention of four diseases**: diabetes, colorectal cancer, depression, and COPD, targeting specific groups such as children, adolescents, and working adults. The FHIR Implementation Guide (IG) is called “PreNUDGE”, which is the agreed English spelling, while the project’s German name is “PräNUDGE.”
 
+For more, see [Background](background.html).
+
 ### PreNUDGE FHIR® IG for Data Provider / Data from Apps
 
-This Implementation Guide (IG) explains how to use the **PreNUDGE FHIR API** to deliver **health indicators** as an application provider.  
-It is a **work in progress** and represents a **continuous integration (CI) build**. Substantial changes may occur before the ballot starts.
+This Implementation Guide (IG) explains how application providers can use the **PreNUDGE FHIR API** to deliver **health indicators**.
 
-We will focus on narrow standardization of **four PreNUDGE measurements**:
-- Daily activity as **Steps per day** (from a **questionnaire** and from a **wearable device as an observation**)
-- **Alcohol consumption** as number of drinks (from a **questionnaire** and from an **observation**)
-- **Blood glucose** in mg/dL (from a **questionnaire** and from a **device as an observation**)
-- **Quality of life** (from a **questionnaire** with a calculated **score as an observation**)
+We focus on narrow standardization of **four PreNUDGE measurements**:
+- Daily activity as **Steps per day** (from a [**questionnaire**](Questionnaire-StepCountQuestionnaire.html) and from a [**wearable device as an observation**](StructureDefinition-at-prenudge-stepcount-observation.html))
+- **Alcohol consumption** as number of drinks (from a [**questionnaire**](Questionnaire-StepCountQuestionnaire.html) and from an [**observation**](StructureDefinition-at-prenudge-alcoholuse-observation.html))
+- **Blood glucose** in mg/dL (from a [**questionnaire**](Questionnaire-BloodGlucoseQuestionnaire.html) and from a [**device as an observation**](StructureDefinition-at-prenudge-bloodglucose-observation.html))
+- **Quality of life** (from a [**questionnaire**](Questionnaire-QolQuestionnaire.html) with a calculated [**score as an observation**](StructureDefinition-at-prenudge-whoqol-bref-score-observation.html))
 
-Each **questionnaire variant** maps **one-way** to its corresponding **observation variant**.  
+For viewing the full questionnaires use tools like [lhcforms](https://lhcfhirtools.nlm.nih.gov/lhcforms).
 
-Additional narrow standardized **PreNUDGE measurements** may be specified and listed here prior to the ballot.
+Each **questionnaire variant** maps **one-way** to its corresponding **observation variant**. The mappings can be found at [StructureMaps](artifacts.html#terminology-structure-maps) and can be executed with [MaLaC-HD](https://gitlab.com/cdehealth/malac-hd) (small workaround because of [a IG Publisher compatibility issue](https://gitlab.com/cdehealth/malac-hd/-/issues/129) needed, for MaLaC-HD v1.4.1 replace all http://hl7.org/fhir/StructureDefinition/ to http://hl7.org/fhir/4.0/StructureDefinition/).
 
-Besides these narrow standardized measurements, **broad standardized measurements** as simple **observations**, compliant to the prenudge observation defined here, are also supported.
+Additional PreNUDGE measurements, also narrow standardized, will be specified analogously to these four, based on feedback from this informative ballot.
+
+Besides these narrow standardized measurements, **broad standardized measurements** called [**other observations**](StructureDefinition-at-prenudge-observation-other.html) are also supported. Please be aware that such broad standardized measurements does not have a corresponding questionnaire.
 
 ### Ballot Info
 
@@ -38,5 +41,3 @@ General information and deadlines according to HL7 Austria voting procedures:
 
 We look forward to your active participation in the balloting process, which makes a vital contribution to quality assurance and the success of Austrian e-health applications.  
 Thank you very much for your commitment!
-
-For more, see [Background](background.html).
