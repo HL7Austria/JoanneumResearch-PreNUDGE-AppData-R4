@@ -1,12 +1,12 @@
 Instance: whoqol-bref-score-example
 InstanceOf: AtPrenudgeObservationWHOQOLBrefScore
 Usage: #example
-Title: "WHOQOL-BREF O Score only"
+Title: "WHOQOL-BREF O Score only mapped from Q"
 Description: "Example of a WHOQOL-BREF score observation with a general score and all four domain scores."
 
 * identifier[+]
   * system = "https://www.joanneum.at"
-  * value = "obs-whoqol-2026-02-28-001"
+  * value = "qr-whoqol-2026-02-28-001"
 * status = #final
 * code = http://snomed.info/sct#405152002
 * subject = Reference(Patient/example)
