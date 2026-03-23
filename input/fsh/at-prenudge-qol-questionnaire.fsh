@@ -57,44 +57,12 @@ Usage: #definition
     * answerOption[+].valueCoding = $whoqol-scale#S4 "Zufrieden"
     * answerOption[+].valueCoding = $whoqol-scale#S5 "Sehr zufrieden"
 
-  * item[+]
-    * linkId = "general-raw"
-    * text = "Allgemeiner Rohwert"
-    * type = #decimal
-    * readOnly = true
-    * extension[+]
-      * url = $hidden
-      * valueBoolean = true
-    * extension[+]
-      * url = $calcExp
-      * valueExpression
-        * language = #text/fhirpath
-        * description = "Summe Q1 + Q2"
-        * expression = "%resource.repeat(item).where(linkId='Q1').answer.valueCoding.code.substring(1).toInteger() + %resource.repeat(item).where(linkId='Q2').answer.valueCoding.code.substring(1).toInteger()"
-
-  * item[+]
-    * linkId = "general-score"
-    * text = "Allgemeiner Score (0-100)"
-    * type = #decimal
-    * readOnly = true
-    * extension[+]
-      * url = $calcExp
-      * valueExpression
-        * language = #text/fhirpath
-        * description = "Transformierter Score: ((Mittelwert - 1) * 25)"
-        * expression = "((%resource.repeat(item).where(linkId='general-raw').answer.valueDecimal / 2) - 1) * 25"
-
-  * item[+]
-    * linkId = "general-comment"
-    * text = "Haben Sie zu diesem Abschnitt noch einen Kommentar oder etwas hinzuzufügen?"
-    * type = #string
-
 // ============================================================
-// Domäne 1: Physische Gesundheit
+// Section 1
 // ============================================================
 * item[+]
-  * linkId = "domain1"
-  * text = "Domäne 1: Physische Gesundheit"
+  * linkId = "section-1"
+  * text = "In den folgenden Fragen geht es darum, wie stark Sie während der vergangenen zwei Wochen bestimmte Dinge erlebt haben."
   * type = #group
 
   * item[+]
@@ -107,72 +75,6 @@ Usage: #definition
     * answerOption[+].valueCoding = $whoqol-scale#I3 "Mittelmäßig"
     * answerOption[+].valueCoding = $whoqol-scale#I4 "Ziemlich"
     * answerOption[+].valueCoding = $whoqol-scale#I5 "Äußerst"
-
-  * item[+]
-    * linkId = "Q4"
-    * text = "Wie sehr sind Sie auf medizinische Behandlung angewiesen, um das tägliche Leben zu meistern?"
-    * type = #choice
-    * required = true
-    * answerOption[+].valueCoding = $whoqol-scale#I1 "Überhaupt nicht"
-    * answerOption[+].valueCoding = $whoqol-scale#I2 "Ein wenig"
-    * answerOption[+].valueCoding = $whoqol-scale#I3 "Mittelmäßig"
-    * answerOption[+].valueCoding = $whoqol-scale#I4 "Ziemlich"
-    * answerOption[+].valueCoding = $whoqol-scale#I5 "Äußerst"
-
-  * item[+]
-    * linkId = "Q10"
-    * text = "Haben Sie genug Energie für das tägliche Leben?"
-    * type = #choice
-    * required = true
-    * answerOption[+].valueCoding = $whoqol-scale#C1 "Überhaupt nicht"
-    * answerOption[+].valueCoding = $whoqol-scale#C2 "Eher nicht"
-    * answerOption[+].valueCoding = $whoqol-scale#C3 "Halbwegs"
-    * answerOption[+].valueCoding = $whoqol-scale#C4 "Überwiegend"
-    * answerOption[+].valueCoding = $whoqol-scale#C5 "Völlig"
-
-  * item[+]
-    * linkId = "Q15"
-    * text = "Wie gut können Sie sich fortbewegen?"
-    * type = #choice
-    * required = true
-    * answerOption[+].valueCoding = $whoqol-scale#Q1 "Sehr schlecht"
-    * answerOption[+].valueCoding = $whoqol-scale#Q2 "Schlecht"
-    * answerOption[+].valueCoding = $whoqol-scale#Q3 "Mittelmäßig"
-    * answerOption[+].valueCoding = $whoqol-scale#Q4 "Gut"
-    * answerOption[+].valueCoding = $whoqol-scale#Q5 "Sehr gut"
-
-  * item[+]
-    * linkId = "Q16"
-    * text = "Wie zufrieden sind Sie mit Ihrem Schlaf?"
-    * type = #choice
-    * required = true
-    * answerOption[+].valueCoding = $whoqol-scale#S1 "Sehr unzufrieden"
-    * answerOption[+].valueCoding = $whoqol-scale#S2 "Unzufrieden"
-    * answerOption[+].valueCoding = $whoqol-scale#S3 "Weder zufrieden noch unzufrieden"
-    * answerOption[+].valueCoding = $whoqol-scale#S4 "Zufrieden"
-    * answerOption[+].valueCoding = $whoqol-scale#S5 "Sehr zufrieden"
-
-  * item[+]
-    * linkId = "Q17"
-    * text = "Wie zufrieden sind Sie mit Ihrer Fähigkeit, alltägliche Dinge erledigen zu können?"
-    * type = #choice
-    * required = true
-    * answerOption[+].valueCoding = $whoqol-scale#S1 "Sehr unzufrieden"
-    * answerOption[+].valueCoding = $whoqol-scale#S2 "Unzufrieden"
-    * answerOption[+].valueCoding = $whoqol-scale#S3 "Weder zufrieden noch unzufrieden"
-    * answerOption[+].valueCoding = $whoqol-scale#S4 "Zufrieden"
-    * answerOption[+].valueCoding = $whoqol-scale#S5 "Sehr zufrieden"
-
-  * item[+]
-    * linkId = "Q18"
-    * text = "Wie zufrieden sind Sie mit Ihrer Arbeitsfähigkeit?"
-    * type = #choice
-    * required = true
-    * answerOption[+].valueCoding = $whoqol-scale#S1 "Sehr unzufrieden"
-    * answerOption[+].valueCoding = $whoqol-scale#S2 "Unzufrieden"
-    * answerOption[+].valueCoding = $whoqol-scale#S3 "Weder zufrieden noch unzufrieden"
-    * answerOption[+].valueCoding = $whoqol-scale#S4 "Zufrieden"
-    * answerOption[+].valueCoding = $whoqol-scale#S5 "Sehr zufrieden"
 
   * item[+]
     * linkId = "Q3-reversed"
@@ -190,6 +92,17 @@ Usage: #definition
         * expression = "6 - %resource.repeat(item).where(linkId='Q3').answer.valueCoding.code.substring(1).toInteger()"
 
   * item[+]
+    * linkId = "Q4"
+    * text = "Wie sehr sind Sie auf medizinische Behandlung angewiesen, um das tägliche Leben zu meistern?"
+    * type = #choice
+    * required = true
+    * answerOption[+].valueCoding = $whoqol-scale#I1 "Überhaupt nicht"
+    * answerOption[+].valueCoding = $whoqol-scale#I2 "Ein wenig"
+    * answerOption[+].valueCoding = $whoqol-scale#I3 "Mittelmäßig"
+    * answerOption[+].valueCoding = $whoqol-scale#I4 "Ziemlich"
+    * answerOption[+].valueCoding = $whoqol-scale#I5 "Äußerst"
+
+  * item[+]
     * linkId = "Q4-reversed"
     * text = "Q4 umkodiert"
     * type = #integer
@@ -203,46 +116,6 @@ Usage: #definition
         * language = #text/fhirpath
         * description = "Reverse scoring für Q4"
         * expression = "6 - %resource.repeat(item).where(linkId='Q4').answer.valueCoding.code.substring(1).toInteger()"
-
-  * item[+]
-    * linkId = "domain1-raw"
-    * text = "Domäne 1 Rohwert"
-    * type = #decimal
-    * readOnly = true
-    * extension[+]
-      * url = $hidden
-      * valueBoolean = true
-    * extension[+]
-      * url = $calcExp
-      * valueExpression
-        * language = #text/fhirpath
-        * description = "Summe der 7 Items (Q3r, Q4r, Q10, Q15, Q16, Q17, Q18)"
-        * expression = "%resource.repeat(item).where(linkId='Q3-reversed').answer.valueInteger + %resource.repeat(item).where(linkId='Q4-reversed').answer.valueInteger + %resource.repeat(item).where(linkId='Q10').answer.valueCoding.code.substring(1).toInteger() + %resource.repeat(item).where(linkId='Q15').answer.valueCoding.code.substring(1).toInteger() + %resource.repeat(item).where(linkId='Q16').answer.valueCoding.code.substring(1).toInteger() + %resource.repeat(item).where(linkId='Q17').answer.valueCoding.code.substring(1).toInteger() + %resource.repeat(item).where(linkId='Q18').answer.valueCoding.code.substring(1).toInteger()"
-
-  * item[+]
-    * linkId = "domain1-score"
-    * text = "Domäne 1: Physische Gesundheit (0-100)"
-    * type = #decimal
-    * readOnly = true
-    * extension[+]
-      * url = $calcExp
-      * valueExpression
-        * language = #text/fhirpath
-        * description = "Transformierter Score: ((Mittelwert - 1) * 25)"
-        * expression = "((%resource.repeat(item).where(linkId='domain1-raw').answer.valueDecimal / 7) - 1) * 25"
-
-  * item[+]
-    * linkId = "domain1-comment"
-    * text = "Haben Sie zu diesem Abschnitt noch einen Kommentar oder etwas hinzuzufügen?"
-    * type = #string
-
-// ============================================================
-// Domäne 2: Psychisches Wohlbefinden
-// ============================================================
-* item[+]
-  * linkId = "domain2"
-  * text = "Domäne 2: Psychisches Wohlbefinden"
-  * type = #group
 
   * item[+]
     * linkId = "Q5"
@@ -278,167 +151,6 @@ Usage: #definition
     * answerOption[+].valueCoding = $whoqol-scale#I5 "Äußerst"
 
   * item[+]
-    * linkId = "Q11"
-    * text = "Können Sie Ihr Aussehen akzeptieren?"
-    * type = #choice
-    * required = true
-    * answerOption[+].valueCoding = $whoqol-scale#C1 "Überhaupt nicht"
-    * answerOption[+].valueCoding = $whoqol-scale#C2 "Eher nicht"
-    * answerOption[+].valueCoding = $whoqol-scale#C3 "Halbwegs"
-    * answerOption[+].valueCoding = $whoqol-scale#C4 "Überwiegend"
-    * answerOption[+].valueCoding = $whoqol-scale#C5 "Völlig"
-
-  * item[+]
-    * linkId = "Q19"
-    * text = "Wie zufrieden sind Sie mit sich selbst?"
-    * type = #choice
-    * required = true
-    * answerOption[+].valueCoding = $whoqol-scale#S1 "Sehr unzufrieden"
-    * answerOption[+].valueCoding = $whoqol-scale#S2 "Unzufrieden"
-    * answerOption[+].valueCoding = $whoqol-scale#S3 "Weder zufrieden noch unzufrieden"
-    * answerOption[+].valueCoding = $whoqol-scale#S4 "Zufrieden"
-    * answerOption[+].valueCoding = $whoqol-scale#S5 "Sehr zufrieden"
-
-  * item[+]
-    * linkId = "Q26"
-    * text = "Wie häufig haben Sie negative Gefühle wie Traurigkeit, Verzweiflung, Angst oder Depression?"
-    * type = #choice
-    * required = true
-    * answerOption[+].valueCoding = $whoqol-scale#F1 "Niemals"
-    * answerOption[+].valueCoding = $whoqol-scale#F2 "Nicht oft"
-    * answerOption[+].valueCoding = $whoqol-scale#F3 "Zeitweilig"
-    * answerOption[+].valueCoding = $whoqol-scale#F4 "Oftmals"
-    * answerOption[+].valueCoding = $whoqol-scale#F5 "Immer"
-
-  * item[+]
-    * linkId = "Q26-reversed"
-    * text = "Q26 umkodiert"
-    * type = #integer
-    * readOnly = true
-    * extension[+]
-      * url = $hidden
-      * valueBoolean = true
-    * extension[+]
-      * url = $calcExp
-      * valueExpression
-        * language = #text/fhirpath
-        * description = "Reverse scoring für Q26"
-        * expression = "6 - %resource.repeat(item).where(linkId='Q26').answer.valueCoding.code.substring(1).toInteger()"
-
-  * item[+]
-    * linkId = "domain2-raw"
-    * text = "Domäne 2 Rohwert"
-    * type = #decimal
-    * readOnly = true
-    * extension[+]
-      * url = $hidden
-      * valueBoolean = true
-    * extension[+]
-      * url = $calcExp
-      * valueExpression
-        * language = #text/fhirpath
-        * description = "Summe der 6 Items (Q5, Q6, Q7, Q11, Q19, Q26r)"
-        * expression = "%resource.repeat(item).where(linkId='Q5').answer.valueCoding.code.substring(1).toInteger() + %resource.repeat(item).where(linkId='Q6').answer.valueCoding.code.substring(1).toInteger() + %resource.repeat(item).where(linkId='Q7').answer.valueCoding.code.substring(1).toInteger() + %resource.repeat(item).where(linkId='Q11').answer.valueCoding.code.substring(1).toInteger() + %resource.repeat(item).where(linkId='Q19').answer.valueCoding.code.substring(1).toInteger() + %resource.repeat(item).where(linkId='Q26-reversed').answer.valueInteger"
-
-  * item[+]
-    * linkId = "domain2-score"
-    * text = "Domäne 2: Psychisches Wohlbefinden (0-100)"
-    * type = #decimal
-    * readOnly = true
-    * extension[+]
-      * url = $calcExp
-      * valueExpression
-        * language = #text/fhirpath
-        * description = "Transformierter Score: ((Mittelwert - 1) * 25)"
-        * expression = "((%resource.repeat(item).where(linkId='domain2-raw').answer.valueDecimal / 6) - 1) * 25"
-
-  * item[+]
-    * linkId = "domain2-comment"
-    * text = "Haben Sie zu diesem Abschnitt noch einen Kommentar oder etwas hinzuzufügen?"
-    * type = #string
-
-// ============================================================
-// Domäne 3: Soziale Beziehungen
-// ============================================================
-* item[+]
-  * linkId = "domain3"
-  * text = "Domäne 3: Soziale Beziehungen"
-  * type = #group
-
-  * item[+]
-    * linkId = "Q20"
-    * text = "Wie zufrieden sind Sie mit Ihren persönlichen Beziehungen?"
-    * type = #choice
-    * required = true
-    * answerOption[+].valueCoding = $whoqol-scale#S1 "Sehr unzufrieden"
-    * answerOption[+].valueCoding = $whoqol-scale#S2 "Unzufrieden"
-    * answerOption[+].valueCoding = $whoqol-scale#S3 "Weder zufrieden noch unzufrieden"
-    * answerOption[+].valueCoding = $whoqol-scale#S4 "Zufrieden"
-    * answerOption[+].valueCoding = $whoqol-scale#S5 "Sehr zufrieden"
-
-  * item[+]
-    * linkId = "Q21"
-    * text = "Wie zufrieden sind Sie mit Ihrem Sexualleben?"
-    * type = #choice
-    * required = true
-    * answerOption[+].valueCoding = $whoqol-scale#S1 "Sehr unzufrieden"
-    * answerOption[+].valueCoding = $whoqol-scale#S2 "Unzufrieden"
-    * answerOption[+].valueCoding = $whoqol-scale#S3 "Weder zufrieden noch unzufrieden"
-    * answerOption[+].valueCoding = $whoqol-scale#S4 "Zufrieden"
-    * answerOption[+].valueCoding = $whoqol-scale#S5 "Sehr zufrieden"
-
-  * item[+]
-    * linkId = "Q22"
-    * text = "Wie zufrieden sind Sie mit der Unterstützung durch Ihre Freunde?"
-    * type = #choice
-    * required = true
-    * answerOption[+].valueCoding = $whoqol-scale#S1 "Sehr unzufrieden"
-    * answerOption[+].valueCoding = $whoqol-scale#S2 "Unzufrieden"
-    * answerOption[+].valueCoding = $whoqol-scale#S3 "Weder zufrieden noch unzufrieden"
-    * answerOption[+].valueCoding = $whoqol-scale#S4 "Zufrieden"
-    * answerOption[+].valueCoding = $whoqol-scale#S5 "Sehr zufrieden"
-
-  * item[+]
-    * linkId = "domain3-raw"
-    * text = "Domäne 3 Rohwert"
-    * type = #decimal
-    * readOnly = true
-    * extension[+]
-      * url = $hidden
-      * valueBoolean = true
-    * extension[+]
-      * url = $calcExp
-      * valueExpression
-        * language = #text/fhirpath
-        * description = "Summe der 3 Items (Q20, Q21, Q22)"
-        * expression = "%resource.repeat(item).where(linkId='Q20').answer.valueCoding.code.substring(1).toInteger() + %resource.repeat(item).where(linkId='Q21').answer.valueCoding.code.substring(1).toInteger() + %resource.repeat(item).where(linkId='Q22').answer.valueCoding.code.substring(1).toInteger()"
-
-  * item[+]
-    * linkId = "domain3-score"
-    * text = "Domäne 3: Soziale Beziehungen (0-100)"
-    * type = #decimal
-    * readOnly = true
-    * extension[+]
-      * url = $calcExp
-      * valueExpression
-        * language = #text/fhirpath
-        * description = "Transformierter Score: ((Mittelwert - 1) * 25)"
-        * expression = "((%resource.repeat(item).where(linkId='domain3-raw').answer.valueDecimal / 3) - 1) * 25"
-
-  * item[+]
-    * linkId = "domain3-comment"
-    * text = "Haben Sie zu diesem Abschnitt noch einen Kommentar oder etwas hinzuzufügen?"
-    * type = #string
-
-// ============================================================
-// Domäne 4: Umwelt
-// ============================================================
-* item[+]
-  * linkId = "domain4"
-  * text = "Domäne 4: Umwelt"
-  * type = #group
-
-  * item[+]
     * linkId = "Q8"
     * text = "Wie sicher fühlen Sie sich in Ihrem täglichen Leben?"
     * type = #choice
@@ -459,6 +171,36 @@ Usage: #definition
     * answerOption[+].valueCoding = $whoqol-scale#I3 "Mittelmäßig"
     * answerOption[+].valueCoding = $whoqol-scale#I4 "Ziemlich"
     * answerOption[+].valueCoding = $whoqol-scale#I5 "Äußerst"
+
+// ============================================================
+// Section 2
+// ============================================================
+* item[+]
+  * linkId = "section-2"
+  * text = "In den folgenden Fragen geht es darum, im welchem Umfang Sie während der vergangenen zwei Wochen bestimmte Dinge erlebt haben oder in der Lage waren, bestimmte Dinge zu tun."
+  * type = #group
+
+  * item[+]
+    * linkId = "Q10"
+    * text = "Haben Sie genug Energie für das tägliche Leben?"
+    * type = #choice
+    * required = true
+    * answerOption[+].valueCoding = $whoqol-scale#C1 "Überhaupt nicht"
+    * answerOption[+].valueCoding = $whoqol-scale#C2 "Eher nicht"
+    * answerOption[+].valueCoding = $whoqol-scale#C3 "Halbwegs"
+    * answerOption[+].valueCoding = $whoqol-scale#C4 "Überwiegend"
+    * answerOption[+].valueCoding = $whoqol-scale#C5 "Völlig"
+
+  * item[+]
+    * linkId = "Q11"
+    * text = "Können Sie Ihr Aussehen akzeptieren?"
+    * type = #choice
+    * required = true
+    * answerOption[+].valueCoding = $whoqol-scale#C1 "Überhaupt nicht"
+    * answerOption[+].valueCoding = $whoqol-scale#C2 "Eher nicht"
+    * answerOption[+].valueCoding = $whoqol-scale#C3 "Halbwegs"
+    * answerOption[+].valueCoding = $whoqol-scale#C4 "Überwiegend"
+    * answerOption[+].valueCoding = $whoqol-scale#C5 "Völlig"
 
   * item[+]
     * linkId = "Q12"
@@ -494,6 +236,104 @@ Usage: #definition
     * answerOption[+].valueCoding = $whoqol-scale#C5 "Völlig"
 
   * item[+]
+    * linkId = "Q15"
+    * text = "Wie gut können Sie sich fortbewegen?"
+    * type = #choice
+    * required = true
+    * answerOption[+].valueCoding = $whoqol-scale#Q1 "Sehr schlecht"
+    * answerOption[+].valueCoding = $whoqol-scale#Q2 "Schlecht"
+    * answerOption[+].valueCoding = $whoqol-scale#Q3 "Mittelmäßig"
+    * answerOption[+].valueCoding = $whoqol-scale#Q4 "Gut"
+    * answerOption[+].valueCoding = $whoqol-scale#Q5 "Sehr gut"
+
+// ============================================================
+// Section 3
+// ============================================================
+* item[+]
+  * linkId = "section-3"
+  * text = "In den folgenden Fragen geht es darum, wie zufrieden, glücklich oder gut Sie sich während der vergangenen zwei Wochen hinsichtlich verschiedener Aspekte Ihres Lebens gefühlt haben. "
+  * type = #group
+
+  * item[+]
+    * linkId = "Q16"
+    * text = "Wie zufrieden sind Sie mit Ihrem Schlaf?"
+    * type = #choice
+    * required = true
+    * answerOption[+].valueCoding = $whoqol-scale#S1 "Sehr unzufrieden"
+    * answerOption[+].valueCoding = $whoqol-scale#S2 "Unzufrieden"
+    * answerOption[+].valueCoding = $whoqol-scale#S3 "Weder zufrieden noch unzufrieden"
+    * answerOption[+].valueCoding = $whoqol-scale#S4 "Zufrieden"
+    * answerOption[+].valueCoding = $whoqol-scale#S5 "Sehr zufrieden"
+
+  * item[+]
+    * linkId = "Q17"
+    * text = "Wie zufrieden sind Sie mit Ihrer Fähigkeit, alltägliche Dinge erledigen zu können?"
+    * type = #choice
+    * required = true
+    * answerOption[+].valueCoding = $whoqol-scale#S1 "Sehr unzufrieden"
+    * answerOption[+].valueCoding = $whoqol-scale#S2 "Unzufrieden"
+    * answerOption[+].valueCoding = $whoqol-scale#S3 "Weder zufrieden noch unzufrieden"
+    * answerOption[+].valueCoding = $whoqol-scale#S4 "Zufrieden"
+    * answerOption[+].valueCoding = $whoqol-scale#S5 "Sehr zufrieden"
+
+  * item[+]
+    * linkId = "Q18"
+    * text = "Wie zufrieden sind Sie mit Ihrer Arbeitsfähigkeit?"
+    * type = #choice
+    * required = true
+    * answerOption[+].valueCoding = $whoqol-scale#S1 "Sehr unzufrieden"
+    * answerOption[+].valueCoding = $whoqol-scale#S2 "Unzufrieden"
+    * answerOption[+].valueCoding = $whoqol-scale#S3 "Weder zufrieden noch unzufrieden"
+    * answerOption[+].valueCoding = $whoqol-scale#S4 "Zufrieden"
+    * answerOption[+].valueCoding = $whoqol-scale#S5 "Sehr zufrieden"
+
+
+
+  * item[+]
+    * linkId = "Q19"
+    * text = "Wie zufrieden sind Sie mit sich selbst?"
+    * type = #choice
+    * required = true
+    * answerOption[+].valueCoding = $whoqol-scale#S1 "Sehr unzufrieden"
+    * answerOption[+].valueCoding = $whoqol-scale#S2 "Unzufrieden"
+    * answerOption[+].valueCoding = $whoqol-scale#S3 "Weder zufrieden noch unzufrieden"
+    * answerOption[+].valueCoding = $whoqol-scale#S4 "Zufrieden"
+    * answerOption[+].valueCoding = $whoqol-scale#S5 "Sehr zufrieden"
+
+  * item[+]
+    * linkId = "Q20"
+    * text = "Wie zufrieden sind Sie mit Ihren persönlichen Beziehungen?"
+    * type = #choice
+    * required = true
+    * answerOption[+].valueCoding = $whoqol-scale#S1 "Sehr unzufrieden"
+    * answerOption[+].valueCoding = $whoqol-scale#S2 "Unzufrieden"
+    * answerOption[+].valueCoding = $whoqol-scale#S3 "Weder zufrieden noch unzufrieden"
+    * answerOption[+].valueCoding = $whoqol-scale#S4 "Zufrieden"
+    * answerOption[+].valueCoding = $whoqol-scale#S5 "Sehr zufrieden"
+
+  * item[+]
+    * linkId = "Q21"
+    * text = "Wie zufrieden sind Sie mit Ihrem Sexualleben?"
+    * type = #choice
+    * required = true
+    * answerOption[+].valueCoding = $whoqol-scale#S1 "Sehr unzufrieden"
+    * answerOption[+].valueCoding = $whoqol-scale#S2 "Unzufrieden"
+    * answerOption[+].valueCoding = $whoqol-scale#S3 "Weder zufrieden noch unzufrieden"
+    * answerOption[+].valueCoding = $whoqol-scale#S4 "Zufrieden"
+    * answerOption[+].valueCoding = $whoqol-scale#S5 "Sehr zufrieden"
+
+  * item[+]
+    * linkId = "Q22"
+    * text = "Wie zufrieden sind Sie mit der Unterstützung durch Ihre Freunde?"
+    * type = #choice
+    * required = true
+    * answerOption[+].valueCoding = $whoqol-scale#S1 "Sehr unzufrieden"
+    * answerOption[+].valueCoding = $whoqol-scale#S2 "Unzufrieden"
+    * answerOption[+].valueCoding = $whoqol-scale#S3 "Weder zufrieden noch unzufrieden"
+    * answerOption[+].valueCoding = $whoqol-scale#S4 "Zufrieden"
+    * answerOption[+].valueCoding = $whoqol-scale#S5 "Sehr zufrieden"
+
+  * item[+]
     * linkId = "Q23"
     * text = "Wie zufrieden sind Sie mit Ihren Wohnbedingungen?"
     * type = #choice
@@ -526,6 +366,189 @@ Usage: #definition
     * answerOption[+].valueCoding = $whoqol-scale#S4 "Zufrieden"
     * answerOption[+].valueCoding = $whoqol-scale#S5 "Sehr zufrieden"
 
+// ============================================================
+// Section 4
+// ============================================================
+* item[+]
+  * linkId = "section-4"
+  * text = "In der folgenden Frage geht es darum, wie oft sich während der vergangenen zwei Wochen bei Ihnen negative Gefühle eingestellt haben, wie zum Beispiel Angst oder Traurigkeit."
+  * type = #group
+
+  * item[+]
+    * linkId = "Q26"
+    * text = "Wie häufig haben Sie negative Gefühle wie Traurigkeit, Verzweiflung, Angst oder Depression?"
+    * type = #choice
+    * required = true
+    * answerOption[+].valueCoding = $whoqol-scale#F1 "Niemals"
+    * answerOption[+].valueCoding = $whoqol-scale#F2 "Nicht oft"
+    * answerOption[+].valueCoding = $whoqol-scale#F3 "Zeitweilig"
+    * answerOption[+].valueCoding = $whoqol-scale#F4 "Oftmals"
+    * answerOption[+].valueCoding = $whoqol-scale#F5 "Immer"
+
+  * item[+]
+    * linkId = "Q26-reversed"
+    * text = "Q26 umkodiert"
+    * type = #integer
+    * readOnly = true
+    * extension[+]
+      * url = $hidden
+      * valueBoolean = true
+    * extension[+]
+      * url = $calcExp
+      * valueExpression
+        * language = #text/fhirpath
+        * description = "Reverse scoring für Q26"
+        * expression = "6 - %resource.repeat(item).where(linkId='Q26').answer.valueCoding.code.substring(1).toInteger()"
+
+// ============================================================
+// Section 5
+// ============================================================
+* item[+]
+  * linkId = "section-5"
+  * text = "Haben Sie irgendwelche Anmerkungen zu diesem Fragebogen?"
+  * type = #group
+
+  * item[+]
+    * linkId = "general-comment"
+    * text = "Haben Sie allgemein noch einen Kommentar oder etwas hinzuzufügen?"
+    * type = #string
+
+  * item[+]
+    * linkId = "domain1-comment"
+    * text = "Haben Sie zu ihrer physischen Gesundheit noch einen Kommentar oder etwas hinzuzufügen?"
+    * type = #string
+
+  * item[+]
+    * linkId = "domain2-comment"
+    * text = "Haben Sie zu ihrem psychisches Wohlbefinden noch einen Kommentar oder etwas hinzuzufügen?"
+    * type = #string
+
+  * item[+]
+    * linkId = "domain3-comment"
+    * text = "Haben Sie zu ihren sozialen Beziehungen noch einen Kommentar oder etwas hinzuzufügen?"
+    * type = #string
+
+  * item[+]
+    * linkId = "domain4-comment"
+    * text = "Haben Sie zu ihrer Umwelt noch einen Kommentar oder etwas hinzuzufügen?"
+    * type = #string
+
+// ============================================================
+// Section 6 (automatische Berechnungen)
+// ============================================================
+* item[+]
+  * linkId = "section-6"
+  * text = "automatische Berechnungen"
+  * type = #group
+
+  * item[+]
+    * linkId = "general-raw"
+    * text = "Allgemeiner Rohwert"
+    * type = #decimal
+    * readOnly = true
+    * extension[+]
+      * url = $hidden
+      * valueBoolean = true
+    * extension[+]
+      * url = $calcExp
+      * valueExpression
+        * language = #text/fhirpath
+        * description = "Summe Q1 + Q2"
+        * expression = "%resource.repeat(item).where(linkId='Q1').answer.valueCoding.code.substring(1).toInteger() + %resource.repeat(item).where(linkId='Q2').answer.valueCoding.code.substring(1).toInteger()"
+
+  * item[+]
+    * linkId = "general-score"
+    * text = "Allgemeiner Score (0-100)"
+    * type = #decimal
+    * readOnly = true
+    * extension[+]
+      * url = $calcExp
+      * valueExpression
+        * language = #text/fhirpath
+        * description = "Transformierter Score: ((Mittelwert - 1) * 25)"
+        * expression = "((%resource.repeat(item).where(linkId='general-raw').answer.valueDecimal / 2) - 1) * 25"
+
+  * item[+]
+    * linkId = "domain1-raw"
+    * text = "Domäne 1 Rohwert"
+    * type = #decimal
+    * readOnly = true
+    * extension[+]
+      * url = $hidden
+      * valueBoolean = true
+    * extension[+]
+      * url = $calcExp
+      * valueExpression
+        * language = #text/fhirpath
+        * description = "Summe der 7 Items (Q3r, Q4r, Q10, Q15, Q16, Q17, Q18)"
+        * expression = "%resource.repeat(item).where(linkId='Q3-reversed').answer.valueInteger + %resource.repeat(item).where(linkId='Q4-reversed').answer.valueInteger + %resource.repeat(item).where(linkId='Q10').answer.valueCoding.code.substring(1).toInteger() + %resource.repeat(item).where(linkId='Q15').answer.valueCoding.code.substring(1).toInteger() + %resource.repeat(item).where(linkId='Q16').answer.valueCoding.code.substring(1).toInteger() + %resource.repeat(item).where(linkId='Q17').answer.valueCoding.code.substring(1).toInteger() + %resource.repeat(item).where(linkId='Q18').answer.valueCoding.code.substring(1).toInteger()"
+
+  * item[+]
+    * linkId = "domain1-score"
+    * text = "Domäne 1: Physische Gesundheit (0-100)"
+    * type = #decimal
+    * readOnly = true
+    * extension[+]
+      * url = $calcExp
+      * valueExpression
+        * language = #text/fhirpath
+        * description = "Transformierter Score: ((Mittelwert - 1) * 25)"
+        * expression = "((%resource.repeat(item).where(linkId='domain1-raw').answer.valueDecimal / 7) - 1) * 25"
+
+  * item[+]
+    * linkId = "domain2-raw"
+    * text = "Domäne 2 Rohwert"
+    * type = #decimal
+    * readOnly = true
+    * extension[+]
+      * url = $hidden
+      * valueBoolean = true
+    * extension[+]
+      * url = $calcExp
+      * valueExpression
+        * language = #text/fhirpath
+        * description = "Summe der 6 Items (Q5, Q6, Q7, Q11, Q19, Q26r)"
+        * expression = "%resource.repeat(item).where(linkId='Q5').answer.valueCoding.code.substring(1).toInteger() + %resource.repeat(item).where(linkId='Q6').answer.valueCoding.code.substring(1).toInteger() + %resource.repeat(item).where(linkId='Q7').answer.valueCoding.code.substring(1).toInteger() + %resource.repeat(item).where(linkId='Q11').answer.valueCoding.code.substring(1).toInteger() + %resource.repeat(item).where(linkId='Q19').answer.valueCoding.code.substring(1).toInteger() + %resource.repeat(item).where(linkId='Q26-reversed').answer.valueInteger"
+
+  * item[+]
+    * linkId = "domain2-score"
+    * text = "Domäne 2: Psychisches Wohlbefinden (0-100)"
+    * type = #decimal
+    * readOnly = true
+    * extension[+]
+      * url = $calcExp
+      * valueExpression
+        * language = #text/fhirpath
+        * description = "Transformierter Score: ((Mittelwert - 1) * 25)"
+        * expression = "((%resource.repeat(item).where(linkId='domain2-raw').answer.valueDecimal / 6) - 1) * 25"
+
+  * item[+]
+    * linkId = "domain3-raw"
+    * text = "Domäne 3 Rohwert"
+    * type = #decimal
+    * readOnly = true
+    * extension[+]
+      * url = $hidden
+      * valueBoolean = true
+    * extension[+]
+      * url = $calcExp
+      * valueExpression
+        * language = #text/fhirpath
+        * description = "Summe der 3 Items (Q20, Q21, Q22)"
+        * expression = "%resource.repeat(item).where(linkId='Q20').answer.valueCoding.code.substring(1).toInteger() + %resource.repeat(item).where(linkId='Q21').answer.valueCoding.code.substring(1).toInteger() + %resource.repeat(item).where(linkId='Q22').answer.valueCoding.code.substring(1).toInteger()"
+
+  * item[+]
+    * linkId = "domain3-score"
+    * text = "Domäne 3: Soziale Beziehungen (0-100)"
+    * type = #decimal
+    * readOnly = true
+    * extension[+]
+      * url = $calcExp
+      * valueExpression
+        * language = #text/fhirpath
+        * description = "Transformierter Score: ((Mittelwert - 1) * 25)"
+        * expression = "((%resource.repeat(item).where(linkId='domain3-raw').answer.valueDecimal / 3) - 1) * 25"
+
   * item[+]
     * linkId = "domain4-raw"
     * text = "Domäne 4 Rohwert"
@@ -553,10 +576,6 @@ Usage: #definition
         * description = "Transformierter Score: ((Mittelwert - 1) * 25)"
         * expression = "((%resource.repeat(item).where(linkId='domain4-raw').answer.valueDecimal / 8) - 1) * 25"
 
-  * item[+]
-    * linkId = "domain4-comment"
-    * text = "Haben Sie zu diesem Abschnitt noch einen Kommentar oder etwas hinzuzufügen?"
-    * type = #string
     
 // Alias: $SF36CS = https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/rand-sf36-answers
 //Description: "Der RAND 36-Item Health Survey (SF-36) Version 1.0 erfasst die gesundheitsbezogene Lebensqualität in 8 Subskalen: Körperliche Funktionsfähigkeit, Körperliche Rollenfunktion, Körperliche Schmerzen, Allgemeine Gesundheitswahrnehmung, Vitalität, Soziale Funktionsfähigkeit, Emotionale Rollenfunktion und Psychisches Wohlbefinden. Die RAND-Version ist Public Domain."
