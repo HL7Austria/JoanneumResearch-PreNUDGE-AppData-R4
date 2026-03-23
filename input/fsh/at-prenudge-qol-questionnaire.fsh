@@ -2,14 +2,14 @@ Alias: $whoqol-scale = https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/whoqol
 Alias: $calcExp = http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression
 Alias: $hidden = http://hl7.org/fhir/StructureDefinition/questionnaire-hidden
 
-Instance: QolQuestionnaire
+Instance: WhoQolBrefQuestionnaire
 InstanceOf: AtPrenudgeQuestionnaire
 Usage: #definition
 
-* url = "https://fhir.hl7.at/prenudge/appdata/r4/Questionnaire/QolQuestionnaire"
+* url = "https://fhir.hl7.at/prenudge/appdata/r4/Questionnaire/WhoQolBrefQuestionnaire"
 * version = "1.0.0"
-* name = "AtPrenudgeQoLByWHOQOLBREF"
-* title = "Lebensstil Selbsteinschätzung"
+* name = "AtPrenudgeQoLByWhoQolBref"
+* title = "WHOQOL-BREF Lebensstil Selbsteinschätzung"
 * status = #active
 * experimental = false
 * description = "The WHOQOL-BREF is a 26-item instrument for assessing subjective quality of life in four domains: physical, psychological, social relationships, and environment. Developed by the WHO."
@@ -24,7 +24,7 @@ Usage: #definition
 // ============================================================
 * item[+]
   * linkId = "introduction-text"
-  * text = "Die folgenden Fragen beziehen sich auf Ihre Lebensqualität, Ihre Gesundheit und andere Bereiche Ihres Lebens. Bitte beantworten Sie alle Fragen. Wenn Sie sich bei einer Frage nicht sicher sind, wählen Sie bitte die Antwort, die Ihnen am ehesten zutreffend erscheint. Bitte denken Sie bei der Beantwortung an die letzten zwei Wochen."
+  * text = "In diesem Fragebogen werden Sie danach gefragt, wie Sie Ihre Lebensqualität, Ihre Gesundheit und andere Bereiche Ihres Lebens beurteilen. Bitte beantworten Sie alle Fragen. Wenn Sie sich bei der Beantwortung einer Frage nicht sicher sind, wählen Sie bitte die Antwortkategorie, die Ihrer Meinung nach am ehesten zutrifft. Oft ist dies die Kategorie, die Ihnen als erstes in den Sinn kommt. Bitte beantworten Sie alle Fragen auf der Grundlage Ihrer eigenen Beurteilungskriterien, Hoffnungen, Vorlieben und Interessen. Bitte denken Sie bei der Beantwortung der Fragen an Ihr Leben während der vergangenen zwei Wochen."
   * type = #display
 
 // ============================================================
@@ -110,7 +110,7 @@ Usage: #definition
 
   * item[+]
     * linkId = "Q4"
-    * text = "Wie sehr sind Sie auf medizinische Behandlung angewiesen, um im Alltag funktionieren zu können?"
+    * text = "Wie sehr sind Sie auf medizinische Behandlung angewiesen, um das tägliche Leben zu meistern?"
     * type = #choice
     * required = true
     * answerOption[+].valueCoding = $whoqol-scale#I1 "Überhaupt nicht"
@@ -126,7 +126,7 @@ Usage: #definition
     * required = true
     * answerOption[+].valueCoding = $whoqol-scale#C1 "Überhaupt nicht"
     * answerOption[+].valueCoding = $whoqol-scale#C2 "Eher nicht"
-    * answerOption[+].valueCoding = $whoqol-scale#C3 "Mittelmäßig"
+    * answerOption[+].valueCoding = $whoqol-scale#C3 "Halbwegs"
     * answerOption[+].valueCoding = $whoqol-scale#C4 "Überwiegend"
     * answerOption[+].valueCoding = $whoqol-scale#C5 "Völlig"
 
@@ -135,11 +135,11 @@ Usage: #definition
     * text = "Wie gut können Sie sich fortbewegen?"
     * type = #choice
     * required = true
-    * answerOption[+].valueCoding = $whoqol-scale#C1 "Sehr schlecht"
-    * answerOption[+].valueCoding = $whoqol-scale#C2 "Schlecht"
-    * answerOption[+].valueCoding = $whoqol-scale#C3 "Mittelmäßig"
-    * answerOption[+].valueCoding = $whoqol-scale#C4 "Gut"
-    * answerOption[+].valueCoding = $whoqol-scale#C5 "Sehr gut"
+    * answerOption[+].valueCoding = $whoqol-scale#Q1 "Sehr schlecht"
+    * answerOption[+].valueCoding = $whoqol-scale#Q2 "Schlecht"
+    * answerOption[+].valueCoding = $whoqol-scale#Q3 "Mittelmäßig"
+    * answerOption[+].valueCoding = $whoqol-scale#Q4 "Gut"
+    * answerOption[+].valueCoding = $whoqol-scale#Q5 "Sehr gut"
 
   * item[+]
     * linkId = "Q16"
@@ -271,11 +271,11 @@ Usage: #definition
     * text = "Wie gut können Sie sich konzentrieren?"
     * type = #choice
     * required = true
-    * answerOption[+].valueCoding = $whoqol-scale#C1 "Überhaupt nicht"
-    * answerOption[+].valueCoding = $whoqol-scale#C2 "Eher nicht"
-    * answerOption[+].valueCoding = $whoqol-scale#C3 "Mittelmäßig"
-    * answerOption[+].valueCoding = $whoqol-scale#C4 "Überwiegend"
-    * answerOption[+].valueCoding = $whoqol-scale#C5 "Völlig"
+    * answerOption[+].valueCoding = $whoqol-scale#I1 "Überhaupt nicht"
+    * answerOption[+].valueCoding = $whoqol-scale#I2 "Ein wenig"
+    * answerOption[+].valueCoding = $whoqol-scale#I3 "Mittelmäßig"
+    * answerOption[+].valueCoding = $whoqol-scale#I4 "Ziemlich"
+    * answerOption[+].valueCoding = $whoqol-scale#I5 "Äußerst"
 
   * item[+]
     * linkId = "Q11"
@@ -284,7 +284,7 @@ Usage: #definition
     * required = true
     * answerOption[+].valueCoding = $whoqol-scale#C1 "Überhaupt nicht"
     * answerOption[+].valueCoding = $whoqol-scale#C2 "Eher nicht"
-    * answerOption[+].valueCoding = $whoqol-scale#C3 "Mittelmäßig"
+    * answerOption[+].valueCoding = $whoqol-scale#C3 "Halbwegs"
     * answerOption[+].valueCoding = $whoqol-scale#C4 "Überwiegend"
     * answerOption[+].valueCoding = $whoqol-scale#C5 "Völlig"
 
@@ -305,9 +305,9 @@ Usage: #definition
     * type = #choice
     * required = true
     * answerOption[+].valueCoding = $whoqol-scale#F1 "Niemals"
-    * answerOption[+].valueCoding = $whoqol-scale#F2 "Selten"
-    * answerOption[+].valueCoding = $whoqol-scale#F3 "Ziemlich oft"
-    * answerOption[+].valueCoding = $whoqol-scale#F4 "Sehr oft"
+    * answerOption[+].valueCoding = $whoqol-scale#F2 "Nicht oft"
+    * answerOption[+].valueCoding = $whoqol-scale#F3 "Zeitweilig"
+    * answerOption[+].valueCoding = $whoqol-scale#F4 "Oftmals"
     * answerOption[+].valueCoding = $whoqol-scale#F5 "Immer"
 
   * item[+]
@@ -443,22 +443,22 @@ Usage: #definition
     * text = "Wie sicher fühlen Sie sich in Ihrem täglichen Leben?"
     * type = #choice
     * required = true
-    * answerOption[+].valueCoding = $whoqol-scale#C1 "Überhaupt nicht"
-    * answerOption[+].valueCoding = $whoqol-scale#C2 "Eher nicht"
-    * answerOption[+].valueCoding = $whoqol-scale#C3 "Mittelmäßig"
-    * answerOption[+].valueCoding = $whoqol-scale#C4 "Überwiegend"
-    * answerOption[+].valueCoding = $whoqol-scale#C5 "Völlig"
+    * answerOption[+].valueCoding = $whoqol-scale#I1 "Überhaupt nicht"
+    * answerOption[+].valueCoding = $whoqol-scale#I2 "Ein wenig"
+    * answerOption[+].valueCoding = $whoqol-scale#I3 "Mittelmäßig"
+    * answerOption[+].valueCoding = $whoqol-scale#I4 "Ziemlich"
+    * answerOption[+].valueCoding = $whoqol-scale#I5 "Äußerst"
 
   * item[+]
     * linkId = "Q9"
     * text = "Wie gesund ist Ihre unmittelbare Umgebung?"
     * type = #choice
     * required = true
-    * answerOption[+].valueCoding = $whoqol-scale#C1 "Überhaupt nicht"
-    * answerOption[+].valueCoding = $whoqol-scale#C2 "Eher nicht"
-    * answerOption[+].valueCoding = $whoqol-scale#C3 "Mittelmäßig"
-    * answerOption[+].valueCoding = $whoqol-scale#C4 "Überwiegend"
-    * answerOption[+].valueCoding = $whoqol-scale#C5 "Völlig"
+    * answerOption[+].valueCoding = $whoqol-scale#I1 "Überhaupt nicht"
+    * answerOption[+].valueCoding = $whoqol-scale#I2 "Ein wenig"
+    * answerOption[+].valueCoding = $whoqol-scale#I3 "Mittelmäßig"
+    * answerOption[+].valueCoding = $whoqol-scale#I4 "Ziemlich"
+    * answerOption[+].valueCoding = $whoqol-scale#I5 "Äußerst"
 
   * item[+]
     * linkId = "Q12"
@@ -467,7 +467,7 @@ Usage: #definition
     * required = true
     * answerOption[+].valueCoding = $whoqol-scale#C1 "Überhaupt nicht"
     * answerOption[+].valueCoding = $whoqol-scale#C2 "Eher nicht"
-    * answerOption[+].valueCoding = $whoqol-scale#C3 "Mittelmäßig"
+    * answerOption[+].valueCoding = $whoqol-scale#C3 "Halbwegs"
     * answerOption[+].valueCoding = $whoqol-scale#C4 "Überwiegend"
     * answerOption[+].valueCoding = $whoqol-scale#C5 "Völlig"
 
@@ -478,7 +478,7 @@ Usage: #definition
     * required = true
     * answerOption[+].valueCoding = $whoqol-scale#C1 "Überhaupt nicht"
     * answerOption[+].valueCoding = $whoqol-scale#C2 "Eher nicht"
-    * answerOption[+].valueCoding = $whoqol-scale#C3 "Mittelmäßig"
+    * answerOption[+].valueCoding = $whoqol-scale#C3 "Halbwegs"
     * answerOption[+].valueCoding = $whoqol-scale#C4 "Überwiegend"
     * answerOption[+].valueCoding = $whoqol-scale#C5 "Völlig"
 
@@ -489,7 +489,7 @@ Usage: #definition
     * required = true
     * answerOption[+].valueCoding = $whoqol-scale#C1 "Überhaupt nicht"
     * answerOption[+].valueCoding = $whoqol-scale#C2 "Eher nicht"
-    * answerOption[+].valueCoding = $whoqol-scale#C3 "Mittelmäßig"
+    * answerOption[+].valueCoding = $whoqol-scale#C3 "Halbwegs"
     * answerOption[+].valueCoding = $whoqol-scale#C4 "Überwiegend"
     * answerOption[+].valueCoding = $whoqol-scale#C5 "Völlig"
 

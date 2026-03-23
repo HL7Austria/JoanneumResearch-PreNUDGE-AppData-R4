@@ -114,7 +114,7 @@ Description: "Example of a completed WHOQOL-BREF QuestionnaireResponse including
   * item[+]
     * linkId = "Q7"
     * text = "Wie gut können Sie sich konzentrieren?"
-    * answer[+].valueCoding = $whoqol-scale#C3 "Mittelmäßig"
+    * answer[+].valueCoding = $whoqol-scale#C3 "Halbwegs"
 
   * item[+]
     * linkId = "Q11"
@@ -129,7 +129,7 @@ Description: "Example of a completed WHOQOL-BREF QuestionnaireResponse including
   * item[+]
     * linkId = "Q26"
     * text = "Wie häufig haben Sie negative Gefühle wie Traurigkeit, Verzweiflung, Angst oder Depression?"
-    * answer[+].valueCoding = $whoqol-scale#F2 "Selten"
+    * answer[+].valueCoding = $whoqol-scale#F2 "Nicht oft"
 
   * item[+]
     * linkId = "Q26-reversed"
@@ -188,12 +188,12 @@ Description: "Example of a completed WHOQOL-BREF QuestionnaireResponse including
   * item[+]
     * linkId = "Q9"
     * text = "Wie gesund ist Ihre unmittelbare Umgebung?"
-    * answer[+].valueCoding = $whoqol-scale#C3 "Mittelmäßig"
+    * answer[+].valueCoding = $whoqol-scale#C3 "Halbwegs"
 
   * item[+]
     * linkId = "Q12"
     * text = "Haben Sie genug Geld, um Ihre Bedürfnisse erfüllen zu können?"
-    * answer[+].valueCoding = $whoqol-scale#C3 "Mittelmäßig"
+    * answer[+].valueCoding = $whoqol-scale#C3 "Halbwegs"
 
   * item[+]
     * linkId = "Q13"
@@ -203,7 +203,7 @@ Description: "Example of a completed WHOQOL-BREF QuestionnaireResponse including
   * item[+]
     * linkId = "Q14"
     * text = "Haben Sie ausreichend Möglichkeiten zu Freizeitaktivitäten?"
-    * answer[+].valueCoding = $whoqol-scale#C3 "Mittelmäßig"
+    * answer[+].valueCoding = $whoqol-scale#C3 "Halbwegs"
 
   * item[+]
     * linkId = "Q23"

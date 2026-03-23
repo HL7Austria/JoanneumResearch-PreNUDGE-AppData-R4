@@ -110,7 +110,7 @@ Description: "Consolidated CodeSystem for all answer scales of the WHOQOL-BREF q
   * ^property[=].valueString = "capacity"
   * ^property[+].code = #score
   * ^property[=].valueInteger = 2
-* #C #C3 "Mittelmäßig"
+* #C #C3 "Halbwegs"
   * ^property[+].code = #scale
   * ^property[=].valueString = "capacity"
   * ^property[+].code = #score
@@ -133,17 +133,17 @@ Description: "Consolidated CodeSystem for all answer scales of the WHOQOL-BREF q
   * ^property[=].valueString = "frequency"
   * ^property[+].code = #score
   * ^property[=].valueInteger = 1
-* #F #F2 "Selten"
+* #F #F2 "Nicht oft"
   * ^property[+].code = #scale
   * ^property[=].valueString = "frequency"
   * ^property[+].code = #score
   * ^property[=].valueInteger = 2
-* #F #F3 "Ziemlich oft"
+* #F #F3 "Zeitweilig"
   * ^property[+].code = #scale
   * ^property[=].valueString = "frequency"
   * ^property[+].code = #score
   * ^property[=].valueInteger = 3
-* #F #F4 "Sehr oft"
+* #F #F4 "Oftmals"
   * ^property[+].code = #scale
   * ^property[=].valueString = "frequency"
   * ^property[+].code = #score

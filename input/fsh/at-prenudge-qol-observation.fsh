@@ -13,50 +13,50 @@ Description: "Observation profile for recording WHOQOL-BREF domain scores. The o
 * derivedFrom only Reference(QuestionnaireResponse)
 * derivedFrom ^short = "Reference to the QuestionnaireResponse from which this score was calculated"
 
-* component 5..5 MS
+* component 5..5
 * component ^short = "WHOQOL-BREF scores: general and four domain scores"
 * component ^slicing.discriminator.type = #pattern
 * component ^slicing.discriminator.path = "code"
 * component ^slicing.rules = #closed
 
 * component contains
-    generalized 1..1 MS and
-    physical 1..1 MS and
-    psychological 1..1 MS and
-    relationships 1..1 MS and
-    environment 1..1 MS
+    generalized 1..1 and
+    physical 1..1 and
+    psychological 1..1 and
+    relationships 1..1 and
+    environment 1..1
 
 * component[generalized].code = http://snomed.info/sct#60132005 "Generalized"
 * component[generalized].value[x] only Quantity
-* component[generalized].valueQuantity.value 1..1 MS
+* component[generalized].valueQuantity.value 1..1
 * component[generalized].valueQuantity.unit = "score"
 * component[generalized].valueQuantity.system = "http://unitsofmeasure.org"
 * component[generalized].valueQuantity.code = #{score}
 
 * component[physical].code = http://snomed.info/sct#19388002 "Physical"
 * component[physical].value[x] only Quantity
-* component[physical].valueQuantity.value 1..1 MS
+* component[physical].valueQuantity.value 1..1
 * component[physical].valueQuantity.unit = "score"
 * component[physical].valueQuantity.system = "http://unitsofmeasure.org"
 * component[physical].valueQuantity.code = #{score}
 
 * component[psychological].code = http://snomed.info/sct#60224009 "Psychologic"
 * component[psychological].value[x] only Quantity
-* component[psychological].valueQuantity.value 1..1 MS
+* component[psychological].valueQuantity.value 1..1
 * component[psychological].valueQuantity.unit = "score"
 * component[psychological].valueQuantity.system = "http://unitsofmeasure.org"
 * component[psychological].valueQuantity.code = #{score}
 
 * component[relationships].code = http://snomed.info/sct#272151006 "Relationships"
 * component[relationships].value[x] only Quantity
-* component[relationships].valueQuantity.value 1..1 MS
+* component[relationships].valueQuantity.value 1..1
 * component[relationships].valueQuantity.unit = "score"
 * component[relationships].valueQuantity.system = "http://unitsofmeasure.org"
 * component[relationships].valueQuantity.code = #{score}
 
 * component[environment].code = http://snomed.info/sct#276339004 "Environment"
 * component[environment].value[x] only Quantity
-* component[environment].valueQuantity.value 1..1 MS
+* component[environment].valueQuantity.value 1..1
 * component[environment].valueQuantity.unit = "score"
 * component[environment].valueQuantity.system = "http://unitsofmeasure.org"
 * component[environment].valueQuantity.code = #{score}
