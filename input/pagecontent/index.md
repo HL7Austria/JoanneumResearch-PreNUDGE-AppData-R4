@@ -1,8 +1,8 @@
-PräNUDGE is an Austrian research project designed to strengthen citizens' personal responsibility for their health. The project aims to increase the number of **healthy life years** through the **digitalization of self-reported health data**.
+PreNUDGE is an Austrian research project designed to strengthen citizens' personal responsibility for their health. The project aims to increase the number of **healthy life years** through the **digitalization of self-reported health data**.
 
 The core concept is to create a **modular platform** that collects and structures health data from various sources. **Qualified health apps** serve as the interface between citizens and the platform. The project combines nudging strategies with evidence-based health promotion to subtly motivate people to live healthier lives.
 
-PräNUDGE focuses on the **prevention of four diseases**: diabetes, colorectal cancer, depression, and COPD, targeting specific groups such as children, adolescents, and working adults. The FHIR Implementation Guide (IG) is called “PreNUDGE”, which is the agreed English spelling, while the project’s German name is “PräNUDGE.”
+PreNUDGE focuses on the **prevention of four diseases**: diabetes, colorectal cancer, depression, and COPD, targeting specific groups such as children, adolescents, and working adults. The FHIR Implementation Guide (IG) is called “PreNUDGE”, which is the agreed English spelling, while the project’s German name is “PräNUDGE.”
 
 For more, see [Background](background.html).
 
@@ -12,17 +12,21 @@ This Implementation Guide (IG) explains how application providers can use the **
 
 We focus on narrow standardization of **four PreNUDGE measurements**:
 - Daily activity as **Steps per day** (from a [**questionnaire**](Questionnaire-StepCountQuestionnaire.html) and from a [**wearable device as an observation**](StructureDefinition-at-prenudge-stepcount-observation.html))
-- **Alcohol consumption** as number of drinks (from a [**questionnaire**](Questionnaire-StepCountQuestionnaire.html) and from an [**observation**](StructureDefinition-at-prenudge-alcoholuse-observation.html))
+- **Alcohol consumption** as number of drinks (from a [**questionnaire**](Questionnaire-AlcoholUseQuestionnaire.html) and from an [**observation**](StructureDefinition-at-prenudge-alcoholuse-observation.html))
 - **Blood glucose** in mg/dL (from a [**questionnaire**](Questionnaire-BloodGlucoseQuestionnaire.html) and from a [**device as an observation**](StructureDefinition-at-prenudge-bloodglucose-observation.html))
-- **Quality of life** (from a [**questionnaire**](Questionnaire-QolQuestionnaire.html) with a calculated [**score as an observation**](StructureDefinition-at-prenudge-whoqol-bref-score-observation.html))
+- **Quality of life** (from a [**questionnaire**](Questionnaire-WhoQolBrefQuestionnaire.html) with a calculated [**score as an observation**](StructureDefinition-at-prenudge-whoqol-bref-score-observation.html))
 
 For viewing the full questionnaires use tools like [lhcforms](https://lhcfhirtools.nlm.nih.gov/lhcforms).
 
-Each **questionnaire variant** maps **one-way** to its corresponding **observation variant**. The mappings can be found at [StructureMaps](artifacts.html#terminology-structure-maps) and can be executed with [MaLaC-HD](https://gitlab.com/cdehealth/malac-hd) (small workaround because of [a IG Publisher compatibility issue](https://gitlab.com/cdehealth/malac-hd/-/issues/129) needed, for MaLaC-HD v1.4.1 replace all http://hl7.org/fhir/StructureDefinition/ to http://hl7.org/fhir/4.0/StructureDefinition/).
+Each **questionnaire variant** maps **one-way** to its corresponding **observation variant**. The mappings can be found at [StructureMaps](artifacts.html#terminology-structure-maps) and can be executed with [MaLaC-HD](https://gitlab.com/cdehealth/malac-hd).
 
 Additional PreNUDGE measurements, also narrow standardized, will be specified analogously to these four, based on feedback from this informative ballot.
+These are:
+- a
+- b
+- c
 
-Besides these narrow standardized measurements, **broad standardized measurements** called [**other observations**](StructureDefinition-at-prenudge-observation-other.html) are also supported. Please be aware that such broad standardized measurements does not have a corresponding questionnaire.
+Besides these narrow standardized measurements, **broad standardized measurements** called [**other quantities observations**](StructureDefinition-at-prenudge-observation-other-quantities.html) and [**other not quantities observations**](StructureDefinition-at-prenudge-observation-other-not-quantities.html) are also supported. Please be aware that such broad standardized measurements do not have a corresponding questionnaire.
 
 ### Ballot Info
 

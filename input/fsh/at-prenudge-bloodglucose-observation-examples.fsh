@@ -2,7 +2,7 @@ Instance: bloodglucose-normal-example
 InstanceOf: AtPrenudgeObservationBloodGlucose
 Usage: #example
 Title: "Blood Glucose O mapped from Q - Normal Example"
-Description: "Beispiel einer normalen Nüchtern-Blutzucker-Messung (95 mg/dL)."
+Description: "Example of a normal fasting blood glucose measurement (95 mg/dL)."
 
 * identifier[+]
   * system = "https://www.joanneum.at"
@@ -23,7 +23,7 @@ Instance: bloodglucose-elevated-example
 InstanceOf: AtPrenudgeObservationBloodGlucose
 Usage: #example
 Title: "Blood Glucose O mapped from Q - Elevated Example"
-Description: "Beispiel einer erhöhten Nüchtern-Blutzucker-Messung (142 mg/dL), hinweisend auf Diabetes mellitus."
+Description: "Example of an elevated fasting blood glucose measurement (142 mg/dL), indicating diabetes mellitus."
 
 * identifier[+]
   * system = "https://www.joanneum.at"
@@ -44,7 +44,7 @@ Instance: bloodglucose-low-example
 InstanceOf: AtPrenudgeObservationBloodGlucose
 Usage: #example
 Title: "Blood Glucose O - Low Example"
-Description: "Beispiel einer niedrigen Nüchtern-Blutzucker-Messung (62 mg/dL), hinweisend auf Hypoglykämie."
+Description: "Example of a low fasting blood glucose measurement (62 mg/dL), indicating hypoglycemia."
 
 * identifier[+]
   * system = "https://www.joanneum.at"

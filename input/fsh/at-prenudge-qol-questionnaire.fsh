@@ -28,11 +28,11 @@ Usage: #definition
   * type = #display
 
 // ============================================================
-// Allgemeine Lebensqualität und Gesundheit
+// Section 0 - Allgemeine Lebensqualität und Gesundheit
 // ============================================================
 * item[+]
   * linkId = "general"
-  * text = "Allgemeine Lebensqualität und Gesundheit"
+  // * text = "In diesem Fragebogen werden Sie danach gefragt, wie Sie Ihre Lebensqualität, Ihre Gesundheit und andere Bereiche Ihres Lebens beurteilen. Bitte beantworten Sie alle Fragen. Wenn Sie sich bei der Beantwortung einer Frage nicht sicher sind, wählen Sie bitte die Antwortkategorie, die Ihrer Meinung nach am ehesten zutrifft. Oft ist dies die Kategorie, die Ihnen als erstes in den Sinn kommt. Bitte beantworten Sie alle Fragen auf der Grundlage Ihrer eigenen Beurteilungskriterien, Hoffnungen, Vorlieben und Interessen. Bitte denken Sie bei der Beantwortung der Fragen an Ihr Leben während der vergangenen zwei Wochen."
   * type = #group
 
   * item[+]
@@ -56,6 +56,11 @@ Usage: #definition
     * answerOption[+].valueCoding = $whoqol-scale#S3 "Weder zufrieden noch unzufrieden"
     * answerOption[+].valueCoding = $whoqol-scale#S4 "Zufrieden"
     * answerOption[+].valueCoding = $whoqol-scale#S5 "Sehr zufrieden"
+
+  * item[+]
+    * linkId = "section-0-comment"
+    * text = "Haben Sie zu diesem Abschnitt noch einen Kommentar oder etwas hinzuzufügen?"
+    * type = #string
 
 // ============================================================
 // Section 1
@@ -172,6 +177,11 @@ Usage: #definition
     * answerOption[+].valueCoding = $whoqol-scale#I4 "Ziemlich"
     * answerOption[+].valueCoding = $whoqol-scale#I5 "Äußerst"
 
+  * item[+]
+    * linkId = "section-1-comment"
+    * text = "Haben Sie zu diesem Abschnitt noch einen Kommentar oder etwas hinzuzufügen?"
+    * type = #string
+
 // ============================================================
 // Section 2
 // ============================================================
@@ -246,6 +256,11 @@ Usage: #definition
     * answerOption[+].valueCoding = $whoqol-scale#Q4 "Gut"
     * answerOption[+].valueCoding = $whoqol-scale#Q5 "Sehr gut"
 
+  * item[+]
+    * linkId = "section-2-comment"
+    * text = "Haben Sie zu diesem Abschnitt noch einen Kommentar oder etwas hinzuzufügen?"
+    * type = #string
+
 // ============================================================
 // Section 3
 // ============================================================
@@ -286,8 +301,6 @@ Usage: #definition
     * answerOption[+].valueCoding = $whoqol-scale#S3 "Weder zufrieden noch unzufrieden"
     * answerOption[+].valueCoding = $whoqol-scale#S4 "Zufrieden"
     * answerOption[+].valueCoding = $whoqol-scale#S5 "Sehr zufrieden"
-
-
 
   * item[+]
     * linkId = "Q19"
@@ -366,6 +379,11 @@ Usage: #definition
     * answerOption[+].valueCoding = $whoqol-scale#S4 "Zufrieden"
     * answerOption[+].valueCoding = $whoqol-scale#S5 "Sehr zufrieden"
 
+  * item[+]
+    * linkId = "section-3-comment"
+    * text = "Haben Sie zu diesem Abschnitt noch einen Kommentar oder etwas hinzuzufügen?"
+    * type = #string
+
 // ============================================================
 // Section 4
 // ============================================================
@@ -386,6 +404,11 @@ Usage: #definition
     * answerOption[+].valueCoding = $whoqol-scale#F5 "Immer"
 
   * item[+]
+    * linkId = "section-4-comment"
+    * text = "Haben Sie zu diesem Abschnitt noch einen Kommentar oder etwas hinzuzufügen?"
+    * type = #string
+
+  * item[+]
     * linkId = "Q26-reversed"
     * text = "Q26 umkodiert"
     * type = #integer
@@ -401,7 +424,7 @@ Usage: #definition
         * expression = "6 - %resource.repeat(item).where(linkId='Q26').answer.valueCoding.code.substring(1).toInteger()"
 
 // ============================================================
-// Section 5
+// Section 5 incl automated calculations
 // ============================================================
 * item[+]
   * linkId = "section-5"
@@ -432,14 +455,6 @@ Usage: #definition
     * linkId = "domain4-comment"
     * text = "Haben Sie zu ihrer Umwelt noch einen Kommentar oder etwas hinzuzufügen?"
     * type = #string
-
-// ============================================================
-// Section 6 (automatische Berechnungen)
-// ============================================================
-* item[+]
-  * linkId = "section-6"
-  * text = "automatische Berechnungen"
-  * type = #group
 
   * item[+]
     * linkId = "general-raw"

@@ -21,6 +21,11 @@ group BloodGlucoseQuestionnaireResponseToObservation(source src : QR, target tgt
 }
 
 group MapBloodGlucose(source src : QR, target tgt : Obs) {
+  // effectiveDateTime from child-Item with linkId = 'datetime'
+  src.item as dtItem where linkId = 'datetime' then {
+    dtItem.answer as dtAns -> tgt.effectiveDateTime = dtAns.value "SetEffectiveFromDatetime";
+  } "ProcessDatetime";
+
   src.answer as answer then {
     answer.valueQuantity as srcQty then MapBloodGlucoseQuantity(srcQty, tgt) "MapValueQuantity";
   } "ProcessAnswer";

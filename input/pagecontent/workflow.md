@@ -1,12 +1,12 @@
-The transmission of health profile data from the qualified apps to the **PräNUDGE platform** is optional.
+The transmission of health profile data from the qualified apps to the **PreNUDGE platform** is optional.
 
 Health profile data will only be sent once citizens establish the connection within the app and give their **consent**.  See [section App Pairing](#app-pairing) for more.
 
-Before health profile data reaches PräNUDGE, the FHIR MPI module (via Reverse Proxy) creates an App Patient from the token's Subject-ID, links it to a protected Person resource via Person.link, and shields sensitive identity data from apps. See [section Patient Identity Provisioning and MPI Resolution](#patient-identity-provisioning-and-mpi-resolution) for more.
+Before health profile data reaches PreNUDGE, the FHIR MPI module (via Reverse Proxy) creates an App Patient from the token's Subject-ID, links it to a protected Person resource via Person.link, and shields sensitive identity data from apps. See [section Patient Identity Provisioning and MPI Resolution](#patient-identity-provisioning-and-mpi-resolution) for more.
 
 After the app pairing and the patient identity provisioning is successfully completed, the mobile application can communicate with the **PreNUDGE platform** through standard **FHIR RESTful interactions** that must comply with this **Implementation Guide (IG)**.  See [FHIR Communication](#fhir-communication) for more.
 
-Additional there are current and planed requirements for data providers, see [Dataprovider Qualification Matrix](#dataprovider-qualification-matrix) for more.
+Additional there are current and planed requirements for data providers, see [Dataprovider Qualification Matrix](https://prenudge.at/qualificationmatrix/) for more.
 
 ### App Pairing
 
@@ -25,8 +25,8 @@ This sequence describes the process of a citizen connecting their mobile applica
 
 ### Patient Identity Provisioning and MPI Resolution
 
-Before health profile data can be sent to the PräNUDGE platform, a dedicated App Patient must be created. The Subject-ID from the token set is used as the FHIR Resource ID for the Patient. Additionally, a Person resource is created with the citizen's identification details, and the relationship between Person and Patient is established via Person.link.
-This logic is implemented in the PräNUDGE FHIR MPI module. The FHIR MPI module is integrated into the request flow via the Reverse Proxy configuration. For better readability, the Reverse Proxy is not shown in the flow diagram.
+Before health profile data can be sent to the PreNUDGE platform, a dedicated App Patient must be created. The Subject-ID from the token set is used as the FHIR Resource ID for the Patient. Additionally, a Person resource is created with the citizen's identification details, and the relationship between Person and Patient is established via Person.link.
+This logic is implemented in the PreNUDGE FHIR MPI module. The FHIR MPI module is integrated into the request flow via the Reverse Proxy configuration. For better readability, the Reverse Proxy is not shown in the flow diagram.
 To ensure maximum confidentiality of sensitive identity data, the Person resource is protected before access by applications.
 
 This sequence describes how the **FHIR MPI** (Master Patient Index) ensures that a patient identity exists and is correctly linked to a person record before processing clinical resource requests.
@@ -56,13 +56,4 @@ Using the obtained access token, the app can perform authorized operations such 
 - **PUT** requests to update existing resources  
 
 All interactions **MUST** conform to the specifications, resource profiles, and security guidelines defined in this **Implementation Guide (IG)** to ensure compliance, interoperability, and data integrity.  
-These interactions follow the [HL7® FHIR R4 REST API](https://www.hl7.org/fhir/http.html) principles, ensuring full interoperability and secure data exchange between the citizen's app and the platform.
-
-### Dataprovider Qualification Matrix
-
-The following list gives the current and planed requirements for data providers (we call them Apps for now).
-
-#### Get ready for FHIR R6
-
-- The platform currently utilizes `FHIR R4`. Upon the normative release of `FHIR R6`, all subsequent data exchange with data providers will be migrated to the newer version.
-- More will follow.
+These interactions follow the [HL7® FHIR R4 REST API](https://hl7.org/fhir/R4/http.html) principles, ensuring full interoperability and secure data exchange between the citizen's app and the platform.

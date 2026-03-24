@@ -2,9 +2,9 @@ Instance: AlcoholResponseDaily
 InstanceOf: AtPrenudgeQuestionnaireResponse
 Title: "Alcohol Use Q - Daily"
 Usage: #example
-Description: "QuestionnaireResponse example of an alcohol use observation for a daily drinker."
+Description: "Example  of an alcohol use observation for a daily drinker."
 
-* questionnaire = Canonical(AtPrenudgeQuestionnaireAlcoholUse)
+* questionnaire = Canonical(AlcoholUseQuestionnaire)
 * status = #completed
 * subject = Reference(Patient/example)
 * authored = 2026-02-20
@@ -21,9 +21,9 @@ Instance: AlcoholResponseNever
 InstanceOf: AtPrenudgeQuestionnaireResponse
 Title: "Alcohol Use Q - Non-Drinker"
 Usage: #example
-Description: "QuestionnaireResponse example of an alcohol use observation for a lifetime non-drinker."
+Description: "Example  of an alcohol use observation for a lifetime non-drinker."
 
-* questionnaire = Canonical(AtPrenudgeQuestionnaireAlcoholUse)
+* questionnaire = Canonical(AlcoholUseQuestionnaire)
 * status = #completed
 * subject = Reference(Patient/example)
 * authored = 2026-02-27

@@ -1,5 +1,5 @@
 Instance: whoqol-bref-response-example
-InstanceOf: QuestionnaireResponse
+InstanceOf: AtPrenudgeQuestionnaireResponse
 Usage: #example
 Title: "WHOQOL-BREF Q"
 Description: "Example of a completed WHOQOL-BREF QuestionnaireResponse including all 26 items and calculated scores."

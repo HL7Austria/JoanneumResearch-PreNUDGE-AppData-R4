@@ -1,8 +1,8 @@
 Instance: stepcount-response-normal-example
-InstanceOf: QuestionnaireResponse
+InstanceOf: AtPrenudgeQuestionnaireResponse
 Usage: #example
 Title: "Step Count Q - Normal Example"
-Description: "Beispiel einer normalen Schrittzahl (8,432 Schritte) als QuestionnaireResponse."
+Description: "Example of a normal step count (8,432 steps per day)."
 
 * questionnaire = Canonical(StepCountQuestionnaire)
 * status = #completed
@@ -12,8 +12,8 @@ Description: "Beispiel einer normalen Schrittzahl (8,432 Schritte) als Questionn
 * identifier.value = "qr-sc-2026-02-28-001"
 
 * item[0]
-  * linkId = "step-count-today"
-  * text = "Wie viele Schritte sind Sie heute gegangen?"
+  * linkId = "step-count"
+  * text = "Wie viele Schritte sind Sie gegangen?"
   * answer[0]
     * valueQuantity
       * value = 8432
@@ -21,14 +21,17 @@ Description: "Beispiel einer normalen Schrittzahl (8,432 Schritte) als Questionn
       * system = "http://unitsofmeasure.org"
       * code = #{steps}/d
     * item[+]
+      * linkId = "date"
+      * answer[0].valueDate = "2026-02-26" 
+    * item[+]
       * linkId = "comment"
       * answer[0].valueString = "Normaler Arbeitstag mit Spaziergang in der Mittagspause."
 
 Instance: stepcount-response-low-example
-InstanceOf: QuestionnaireResponse
+InstanceOf: AtPrenudgeQuestionnaireResponse
 Usage: #example
 Title: "Step Count Q - High Example"
-Description: "Beispiel einer hohen Schrittzahl (133,519 Schritte) als QuestionnaireResponse."
+Description: "Example of a high step count (133,519 steps per day)."
 
 * questionnaire = Canonical(StepCountQuestionnaire)
 * status = #completed
@@ -38,14 +41,17 @@ Description: "Beispiel einer hohen Schrittzahl (133,519 Schritte) als Questionna
 * identifier.value = "qr-sc-2026-02-28-002"
 
 * item[0]
-  * linkId = "step-count-today"
-  * text = "Wie viele Schritte sind Sie heute gegangen?"
+  * linkId = "step-count"
+  * text = "Wie viele Schritte sind Sie gegangen?"
   * answer[0]
     * valueQuantity
       * value = 133519
       * unit = "{steps}/d"
       * system = "http://unitsofmeasure.org"
       * code = #{steps}/d
+    * item[+]
+      * linkId = "date"
+      * answer[0].valueDate = "2026-02-27" 
     * item[+]
       * linkId = "comment"
       * answer[0].valueString = "Könnte bitte jemand überprüfen ob das ein Weltrekord wäre?"

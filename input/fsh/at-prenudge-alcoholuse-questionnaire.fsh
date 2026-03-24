@@ -1,9 +1,9 @@
-Instance: AtPrenudgeQuestionnaireAlcoholUse
+Instance: AlcoholUseQuestionnaire
 InstanceOf: AtPrenudgeQuestionnaire
 Usage: #definition
 
-* url = "https://fhir.hl7.at/prenudge/appdata/r4/Questionnaire/AtPrenudgeQuestionnaireAlcoholUse"
-* name = "AtPrenudgeQuestionnaireAlcoholUse"
+* url = "https://fhir.hl7.at/prenudge/appdata/r4/Questionnaire/AlcoholUseQuestionnaire"
+* name = "AlcoholUseQuestionnaire"
 * title = "Alkoholkonsum im letzten Jahr"
 * status = #active
 * subjectType = #Patient

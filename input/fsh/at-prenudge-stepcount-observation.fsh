@@ -6,9 +6,9 @@ Description: "This FHIR profile is defining the Step Count Observation. The step
 
 * code = http://loinc.org#41950-7 "Number of steps in 24 hour Measured"
 
-* value[x] 1..1 MS
+* value[x] 1..1
 * value[x] only Quantity
-* valueQuantity.value 1..1 MS
+* valueQuantity.value 1..1
 * valueQuantity.unit = "{steps}/d"
 * valueQuantity.system = "http://unitsofmeasure.org"
 * valueQuantity.code = #{steps}/d

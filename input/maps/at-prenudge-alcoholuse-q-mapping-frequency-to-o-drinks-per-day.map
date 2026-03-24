@@ -16,6 +16,9 @@ group AlcoholQuestionnaireResponseToObservation(source src : QR, target tgt : Ob
   src then SetObservationBase(src, tgt) "Base";
   src -> tgt.meta as meta, meta.profile = 'https://fhir.hl7.at/prenudge/appdata/r4/StructureDefinition/at-prenudge-alcoholuse-observation' "SetProfile";
   src -> tgt.code = cc('http://loinc.org', '74013-4', 'Alcoholic drinks per day') "SetCode";
+  // EffectiveDateTime from authored
+  src.authored as authored -> tgt.effectiveDateTime = create('dateTime') as dt,
+    dt.value = authored "SetEffective";
   src.item as item where linkId = 'alcohol-frequency' then MapAlcoholFrequency(item, tgt) "ProcessItem";
 }
 

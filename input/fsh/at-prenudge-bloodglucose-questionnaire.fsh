@@ -8,12 +8,12 @@ Usage: #definition
 * status = #active
 * experimental = false
 * subjectType = #Patient
-* description = "A simple questionnaire for asking how high the blood glucose level is right now. The blood glucose option only allows values inbetween 12 and 1200 mg/dL."
+* description = "A simple questionnaire for asking how high the blood glucose level is right now. The blood glucose option only allows values inbetween 0 and 999 mg/dL."
 
 * item[+]
   * linkId = "blood-glucose-now"
   * code = http://loinc.org#1556-0
-  * text = "Wie hoch ist Ihr Blutzucker aktuell?"
+  * text = "Wie hoch ist Ihr Blutzucker aktuell (mg/dL)?"
   * type = #quantity
   * required = true
   * repeats = false
@@ -25,10 +25,19 @@ Usage: #definition
       * display = "mg/dL"
   * extension[+]
     * url = "http://hl7.org/fhir/StructureDefinition/minValue"
-    * valueDecimal = 12
+    * valueDecimal = 0
   * extension[+]
     * url = "http://hl7.org/fhir/StructureDefinition/maxValue"
-    * valueDecimal = 1200
+    * valueDecimal = 999
+  * item[+]
+    * linkId = "datetime"
+    * text = "Wann haben sie diesen Wert gemessen?"
+    * type = #dateTime
+    * extension[+]
+      * url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
+      * valueExpression
+        * language = #text/fhirpath
+        * expression = "now().toString()"
   * item[+]
     * linkId = "comment"
     * text = "Haben Sie zu Ihrer Antwort noch einen Kommentar oder etwas hinzuzufügen?"

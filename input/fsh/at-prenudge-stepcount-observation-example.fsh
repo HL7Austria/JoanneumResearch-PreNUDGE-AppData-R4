@@ -2,7 +2,7 @@ Instance: stepcount-normal-example
 InstanceOf: AtPrenudgeObservationStepCount
 Usage: #example
 Title: "Step Count O mapped from Q - Normal Example"
-Description: "Beispiel einer normalen Schrittzahl (8,432 Schritte pro Tag)."
+Description: "Example of a normal step count (8,432 steps per day)."
 
 * identifier[+]
   * system = "https://www.joanneum.at"
@@ -23,7 +23,7 @@ Instance: stepcount-high-example
 InstanceOf: AtPrenudgeObservationStepCount
 Usage: #example
 Title: "Step Count O mapped from Q - High Example"
-Description: "Beispiel einer hohen Schrittzahl (133,519 Schritte pro Tag)."
+Description: "Example of a high step count (133,519 steps per day)."
 
 * identifier[+]
   * system = "https://www.joanneum.at"
@@ -44,7 +44,7 @@ Instance: stepcount-sedentary-example
 InstanceOf: AtPrenudgeObservationStepCount
 Usage: #example
 Title: "Step Count O - Sedentary Example"
-Description: "Beispiel einer niedrigen Schrittzahl (1,204 Schritte pro Tag), typisch für einen überwiegend sitzenden Tag."
+Description: "Example of a low step count (1,204 steps per day), typical for a mostly sedentary day."
 
 * identifier[+]
   * system = "https://www.joanneum.at"

@@ -2,7 +2,7 @@ Instance: alcoholuse-occasional-example
 InstanceOf: AtPrenudgeObservationAlcoholUse
 Usage: #example
 Title: "Alcohol Use O mapped from Q - Daily"
-Description: "Observation example of an alcohol use observation for a daily drinker (1 drink per day)."
+Description: "Example of an alcohol use observation for a daily drinker (1 drink per day)."
 
 * identifier[+]
   * system = "https://www.joanneum.at"
@@ -22,7 +22,7 @@ Instance: alcoholuse-never-example
 InstanceOf: AtPrenudgeObservationAlcoholUse
 Usage: #example
 Title: "Alcohol Use O mapped from Q - Non-Drinker"
-Description: "Observation example of an alcohol use observation for a lifetime non-drinker (0 drinks per day)."
+Description: "Example of an alcohol use observation for a lifetime non-drinker (0 drinks per day)."
 
 * identifier[+]
   * system = "https://www.joanneum.at"
@@ -43,7 +43,7 @@ Instance: alcoholuse-moderate-example
 InstanceOf: AtPrenudgeObservationAlcoholUse
 Usage: #example
 Title: "Alcohol Use O - Moderate (3-4 times weekly)"
-Description: "Observation example of an alcohol use observation for a moderate drinker consuming alcohol 3-4 times per week (0.5 drinks per day)."
+Description: "Example of an alcohol use observation for a moderate drinker consuming alcohol 3-4 times per week (0.5 drinks per day)."
 
 * identifier[+]
   * system = "https://www.joanneum.at"

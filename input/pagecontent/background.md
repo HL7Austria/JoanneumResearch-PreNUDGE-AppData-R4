@@ -33,10 +33,10 @@ We collaborate by leveraging the knowledge and vision of **14 different companie
 - Future Health Lab – Innovation and research in future-oriented health promotion and technology.
 - Kurvenkratzer – das Magazin – Media reach and storytelling for communication and awareness of health projects.
 - medicus.ai – Artificial intelligence and machine learning for health profiles and risk prediction.
-- TEL-BIO-MED – Biomedical and telemetric technologies for capturing health indicators.
+- telbiomed – Biomedical and telemetric technologies for capturing health indicators.
 - AIT Austrian Institute of Technology – Research competence and technological innovation in applied research.
 - Joanneum Research – Extramural research and expertise in health systems and prevention research.
-- Med Uni Graz – Medical expertise and clinical validation of health indicators.
+- Medizinische Universität Graz – Medical expertise and clinical validation of health indicators.
 - Medizinische Universität Wien – Academic excellence and clinical expertise in preventive medicine.
 - Universität Wien – Research competence in data science, public health, and behavioral economics.
 - Wirtschaftsuniversität Wien – Expertise in economics, incentive design, and behavioral economics for nudging strategies.
@@ -45,7 +45,7 @@ We collaborate by leveraging the knowledge and vision of **14 different companie
 
 We will **focus** on:
 - Investigation of motivational factors and incentivization measures (nudging) for participation and adherence to prevention programs
-- Definition of a standardized set of health indicators for prevention work and analyses for 4 disease entities
+- Definition of a standardized set of health indicators for prevention work and analyses for 4 disease entities (Diabetes mellitus Type 2, colon cancer, depression and COPD)
 - Development of a platform for creating health profiles of Austrian citizens
 - Establishment of an ecosystem of app providers for collecting health indicators: interface between citizens and platform
 - Making the platform accessible for primary and secondary data use

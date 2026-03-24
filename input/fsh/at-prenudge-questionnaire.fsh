@@ -2,7 +2,7 @@ Profile: AtPrenudgeQuestionnaire
 Parent: Questionnaire
 Id: at-prenudge-questionnaire
 Title: "AT PreNUDGE Questionnaire"
-Description: "This FHIR profile is defining the overall Questionnaire for PreNUDGE. Every top level item requires one comment subitem, with the linkId ending or equal 'comment'."
+Description: "This FHIR profile is defining the overall Questionnaire for PreNUDGE. Every top level item requires one comment subitem, with the linkId ending or equal 'comment'. Be aware that if the user enters values from a device into a questionnaire, it is still considered a manual input. Please keep in mind that all questionnaires must comply with the qualification matrix on https://prenudge.at/qualificationmatrix/."
 
 * ^abstract = true
 * item obeys at-prenudge-every-item-has-comment
@@ -10,4 +10,4 @@ Description: "This FHIR profile is defining the overall Questionnaire for PreNUD
 Invariant: at-prenudge-every-item-has-comment
 Description: "Jedes top-level Item muss genau ein Unter-Item enthalten, dessen linkId auf 'comment' endet"
 Severity: #error
-Expression: "type = 'display' or item.where(linkId.endsWith('comment') and type = 'string').count() = 1"
+Expression: "type = 'display' or item.where(linkId.endsWith('comment') and type = 'string').count() >= 1"

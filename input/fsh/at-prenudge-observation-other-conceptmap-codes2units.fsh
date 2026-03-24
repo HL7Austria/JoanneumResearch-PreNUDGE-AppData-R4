@@ -2,7 +2,7 @@ Instance: AtPrenudgeCodeUnitMap
 InstanceOf: ConceptMap
 Usage: #definition
 Title: "AT PreNUDGE Code-to-Unit Mapping"
-Description: "Maps observation codes to their expected UCUM units for the 'Other' observation profile."
+Description: "Maps observation codes to their expected UCUM units for the 'Other Quantities' observation profile."
 
 * url = "https://fhir.hl7.at/prenudge/appdata/r4/ConceptMap/AtPrenudgeCodeUnitMap"
 * status = #active
