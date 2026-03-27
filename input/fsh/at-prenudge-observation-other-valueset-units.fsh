@@ -6,6 +6,5 @@ Description: "Allowed UCUM units for the 'Other' observation profile."
 * ^status = #active
 * ^experimental = false
 
-* http://unitsofmeasure.org#min "minute"
 * http://unitsofmeasure.org#{finding} "finding"
 * http://unitsofmeasure.org#{intensity} "intensity"

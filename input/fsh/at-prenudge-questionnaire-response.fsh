@@ -10,5 +10,8 @@ Description: "This FHIR profile is defining the overall Questionnaire Response f
 * identifier.system ^short = "The namespace for the identifier value, if no other specifications are given, use your website url"
 * identifier.value 1..
 
+* authored 1..
+* identifier ^short = "Mandatory date the answers were gathered"
+
 * status = #completed
 * status ^short = "In PreNUDGE only completed QuestionnaireResponses are beeing accepted"

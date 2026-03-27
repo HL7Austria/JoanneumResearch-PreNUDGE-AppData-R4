@@ -12,6 +12,5 @@ Beschreibung: Enthält durch SNOMED International urheberrechtlich geschützte I
 Dieses Material enthält Inhalte aus LOINC (http://loinc.org). LOINC ist urheberrechtlich geschützt © 1995-2020 durch das Regenstrief Institute, Inc. und den Logical Observation Identifiers Names and Codes (LOINC) Committee und steht kostenfrei unter der Lizenz unter http://loinc.org/license zur Verfügung. LOINC® ist eine eingetragene Marke des Regenstrief Institute, Inc. in den Vereinigten Staaten.
 "
 
-* http://loinc.org#66266-8 "Time doing this activity"
 * http://loinc.org#66270-0 "Activity intensity"
 * http://snomed.info/sct#82832008 "General body state finding (finding)"

@@ -51,4 +51,7 @@ We will **focus** on:
 - Making the platform accessible for primary and secondary data use
 - Ensuring sustainable utilization
 
+The current standardized set of health indicators is as follows, the checkmark indicates that these indicators are already specified in this IG:
+[![aim](PreNUDGE_Health_Profile_FHIR_IG.png){: style="width: 100%"}](PreNUDGE_Health_Profile_FHIR_IG.png)
+
 For more, see [https://prenudge.at](https://prenudge.at).

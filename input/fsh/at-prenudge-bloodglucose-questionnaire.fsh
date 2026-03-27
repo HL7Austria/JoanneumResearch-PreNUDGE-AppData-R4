@@ -33,6 +33,7 @@ Usage: #definition
     * linkId = "datetime"
     * text = "Wann haben sie diesen Wert gemessen?"
     * type = #dateTime
+    * required = true
     * extension[+]
       * url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
       * valueExpression
