@@ -29,4 +29,7 @@ group SetObservationBase(source src : QR, target tgt : Obs) {
   src.subject as subject -> tgt.subject = create('Reference') as ref then {
     subject.reference as r -> ref.reference = r "CopySubjectRef";
   } "SetSubject";
+
+  // Instance creation datetime
+  src.authored as authored -> tgt.issued = authored "SetEffective";
 }

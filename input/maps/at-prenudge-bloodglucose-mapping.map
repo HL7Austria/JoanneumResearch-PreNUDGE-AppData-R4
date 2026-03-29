@@ -17,31 +17,48 @@ group BloodGlucoseQuestionnaireResponseToObservation(source src : QR, target tgt
   src -> tgt.meta = create('Meta') as meta,
     meta.profile = 'https://fhir.hl7.at/prenudge/appdata/r4/StructureDefinition/at-prenudge-bloodglucose-observation' "SetProfile";
   src -> tgt.code = cc('http://loinc.org', '1556-0', 'Fasting glucose [Mass/volume] in Capillary blood') "SetCode";
-  src.item as item where linkId = 'blood-glucose-now' then MapBloodGlucose(item, tgt) "ProcessItem";
+  src.item as item where linkId = 'blood-glucose' then MapBloodGlucose(item, tgt) "ProcessItem";
 }
 
 group MapBloodGlucose(source src : QR, target tgt : Obs) {
-  // effectiveDateTime from child-Item with linkId = 'datetime'
-  src.item as dtItem where linkId = 'datetime' then {
-    dtItem.answer as dtAns -> tgt.effectiveDateTime = dtAns.value "SetEffectiveFromDatetime";
-  } "ProcessDatetime";
-
+  // Process the answer first to get access to nested items
   src.answer as answer then {
+
+    // effectiveDateTime from nested item
+    answer.item as dtItem where linkId = 'datetime' then {
+      dtItem.answer as dtAns then {
+        dtAns.valueDateTime as dt -> tgt.effectiveDateTime = dt "SetEffectiveFromDatetime";
+      } "ExtractDateTime";
+    } "ProcessDatetime";
+
+
+    // Meal context → component[mealContext]
+    answer.item as mcItem where linkId = 'meal-context' then {
+      mcItem.answer as mcAns then {
+        mcAns.valueCoding as coding -> tgt.component as comp,
+          comp.code = cc('http://snomed.info/sct', '309602000', 'Temporal periods relating to feeding and eating'),
+          comp.value = create('CodeableConcept') as cc,
+            cc.coding = coding "SetMealContextCoding";
+      } "ExtractCoding";
+    } "ProcessMealContext";
+
+
+    // Map the blood glucose value
     answer.valueQuantity as srcQty then MapBloodGlucoseQuantity(srcQty, tgt) "MapValueQuantity";
+
+    // TODO: Note mapping disabled due to MaLaC-HD limitation
+    // Annotation.text (markdown) target not supported with FHIR string source
+    // See: https://gitlab.com/cdehealth/malac-hd/-/issues/128
+
+    // Map comment to note
+    // answer.item as commentItem where linkId = 'comment' then {
+    //   commentItem.answer as commentAnswer then {
+    //     commentAnswer.value as commentText -> tgt.note as note,
+    //       note.text = commentText "SetNoteText";
+    //   } "ProcessCommentAnswer";
+    // } "ProcessComment";
+
   } "ProcessAnswer";
-
-  // TODO: Note mapping disabled due to MaLaC-HD limitation
-  // Annotation.text (markdown) target not supported with FHIR string source
-  // See: https://gitlab.com/cdehealth/malac-hd/-/issues/128
-
-  // Map comment to note
-  // answer.item as commentItem where linkId = 'comment' then {
-  //   commentItem.answer as commentAnswer then {
-  //     commentAnswer.valueString as commentText then {
-  //       commentText.value as tv -> tgt.note as note, note.text = tv "SetNoteText";
-  //     } "ExtractText";
-  //   } "ProcessCommentAnswer";
-  // } "ProcessComment";
 }
 
 group MapBloodGlucoseQuantity(source srcQty : Quantity, target tgt : Obs) {

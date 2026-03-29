@@ -8,9 +8,10 @@ Description: "Example of a WHOQOL-BREF score observation with a general score an
   * system = "https://www.joanneum.at"
   * value = "qr-whoqol-2026-02-28-001"
 * status = #final
-* code = http://snomed.info/sct#405152002
+* code = http://snomed.info/sct#405152002 "Quality of life"
 * subject = Reference(Patient/example)
 * effectiveDateTime = "2026-02-28T10:30:00Z"
+* issued = "2026-02-28T10:30:00Z"
 * method = http://snomed.info/sct#87982008 "Manual"
 * derivedFrom = Reference(QuestionnaireResponse/whoqol-bref-response-example)
 

@@ -1,9 +1,9 @@
-Instance: StepCountQuestionnaire
+Instance: StepCountQuantityQuestionnaire
 InstanceOf: AtPrenudgeQuestionnaire
 Usage: #definition
 
-* url = "https://fhir.hl7.at/prenudge/appdata/r4/Questionnaire/StepCountQuestionnaire"
-* name = "StepCountQuestionnaire"
+* url = "https://fhir.hl7.at/prenudge/appdata/r4/Questionnaire/StepCountQuantityQuestionnaire"
+* name = "StepCountQuantityQuestionnaire"
 * title = "Schrittzahl am heutigen Tag"
 * status = #active
 * experimental = false

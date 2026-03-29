@@ -15,6 +15,9 @@ Description: "This FHIR profile is defining the overall Observation for PreNUDGE
 * effectiveDateTime 1..
 * effectiveDateTime ^short = "The mandatory clinically relevant time for observation"
 
+* issued 1..
+* issued ^short = "The mandatory date/time this version was made available" 
+
 * method 1..
 * method from AtPrenudgeValueSetMethodManualAutomated
 

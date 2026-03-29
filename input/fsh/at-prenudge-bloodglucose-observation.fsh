@@ -13,7 +13,20 @@ Description: "This FHIR profile is defining the Blood Glucose Observation, simil
 * valueQuantity.system = "http://unitsofmeasure.org"
 * valueQuantity.code = #mg/dL
 
-* component 0..
+* component 1..*
+* component ^short = "Mandatory meal context and other component results"
+* component ^slicing.discriminator[0].type = #pattern
+* component ^slicing.discriminator[0].path = "code"
+* component ^slicing.rules = #open
+* component contains mealContext 1..1
+
+* component[mealContext] ^sliceName = "mealContext"
+* component[mealContext].code 1..1
+* component[mealContext].code = http://snomed.info/sct#309602000 "Temporal periods relating to feeding and eating"
+
+* component[mealContext].value[x] 1..1
+* component[mealContext].value[x] only CodeableConcept
+* component[mealContext].valueCodeableConcept from AtPrenudgeValueSetBloodglucoseMealcontextSnomedVS (required)
 
 * obeys bloodglucose-range
 

@@ -11,12 +11,14 @@ Description: "Example of an alcohol use observation for a daily drinker (1 drink
 * code = http://loinc.org#74013-4 "Alcoholic drinks per day"
 * subject = Reference(Patient/example)
 * effectiveDateTime = "2026-02-20"
+* issued = "2026-02-20T00:00:00Z"
 * method = http://snomed.info/sct#87982008 "Manual"
 * valueQuantity
   * value = 1
   * unit = "drinks/day"
   * system = "http://unitsofmeasure.org"
   * code = #{drinks}/d
+* derivedFrom = Reference(QuestionnaireResponse/AlcoholResponseDaily)
 
 Instance: alcoholuse-never-example
 InstanceOf: AtPrenudgeObservationAlcoholUse
@@ -31,6 +33,7 @@ Description: "Example of an alcohol use observation for a lifetime non-drinker (
 * code = http://loinc.org#74013-4 "Alcoholic drinks per day"
 * subject = Reference(Patient/example)
 * effectiveDateTime = "2026-02-27"
+* issued = "2026-02-27T00:00:00Z"
 * method = http://snomed.info/sct#87982008 "Manual"
 * valueQuantity
   * value = 0
@@ -38,6 +41,7 @@ Description: "Example of an alcohol use observation for a lifetime non-drinker (
   * system = "http://unitsofmeasure.org"
   * code = #{drinks}/d
 * note[+].text = "Ich trinke zwar nicht, bin aber als Kind in ein Fass hausgemachten Schnaps gefallen. Zählt das?"
+* derivedFrom = Reference(QuestionnaireResponse/AlcoholResponseNever)
 
 Instance: alcoholuse-moderate-example
 InstanceOf: AtPrenudgeObservationAlcoholUse
@@ -52,6 +56,7 @@ Description: "Example of an alcohol use observation for a moderate drinker consu
 * code = http://loinc.org#74013-4 "Alcoholic drinks per day"
 * subject = Reference(Patient/example)
 * effectiveDateTime = "2026-03-03"
+* issued = "2026-03-03T00:00:00Z"
 * method = http://snomed.info/sct#8359006 "Automated"
 * valueQuantity
   * value = 0.5

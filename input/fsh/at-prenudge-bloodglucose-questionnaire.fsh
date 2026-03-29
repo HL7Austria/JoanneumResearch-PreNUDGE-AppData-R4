@@ -11,7 +11,7 @@ Usage: #definition
 * description = "A simple questionnaire for asking how high the blood glucose level is right now. The blood glucose option only allows values inbetween 0 and 999 mg/dL."
 
 * item[+]
-  * linkId = "blood-glucose-now"
+  * linkId = "blood-glucose"
   * code = http://loinc.org#1556-0
   * text = "Wie hoch ist Ihr Blutzucker aktuell (mg/dL)?"
   * type = #quantity
@@ -29,6 +29,12 @@ Usage: #definition
   * extension[+]
     * url = "http://hl7.org/fhir/StructureDefinition/maxValue"
     * valueDecimal = 999
+  * item[+]
+    * linkId = "meal-context"
+    * text = "Wurde dieser Wert nüchtern, vor dem Essen oder nach dem Essen gemessen?"
+    * type = #choice
+    * required = true
+    * answerValueSet = Canonical(AtPrenudgeValueSetBloodglucoseMealcontextSnomedVS)
   * item[+]
     * linkId = "datetime"
     * text = "Wann haben sie diesen Wert gemessen?"

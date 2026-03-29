@@ -17,16 +17,24 @@ group StepCountQuestionnaireResponseToObservation(source src : QR, target tgt : 
   src -> tgt.meta = create('Meta') as meta,
     meta.profile = 'https://fhir.hl7.at/prenudge/appdata/r4/StructureDefinition/at-prenudge-stepcount-observation' "SetProfile";
   src -> tgt.code = cc('http://loinc.org', '41950-7', 'Number of steps in 24 hour Measured') "SetCode";
-  src.item as item where linkId = 'step-count' then MapStepCount(item, tgt) "ProcessItem";
+  
+  // Quantity step count entry
+  src.item as item where linkId = 'step-count' then MapStepCount(item, tgt) "ProcessQuantityStepCount";
+  
+  // EHIS-PAQ walking survey
+  // src.item as item where linkId = 'Q2-walking-days' then MapEhisPaqToStepCount(item, tgt) "ProcessEhisPaq";
 }
 
+// Direct step count mapping
 group MapStepCount(source src : QR, target tgt : Obs) {
-  // effectiveDateTime from child-Item with linkId = 'date'
-  src.item as dtItem where linkId = 'date' then {
-    dtItem.answer as dtAns -> tgt.effectiveDateTime = dtAns.value "SetEffectiveFromDate";
-  } "ProcessDate";
-
   src.answer as answer then {
+    // effectiveDateTime from nested item with linkId = 'date'
+    answer.item as dtItem where linkId = 'date' then {
+      dtItem.answer as dtAns then {
+        dtAns.valueDate as dt -> tgt.effectiveDateTime = dt "SetEffectiveFromDate";
+      } "ExtractDate";
+    } "ProcessDate";
+
     answer.valueQuantity as srcQty then MapStepCountQuantity(srcQty, tgt) "MapValueQuantity";
 
     // TODO: Note mapping disabled due to MaLaC-HD bug - copy markdown fails with None source type
@@ -52,3 +60,73 @@ group MapStepCountQuantity(source srcQty : Quantity, target tgt : Obs) {
     srcQty -> qty.code = '{steps}/d' "SetCode";
   } "MapQuantityValue";
 }
+
+// TODO: Note mapping disabled due to MaLaC-HD bug - copy markdown fails with None source type
+// See: https://gitlab.com/cdehealth/malac-hd/-/issues/128
+
+// EHIS-PAQ mapping with calculation
+// group MapEhisPaqToStepCount(source src : QR, target tgt : Obs) {
+//   src.answer as q2Ans then {
+//     q2Ans.valueInteger as days then {
+//       src.item as q3Item where linkId = 'Q3-walking-duration' then {
+//         q3Item.answer as q3Ans then {
+//           q3Ans.valueString as durationStr then {
+//             // 0-9 Minuten: 5 Minuten * 100 Schritte/Minute = 500 Schritte pro Tag
+//             days where (durationStr.value = '0–9 Minuten pro Tag') -> 
+//               tgt.valueQuantity = create('Quantity') as qty then {
+//                 days -> qty.value = (days.value * 500) "CalcValue0to9";
+//                 days -> qty.unit = '{steps}/d', 
+//                        qty.system = 'http://unitsofmeasure.org', 
+//                        qty.code = '{steps}/d' "SetUnit0to9";
+//               } "Range0to9";
+            
+//             // 10-29 Minuten: 20 Minuten * 100 Schritte/Minute = 2000 Schritte pro Tag
+//             days where (durationStr.value = '10–29 Minuten pro Tag') -> 
+//               tgt.valueQuantity = create('Quantity') as qty then {
+//                 days -> qty.value = (days.value * 2000) "CalcValue10to29";
+//                 days -> qty.unit = '{steps}/d', 
+//                        qty.system = 'http://unitsofmeasure.org', 
+//                        qty.code = '{steps}/d' "SetUnit10to29";
+//               } "Range10to29";
+            
+//             // 30-59 Minuten: 45 Minuten * 100 Schritte/Minute = 4500 Schritte pro Tag
+//             days where (durationStr.value = '30–59 Minuten pro Tag') -> 
+//               tgt.valueQuantity = create('Quantity') as qty then {
+//                 days -> qty.value = (days.value * 4500) "CalcValue30to59";
+//                 days -> qty.unit = '{steps}/d', 
+//                        qty.system = 'http://unitsofmeasure.org', 
+//                        qty.code = '{steps}/d' "SetUnit30to59";
+//               } "Range30to59";
+            
+//             // 1-2 Stunden: 90 Minuten * 100 Schritte/Minute = 9000 Schritte pro Tag
+//             days where (durationStr.value = '1 Stunde bis unter 2 Stunden pro Tag') -> 
+//               tgt.valueQuantity = create('Quantity') as qty then {
+//                 days -> qty.value = (days.value * 9000) "CalcValue1to2Hours";
+//                 days -> qty.unit = '{steps}/d', 
+//                        qty.system = 'http://unitsofmeasure.org', 
+//                        qty.code = '{steps}/d' "SetUnit1to2Hours";
+//               } "Range1to2Hours";
+            
+//             // 2-3 Stunden: 150 Minuten * 100 Schritte/Minute = 15000 Schritte pro Tag
+//             days where (durationStr.value = '2 Stunden bis unter 3 Stunden pro Tag') -> 
+//               tgt.valueQuantity = create('Quantity') as qty then {
+//                 days -> qty.value = (days.value * 15000) "CalcValue2to3Hours";
+//                 days -> qty.unit = '{steps}/d', 
+//                        qty.system = 'http://unitsofmeasure.org', 
+//                        qty.code = '{steps}/d' "SetUnit2to3Hours";
+//               } "Range2to3Hours";
+            
+//             // 3+ Stunden: 210 Minuten * 100 Schritte/Minute = 21000 Schritte pro Tag
+//             days where (durationStr.value = '3 Stunden pro Tag oder mehr') -> 
+//               tgt.valueQuantity = create('Quantity') as qty then {
+//                 days -> qty.value = (days.value * 21000) "CalcValue3PlusHours";
+//                 days -> qty.unit = '{steps}/d', 
+//                        qty.system = 'http://unitsofmeasure.org', 
+//                        qty.code = '{steps}/d' "SetUnit3PlusHours";
+//               } "Range3PlusHours";
+//           } "ProcessDuration";
+//         } "ExtractDuration";
+//       } "ProcessQ3";
+//     } "ExtractDays";
+//   } "ProcessQ2Answer";
+// }

@@ -10,7 +10,8 @@ Description: "Example of a normal step count (8,432 steps per day)."
 * status = #final
 * code = http://loinc.org#41950-7 "Number of steps in 24 hour Measured"
 * subject = Reference(Patient/example)
-* effectiveDateTime = "2026-02-28T20:00:00Z"
+* effectiveDateTime = "2026-02-27"
+* issued = "2026-02-28T20:00:00Z"
 * method = http://snomed.info/sct#87982008 "Manual"
 * valueQuantity
   * value = 8432
@@ -18,6 +19,7 @@ Description: "Example of a normal step count (8,432 steps per day)."
   * system = "http://unitsofmeasure.org"
   * code = #{steps}/d
 * note[+].text = "Normaler Arbeitstag mit Spaziergang in der Mittagspause."
+* derivedFrom = Reference(QuestionnaireResponse/stepcount-quantity-response-normal-example)
 
 Instance: stepcount-high-example
 InstanceOf: AtPrenudgeObservationStepCount
@@ -31,7 +33,8 @@ Description: "Example of a high step count (133,519 steps per day)."
 * status = #final
 * code = http://loinc.org#41950-7 "Number of steps in 24 hour Measured"
 * subject = Reference(Patient/example)
-* effectiveDateTime = "2026-02-28T20:15:00Z"
+* effectiveDateTime = "2026-02-28"
+* issued = "2026-03-01T20:00:00Z"
 * method = http://snomed.info/sct#87982008 "Manual"
 * valueQuantity
   * value = 133519
@@ -39,6 +42,7 @@ Description: "Example of a high step count (133,519 steps per day)."
   * system = "http://unitsofmeasure.org"
   * code = #{steps}/d
 * note[+].text = "Könnte bitte jemand überprüfen ob das ein Weltrekord wäre?"
+* derivedFrom = Reference(QuestionnaireResponse/stepcount-quantity-response-high-example)
 
 Instance: stepcount-sedentary-example
 InstanceOf: AtPrenudgeObservationStepCount
@@ -52,7 +56,8 @@ Description: "Example of a low step count (1,204 steps per day), typical for a m
 * status = #final
 * code = http://loinc.org#41950-7 "Number of steps in 24 hour Measured"
 * subject = Reference(Patient/example)
-* effectiveDateTime = "2026-03-03T21:30:00Z"
+* effectiveDateTime = "2026-03-03"
+* issued = "2026-03-28T20:00:00Z"
 * method = http://snomed.info/sct#8359006 "Automated"
 * valueQuantity
   * value = 1204
