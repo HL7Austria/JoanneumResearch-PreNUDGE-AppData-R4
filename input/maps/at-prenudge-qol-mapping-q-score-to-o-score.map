@@ -15,7 +15,7 @@ group WHOQOLBrefQuestionnaireResponseToObservation(source src : QR, target tgt :
   src then SetObservationBase(src, tgt) "Base";
   src -> tgt.meta as meta,
     meta.profile = 'https://fhir.hl7.at/prenudge/appdata/r4/StructureDefinition/at-prenudge-whoqol-bref-score-observation' "SetProfile";
-  src -> tgt.code = cc('http://snomed.info/sct', '405152002', 'Quality of life assessment') "SetCode";
+  src -> tgt.code = cc('http://snomed.info/sct', '405152002', 'Quality of life') "SetCode";
   // EffectiveDateTime from authored
   src.authored as authored -> tgt.effectiveDateTime = create('dateTime') as dt,
     dt.value = authored "SetEffective";
