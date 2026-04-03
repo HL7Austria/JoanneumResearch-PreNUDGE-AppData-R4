@@ -16,7 +16,7 @@ group BloodGlucoseQuestionnaireResponseToObservation(source src : QR, target tgt
   src then SetObservationBase(src, tgt) "Base";
   src -> tgt.meta = create('Meta') as meta,
     meta.profile = 'https://fhir.hl7.at/prenudge/appdata/r4/StructureDefinition/at-prenudge-bloodglucose-observation' "SetProfile";
-  src -> tgt.code = cc('http://loinc.org', '1556-0', 'Fasting glucose [Mass/volume] in Capillary blood') "SetCode";
+  src -> tgt.code = cc('http://loinc.org', '41653-7', 'Glucose [Mass/volume] in Capillary blood by Glucometer') "SetCode";
   src.item as item where linkId = 'blood-glucose' then MapBloodGlucose(item, tgt) "ProcessItem";
 }
 

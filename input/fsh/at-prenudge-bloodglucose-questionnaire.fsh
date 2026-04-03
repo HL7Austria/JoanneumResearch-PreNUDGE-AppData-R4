@@ -12,7 +12,7 @@ Usage: #definition
 
 * item[+]
   * linkId = "blood-glucose"
-  * code = http://loinc.org#1556-0
+  * code = http://loinc.org#41653-7 "Glucose [Mass/volume] in Capillary blood by Glucometer"
   * text = "Wie hoch ist Ihr Blutzucker aktuell (mg/dL)?"
   * type = #quantity
   * required = true

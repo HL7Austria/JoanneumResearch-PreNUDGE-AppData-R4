@@ -4,7 +4,7 @@ Id: at-prenudge-bloodglucose-observation
 Title: "AT PreNUDGE Observation Blood Glucose (only in mg/dL)"
 Description: "This FHIR profile is defining the Blood Glucose Observation, similar to the Observation Social History - Alcohol Use from the IPS. The blood glucose option only allows values inbetween 0 and 999 mg/dL."
 
-* code = http://loinc.org#1556-0 "Fasting glucose [Mass/volume] in Capillary blood"
+* code = http://loinc.org#41653-7 "Glucose [Mass/volume] in Capillary blood by Glucometer"
 
 * value[x] 1..1
 * value[x] only Quantity

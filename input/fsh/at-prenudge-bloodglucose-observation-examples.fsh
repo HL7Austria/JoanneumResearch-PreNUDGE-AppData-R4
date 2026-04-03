@@ -8,7 +8,7 @@ Description: "Example of a normal fasting blood glucose measurement (95 mg/dL)
   * system = "https://www.joanneum.at"
   * value = "qr-bg-2026-02-28-001"
 * status = #final
-* code = http://loinc.org#1556-0 "Fasting glucose [Mass/volume] in Capillary blood"
+* code = http://loinc.org#41653-7 "Glucose [Mass/volume] in Capillary blood by Glucometer"
 * subject = Reference(Patient/example)
 * issued = "2026-02-28T07:31:00Z"
 * effectiveDateTime = "2026-02-28T07:30:00Z"
@@ -35,7 +35,7 @@ Description: "Example of an elevated fasting blood glucose measurement (142 mg
   * system = "https://www.joanneum.at"
   * value = "qr-bg-2026-02-28-002"
 * status = #final
-* code = http://loinc.org#1556-0 "Fasting glucose [Mass/volume] in Capillary blood"
+* code = http://loinc.org#41653-7 "Glucose [Mass/volume] in Capillary blood by Glucometer"
 * subject = Reference(Patient/example)
 * issued = "2026-02-28T22:31:00Z"
 * effectiveDateTime = "2026-02-28T21:45:00Z"
@@ -62,7 +62,7 @@ Description: "Example of a low fasting blood glucose measurement (62 mg/dL), i
   * system = "https://www.joanneum.at"
   * value = "obs-bg-2026-03-03-001"
 * status = #final
-* code = http://loinc.org#1556-0 "Fasting glucose [Mass/volume] in Capillary blood"
+* code = http://loinc.org#41653-7 "Glucose [Mass/volume] in Capillary blood by Glucometer"
 * subject = Reference(Patient/example)
 * issued = "2026-03-03T10:31:00Z"
 * effectiveDateTime = "2026-03-03T06:15:00Z"
