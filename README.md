@@ -33,10 +33,6 @@ sushi init
    
 ```
 
-## Weitere IGs als Vorlage
-
-https://github.com/HL7Austria/ELGA-AustrianPatientSummary-R4
-
 ## Publisher
 
 ### Jekyll auf Windows installieren
