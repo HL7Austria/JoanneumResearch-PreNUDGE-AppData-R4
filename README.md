@@ -31,7 +31,6 @@ https://jekyllrb.com/docs/installation/windows/
 
 https://rubyinstaller.org/downloads/
 
-
 ```
  .\_genonce.bat   
 ```   
