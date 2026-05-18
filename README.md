@@ -1,17 +1,7 @@
 # PreNUDGE FHIR Implementation Guide (IG)
 
 Projekt - https://prenudge.at/
-                                                 
-## Initialisierung
-
-Der IG wurde anhand von https://github.com/HL7Austria/LinkedCare initialisiert.
-
-Es wird das HL7 Austria FHIR IG Template verwendet (ig.ini) https://github.com/HL7Austria/at-fhir-ig-template
-
-```
-template = hl7.at.fhir.template#current
-```   
-                     
+                                                   
 ## Sushi
 
 ### Dokumentation
@@ -32,10 +22,6 @@ Folgende Parameter wurden verwendet
 sushi init
    
 ```
-
-## Weitere IGs als Vorlage
-
-https://github.com/HL7Austria/ELGA-AustrianPatientSummary-R4
 
 ## Publisher
 
