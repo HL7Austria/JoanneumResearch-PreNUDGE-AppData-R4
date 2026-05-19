@@ -1,0 +1,69 @@
+map "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/SmokingStatusQuestionnaireResponseToObservation" = "SmokingStatusQuestionnaireResponseToObservation"
+
+/// url = "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/SmokingStatusQuestionnaireResponseToObservation"
+/// name = "SmokingStatusQuestionnaireResponseToObservation"
+/// title = "ATHIS-based Smoking Status Q to O"
+/// status = "active"
+
+uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" alias QR as source
+uses "http://hl7.org/fhir/StructureDefinition/Observation" alias Obs as target
+
+group SmokingStatusQuestionnaireResponseToObservation(source src : QR, target tgt : Obs) {
+  // Administrative metadata. Implementations may replace or enrich the identifier
+  // if the Observation needs a separate stable business identifier.
+  src -> tgt.status = 'final' "setFinalStatus";
+  src.identifier as identifier -> tgt.identifier = identifier "copyIdentifier";
+  src.subject as subject -> tgt.subject = subject "copySubject";
+  src.authored as authored -> tgt.effective = authored, tgt.issued = authored "copyAuthoredToObservationTimes";
+
+  // IPS/APS-style tobacco smoking status coding.
+  src -> tgt.code = cc('http://loinc.org', '72166-2', 'Tobacco smoking status') "setTobaccoSmokingStatusCode";
+
+  // User-entered QuestionnaireResponse data is considered manual input.
+  src -> tgt.method = cc('http://snomed.info/sct', '87982008', 'Manual') "setManualMethod";
+
+  // Keep the derivation from QuestionnaireResponse to Observation traceable.
+  src.id as id -> tgt.derivedFrom = create('Reference') as reference then {
+  id -> reference.reference = append('QuestionnaireResponse/', id) "setDerivedFromReference";
+  } "setDerivedFrom";
+
+  // ATHIS answer mapping to the clinical SNOMED CT valueCodeableConcept.
+  src.item as groupItem where groupItem.linkId = 'smoking-status-athis' then SmokingStatusGroupToObservation(groupItem, tgt) "mapSmokingStatusGroup";
+}
+
+group SmokingStatusGroupToObservation(source groupItem, target tgt : Obs) {
+  // SK1 = Ja, täglich -> current every day smoker.
+  groupItem.item as sk1 where sk1.linkId = 'sk1' then {
+  sk1.answer as answer then {
+  answer.value as coding where coding.system = 'https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-athis-smoking' and coding.code = 'status-daily'
+  -> tgt.value = cc('http://snomed.info/sct', '449868002', 'Smokes tobacco daily') "mapCurrentDailySmoker";
+  } "evaluateSk1Daily";
+  } "sk1Daily";
+
+  // SK1 = Ja, gelegentlich -> current some day / occasional smoker.
+  groupItem.item as sk1 where sk1.linkId = 'sk1' then {
+  sk1.answer as answer then {
+  answer.value as coding where coding.system = 'https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-athis-smoking' and coding.code = 'status-occasional'
+  -> tgt.value = cc('http://snomed.info/sct', '428041000124106', 'Occasional tobacco smoker') "mapCurrentOccasionalSmoker";
+  } "evaluateSk1Occasional";
+  } "sk1Occasional";
+
+  // SK1 = Nein and past tobacco smoking = Ja, täglich or Ja, gelegentlich -> former smoker.
+  // The past-tobacco-smoking item is enabled only when SK1 is negative.
+  groupItem.item as past where past.linkId = 'past-tobacco-smoking' then {
+  past.answer as answer then {
+  answer.value as coding where coding.system = 'https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-athis-smoking' and coding.code = 'status-daily'
+  -> tgt.value = cc('http://snomed.info/sct', '8517006', 'Ex-smoker') "mapPastDailyToFormerSmoker";
+  answer.value as coding where coding.system = 'https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-athis-smoking' and coding.code = 'status-occasional'
+  -> tgt.value = cc('http://snomed.info/sct', '8517006', 'Ex-smoker') "mapPastOccasionalToFormerSmoker";
+  } "evaluatePastSmoking";
+  } "pastSmokingFormer";
+
+  // SK1 = Nein and past tobacco smoking = Nein -> never smoker.
+  groupItem.item as past where past.linkId = 'past-tobacco-smoking' then {
+  past.answer as answer then {
+  answer.value as coding where coding.system = 'https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-athis-smoking' and coding.code = 'status-no'
+  -> tgt.value = cc('http://snomed.info/sct', '266919005', 'Never smoked tobacco') "mapPastNoToNeverSmoker";
+  } "evaluatePastNo";
+  } "pastSmokingNever";
+}
