@@ -15,10 +15,9 @@ Description: "This FHIR profile is defining the current smoking status observati
 * method 1..
 * method from AtPrenudgeValueSetMethodManualAutomated
 * method ^short = "Manual if derived from a QuestionnaireResponse; Automated only if a plausible automated source is documented"
-* code = http://loinc.org#72166-2 "Tobacco smoking status"
+//* code = http://loinc.org#72166-2 "Tobacco smoking status" // inherit from IPS
 * value[x] 1..1
 * value[x] only CodeableConcept
-* valueCodeableConcept from AtPrenudgeValueSetAthisTobaccoSmokingSnomedVS (required)
 * derivedFrom MS
 * derivedFrom ^short = "QuestionnaireResponse or other source this smoking status observation was derived from"
 * note MS

@@ -15,22 +15,28 @@ Usage: #definition
   * linkId = "smoking-status-athis"
   * text = "Rauchstatus und Nikotinkonsum"
   * type = #group
+
   * item[+]
     * linkId = "sk1"
     * text = "Rauchen Sie Tabakprodukte (Zigaretten, Zigarren, Pfeife)? Nicht gemeint sind E-Zigaretten oder ähnliche elektronische Produkte."
     * type = #choice
     * required = true
-    * answerValueSet = Canonical(AtPrenudgeValueSetAthisTobaccoSmokingVS)
+    * answerOption[+].valueCoding = $athis-smoking#status-no "Nein"
+    * answerOption[+].valueCoding = $athis-smoking#status-occasional "Ja, gelegentlich"
+    * answerOption[+].valueCoding = $athis-smoking#status-daily "Ja, täglich"
+
   * item[+]
     * linkId = "sk2a"
     * text = "Rauchen Sie täglich Zigaretten aus der Schachtel oder selbstgedrehte Zigaretten?"
     * type = #choice
     * required = false
-    * answerValueSet = Canonical(AtPrenudgeValueSetAthisYesNoVS)
+    * answerOption[+].valueCoding = $athis-smoking#yes "Ja"
+    * answerOption[+].valueCoding = $athis-smoking#no "Nein"
     * enableWhen[+]
       * question = "sk1"
       * operator = #=
       * answerCoding = $athis-smoking#status-daily "Ja, täglich"
+
   * item[+]
     * linkId = "sk2b"
     * text = "Wie viele Zigaretten rauchen Sie durchschnittlich pro Tag?"
@@ -40,16 +46,20 @@ Usage: #definition
       * question = "sk2a"
       * operator = #=
       * answerCoding = $athis-smoking#yes "Ja"
+
   * item[+]
     * linkId = "past-tobacco-smoking"
     * text = "Haben Sie in der Vergangenheit Tabakprodukte geraucht?"
     * type = #choice
     * required = false
-    * answerValueSet = Canonical(AtPrenudgeValueSetAthisTobaccoSmokingVS)
+    * answerOption[+].valueCoding = $athis-smoking#status-no "Nein"
+    * answerOption[+].valueCoding = $athis-smoking#status-occasional "Ja, gelegentlich"
+    * answerOption[+].valueCoding = $athis-smoking#status-daily "Ja, täglich"
     * enableWhen[+]
       * question = "sk1"
       * operator = #=
       * answerCoding = $athis-smoking#status-no "Nein"
+
   * item[+]
     * linkId = "past-cigarettes-per-day"
     * text = "Wie viele Zigaretten haben Sie durchschnittlich pro Tag geraucht?"
@@ -64,6 +74,7 @@ Usage: #definition
       * question = "past-tobacco-smoking"
       * operator = #=
       * answerCoding = $athis-smoking#status-occasional "Ja, gelegentlich"
+
   * item[+]
     * linkId = "sk4"
     * text = "Wie viele Jahre lang haben Sie täglich geraucht? Zählen Sie alle Zeitabschnitte, an denen Sie täglich geraucht haben, zusammen. Wenn Sie sich nicht an die genaue Anzahl der Jahre erinnern können, geben Sie bitte eine Schätzung an."
@@ -73,21 +84,38 @@ Usage: #definition
       * question = "past-tobacco-smoking"
       * operator = #=
       * answerCoding = $athis-smoking#status-daily "Ja, täglich"
+
   * item[+]
     * linkId = "sk6a"
     * text = "Nutzen Sie aktuell Tabakerhitzer, bei denen Tabaksticks oder loser Tabak erhitzt werden, zum Beispiel der Marken IQOS, glo, Ploom oder PAX?"
     * type = #choice
     * required = false
-    * answerValueSet = Canonical(AtPrenudgeValueSetAthisProductUseFrequencyVS)
+    * answerOption[+].valueCoding = $athis-smoking#status-daily "Ja, täglich"
+    * answerOption[+].valueCoding = $athis-smoking#status-occasional "Ja, gelegentlich"
+    * answerOption[+].valueCoding = $athis-smoking#use-former "Nein, aber früher"
+    * answerOption[+].valueCoding = $athis-smoking#use-never "Nein, noch nie konsumiert"
+
   * item[+]
     * linkId = "sk6b"
     * text = "Konsumieren Sie derzeit elektronische Zigaretten oder ähnliche elektronische Produkte? Zum Beispiel E-Shisha oder E-Pfeife."
     * type = #choice
     * required = false
-    * answerValueSet = Canonical(AtPrenudgeValueSetAthisProductUseFrequencyVS)
+    * answerOption[+].valueCoding = $athis-smoking#status-daily "Ja, täglich"
+    * answerOption[+].valueCoding = $athis-smoking#status-occasional "Ja, gelegentlich"
+    * answerOption[+].valueCoding = $athis-smoking#use-former "Nein, aber früher"
+    * answerOption[+].valueCoding = $athis-smoking#use-never "Nein, noch nie konsumiert"
+
   * item[+]
     * linkId = "sk6c"
     * text = "Konsumieren Sie derzeit Nikotinbeutel?"
     * type = #choice
     * required = false
-    * answerValueSet = Canonical(AtPrenudgeValueSetAthisProductUseFrequencyVS)
+    * answerOption[+].valueCoding = $athis-smoking#status-daily "Ja, täglich"
+    * answerOption[+].valueCoding = $athis-smoking#status-occasional "Ja, gelegentlich"
+    * answerOption[+].valueCoding = $athis-smoking#use-former "Nein, aber früher"
+    * answerOption[+].valueCoding = $athis-smoking#use-never "Nein, noch nie konsumiert"
+
+  * item[+]
+    * linkId = "comment"
+    * text = "Haben Sie zu Ihren Antworten noch einen Kommentar oder etwas hinzuzufügen?"
+    * type = #string
