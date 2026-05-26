@@ -1,0 +1,59 @@
+map "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/SleepDurationQuestionnaireResponseToObservation" = "SleepDurationQuestionnaireResponseToObservation"
+
+/// url = "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/SleepDurationQuestionnaireResponseToObservation"
+/// name = "SleepDurationQuestionnaireResponseToObservation"
+/// title = "Sleep Duration Q to O"
+/// status = "active"
+
+uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" alias QR as source
+uses "http://hl7.org/fhir/StructureDefinition/Observation" alias Obs as target
+uses "http://hl7.org/fhir/StructureDefinition/Quantity" alias Quantity as source
+
+imports "http://hl7.org/fhir/StructureMap/*"
+imports "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/QuestionnaireResponseToObservationBase"
+
+group SleepDurationQuestionnaireResponseToObservation(source src : QR, target tgt : Obs) {
+  src then SetObservationBase(src, tgt) "Base";
+  src -> tgt.meta = create('Meta') as meta,
+    meta.profile = 'https://fhir.hl7.at/prenudge/appdata/r4/StructureDefinition/at-prenudge-sleep-observation' "SetProfile";
+  src -> tgt.code = cc('http://loinc.org', '93832-4', 'Sleep duration') "SetCode";
+  src.item as item where linkId = 'sleep-duration' then MapSleepDuration(item, tgt) "ProcessItem";
+}
+
+group MapSleepDuration(source src : QR, target tgt : Obs) {
+  src.answer as answer then {
+
+    // effectiveDateTime from nested date item
+    answer.item as dtItem where linkId = 'date' then {
+      dtItem.answer as dtAns then {
+        dtAns.valueDate as dt -> tgt.effectiveDateTime = dt "SetEffectiveFromDate";
+      } "ExtractDate";
+    } "ProcessDate";
+
+    // Map sleep duration value
+    answer.valueQuantity as srcQty then MapSleepDurationQuantity(srcQty, tgt) "MapValueQuantity";
+
+    // TODO: Note mapping disabled due to MaLaC-HD limitation
+    // Annotation.text (markdown) target not supported with FHIR string source
+    // See: https://gitlab.com/cdehealth/malac-hd/-/issues/128
+
+    // Map comment to note
+    // answer.item as commentItem where linkId = 'comment' then {
+    //   commentItem.answer as commentAnswer then {
+    //     commentAnswer.value as commentText -> tgt.note as note,
+    //       note.text = commentText "SetNoteText";
+    //   } "ProcessCommentAnswer";
+    // } "ProcessComment";
+
+  } "ProcessAnswer";
+}
+
+group MapSleepDurationQuantity(source srcQty : Quantity, target tgt : Obs) {
+  srcQty.value as v then {
+    v.value as numVal -> tgt.value = create('Quantity') as qty,
+      qty.value = numVal,
+      qty.unit = 'h',
+      qty.system = 'http://unitsofmeasure.org',
+      qty.code = 'h' "SetQuantity";
+  } "ExtractValue";
+}
