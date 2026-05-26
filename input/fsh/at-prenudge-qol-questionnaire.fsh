@@ -269,12 +269,19 @@ Usage: #definition
   * text = "In den folgenden Fragen geht es darum, wie zufrieden, glücklich oder gut Sie sich während der vergangenen zwei Wochen hinsichtlich verschiedener Aspekte Ihres Lebens gefühlt haben. "
   * type = #group
 
+// NOTE:
+// duplicate in at-prenudge-sleep-quality-questionnaire.fsh
+// LHC-Forms does not support SDC-Extension sdc-questionnaire-subQuestionnaire
   * item[+]
-    * linkId = "Q16-sub"
-    * type = #display
-    * extension[+]
-      * url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
-      * valueCanonical = "https://fhir.hl7.at/prenudge/appdata/r4/Questionnaire/SleepQualityQuestionnaire"
+    * linkId = "Q16"
+    * text = "Wie zufrieden sind Sie mit Ihrem Schlaf?"
+    * type = #choice
+    * required = true
+    * answerOption[+].valueCoding = $whoqol-scale#S1 "Sehr unzufrieden"
+    * answerOption[+].valueCoding = $whoqol-scale#S2 "Unzufrieden"
+    * answerOption[+].valueCoding = $whoqol-scale#S3 "Weder zufrieden noch unzufrieden"
+    * answerOption[+].valueCoding = $whoqol-scale#S4 "Zufrieden"
+    * answerOption[+].valueCoding = $whoqol-scale#S5 "Sehr zufrieden"
 
   * item[+]
     * linkId = "Q17"
