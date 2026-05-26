@@ -10,11 +10,13 @@ Usage: #definition
 * status = #active
 * experimental = false
 * subjectType = #Patient
-* description = "Standalone questionnaire for self-assessing sleep quality based on WHOQOL-BREF question Q16 ('Wie zufrieden sind Sie mit Ihrem Schlaf?'). This questionnaire is also embedded in the full WhoQolBrefQuestionnaire via sdc-questionnaire-subQuestionnaire reference."
+* description = "Standalone questionnaire for self-assessing sleep quality based on WHOQOL-BREF question Q16 ('Wie zufrieden sind Sie mit Ihrem Schlaf?')."
 
+// NOTE:
+// duplicate in at-prenudge-qol-questionnaire.fsh
+// LHC-Forms does not support SDC-Extension sdc-questionnaire-subQuestionnaire
 * item[+]
   * linkId = "Q16"
-  * code = http://loinc.org#61987-4 "Sleep quality"
   * text = "Wie zufrieden sind Sie mit Ihrem Schlaf?"
   * type = #choice
   * required = true
