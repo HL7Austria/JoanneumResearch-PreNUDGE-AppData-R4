@@ -32,7 +32,6 @@ Usage: #definition
 // ============================================================
 * item[+]
   * linkId = "general"
-  // * text = "In diesem Fragebogen werden Sie danach gefragt, wie Sie Ihre Lebensqualität, Ihre Gesundheit und andere Bereiche Ihres Lebens beurteilen. Bitte beantworten Sie alle Fragen. Wenn Sie sich bei der Beantwortung einer Frage nicht sicher sind, wählen Sie bitte die Antwortkategorie, die Ihrer Meinung nach am ehesten zutrifft. Oft ist dies die Kategorie, die Ihnen als erstes in den Sinn kommt. Bitte beantworten Sie alle Fragen auf der Grundlage Ihrer eigenen Beurteilungskriterien, Hoffnungen, Vorlieben und Interessen. Bitte denken Sie bei der Beantwortung der Fragen an Ihr Leben während der vergangenen zwei Wochen."
   * type = #group
 
   * item[+]
