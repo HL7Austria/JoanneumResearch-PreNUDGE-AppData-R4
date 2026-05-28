@@ -1,6 +1,6 @@
 Profile: AtPrenudgeObservationSleepDuration
 Parent: AtPrenudgeObservation
-Id: at-prenudge-sleep-observation
+Id: at-prenudge-sleep-duration-observation
 Title: "AT PreNUDGE Observation Sleep Duration"
 Description: "This FHIR profile defines the Sleep Duration Observation recording average nightly sleep in hours. Applicable for both automated wearable measurements (method = automated) and self-reported values derived from a questionnaire (method = manual)."
 

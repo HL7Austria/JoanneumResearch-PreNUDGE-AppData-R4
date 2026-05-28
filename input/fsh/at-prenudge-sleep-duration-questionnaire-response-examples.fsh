@@ -1,4 +1,4 @@
-Instance: sleep-response-normal-example
+Instance: sleep-duration-response-normal-example
 InstanceOf: AtPrenudgeQuestionnaireResponse
 Usage: #example
 Title: "Sleep Duration Q - Normal Example"
@@ -27,7 +27,7 @@ Description: "Example of a self-reported normal average sleep duration (7 h per 
       * linkId = "comment"
       * answer[0].valueString = "Guter Schlaf diese Woche."
 
-Instance: sleep-response-short-example
+Instance: sleep-duration-response-short-example
 InstanceOf: AtPrenudgeQuestionnaireResponse
 Usage: #example
 Title: "Sleep Duration Q - Short Example"
