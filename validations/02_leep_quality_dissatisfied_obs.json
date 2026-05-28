@@ -1,0 +1,52 @@
+{
+    "resourceType": "Observation",
+    "meta": {
+        "profile": [
+            "https://fhir.hl7.at/prenudge/appdata/r4/StructureDefinition/at-prenudge-sleep-quality-observation"
+        ]
+    },
+    "identifier": [
+        {
+            "system": "https://www.joanneum.at",
+            "value": "qr-slq-2026-03-11-001"
+        }
+    ],
+    "status": "final",
+    "code": {
+        "coding": [
+            {
+                "system": "http://loinc.org",
+                "code": "61987-4",
+                "display": "My sleep quality was...in past 7 days [PROMIS]"
+            }
+        ]
+    },
+    "subject": {
+        "reference": "Patient/example"
+    },
+    "effectiveDateTime": "2026-03-11T08:00:00Z",
+    "issued": "2026-03-11T08:00:00Z",
+    "valueCodeableConcept": {
+        "coding": [
+            {
+                "system": "http://loinc.org",
+                "code": "LA8969-3",
+                "display": "Poor"
+            }
+        ]
+    },
+    "method": {
+        "coding": [
+            {
+                "system": "http://snomed.info/sct",
+                "code": "87982008",
+                "display": "Manual"
+            }
+        ]
+    },
+    "derivedFrom": [
+        {
+            "reference": "QuestionnaireResponse/sleep-quality-response-dissatisfied-example"
+        }
+    ]
+}
