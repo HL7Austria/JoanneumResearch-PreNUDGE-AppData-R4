@@ -41,7 +41,7 @@ Description: "Example of a self-reported average sleep duration (7 h) derived fr
   * system = "http://unitsofmeasure.org"
   * code = #h
 * note[+].text = "Selbstberichtet."
-* derivedFrom = Reference(QuestionnaireResponse/sleep-response-normal-example)
+* derivedFrom = Reference(QuestionnaireResponse/sleep-duration-response-normal-example)
 
 Instance: sleep-duration-short-automated-example
 InstanceOf: AtPrenudgeObservationSleepDuration
