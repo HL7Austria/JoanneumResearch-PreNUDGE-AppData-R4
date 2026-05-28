@@ -265,7 +265,7 @@ Usage: #definition
 // ============================================================
 * item[+]
   * linkId = "section-3"
-  * text = "In den folgenden Fragen geht es darum, wie zufrieden, glücklich oder gut Sie sich während der vergangenen zwei Wochen hinsichtlich verschiedener Aspekte Ihres Lebens gefühlt haben. "
+  * text = "In den folgenden Fragen geht es darum, wie zufrieden, glücklich oder gut Sie sich während der vergangenen zwei Wochen hinsichtlich verschiedener Aspekte Ihres Lebens gefühlt haben."
   * type = #group
 
 // NOTE:

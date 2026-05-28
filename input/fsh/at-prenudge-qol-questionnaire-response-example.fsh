@@ -141,7 +141,7 @@ Description: "Example of a completed WHOQOL-BREF QuestionnaireResponse including
   * item[+]
     * linkId = "Q25"
     * text = "Wie zufrieden sind Sie mit den Beförderungsmitteln, die Ihnen zur Verfügung stehen?"
-    * answer[+].valueCoding = $whoqol-scale#S3 "Weder zufriede4n noch unzufrieden"
+    * answer[+].valueCoding = $whoqol-scale#S3 "Weder zufrieden noch unzufrieden"
 
 // ============================================================
 // Section 4: (Q26)
