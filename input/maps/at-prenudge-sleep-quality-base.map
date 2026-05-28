@@ -18,13 +18,6 @@ group SetSleepQualityObservation(source src : QR, target tgt : Obs) {
     dt.value = authored "SetEffective";
 }
 
-// TODO src : QuestionnaireResponse.item
-group MapSleepQuality(source src : QR, target tgt : Obs) {
-  src.answer as answer then {
-    answer.valueCoding as coding then MapWhoQolToLoinc(coding, tgt) "MapValueCoding";
-  } "ProcessAnswer";
-}
-
 // https://loinc.org/61987-4 My sleep quality was...in past 7 days [PROMIS]
 // https://loinc.org/LL1023-2 [PROMIS] Very poor|Poor|Fair|Good|Very good
 group MapWhoQolToLoinc(source coding : Coding, target tgt : Obs) {

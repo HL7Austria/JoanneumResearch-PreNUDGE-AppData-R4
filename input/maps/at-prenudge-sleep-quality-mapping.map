@@ -12,8 +12,13 @@ imports "http://hl7.org/fhir/StructureMap/*"
 imports "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/QuestionnaireResponseToObservationBase"
 imports "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/SleepQualityBase"
 
+// TODO: WAECHTER-FUNKTION Obs nur erstellen, wenn Q16 Antwort existiert
 group SleepQualityQuestionnaireResponseToObservation(source src : QR, target tgt : Obs){
   src then SetObservationBase(src, tgt) "Base";
   src then SetSleepQualityObservation(src, tgt) "SleepQualityDetails";
-  src.item as item where linkId = 'Q16' then MapSleepQuality(item, tgt) "ProcessQ16";
+  src.item as item where linkId = 'Q16' then {
+    item.answer as answer where.exists() then {
+      answer.valueCoding as coding then MapWhoQolToLoinc(coding, tgt) "MapValueCoding";
+    } "ProcessAnswer";
+  } "ProcessQ16";
 }
