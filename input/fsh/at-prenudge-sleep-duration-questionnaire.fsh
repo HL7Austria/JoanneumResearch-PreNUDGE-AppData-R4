@@ -13,7 +13,7 @@ Usage: #definition
 * item[+]
   * linkId = "sleep-duration"
   * code = http://loinc.org#93832-4 "Sleep duration"
-  * text = "Wie viele Stunden haben Sie durchschnittlich pro Nacht geschlafen?"
+  * text = "Wie viele Stunden schlafen Sie normalerweise pro Nacht?"
   * type = #quantity
   * required = true
   * repeats = false
@@ -30,6 +30,10 @@ Usage: #definition
     * url = "http://hl7.org/fhir/StructureDefinition/maxValue"
     * valueDecimal = 24
   * item[+]
+    * linkId = "sleep-duration-help"
+    * text = "Hinweis: Bitte zählen Sie Nickerchen tagsüber nicht dazu und runden Sie ganze Stunden auf oder ab."
+    * type = #display
+  * item[+]
     * linkId = "date"
     * text = "Für welchen Zeitraum gilt dieser Wert?"
     * type = #date
@@ -39,7 +43,11 @@ Usage: #definition
       * url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
       * valueExpression
         * language = #text/fhirpath
-        * expression = "today().subtract(1).toString()"
+        * expression = "today()"
+  * item[+]
+    * linkId = "date-help"
+    * text = "Hinweis: Geben Sie das Datum des Tages an, an dem dieser Zeitraum endet (z. B. das Ende der letzten Woche)."
+    * type = #display
   * item[+]
     * linkId = "comment"
     * text = "Haben Sie zu Ihrer Antwort noch einen Kommentar oder etwas hinzuzufügen?"
