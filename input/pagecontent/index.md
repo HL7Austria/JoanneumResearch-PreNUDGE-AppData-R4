@@ -14,6 +14,10 @@ We focus on narrow standardization of **four PreNUDGE measurements**:
 - Physical Activity: Daily activity as **Steps per day** (from a [**EHIS PAQ questionnaire**](Questionnaire-StepCountEhisPaqQuestionnaire.html), [**quantity questionnaire**](Questionnaire-StepCountQuantityQuestionnaire.html) and from a [**wearable device as an observation**](StructureDefinition-at-prenudge-stepcount-observation.html))
 - **Alcohol consumption** as number of drinks (from a [**questionnaire**](Questionnaire-AlcoholUseQuestionnaire.html) and from an [**observation**](StructureDefinition-at-prenudge-alcoholuse-observation.html))
 - **Quality of life** (from a [**questionnaire**](Questionnaire-WhoQolBrefQuestionnaire.html) with a calculated [**score as an observation**](StructureDefinition-at-prenudge-whoqol-bref-score-observation.html))
+- **Smoking**: Current smoking/tobacco use status (from a [**questionnaire**](Questionnaire-SmokingStatusQuestionnaire.html) and from an [**observation IPS style**](StructureDefinition-at-prenudge-smokingstatus-observation.html))
+- **Sleep** duration and quality 
+  - Duration - from [**questionnaire**](Questionnaire-SleepDurationQuestionnaire.html) or as an [**observation**](StructureDefinition-at-prenudge-sleep-duration-observation.html)
+  - Quality - question 16 from the [**WHOQOL-BRE questionnaire**](Questionnaire-WhoQolBrefQuestionnaire.html) or same question 16 from a  [**single quesion questionnaire**](Questionnaire-SleepQualityQuestionnaire.html) or as an [**observation**](StructureDefinition-at-prenudge-sleep-quality-observation.html)
 - For Demo Purposes: **Blood glucose** in mg/dL (from a [**questionnaire**](Questionnaire-BloodGlucoseQuestionnaire.html) and from a [**device as an observation**](StructureDefinition-at-prenudge-bloodglucose-observation.html))
 
 For viewing the full questionnaires use tools like [lhcforms](https://lhcfhirtools.nlm.nih.gov/lhcforms).
@@ -25,8 +29,6 @@ Additional PreNUDGE measurements, also narrow standardized, will be specified an
 - Physical Activity: Number of muscle strengthening exercise sessions (per week) (from a questionnaire and from a wearable device as an observation)
 - Physical Activity: Sitting hours (per day) (from a questionnaire from a wearable device as an observation)
 - Smoking: Current status (from a questionnaire and from an observation IPS style)
-- **⏳ In progress by Tom** Sleep: Average sleep duration (hours per night) (from a questionnaire and from a wearable device as an observation)
-- **⏳ In progress by Tom** Sleep: Self-assessment of sleep quality (from a standalone questionnaire or as part of the WHOQOL-BREF)
 - Nutrition: Portions of fruit and vegetables (per day) (from a questionnaire)
 - Nutrition: Consumption frequency of sugary and salty foods (per week) (from a questionnaire)
 - Sociodemographic Data: Age (from a questionnaire)
