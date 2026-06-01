@@ -13,6 +13,10 @@ Description: "This FHIR profile defines the Sleep Duration Observation recording
 * valueQuantity.system = "http://unitsofmeasure.org"
 * valueQuantity.code = #h
 
+* derivedFrom 0..* MS
+* derivedFrom only Reference(QuestionnaireResponse)
+* derivedFrom ^short = "Reference to the QuestionnaireResponse from which this observation was derived"
+
 * obeys sleep-duration-range
 
 Invariant: sleep-duration-range
