@@ -11,6 +11,7 @@ uses "http://hl7.org/fhir/StructureDefinition/Quantity" alias Quantity as source
 
 imports "http://hl7.org/fhir/StructureMap/*"
 imports "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/QuestionnaireResponseToObservationBase"
+imports "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/SleepQualityBase"
 
 group SleepDurationQuestionnaireResponseToObservation(source src : QR, target tgt : Obs) {
   src then SetObservationBase(src, tgt) "Base";
