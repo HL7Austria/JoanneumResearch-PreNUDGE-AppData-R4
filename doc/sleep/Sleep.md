@@ -1,10 +1,3 @@
-Danke! Ich habe folgende Anmerkungen: Es soll möglich sein, Q16 von 'EXISTING WHOQOL-BREF' alleine zu erfassen, ohnen den gesamten WHOQOL-BREF ausfüllen zu müssen. Kannst du das nicht in einen eigenen
-Questionnair auslagern und im WHOQOL-BREF wiederverwenden?
-
-Zusammenfassung der Änderung: Die Schlafqualitätsfrage (Q16) wird als eigenständiger Fragebogen ausgelagert. Der WHOQOL-BREF inkludiert ihn via sdc-questionnaire-subQuestionnaire — ein Standard-SDC-Pattern für modulare Fragebögen. Die bestehende Score-Berechnung bleibt unberührt, weil FHIRPath's repeat(item) rekursiv durch die assemblierte Struktur sucht.
-
-
-
 # Prompt
 
 ---
