@@ -1,0 +1,24 @@
+map "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/SleepQualityQuestionnaireResponseToObservation" = "SleepQualityQuestionnaireResponseToObservation"
+
+/// url = "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/SleepQualityQuestionnaireResponseToObservation"
+/// name = "SleepQualityQuestionnaireResponseToObservation"
+/// title = "Sleep Quality Q to O"
+/// status = "active"
+
+uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" alias QR as source
+uses "http://hl7.org/fhir/StructureDefinition/Observation" alias Obs as target
+
+imports "http://hl7.org/fhir/StructureMap/*"
+imports "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/QuestionnaireResponseToObservationBase"
+imports "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/SleepQualityBase"
+
+// TODO: WAECHTER-FUNKTION Obs nur erstellen, wenn Q16 Antwort existiert
+group SleepQualityQuestionnaireResponseToObservation(source src : QR, target tgt : Obs){
+  src then SetObservationBase(src, tgt) "Base";
+  src then SetSleepQualityObservation(src, tgt) "SleepQualityDetails";
+  src.item as item where linkId = 'Q16' then {
+    item.answer as answer where.exists() then {
+      answer.valueCoding as coding then MapWhoQolToLoinc(coding, tgt) "MapValueCoding";
+    } "ProcessAnswer";
+  } "ProcessQ16";
+}

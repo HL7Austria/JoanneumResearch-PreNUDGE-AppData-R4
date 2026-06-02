@@ -1,0 +1,54 @@
+map "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/SleepQualityBase" = "SleepQualityBase"
+
+/// url = "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/SleepQualityBase"
+/// name = "SleepQualityBase"
+/// title = "Sleep Quality Base (WHOQOL-BREF scale to LOINC)"
+/// status = "active"
+
+uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" alias QR as source
+uses "http://hl7.org/fhir/StructureDefinition/Observation" alias Obs as target
+
+imports "http://hl7.org/fhir/StructureMap/*"
+
+group SetSleepQualityObservation(source src : QR, target tgt : Obs) {
+  src -> tgt.meta = create('Meta') as meta,
+    meta.profile = 'https://fhir.hl7.at/prenudge/appdata/r4/StructureDefinition/at-prenudge-sleep-quality-observation' "SetProfile";
+  src -> tgt.code = cc('http://loinc.org', '61987-4', 'My sleep quality was...in past 7 days [PROMIS]') "SetCode";
+  src.authored as authored -> tgt.effectiveDateTime = create('dateTime') as dt,
+    dt.value = authored "SetEffective";
+}
+
+// https://loinc.org/61987-4 My sleep quality was...in past 7 days [PROMIS]
+// https://loinc.org/LL1023-2 [PROMIS] Very poor|Poor|Fair|Good|Very good
+group MapWhoQolToLoinc(source coding : Coding, target tgt : Obs) {
+  coding.code as c where $this = 'S1' ->
+    tgt.value = create('CodeableConcept') as cc,
+    cc.coding = create('Coding') as loinc,
+    loinc.system = 'http://loinc.org',
+    loinc.code = 'LA9615-1',
+    loinc.display = 'Very poor' "MapS1";
+  coding.code as c where $this = 'S2' ->
+    tgt.value = create('CodeableConcept') as cc,
+    cc.coding = create('Coding') as loinc,
+    loinc.system = 'http://loinc.org',
+    loinc.code = 'LA8969-3',
+    loinc.display = 'Poor' "MapS2";
+  coding.code as c where $this = 'S3' ->
+    tgt.value = create('CodeableConcept') as cc,
+    cc.coding = create('Coding') as loinc,
+    loinc.system = 'http://loinc.org',
+    loinc.code = 'LA8968-5',
+    loinc.display = 'Fair' "MapS3";
+  coding.code as c where $this = 'S4' ->
+    tgt.value = create('CodeableConcept') as cc,
+    cc.coding = create('Coding') as loinc,
+    loinc.system = 'http://loinc.org',
+    loinc.code = 'LA8967-7',
+    loinc.display = 'Good' "MapS4";
+  coding.code as c where $this = 'S5' ->
+    tgt.value = create('CodeableConcept') as cc,
+    cc.coding = create('Coding') as loinc,
+    loinc.system = 'http://loinc.org',
+    loinc.code = 'LA13913-1',
+    loinc.display = 'Very Good' "MapS5";
+}

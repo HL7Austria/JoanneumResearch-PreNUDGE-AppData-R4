@@ -1,0 +1,26 @@
+map "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/WhoQolBrefSleepQualityQuestionnaireResponseToObservation" = "WhoQolBrefSleepQualityQuestionnaireResponseToObservation"
+
+/// url = "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/WhoQolBrefSleepQualityQuestionnaireResponseToObservation"
+/// name = "WhoQolBrefSleepQualityQuestionnaireResponseToObservation"
+/// title = "WHOQOL-BREF Q to Sleep Quality O"
+/// status = "active"
+
+uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" alias QR as source
+uses "http://hl7.org/fhir/StructureDefinition/Observation" alias Obs as target
+
+imports "http://hl7.org/fhir/StructureMap/*"
+imports "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/QuestionnaireResponseToObservationBase"
+imports "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/SleepQualityBase"
+
+// TODO: WAECHTER-FUNKTION Obs nur erstellen, wenn Q16 Antwort existiert
+group WhoQolBrefSleepQualityQuestionnaireResponseToObservation(source src : QR, target tgt : Obs) {
+  src then SetObservationBase(src, tgt) "Base";
+  src then SetSleepQualityObservation(src, tgt) "SleepQualityDetails";
+  src.item as sec3 where linkId = 'section-3' then {
+    sec3.item as q16Item where linkId = 'Q16' then {
+      q16Item.answer as answer where.exists() then {
+        answer.valueCoding as coding then MapWhoQolToLoinc(coding, tgt) "MapValueCoding";
+      } "ProcessAnswer";
+    } "ProcessQ16";
+} "ProcessSection3";
+}

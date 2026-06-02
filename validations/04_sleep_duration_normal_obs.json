@@ -1,0 +1,49 @@
+{
+    "resourceType": "Observation",
+    "meta": {
+        "profile": [
+            "https://fhir.hl7.at/prenudge/appdata/r4/StructureDefinition/at-prenudge-sleep-duration-observation"
+        ]
+    },
+    "identifier": [
+        {
+            "system": "https://www.joanneum.at",
+            "value": "qr-sl-2026-03-10-001"
+        }
+    ],
+    "status": "final",
+    "code": {
+        "coding": [
+            {
+                "system": "http://loinc.org",
+                "code": "93832-4",
+                "display": "Sleep duration"
+            }
+        ]
+    },
+    "subject": {
+        "reference": "Patient/example"
+    },
+    "effectiveDateTime": "2026-03-09T00:00:00",
+    "issued": "2026-03-10T08:00:00Z",
+    "valueQuantity": {
+        "value": 7.0,
+        "unit": "h",
+        "system": "http://unitsofmeasure.org",
+        "code": "h"
+    },
+    "method": {
+        "coding": [
+            {
+                "system": "http://snomed.info/sct",
+                "code": "87982008",
+                "display": "Manual"
+            }
+        ]
+    },
+    "derivedFrom": [
+        {
+            "reference": "QuestionnaireResponse/sleep-duration-response-normal-example"
+        }
+    ]
+}
