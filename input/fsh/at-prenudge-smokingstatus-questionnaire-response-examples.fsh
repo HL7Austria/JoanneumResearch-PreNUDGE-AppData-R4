@@ -8,7 +8,7 @@ Description: "Example of an ATHIS-based smoking status questionnaire response fo
 * questionnaire = Canonical(SmokingStatusQuestionnaire)
 * status = #completed
 * subject = Reference(Patient/example)
-* authored = 2026-03-10
+* authored = "2026-03-10T08:00:00Z"
 * identifier.system = "https://www.joanneum.at"
 * identifier.value = "qr-smokingstatus-2026-03-10-001"
 * item[0]
@@ -40,7 +40,7 @@ Description: "Example of an ATHIS-based smoking status questionnaire response fo
 * questionnaire = Canonical(SmokingStatusQuestionnaire)
 * status = #completed
 * subject = Reference(Patient/example)
-* authored = 2026-03-11
+* authored = "2026-03-11T08:00:00Z"
 * identifier.system = "https://www.joanneum.at"
 * identifier.value = "qr-smokingstatus-2026-03-11-001"
 * item[0]
@@ -75,7 +75,7 @@ Description: "Example of an ATHIS-based smoking status questionnaire response fo
 * questionnaire = Canonical(SmokingStatusQuestionnaire)
 * status = #completed
 * subject = Reference(Patient/example)
-* authored = 2026-03-12
+* authored = "2026-03-12T08:00:00Z"
 * identifier.system = "https://www.joanneum.at"
 * identifier.value = "qr-smokingstatus-2026-03-12-001"
 * item[0]
