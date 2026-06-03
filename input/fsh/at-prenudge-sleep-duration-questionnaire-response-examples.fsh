@@ -13,7 +13,7 @@ Description: "Example of a self-reported normal average sleep duration (7 h per 
 
 * item[0]
   * linkId = "sleep-duration"
-  * text = "Wie viele Stunden schlafen Sie normalerweise pro Nacht?"
+  * text = "Effektive Schlafzeit (Stunden) pro Nacht (0-24): Wie viele Stunden haben Sie während der letzten 4 Wochen pro Nacht (oder wann Sie üblicherweise schlafen) tatsächlich geschlafen? Das muss nicht mit der Anzahl der Stunden, die Sie im Bett verbracht haben, übereinstimmen."
   * answer[0]
     * valueQuantity
       * value = 7
@@ -21,11 +21,8 @@ Description: "Example of a self-reported normal average sleep duration (7 h per 
       * system = "http://unitsofmeasure.org"
       * code = #h
     * item[+]
-      * linkId = "date"
-      * answer[0].valueDate = "2026-03-09"
-    * item[+]
       * linkId = "comment"
-      * answer[0].valueString = "Guter Schlaf diese Woche."
+      * answer[0].valueString = "Die letzten Wochen gut geschlafen."
 
 Instance: sleep-duration-response-short-example
 InstanceOf: AtPrenudgeQuestionnaireResponse
@@ -42,7 +39,7 @@ Description: "Example of a self-reported short average sleep duration (5.5 h per
 
 * item[0]
   * linkId = "sleep-duration"
-  * text = "Wie viele Stunden schlafen Sie normalerweise pro Nacht?"
+  * text = "Effektive Schlafzeit (Stunden) pro Nacht (0-24): Wie viele Stunden haben Sie während der letzten 4 Wochen pro Nacht (oder wann Sie üblicherweise schlafen) tatsächlich geschlafen? Das muss nicht mit der Anzahl der Stunden, die Sie im Bett verbracht haben, übereinstimmen."
   * answer[0]
     * valueQuantity
       * value = 5.5
@@ -50,8 +47,5 @@ Description: "Example of a self-reported short average sleep duration (5.5 h per
       * system = "http://unitsofmeasure.org"
       * code = #h
     * item[+]
-      * linkId = "date"
-      * answer[0].valueDate = "2026-03-10"
-    * item[+]
       * linkId = "comment"
-      * answer[0].valueString = "Viel Stress diese Woche, kaum geschlafen."
+      * answer[0].valueString = "Die letzten Wochen viel Stress, kaum geschlafen."
