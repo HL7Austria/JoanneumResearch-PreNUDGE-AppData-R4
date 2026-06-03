@@ -1,0 +1,98 @@
+//   Q7 total leisure time → component[aggregateActivity] verbatim (hours×60 + minutes)
+//   component[vigorousActivity] : NOT set (absent)
+//   component[moderateActivity] : NOT set (absent)
+//
+// Invariant behaviour:
+//   pa-panel-01  : satisfied — aggregateActivity is present
+//   pa-agg-01    : antecedent = (mod.exists() or vig.exists()) = false → implies = true
+//                  → invariant passes silently (no warning)
+//   pa-wearable-01: N/A — method = Manual
+//   pa-manual-comp-01: satisfied — classificationMethod absent
+
+map "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/PhysicalActivityQuestionnaireResponseToObservation" = "Physical Activity Minutes Q to O"
+
+// Physical Activity EHIS-PAQ Q7 → O (aggregate-only variant)
+
+uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" alias QR  as source
+uses "http://hl7.org/fhir/StructureDefinition/Observation"            alias Obs as target
+
+imports "http://hl7.org/fhir/StructureMap/*"
+imports "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/QuestionnaireResponseToObservationBase"
+
+// ---------------------------------------------------------------------------
+// Main entry group
+// ---------------------------------------------------------------------------
+group PhysicalActivityQuestionnaireResponseToObservation(source src : QR, target tgt : Obs) {
+
+  // Shared base: identifier copy, derivedFrom, subject, issued.
+  // SetObservationBase also sets method = SCT 87982008 (Manual) — correct for
+  // all questionnaire-derived observations in this IG.
+  src then SetObservationBase(src, tgt) "Base";
+
+  // Explicitly confirm method = Manual (base already does this; listed for clarity).
+  src -> tgt.method = cc('http://snomed.info/sct', '87982008', 'Manual') "SetMethodManual";
+
+  // Target profile
+  src -> tgt.meta = create('Meta') as meta,
+         meta.profile = 'https://fhir.hl7.at/prenudge/appdata/r4/StructureDefinition/at-prenudge-physical-activity-minutes-observation' "SetProfile";
+
+  // Panel code
+  src -> tgt.code = cc('http://loinc.org', '101691-4', 'Duration of physical activity') "SetCode";
+
+  // effectiveDateTime from authored (EHIS-PAQ Q7 has no embedded date item)
+  src.authored as authored -> tgt.effectiveDateTime = authored "SetEffectiveDateTime";
+
+  // Map Q7 group to component[aggregateActivity]
+  src.item as q7 where linkId = 'Q7' then MapQ7ToAggregate(q7, tgt) "ProcessQ7";
+
+  // component[moderateActivity] : NOT mapped
+  //   Q7 asks for total leisure activity time without separating intensity levels.
+  //   There is no questionnaire source for a moderate-only figure.
+
+  // component[vigorousActivity] : NOT mapped
+  //   Total leisure time maps directly to aggregateActivity (see MapQ7ToAggregate).
+
+  // component[classificationMethod] : NOT mapped
+  //   method = Manual → component must be absent or self-rp (pa-manual-comp-01).
+  //   The map does not set it; a consuming system may add self-rp post-transform
+  //   if explicit documentation of the classification basis is required.
+}
+
+// ---------------------------------------------------------------------------
+// Q7 → component[aggregateActivity]  (LOINC 101691-4)
+//
+// Formula: aggregateMinutes = (Q7-hours × 60) + Q7-minutes
+//
+// This is a direct transcription of the patient-reported total time.
+// No intensity weighting is applied because Q7 does not capture intensity.
+// The ×2 vigorous weighting (WHO/IPAQ) is ONLY applied when a wearable
+// separately measures moderate and vigorous minutes (wearable variant).
+//
+// Note on FML arithmetic:
+//   evaluate() requires FHIRPath expression support in the engine
+//   (e.g. MaLaC-HD at the version that supports evaluate).
+//   Engines without this support must compute (hours×60 + minutes) externally
+//   before invoking the map.
+// ---------------------------------------------------------------------------
+group MapQ7ToAggregate(source src : QR, target tgt : Obs) {
+
+  src -> tgt.component as aggComp then {
+    // Component discriminator code: LOINC 101691-4
+    // Note: same code as panel Observation.code — collision documented in profile.
+    // obs-7 is not violated because Observation.value[x] is absent.
+    src -> aggComp.code = cc('http://loinc.org', '101691-4', 'Duration of physical activity') "SetAggregateCode";
+
+    src -> aggComp.value = create('Quantity') as qty then {
+
+      // aggregateMinutes = (Q7-hours × 60) + Q7-minutes
+      src -> qty.value = evaluate(src,
+        (item.where(linkId = 'Q7-hours').answer.valueInteger * 60)
+        + item.where(linkId = 'Q7-minutes').answer.valueInteger
+      ) "ComputeAggregateMinutes";
+
+      src -> qty.unit   = 'min/wk'                    "SetUnit";
+      src -> qty.system = 'http://unitsofmeasure.org'  "SetSystem";
+      src -> qty.code   = 'min/wk'                    "SetUCUM";
+    } "SetAggregateQuantity";
+  } "MapAggregateComponent";
+}

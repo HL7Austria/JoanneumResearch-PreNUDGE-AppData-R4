@@ -11,7 +11,9 @@ For more, see [Background](background.html).
 This Implementation Guide (IG) explains how application providers can use the **PreNUDGE FHIR API** to deliver **health indicators**.
 
 We focus on narrow standardization of **four PreNUDGE measurements**:
-- Physical Activity: Daily activity as **Steps per day** (from a [**EHIS PAQ questionnaire**](Questionnaire-StepCountEhisPaqQuestionnaire.html), [**quantity questionnaire**](Questionnaire-StepCountQuantityQuestionnaire.html) and from a [**wearable device as an observation**](StructureDefinition-at-prenudge-stepcount-observation.html))
+- **Physical Activity**: 
+    - ⏳**In progress by Theresa** **Minutes of moderate and vigorous/intense physical activity** (per week) (from [**EHIS-PAQ questionnaire**](Questionnaire-EhisPaqPhysicalActivityQuestionnaire.html) and from a [**wearable device as an observation**](StructureDefinition-at-prenudge-physical-activity-minutes-observation.html))
+    - Daily activity as **Steps per day** (from a [**EHIS PAQ questionnaire**](Questionnaire-StepCountEhisPaqQuestionnaire.html), [**quantity questionnaire**](Questionnaire-StepCountQuantityQuestionnaire.html) and from a [**wearable device as an observation**](StructureDefinition-at-prenudge-stepcount-observation.html))
 - **Alcohol consumption** as number of drinks (from a [**questionnaire**](Questionnaire-AlcoholUseQuestionnaire.html) and from an [**observation**](StructureDefinition-at-prenudge-alcoholuse-observation.html))
 - **Quality of life** (from a [**questionnaire**](Questionnaire-WhoQolBrefQuestionnaire.html) with a calculated [**score as an observation**](StructureDefinition-at-prenudge-whoqol-bref-score-observation.html))
 - **Smoking**: Current smoking/tobacco use status (from a [**questionnaire**](Questionnaire-SmokingStatusQuestionnaire.html) and from an [**observation IPS style**](StructureDefinition-at-prenudge-smokingstatus-observation.html))
@@ -25,7 +27,6 @@ For viewing the full questionnaires use tools like [lhcforms](https://lhcfhirtoo
 Each **questionnaire variant** maps **one-way** to its corresponding **observation variant**. The mappings can be found at [StructureMaps](artifacts.html#terminology-structure-maps) and can be executed with [MaLaC-HD](https://gitlab.com/cdehealth/malac-hd). These transformations will be performed on the server side.
 
 Additional PreNUDGE measurements, also narrow standardized, will be specified analogously to these four, based on feedback from the informative ballot. The following are to be specified:
-- Physical Activity: Minutes of moderate physical activity (per week), Minutes of physical activity (per week) (from a questionnaire and from a wearable device as an observation)
 - Physical Activity: Number of muscle strengthening exercise sessions (per week) (from a questionnaire and from a wearable device as an observation)
 - Physical Activity: Sitting hours (per day) (from a questionnaire from a wearable device as an observation)
 - Smoking: Current status (from a questionnaire and from an observation IPS style)

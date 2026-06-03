@@ -1,9 +1,12 @@
+Alias: $ehisPaqCS = https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/at-prenudge-physicalactivity-codesystem-ehispaq
+
 Instance: stepcount-ehispaq-normal
 InstanceOf: AtPrenudgeQuestionnaireResponse
 Usage: #example
 Title: "Step Count EHIS PAQ Q - Normal Example"
 Description: "Example of a normal step count (5 times a week with 30-59 minutes)."
 
+* meta.profile = "https://fhir.hl7.at/prenudge/appdata/r4/StructureDefinition/at-prenudge-questionnaireresponse"
 * questionnaire = Canonical(StepCountEhisPaqQuestionnaire)
 * status = #completed
 * subject = Reference(Patient/example)
@@ -16,14 +19,18 @@ Description: "Example of a normal step count (5 times a week with 30-59 minutes)
   * text = "An wie vielen Tagen in einer typischen Woche gehen Sie mindestens 10 Minuten ohne Unterbrechung zu Fuß, um von Ort zu Ort zu gelangen?"
   * answer[+].valueInteger = 5
 
+// UPDATED: was valueString = "30–59 Minuten pro Tag";
+//          now valueCoding from at-prenudge-physicalactivity-codesystem-ehispaq.
 * item[+]
   * linkId = "Q3-walking-duration"
   * text = "Wie lange gehen Sie an einem typischen Tag zu Fuß, um von Ort zu Ort zu gelangen?"
-  * answer[+].valueString = "30–59 Minuten pro Tag"
+  * answer[+]
+    * valueCoding = $ehisPaqCS#ehis-30-59-min "30–59 Minuten pro Tag"
 
   * answer[=].item[+]
     * linkId = "Q3-comment"
     * answer[0].valueString = "Im Urlaub üblicherweise das vierfache."
+
 
 Instance: stepcount-ehispaq-high
 InstanceOf: AtPrenudgeQuestionnaireResponse
@@ -31,6 +38,7 @@ Usage: #example
 Title: "Step Count EHIS PAQ Q - High Example"
 Description: "Example of a high step count (7 times a week with 2-3 hours)."
 
+* meta.profile = "https://fhir.hl7.at/prenudge/appdata/r4/StructureDefinition/at-prenudge-questionnaireresponse"
 * questionnaire = Canonical(StepCountEhisPaqQuestionnaire)
 * status = #completed
 * subject = Reference(Patient/example)
@@ -43,7 +51,10 @@ Description: "Example of a high step count (7 times a week with 2-3 hours)."
   * text = "An wie vielen Tagen in einer typischen Woche gehen Sie mindestens 10 Minuten ohne Unterbrechung zu Fuß, um von Ort zu Ort zu gelangen?"
   * answer[+].valueInteger = 7
 
+// UPDATED: was valueString = "2 Stunden bis unter 3 Stunden pro Tag";
+//          now valueCoding from at-prenudge-physicalactivity-codesystem-ehispaq.
 * item[+]
   * linkId = "Q3-walking-duration"
   * text = "Wie lange gehen Sie an einem typischen Tag zu Fuß, um von Ort zu Ort zu gelangen?"
-  * answer[+].valueString = "2 Stunden bis unter 3 Stunden pro Tag"
+  * answer[+].valueCoding = $ehisPaqCS#ehis-2h-under-3h "2 Stunden bis unter 3 Stunden pro Tag"
+  
