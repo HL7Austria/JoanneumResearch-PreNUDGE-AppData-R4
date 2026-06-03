@@ -1,4 +1,4 @@
-Alias: $athis-smoking = https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-athis-smoking
+Alias: $athis = https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/athis-answers
 
 Instance: SmokingStatusResponseCurrentEveryDay
 InstanceOf: AtPrenudgeQuestionnaireResponse
@@ -15,22 +15,22 @@ Description: "Example of an ATHIS-based smoking status questionnaire response fo
   * linkId = "smoking-status-athis"
   * item[0]
     * linkId = "sk1"
-    * answer[0].valueCoding = $athis-smoking#status-daily "Ja, täglich"
+    * answer[0].valueCoding = $athis#yn-yes-daily "Ja, täglich"
   * item[+]
     * linkId = "sk2a"
-    * answer[0].valueCoding = $athis-smoking#yes "Ja"
+    * answer[0].valueCoding = $athis#yn-yes "Ja"
   * item[+]
     * linkId = "sk2b"
     * answer[0].valueInteger = 15
   * item[+]
     * linkId = "sk6a"
-    * answer[0].valueCoding = $athis-smoking#use-never "Nein, habe ich noch nie genutzt"
+    * answer[0].valueCoding = $athis#yn-no-never "Nein, noch nie genutzt/konsumiert"
   * item[+]
     * linkId = "sk6b"
-    * answer[0].valueCoding = $athis-smoking#use-former "Nein, aber früher"
+    * answer[0].valueCoding = $athis#yn-no-but-formerly "Nein, aber früher"
   * item[+]
     * linkId = "sk6c"
-    * answer[0].valueCoding = $athis-smoking#use-never "Nein, habe ich noch nie genutzt"
+    * answer[0].valueCoding = $athis#yn-no-never "Nein, noch nie genutzt/konsumiert"
 
 Instance: SmokingStatusResponseFormer
 InstanceOf: AtPrenudgeQuestionnaireResponse
@@ -47,10 +47,10 @@ Description: "Example of an ATHIS-based smoking status questionnaire response fo
   * linkId = "smoking-status-athis"
   * item[0]
     * linkId = "sk1"
-    * answer[0].valueCoding = $athis-smoking#status-no "Nein"
+    * answer[0].valueCoding = $athis#yn-no "Nein"
   * item[+]
     * linkId = "past-tobacco-smoking"
-    * answer[0].valueCoding = $athis-smoking#status-daily "Ja, täglich"
+    * answer[0].valueCoding = $athis#yn-yes-daily "Ja, täglich"
   * item[+]
     * linkId = "past-cigarettes-per-day"
     * answer[0].valueInteger = 20
@@ -59,13 +59,13 @@ Description: "Example of an ATHIS-based smoking status questionnaire response fo
     * answer[0].valueInteger = 12
   * item[+]
     * linkId = "sk6a"
-    * answer[0].valueCoding = $athis-smoking#use-former "Nein, aber früher"
+    * answer[0].valueCoding = $athis#yn-no-but-formerly "Nein, aber früher"
   * item[+]
     * linkId = "sk6b"
-    * answer[0].valueCoding = $athis-smoking#use-never "Nein, habe ich noch nie genutzt"
+    * answer[0].valueCoding = $athis#yn-no-never "Nein, noch nie genutzt/konsumiert"
   * item[+]
     * linkId = "sk6c"
-    * answer[0].valueCoding = $athis-smoking#use-never "Nein, habe ich noch nie genutzt"
+    * answer[0].valueCoding = $athis#yn-no-never "Nein, noch nie genutzt/konsumiert"
 
 Instance: SmokingStatusResponseNever
 InstanceOf: AtPrenudgeQuestionnaireResponse
@@ -82,16 +82,16 @@ Description: "Example of an ATHIS-based smoking status questionnaire response fo
   * linkId = "smoking-status-athis"
   * item[0]
     * linkId = "sk1"
-    * answer[0].valueCoding = $athis-smoking#status-no "Nein"
+    * answer[0].valueCoding = $athis#yn-no "Nein"
   * item[+]
     * linkId = "past-tobacco-smoking"
-    * answer[0].valueCoding = $athis-smoking#status-no "Nein"
+    * answer[0].valueCoding = $athis#yn-no "Nein"
   * item[+]
     * linkId = "sk6a"
-    * answer[0].valueCoding = $athis-smoking#use-never "Nein, habe ich noch nie genutzt"
+    * answer[0].valueCoding = $athis#yn-no-never "Nein, noch nie genutzt/konsumiert"
   * item[+]
     * linkId = "sk6b"
-    * answer[0].valueCoding = $athis-smoking#use-never "Nein, habe ich noch nie genutzt"
+    * answer[0].valueCoding = $athis#yn-no-never "Nein, noch nie genutzt/konsumiert"
   * item[+]
     * linkId = "sk6c"
-    * answer[0].valueCoding = $athis-smoking#use-never "Nein, habe ich noch nie genutzt"
+    * answer[0].valueCoding = $athis#yn-no-never "Nein, noch nie genutzt/konsumiert"

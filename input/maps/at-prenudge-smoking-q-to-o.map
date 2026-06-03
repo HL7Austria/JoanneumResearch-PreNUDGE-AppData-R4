@@ -35,15 +35,15 @@ group SmokingStatusGroupToObservation(source groupItem, target tgt : Obs) {
   // SK1 = Ja, täglich -> current every day smoker.
   groupItem.item as sk1 where sk1.linkId = 'sk1' then {
   sk1.answer as answer then {
-  answer.value as coding where coding.system = 'https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-athis-smoking' and coding.code = 'status-daily'
+  answer.value as coding where coding.system = 'https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/athis-answers' and coding.code = 'yn-yes-daily'
   -> tgt.value = cc('http://snomed.info/sct', '449868002', 'Smokes tobacco daily') "mapCurrentDailySmoker";
   } "evaluateSk1Daily";
   } "sk1Daily";
 
-  // SK1 = Ja, gelegentlich -> current some day / occasional smoker.
+  // SK1 = Ja, gelegentlich -> current occasional smoker.
   groupItem.item as sk1 where sk1.linkId = 'sk1' then {
   sk1.answer as answer then {
-  answer.value as coding where coding.system = 'https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-athis-smoking' and coding.code = 'status-occasional'
+  answer.value as coding where coding.system = 'https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/athis-answers' and coding.code = 'yn-yes-occasionally'
   -> tgt.value = cc('http://snomed.info/sct', '428041000124106', 'Occasional tobacco smoker') "mapCurrentOccasionalSmoker";
   } "evaluateSk1Occasional";
   } "sk1Occasional";
@@ -52,9 +52,9 @@ group SmokingStatusGroupToObservation(source groupItem, target tgt : Obs) {
   // The past-tobacco-smoking item is enabled only when SK1 is negative.
   groupItem.item as past where past.linkId = 'past-tobacco-smoking' then {
   past.answer as answer then {
-  answer.value as coding where coding.system = 'https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-athis-smoking' and coding.code = 'status-daily'
+  answer.value as coding where coding.system = 'https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/athis-answers' and coding.code = 'yn-yes-daily'
   -> tgt.value = cc('http://snomed.info/sct', '8517006', 'Ex-smoker') "mapPastDailyToFormerSmoker";
-  answer.value as coding where coding.system = 'https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-athis-smoking' and coding.code = 'status-occasional'
+  answer.value as coding where coding.system = 'https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/athis-answers' and coding.code = 'yn-yes-occasionally'
   -> tgt.value = cc('http://snomed.info/sct', '8517006', 'Ex-smoker') "mapPastOccasionalToFormerSmoker";
   } "evaluatePastSmoking";
   } "pastSmokingFormer";
@@ -62,7 +62,7 @@ group SmokingStatusGroupToObservation(source groupItem, target tgt : Obs) {
   // SK1 = Nein and past tobacco smoking = Nein -> never smoker.
   groupItem.item as past where past.linkId = 'past-tobacco-smoking' then {
   past.answer as answer then {
-  answer.value as coding where coding.system = 'https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-athis-smoking' and coding.code = 'status-no'
+  answer.value as coding where coding.system = 'https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/athis-answers' and coding.code = 'yn-no'
   -> tgt.value = cc('http://snomed.info/sct', '266919005', 'Never smoked tobacco') "mapPastNoToNeverSmoker";
   } "evaluatePastNo";
   } "pastSmokingNever";
