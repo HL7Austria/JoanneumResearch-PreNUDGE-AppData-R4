@@ -12,7 +12,7 @@ This Implementation Guide (IG) explains how application providers can use the **
 
 We focus on narrow standardization of **four PreNUDGE measurements**:
 - **Physical Activity**: 
-    - ⏳**In progress by Theresa** **Minutes of moderate and vigorous/intense physical activity** (per week) (from [**EHIS-PAQ questionnaire**](Questionnaire-EhisPaqPhysicalActivityQuestionnaire.html) and from a [**wearable device as an observation**](StructureDefinition-at-prenudge-physical-activity-minutes-observation.html))
+    - ⏳In progress by Theresa **Minutes of moderate and vigorous/intense physical activity** (per week) (from [**EHIS-PAQ/ATHIS questionnaire**](Questionnaire-EhisPaqPhysicalActivityQuestionnaire.html) and from a [**wearable device as an observation**](StructureDefinition-at-prenudge-physical-activity-minutes-observation.html))
     - Daily activity as **Steps per day** (from a [**EHIS PAQ questionnaire**](Questionnaire-StepCountEhisPaqQuestionnaire.html), [**quantity questionnaire**](Questionnaire-StepCountQuantityQuestionnaire.html) and from a [**wearable device as an observation**](StructureDefinition-at-prenudge-stepcount-observation.html))
 - **Alcohol consumption** as number of drinks (from a [**questionnaire**](Questionnaire-AlcoholUseQuestionnaire.html) and from an [**observation**](StructureDefinition-at-prenudge-alcoholuse-observation.html))
 - **Quality of life** (from a [**questionnaire**](Questionnaire-WhoQolBrefQuestionnaire.html) with a calculated [**score as an observation**](StructureDefinition-at-prenudge-whoqol-bref-score-observation.html))

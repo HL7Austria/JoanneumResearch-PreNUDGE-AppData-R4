@@ -104,8 +104,8 @@ Id:             at-prenudge-physical-activity-minutes-observation
 Title:          "AT PreNUDGE Observation Physical Activity Minutes"
 Description:    """Observation profile for recording physical activity duration as a panel
 (moderate, vigorous, aggregate components) derived from either a wearable device or
-the EHIS-PAQ questionnaire (Q7). Supports four valid component combinations:
-  (a) aggregate only           — questionnaire source (Q7 → aggregateActivity)
+the EHIS-PAQ/ATHIS questionnaire (Q7/PE7). Supports four valid component combinations:
+  (a) aggregate only           — questionnaire source (Q7/PE7 → aggregateActivity)
   (b) moderate only            — manual source; vigorous implicitly 0,
                                  aggregate = moderateActivity (pa-agg-01 warning
                                  if aggregateActivity absent)

@@ -298,7 +298,7 @@ that computes both intensity levels and the WHO/IPAQ weighted aggregate."""
 // ═════════════════════════════════════════════════════════════════════════════
 // (f) EHIS-PAQ Q7 MAPPED — aggregate only; derivedFrom QuestionnaireResponse
 //
-// Source:  PhysicalActivityQuestionnaireResponseToObservation StructureMap
+// Source:  PhysicalActivityMinutesQtoO StructureMap
 //          applied to physical-activity-ehispaq-response-example (Q7 = 2h30min).
 // Values:  aggregateActivity = 150 min/wk  (= (2 × 60) + 30)
 //
@@ -317,11 +317,11 @@ that computes both intensity levels and the WHO/IPAQ weighted aggregate."""
 Instance:   physical-activity-minutes-ehispaq-q7-mapped-example
 InstanceOf: at-prenudge-physical-activity-minutes-observation
 Usage:      #example
-Title:      "Physical Activity Minutes O - (f) EHIS-PAQ Q7 Mapped (Aggregate Only)"
+Title:      "Physical Activity Minutes O - (f) EHIS-PAQ/ATHIS Q7/PE7 Mapped (Aggregate Only)"
 Description: """Scenario (f): Observation produced by applying
-PhysicalActivityQuestionnaireResponseToObservation to
+PhysicalActivityMinutesQtoO to
 physical-activity-ehispaq-response-example.
-Q7 answer: 2 Stunden + 30 Minuten → aggregateActivity = (2×60)+30 = 150 min/wk.
+Q7/PE7 answer: 2 Stunden + 30 Minuten → aggregateActivity = (2×60)+30 = 150 min/wk.
 No intensity weighting is applied because Q7 does not separate moderate from
 vigorous activity.  derivedFrom links back to the source QuestionnaireResponse.
 classificationMethod is absent; pa-manual-comp-01 is satisfied by absence."""

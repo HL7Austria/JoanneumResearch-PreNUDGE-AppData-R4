@@ -9,9 +9,9 @@
 //   pa-wearable-01: N/A — method = Manual
 //   pa-manual-comp-01: satisfied — classificationMethod absent
 
-map "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/PhysicalActivityQuestionnaireResponseToObservation" = "Physical Activity Minutes Q to O"
+map "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/PhysicalActivityMinutesQtoO" = "Physical Activity Minutes Q to O"
 
-// Physical Activity EHIS-PAQ Q7 → O (aggregate-only variant)
+// Physical Activity EHIS-PAQ Q7/ATHIS PE7 → O (aggregate-only variant)
 
 uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" alias QR  as source
 uses "http://hl7.org/fhir/StructureDefinition/Observation"            alias Obs as target

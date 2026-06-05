@@ -1,12 +1,12 @@
-Alias: $ehisPaqCS = https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/at-prenudge-physicalactivity-codesystem-ehispaq
+Alias: $athisCS = https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/athis-answers
 
 Instance:   physical-activity-ehispaq-response-example
 InstanceOf: at-prenudge-questionnaireresponse
 Usage:      #example
-Title:      "EHIS-PAQ Physical Activity Q - Example Response"
+Title:      "EHIS-PAQ/ATHIS Physical Activity Q7/PE7 - Example Response"
 Description: """Example EHIS-PAQ physical activity questionnaire response:
 Q4 = 3 Tage pro Woche (Fahrrad, Transport),
-Q5 = 30–59 Minuten pro Tag (Fahrrad),
+Q5 = 30 bis 59 Minuten pro Tag (Fahrrad),
 Q6 = 5 Tage pro Woche (Freizeit-Sport),
 Q7 = 2 Stunden 30 Minuten (= 150 min/Woche).
 Q7 maps to physical-activity-questionnaire-example via the StructureMap."""
@@ -25,17 +25,17 @@ Q7 maps to physical-activity-questionnaire-example via the StructureMap."""
   * linkId = "Q4"
   * text   = "An wie vielen Tagen in einer typischen Woche fahren Sie mindestens 10 Minuten ohne Unterbrechung mit dem Fahrrad, um von Ort zu Ort zu gelangen?"
   * answer[+]
-    * valueCoding = $ehisPaqCS#ehis-3-days "3 Tage pro Woche"
+    * valueCoding = $athisCS#activity-3-days "3 Tage pro Woche"
     * item[+]
       * linkId = "Q4-comment"
       * answer[+].valueString = ""
 
-// Q5: 30–59 Minuten pro Tag (Fahrrad)
+// Q5: 30 bis 59 Minuten pro Tag (Fahrrad)
 * item[+]
   * linkId = "Q5"
   * text   = "Wie lange fahren Sie an einem typischen Tag mit dem Fahrrad, um von Ort zu Ort zu gelangen?"
   * answer[+]
-    * valueCoding = $ehisPaqCS#ehis-30-59-min "30–59 Minuten pro Tag"
+    * valueCoding = $athisCS#activity-30-59-min "30 bis 59 Minuten pro Tag"
     * item[+]
       * linkId = "Q5-comment"
       * answer[+].valueString = ""
@@ -45,7 +45,7 @@ Q7 maps to physical-activity-questionnaire-example via the StructureMap."""
   * linkId = "Q6"
   * text   = "An wie vielen Tagen in einer typischen Woche üben Sie mindestens 10 Minuten ohne Unterbrechung Sport, Fitness oder körperliche Aktivität in der Freizeit aus? Zum Beispiel (Nordic-)Walking, Ballsport, Joggen, Fahrradfahren, Schwimmen, Aerobic, Rudern oder Badminton"
   * answer[+]
-    * valueCoding = $ehisPaqCS#ehis-5-days "5 Tage pro Woche"
+    * valueCoding = $athisCS#activity-5-days "5 Tage pro Woche"
     * item[+]
       * linkId = "Q6-comment"
       * answer[+].valueString = ""

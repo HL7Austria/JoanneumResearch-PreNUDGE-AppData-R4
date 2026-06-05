@@ -4,7 +4,7 @@ Title:      "AT PreNUDGE EHIS-PAQ Answer Set"
 Description: "Consolidated CodeSystem for all options from the EHIS-PAQ questionnaires (European Health Interview Survey Physical Activity Questionnaire) used in PreNUDGE. Contains two answer scales: days per week (Q4, Q6 in EhisPaqPhysicalActivityQuestionnaire; also Q2 in StepCountEhisPaqQuestionnaire) and activity duration per day (Q3 in StepCountEhisPaqQuestionnaire, Q5 in EhisPaqPhysicalActivityQuestionnaire). Codes are in English; display values remain in German."
 
 * ^url          = "https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/at-prenudge-physicalactivity-codesystem-ehispaq"
-* ^status       = #active
+* ^status       = #retired
 * ^experimental = false
 * ^caseSensitive = true
 * ^content      = #complete
