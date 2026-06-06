@@ -1,0 +1,68 @@
+// StructureMap: MuscleStrengtheningQuantityQuestionnaire Response → Observation
+//
+// Pattern followed: at-prenudge-sleep-duration-mapping.map (single Quantity
+// value, direct transfer, no code translation).
+//
+// Mapping behaviour:
+//   SetObservationBase (imported from at-prenudge-q-to-o-base.map) sets:
+//     status       = 'final'
+//     method       = SCT 87982008 "Manual"  (questionnaire-derived)
+//     identifier   (copied from QR)
+//     derivedFrom  → QuestionnaireResponse/<src.id>
+//     subject      (copied from QR.subject)
+//     issued       (from QR.authored)
+//   This map additionally sets:
+//     meta.profile → at-prenudge-muscle-strengthening-observation
+//     code         = LOINC 82291-6
+//     effectiveDateTime from QR.authored (no embedded date item, follows
+//                       AlcoholUseQuestionnaire and PhysicalActivityMinutesQtoO)
+//   Item extraction:
+//     linkId = 'muscle-strengthening-sessions' (verbatim from Questionnaire B)
+//     answer.valueQuantity → MapMuscleStrengtheningQuantity → Observation.value
+
+map "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/MuscleStrengtheningQuestionnaireResponseToObservation" = "MuscleStrengtheningQuestionnaireResponseToObservation"
+
+/// url = "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/MuscleStrengtheningQuestionnaireResponseToObservation"
+/// name = "MuscleStrengtheningQuestionnaireResponseToObservation"
+/// title = "Muscle Strengthening Sessions Q to O"
+/// status = "active"
+
+uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" alias QR as source
+uses "http://hl7.org/fhir/StructureDefinition/Observation" alias Obs as target
+uses "http://hl7.org/fhir/StructureDefinition/Quantity" alias Quantity as source
+
+imports "http://hl7.org/fhir/StructureMap/*"
+imports "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/QuestionnaireResponseToObservationBase"
+
+group MuscleStrengtheningQuestionnaireResponseToObservation(source src : QR, target tgt : Obs) {
+  src then SetObservationBase(src, tgt) "Base";
+  src -> tgt.meta = create('Meta') as meta,
+    meta.profile = 'https://fhir.hl7.at/prenudge/appdata/r4/StructureDefinition/at-prenudge-muscle-strengthening-observation' "SetProfile";
+  src -> tgt.code = cc('http://loinc.org', '82291-6', 'Frequency of muscle-strengthening physical activity') "SetCode";
+  // effectiveDateTime from authored as quantity questionnaire has no embedded date item
+  src.authored as authored -> tgt.effectiveDateTime = authored "SetEffectiveDateTime";
+  src.item as item where linkId = 'muscle-strengthening-sessions' then MapMuscleStrengthening(item, tgt) "ProcessItem";
+}
+
+group MapMuscleStrengthening(source src : QR, target tgt : Obs) {
+  src.answer as answer then {
+
+    // Map quantity answer directly to Observation.value
+    answer.valueQuantity as srcQty then MapMuscleStrengtheningQuantity(srcQty, tgt) "MapValueQuantity";
+
+    // TODO: Note mapping disabled due to MaLaC-HD limitation
+    // Annotation.text (markdown) target not supported with FHIR string source
+    // See: https://gitlab.com/cdehealth/malac-hd/-/issues/128
+
+  } "ProcessAnswer";
+}
+
+group MapMuscleStrengtheningQuantity(source srcQty : Quantity, target tgt : Obs) {
+  srcQty.value as v then {
+    v.value as numVal -> tgt.value = create('Quantity') as qty,
+      qty.value = numVal,
+      qty.unit = '{sessions}/wk',
+      qty.system = 'http://unitsofmeasure.org',
+      qty.code = '{sessions}/wk' "SetQuantity";
+  } "ExtractValue";
+}

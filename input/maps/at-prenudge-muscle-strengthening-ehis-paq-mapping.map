@@ -1,0 +1,82 @@
+// StructureMap: EhisPaqMuscleStrengtheningQuestionnaire Response → Observation
+//
+// Pattern followed: at-prenudge-alcoholuse-q-mapping-frequency-to-o-drinks-per-day.map
+// (coded answer options require code-to-value translation via valueCoding).
+//
+// Mapping logic:
+//   ATHIS CS activity-1-day  → 1 {sessions}/wk
+//   ATHIS CS activity-2-days → 2 {sessions}/wk
+//   ...
+//   ATHIS CS activity-7-days → 7 {sessions}/wk
+//
+// Mapping behaviour:
+//   SetObservationBase (imported from at-prenudge-q-to-o-base.map) sets:
+//     status       = 'final'
+//     method       = SCT 87982008 "Manual"  (questionnaire-derived)
+//     identifier   (copied from QR)
+//     derivedFrom  → QuestionnaireResponse/<src.id>
+//     subject      (copied from QR.subject)
+//     issued       (from QR.authored)
+//   This map additionally sets:
+//     meta.profile → at-prenudge-muscle-strengthening-observation
+//     code         = LOINC 82291-6
+//     effectiveDateTime from QR.authored
+//   Item extraction:
+//     linkId = 'Q8' (verbatim from EhisPaqMuscleStrengtheningQuestionnaire)
+//     answer.valueCoding → MapQ8CodingToQuantity → Observation.value
+
+map "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/MuscleStrengtheningEhisPaqQuestionnaireResponseToObservation" = "MuscleStrengtheningEhisPaqQuestionnaireResponseToObservation"
+
+/// url = "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/MuscleStrengtheningEhisPaqQuestionnaireResponseToObservation"
+/// name = "MuscleStrengtheningEhisPaqQuestionnaireResponseToObservation"
+/// title = "Muscle Strengthening EHIS-PAQ Q8 / ATHIS PE8 to Observation"
+/// status = "active"
+
+uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" alias QR as source
+uses "http://hl7.org/fhir/StructureDefinition/Observation" alias Obs as target
+uses "http://hl7.org/fhir/StructureDefinition/Coding" alias Coding as source
+
+imports "http://hl7.org/fhir/StructureMap/*"
+imports "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/QuestionnaireResponseToObservationBase"
+
+group MuscleStrengtheningEhisPaqQuestionnaireResponseToObservation(source src : QR, target tgt : Obs) {
+  src then SetObservationBase(src, tgt) "Base";
+  src -> tgt.meta = create('Meta') as meta,
+    meta.profile = 'https://fhir.hl7.at/prenudge/appdata/r4/StructureDefinition/at-prenudge-muscle-strengthening-observation' "SetProfile";
+  src -> tgt.code = cc('http://loinc.org', '82291-6', 'Frequency of muscle-strengthening physical activity') "SetCode";
+  src.authored as authored -> tgt.effectiveDateTime = authored "SetEffectiveDateTime";
+  src.item as item where linkId = 'Q8' then MapQ8(item, tgt) "ProcessQ8";
+}
+
+group MapQ8(source src : QR, target tgt : Obs) {
+  src.answer as answer then {
+    answer.valueCoding as coding then MapQ8CodingToQuantity(coding, tgt) "MapValueCoding";
+  } "ProcessAnswer";
+
+  // TODO: Note mapping disabled due to MaLaC-HD limitation
+  // Annotation.text (markdown) target not supported with FHIR string source
+  // See: https://gitlab.com/cdehealth/malac-hd/-/issues/128
+}
+
+group MapQ8CodingToQuantity(source coding : Coding, target tgt : Obs) {
+  coding.code as c where $this = 'activity-1-day' ->
+    tgt.value = create('Quantity') as qty, qty.value = '1', qty.unit = '{sessions}/wk', qty.system = 'http://unitsofmeasure.org', qty.code = '{sessions}/wk' "Map1Day";
+
+  coding.code as c where $this = 'activity-2-days' ->
+    tgt.value = create('Quantity') as qty, qty.value = '2', qty.unit = '{sessions}/wk', qty.system = 'http://unitsofmeasure.org', qty.code = '{sessions}/wk' "Map2Days";
+
+  coding.code as c where $this = 'activity-3-days' ->
+    tgt.value = create('Quantity') as qty, qty.value = '3', qty.unit = '{sessions}/wk', qty.system = 'http://unitsofmeasure.org', qty.code = '{sessions}/wk' "Map3Days";
+
+  coding.code as c where $this = 'activity-4-days' ->
+    tgt.value = create('Quantity') as qty, qty.value = '4', qty.unit = '{sessions}/wk', qty.system = 'http://unitsofmeasure.org', qty.code = '{sessions}/wk' "Map4Days";
+
+  coding.code as c where $this = 'activity-5-days' ->
+    tgt.value = create('Quantity') as qty, qty.value = '5', qty.unit = '{sessions}/wk', qty.system = 'http://unitsofmeasure.org', qty.code = '{sessions}/wk' "Map5Days";
+
+  coding.code as c where $this = 'activity-6-days' ->
+    tgt.value = create('Quantity') as qty, qty.value = '6', qty.unit = '{sessions}/wk', qty.system = 'http://unitsofmeasure.org', qty.code = '{sessions}/wk' "Map6Days";
+
+  coding.code as c where $this = 'activity-7-days' ->
+    tgt.value = create('Quantity') as qty, qty.value = '7', qty.unit = '{sessions}/wk', qty.system = 'http://unitsofmeasure.org', qty.code = '{sessions}/wk' "Map7Days";
+}
