@@ -52,7 +52,7 @@ is preferred."""
 * item[+]
   * linkId   = "Q8"
   * type     = #choice
-  * required = false
+  * required = true
   * text     = "An wie vielen Tagen in einer typischen Woche üben Sie körperliche Aktivitäten aus, die speziell für den Aufbau oder die Kräftigung der Muskulatur gedacht sind? Zum Beispiel Krafttraining oder Kräftigungsübungen (mit Gewichten, Thera-Band, eigenem Körpergewicht), Kniebeugen, Liegestützen oder Sit-ups."
   * answerOption[+].valueCoding = $athisCS#activity-1-day  "1 Tag pro Woche"
   * answerOption[+].valueCoding = $athisCS#activity-2-days "2 Tage pro Woche"

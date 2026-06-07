@@ -23,7 +23,7 @@ Q4–Q6 are captured only."""
 * item[+]
   * linkId   = "Q4"
   * type     = #choice
-  * required = false
+  * required = true
   * text     = "An wie vielen Tagen in einer typischen Woche fahren Sie mindestens 10 Minuten ohne Unterbrechung mit dem Fahrrad, um von Ort zu Ort zu gelangen?"
   * answerOption[+].valueCoding = $athisCS#activity-never-or-rarely "Nie oder seltener als einmal pro Woche"
   * answerOption[+].valueCoding = $athisCS#activity-1-day           "1 Tag pro Woche"
@@ -45,7 +45,7 @@ Q4–Q6 are captured only."""
 * item[+]
   * linkId   = "Q5"
   * type     = #choice
-  * required = false
+  * required = true
   * text     = "Wie lange fahren Sie an einem typischen Tag mit dem Fahrrad, um von Ort zu Ort zu gelangen?"
   * answerOption[+].valueCoding = $athisCS#activity-10-29-min   "10 bis 29 Minuten pro Tag"
   * answerOption[+].valueCoding = $athisCS#activity-30-59-min   "30 bis 59 Minuten pro Tag"
@@ -63,7 +63,7 @@ Q4–Q6 are captured only."""
 * item[+]
   * linkId   = "Q6"
   * type     = #choice
-  * required = false
+  * required = true
   * text     = "An wie vielen Tagen in einer typischen Woche üben Sie mindestens 10 Minuten ohne Unterbrechung Sport, Fitness oder körperliche Aktivität in der Freizeit aus? Zum Beispiel (Nordic-)Walking, Ballsport, Joggen, Fahrradfahren, Schwimmen, Aerobic, Rudern oder Badminton"
   * answerOption[+].valueCoding = $athisCS#activity-never-or-rarely "Nie oder seltener als einmal pro Woche"
   * answerOption[+].valueCoding = $athisCS#activity-1-day           "1 Tag pro Woche"
@@ -85,12 +85,12 @@ Q4–Q6 are captured only."""
 * item[+]
   * linkId   = "Q7"
   * type     = #group
-  * required = false
+  * required = true
   * text     = "Wie viel Zeit verbringen Sie insgesamt in einer typischen Woche mit Sport, Fitness oder körperlicher Aktivität in der Freizeit?"
   * item[+]
     * linkId   = "Q7-hours"
     * type     = #integer
-    * required = false
+    * required = true
     * text     = "Stunden pro Woche"
     * extension[+]
       * url          = "http://hl7.org/fhir/StructureDefinition/minValue"
@@ -98,7 +98,7 @@ Q4–Q6 are captured only."""
   * item[+]
     * linkId   = "Q7-minutes"
     * type     = #integer
-    * required = false
+    * required = true
     * text     = "Minuten pro Woche (zusätzlich zu den Stunden)"
     * extension[+]
       * url          = "http://hl7.org/fhir/StructureDefinition/minValue"

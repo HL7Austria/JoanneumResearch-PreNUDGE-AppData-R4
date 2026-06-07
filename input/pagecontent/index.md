@@ -12,9 +12,10 @@ This Implementation Guide (IG) explains how application providers can use the **
 
 We focus on narrow standardization of **four PreNUDGE measurements**:
 - **Physical Activity**: 
-    - ⏳Minutes of moderate and vigorous/intense physical activity (per week) (from [**EHIS-PAQ Q4–Q7 / ATHIS PE4–PE7 questionnaire**](Questionnaire-EhisPaqPhysicalActivityQuestionnaire.html) and from a [**wearable device as an observation**](StructureDefinition-at-prenudge-physical-activity-minutes-observation.html))
-    - Daily activity as Steps per day (from a [**EHIS-PAQ Q2–Q3 / ATHIS PE2–PE3 questionnaire**](Questionnaire-StepCountEhisPaqQuestionnaire.html), [**quantity questionnaire**](Questionnaire-StepCountQuantityQuestionnaire.html) and from a [**wearable device as an observation**](StructureDefinition-at-prenudge-stepcount-observation.html))
-    - ⏳Number of muscle-strengthening exercise sessions (per week) (from [**EHIS-PAQ Q8 / ATHIS PE8 questionnaire**](Questionnaire-EhisPaqMuscleStrengtheningQuestionnaire.html), [**quantity questionnaire**](Questionnaire-MuscleStrengtheningQuantityQuestionnaire.html) and from a [**wearable device as an observation**](StructureDefinition-at-prenudge-muscle-strengthening-observation.html))
+    - ⏳Minutes of moderate and vigorous/intense physical activity (per week) (from [**EHIS-PAQ Q4–Q7 / ATHIS PE4–PE7 questionnaire**](Questionnaire-EhisPaqPhysicalActivityQuestionnaire.html) and (from a wearable device) as an [**observation**](StructureDefinition-at-prenudge-physical-activity-minutes-observation.html))
+    - Daily activity as Steps per day (from a [**EHIS-PAQ Q2–Q3 / ATHIS PE2–PE3 questionnaire**](Questionnaire-StepCountEhisPaqQuestionnaire.html), [**quantity questionnaire**](Questionnaire-StepCountQuantityQuestionnaire.html) and (from a wearable device) as an [**observation**](StructureDefinition-at-prenudge-stepcount-observation.html))
+    - ⏳Number of muscle-strengthening exercise sessions (per week) (from [**EHIS-PAQ Q8 / ATHIS PE8 questionnaire**](Questionnaire-EhisPaqMuscleStrengtheningQuestionnaire.html), [**quantity questionnaire**](Questionnaire-MuscleStrengtheningQuantityQuestionnaire.html) and (from a wearable device) as an [**observation**](StructureDefinition-at-prenudge-muscle-strengthening-observation.html))
+    - ⏳Sitting hours (per day) (from [**EHIS-PAQ Q9 / ATHIS PE9 questionnaire**](Questionnaire-EhisPaqSittingHoursQuestionnaire.html) and (from wearable device) as an [**observation**](StructureDefinition-at-prenudge-sitting-hours-observation.html))
 - **Alcohol consumption** as number of drinks (from a [**questionnaire**](Questionnaire-AlcoholUseQuestionnaire.html) and from an [**observation**](StructureDefinition-at-prenudge-alcoholuse-observation.html))
 - **Quality of life** (from a [**questionnaire**](Questionnaire-WhoQolBrefQuestionnaire.html) with a calculated [**score as an observation**](StructureDefinition-at-prenudge-whoqol-bref-score-observation.html))
 - **Smoking**: Current smoking/tobacco use status (from a [**questionnaire**](Questionnaire-SmokingStatusQuestionnaire.html) and from an [**observation IPS style**](StructureDefinition-at-prenudge-smokingstatus-observation.html))
@@ -28,7 +29,6 @@ For viewing the full questionnaires use tools like [lhcforms](https://lhcfhirtoo
 Each **questionnaire variant** maps **one-way** to its corresponding **observation variant**. The mappings can be found at [StructureMaps](artifacts.html#terminology-structure-maps) and can be executed with [MaLaC-HD](https://gitlab.com/cdehealth/malac-hd). These transformations will be performed on the server side.
 
 Additional PreNUDGE measurements, also narrow standardized, will be specified analogously to these four, based on feedback from the informative ballot. The following are to be specified:
-- Physical Activity: Sitting hours (per day) (from a questionnaire from a wearable device as an observation)
 - Smoking: Current status (from a questionnaire and from an observation IPS style)
 - Nutrition: Portions of fruit and vegetables (per day) (from a questionnaire)
 - Nutrition: Consumption frequency of sugary and salty foods (per week) (from a questionnaire)

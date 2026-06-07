@@ -11,7 +11,7 @@
 
 map "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/PhysicalActivityMinutesQtoO" = "Physical Activity Minutes Q to O"
 
-// Physical Activity EHIS-PAQ Q7/ATHIS PE7 → O (aggregate-only variant)
+// Physical Activity EHIS-PAQ Q7 / ATHIS PE7 to O (aggregate-only variant)
 
 uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" alias QR  as source
 uses "http://hl7.org/fhir/StructureDefinition/Observation"            alias Obs as target
@@ -68,11 +68,13 @@ group PhysicalActivityQuestionnaireResponseToObservation(source src : QR, target
 // The ×2 vigorous weighting (WHO/IPAQ) is ONLY applied when a wearable
 // separately measures moderate and vigorous minutes (wearable variant).
 //
-// Note on FML arithmetic:
-//   evaluate() requires FHIRPath expression support in the engine
-//   (e.g. MaLaC-HD at the version that supports evaluate).
-//   Engines without this support must compute (hours×60 + minutes) externally
-//   before invoking the map.
+// Note on FML arithmetic / MaLaC-HD compatibility:
+//   This map uses evaluate() with integer arithmetic (* 60, +) which is NOT
+//   supported by MaLaC-HD 1.6.0. MaLaC-HD fails at parse time with
+//   "Param type 14 not implemented" (integer literal in FHIRPath expression).
+//   The questionnaire captures hours and minutes as separate integer items,
+//   so no MaLaC-HD compatible rewrite exists without redesigning the questionnaire
+//   or changing the output unit. Use matchbox or another evaluate()-capable engine.
 // ---------------------------------------------------------------------------
 group MapQ7ToAggregate(source src : QR, target tgt : Obs) {
 

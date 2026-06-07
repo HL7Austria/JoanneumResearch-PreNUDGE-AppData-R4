@@ -7,7 +7,7 @@ Alias: $athisCS = https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/athis-answe
 Instance:   muscle-strengthening-ehis-paq-response-example
 InstanceOf: at-prenudge-questionnaireresponse
 Usage:      #example
-Title:      "EHIS-PAQ Q8 / ATHIS PE8 Muscle Strengthening Q - Example Response (3 Tage pro Woche)"
+Title:      "EHIS-PAQ Q8 / ATHIS PE8 Muscle Strengthening Q - Example Response"
 Description: "Example QuestionnaireResponse for EhisPaqMuscleStrengtheningQuestionnaire: respondent selects 3 days per week of muscle-strengthening exercise."
 
 * meta.profile  = "https://fhir.hl7.at/prenudge/appdata/r4/StructureDefinition/at-prenudge-questionnaireresponse"

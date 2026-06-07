@@ -3,8 +3,8 @@ Alias: $athisCS = https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/athis-answe
 Instance:   physical-activity-ehispaq-response-example
 InstanceOf: at-prenudge-questionnaireresponse
 Usage:      #example
-Title:      "EHIS-PAQ/ATHIS Physical Activity Q7/PE7 - Example Response"
-Description: """Example EHIS-PAQ physical activity questionnaire response:
+Title:      "EHIS-PAQ Q7 / ATHIS PE7 Physical Activity - Example Response"
+Description: """Example EHIS-PAQ Q7 / ATHIS PE7 physical activity questionnaire response:
 Q4 = 3 Tage pro Woche (Fahrrad, Transport),
 Q5 = 30 bis 59 Minuten pro Tag (Fahrrad),
 Q6 = 5 Tage pro Woche (Freizeit-Sport),

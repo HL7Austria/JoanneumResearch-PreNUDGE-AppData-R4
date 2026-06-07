@@ -1,0 +1,84 @@
+// StructureMap: EhisPaqSittingHoursQuestionnaire Response → Observation
+//
+// Key computation: Q9-hours (integer) → valueQuantity.value (h)
+//   Q9-minutes is intentionally dropped: MaLaC-HD does not support evaluate()
+//   with complex FHIRPath expressions, so arithmetic combining hours and minutes
+//   cannot be performed. Integer-hour granularity is acceptable for self-reported
+//   sitting time. Engines that support evaluate() (e.g. matchbox) can extend
+//   this map to add (Q9-minutes / 60) for sub-hour precision.
+//
+// Mapping behaviour:
+//   SetObservationBase (imported from at-prenudge-q-to-o-base.map) sets:
+//     status       = 'final'
+//     method       = SCT 87982008 "Manual"  (questionnaire-derived)
+//     identifier   (copied from QR)
+//     derivedFrom  → QuestionnaireResponse/<src.id>
+//     subject      (copied from QR.subject)
+//     issued       (from QR.authored)
+//   This map additionally sets:
+//     meta.profile → at-prenudge-sitting-hours-observation
+//     code         = LOINC 87705-0
+//     effectiveDateTime from QR.authored (Q9 has no embedded date sub-item)
+//   Item extraction:
+//     linkId = 'Q9'       (verbatim from EhisPaqSittingHoursQuestionnaire)
+//     Q9-hours (integer, Q9-minutes dropped) → Observation.valueQuantity (h)
+
+map "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/SittingHoursQuestionnaireResponseToObservation" = "SittingHoursQuestionnaireResponseToObservation"
+
+// Sitting Hours EHIS-PAQ Q9 / ATHIS PE9 to O
+
+/// url = "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/SittingHoursQuestionnaireResponseToObservation"
+/// name = "SittingHoursQuestionnaireResponseToObservation"
+/// title = "Sitting Hours Q to O"
+/// status = "active"
+
+uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" alias QR  as source
+uses "http://hl7.org/fhir/StructureDefinition/Observation"            alias Obs as target
+
+imports "http://hl7.org/fhir/StructureMap/*"
+imports "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/QuestionnaireResponseToObservationBase"
+
+// ---------------------------------------------------------------------------
+// Main entry group
+// ---------------------------------------------------------------------------
+group SittingHoursQuestionnaireResponseToObservation(source src : QR, target tgt : Obs) {
+
+  // Shared base: identifier copy, derivedFrom, subject, issued, status, method.
+  src then SetObservationBase(src, tgt) "Base";
+
+  // Target profile
+  src -> tgt.meta = create('Meta') as meta,
+    meta.profile = 'https://fhir.hl7.at/prenudge/appdata/r4/StructureDefinition/at-prenudge-sitting-hours-observation' "SetProfile";
+
+  // Observation code
+  src -> tgt.code = cc('http://loinc.org', '87705-0', 'Sedentary activity 24 hour') "SetCode";
+
+  // effectiveDateTime from authored (Q9 has no embedded date sub-item)
+  src.authored as authored -> tgt.effectiveDateTime = authored "SetEffectiveDateTime";
+
+  // Map Q9 group to Observation.value
+  src.item as item where linkId = 'Q9' then MapQ9ToSittingHours(item, tgt) "ProcessQ9";
+}
+
+// ---------------------------------------------------------------------------
+// Q9 → Observation.valueQuantity (h)
+//
+// Only Q9-hours (integer) is mapped to Observation.valueQuantity.value.
+// Q9-minutes is not included because MaLaC-HD does not support evaluate()
+// with complex FHIRPath expressions (arithmetic or multi-token paths).
+// Sub-hour precision requires an engine that supports evaluate(), e.g. matchbox.
+// ---------------------------------------------------------------------------
+group MapQ9ToSittingHours(source src : QR, target tgt : Obs) {
+  src.item as hoursItem where linkId = 'Q9-hours' then {
+    hoursItem.answer as hoursAnswer then {
+      hoursAnswer.valueInteger as hoursElem then {
+        hoursElem.value as numVal ->
+          tgt.value = create('Quantity') as qty,
+          qty.value = numVal,
+          qty.unit = 'h',
+          qty.system = 'http://unitsofmeasure.org',
+          qty.code = 'h' "SetSittingQuantity";
+      } "ExtractValue";
+    } "ExtractHoursAnswer";
+  } "ProcessHoursItem";
+}

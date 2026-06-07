@@ -27,9 +27,11 @@
 
 map "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/MuscleStrengtheningEhisPaqQuestionnaireResponseToObservation" = "MuscleStrengtheningEhisPaqQuestionnaireResponseToObservation"
 
+// Muscle Strengthening EHIS-PAQ Q8 / ATHIS PE8 to O
+
 /// url = "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/MuscleStrengtheningEhisPaqQuestionnaireResponseToObservation"
 /// name = "MuscleStrengtheningEhisPaqQuestionnaireResponseToObservation"
-/// title = "Muscle Strengthening EHIS-PAQ Q8 / ATHIS PE8 to Observation"
+/// title = "Muscle Strengthening EHIS-PAQ Q8 / ATHIS PE8 to O"
 /// status = "active"
 
 uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" alias QR as source

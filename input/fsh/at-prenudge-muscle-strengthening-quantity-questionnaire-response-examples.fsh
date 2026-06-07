@@ -8,7 +8,7 @@
 Instance: muscle-strengthening-quantity-response-example
 InstanceOf: AtPrenudgeQuestionnaireResponse
 Usage: #example
-Title: "Muscle Strengthening Sessions Q - Example (3 sessions/wk)"
+Title: "Muscle Strengthening Sessions Q - Example Response"
 Description: "Example QuestionnaireResponse for MuscleStrengtheningQuantityQuestionnaire: respondent reports 3 muscle-strengthening exercise sessions per week."
 
 * questionnaire = Canonical(MuscleStrengtheningQuantityQuestionnaire)
