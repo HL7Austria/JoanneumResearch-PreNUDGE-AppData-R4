@@ -10,7 +10,7 @@ For more, see [Background](background.html).
 
 This Implementation Guide (IG) explains how application providers can use the **PreNUDGE FHIR API** to deliver **health indicators**.
 
-We focus on narrow standardization of **four PreNUDGE measurements**:
+We focus on narrow standardization of the following **PreNUDGE measurements**:
 - Physical Activity: Daily activity as **Steps per day** (from a [**EHIS PAQ questionnaire**](Questionnaire-StepCountEhisPaqQuestionnaire.html), [**quantity questionnaire**](Questionnaire-StepCountQuantityQuestionnaire.html) and from a [**wearable device as an observation**](StructureDefinition-at-prenudge-stepcount-observation.html))
 - **Alcohol consumption** as number of drinks (from a [**questionnaire**](Questionnaire-AlcoholUseQuestionnaire.html) and from an [**observation**](StructureDefinition-at-prenudge-alcoholuse-observation.html))
 - **Quality of life** (from a [**questionnaire**](Questionnaire-WhoQolBrefQuestionnaire.html) with a calculated [**score as an observation**](StructureDefinition-at-prenudge-whoqol-bref-score-observation.html))
@@ -28,7 +28,6 @@ Additional PreNUDGE measurements, also narrow standardized, will be specified an
 - Physical Activity: Minutes of moderate physical activity (per week), Minutes of physical activity (per week) (from a questionnaire and from a wearable device as an observation)
 - Physical Activity: Number of muscle strengthening exercise sessions (per week) (from a questionnaire and from a wearable device as an observation)
 - Physical Activity: Sitting hours (per day) (from a questionnaire from a wearable device as an observation)
-- Smoking: Current status (from a questionnaire and from an observation IPS style)
 - Nutrition: Portions of fruit and vegetables (per day) (from a questionnaire)
 - Nutrition: Consumption frequency of sugary and salty foods (per week) (from a questionnaire)
 - Sociodemographic Data: Age (from a questionnaire)
