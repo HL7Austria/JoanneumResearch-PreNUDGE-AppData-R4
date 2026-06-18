@@ -18,6 +18,7 @@ We focus on narrow standardization of the following **PreNUDGE measurements**:
 - **Sleep** duration and quality 
   - Duration - from [**questionnaire**](Questionnaire-SleepDurationQuestionnaire.html) or as an [**observation**](StructureDefinition-at-prenudge-sleep-duration-observation.html)
   - Quality - question 16 from the [**WHOQOL-BRE questionnaire**](Questionnaire-WhoQolBrefQuestionnaire.html) or same question 16 from a  [**single quesion questionnaire**](Questionnaire-SleepQualityQuestionnaire.html) or as an [**observation**](StructureDefinition-at-prenudge-sleep-quality-observation.html)
+- Sociodemographic Data: **Highest completed education** (ISCED level) (from a [**questionnaire**](Questionnaire-EducationQuestionnaire.html) and from an [**observation**](StructureDefinition-at-prenudge-education-observation.html))
 - For Demo Purposes: **Blood glucose** in mg/dL (from a [**questionnaire**](Questionnaire-BloodGlucoseQuestionnaire.html) and from a [**device as an observation**](StructureDefinition-at-prenudge-bloodglucose-observation.html))
 
 For viewing the full questionnaires use tools like [lhcforms](https://lhcfhirtools.nlm.nih.gov/lhcforms).
@@ -30,7 +31,6 @@ Additional PreNUDGE measurements, also narrow standardized, will be specified an
 - Physical Activity: Sitting hours (per day) (from a questionnaire from a wearable device as an observation)
 - Nutrition: Portions of fruit and vegetables (per day) (from a questionnaire)
 - Nutrition: Consumption frequency of sugary and salty foods (per week) (from a questionnaire)
-- Sociodemographic Data: Highest completed education (ISCED level) (from a questionnaire)
 - Psychosocial Factors: Self reported emotional burden (from a questionnaire)
 - Psychosocial Factors: Self reported stress (from a questionnaire with a calculated score as an observation)
 - Anthropometry: Body Mass Index (kg/m²) (from a questionnaire and from a wearable device as an observation)
