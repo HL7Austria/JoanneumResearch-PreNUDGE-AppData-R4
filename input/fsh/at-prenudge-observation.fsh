@@ -4,6 +4,8 @@ Id: at-prenudge-observation
 Title: "AT PreNUDGE Observation"
 Description: "This FHIR profile is defining the overall Observation for PreNUDGE. It is abstract, so no instances of this profile directly are allowed. Be aware that if the user enters values from a device into a questionnaire, it is still considered a manual input. Please keep in mind that all observations must comply with the qualification matrix on https://prenudge.at/qualificationmatrix/."
 
+// Observations AtPrenudgeObservationAlcoholUse and AtPrenudgeObservationSmokingStatus duplicate all fields from AtPrenudgeObservation
+
 * ^abstract = true
 
 * identifier 1..
