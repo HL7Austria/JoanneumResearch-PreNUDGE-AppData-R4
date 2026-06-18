@@ -47,7 +47,7 @@ Description: "Example of an ATHIS-based smoking status questionnaire response fo
   * linkId = "smoking-status-athis"
   * item[0]
     * linkId = "sk1"
-    * answer[0].valueCoding = $athis#yn-no "Nein"
+    * answer[0].valueCoding = $athis#yn-no-not-at-all "Nein, überhaupt nicht"
   * item[+]
     * linkId = "past-tobacco-smoking"
     * answer[0].valueCoding = $athis#yn-yes-daily "Ja, täglich"
@@ -82,7 +82,7 @@ Description: "Example of an ATHIS-based smoking status questionnaire response fo
   * linkId = "smoking-status-athis"
   * item[0]
     * linkId = "sk1"
-    * answer[0].valueCoding = $athis#yn-no "Nein"
+    * answer[0].valueCoding = $athis#yn-no-not-at-all "Nein, überhaupt nicht"
   * item[+]
     * linkId = "past-tobacco-smoking"
     * answer[0].valueCoding = $athis#yn-no "Nein"
