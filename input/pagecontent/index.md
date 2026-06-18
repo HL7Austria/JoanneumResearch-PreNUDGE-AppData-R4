@@ -30,12 +30,14 @@ Additional PreNUDGE measurements, also narrow standardized, will be specified an
 - Physical Activity: Sitting hours (per day) (from a questionnaire from a wearable device as an observation)
 - Nutrition: Portions of fruit and vegetables (per day) (from a questionnaire)
 - Nutrition: Consumption frequency of sugary and salty foods (per week) (from a questionnaire)
-- Sociodemographic Data: Age (from a questionnaire)
-- Sociodemographic Data: Gender (from a questionnaire)
 - Sociodemographic Data: Highest completed education (ISCED level) (from a questionnaire)
 - Psychosocial Factors: Self reported emotional burden (from a questionnaire)
 - Psychosocial Factors: Self reported stress (from a questionnaire with a calculated score as an observation)
 - Anthropometry: Body Mass Index (kg/m²) (from a questionnaire and from a wearable device as an observation)
 - Workability (score per category) (from a questionnaire with a calculated score as an observation)
+
+The following values will be imported directly from ID Austria into the person/patient resource:
+- Sociodemographic Data: **Age** (mandatory field birthDate in AT APS Patient, birthdate in ID Austria urn:oid:1.2.40.0.10.2.1.1.55)
+- Sociodemographic Data: **Gender** (mandatory field gender in AT APS Patient, gender in ID Austria urn:eidgvat:attributes.gender)
 
 Besides these narrow standardized measurements, **broad standardized measurements** called [**other quantities observations**](StructureDefinition-at-prenudge-observation-other-quantities.html) and [**other not quantities observations**](StructureDefinition-at-prenudge-observation-other-not-quantities.html) are also supported. Please be aware that such broad standardized measurements do not have a corresponding questionnaire.
