@@ -37,6 +37,6 @@ Description: "This FHIR profile is defining the current smoking status observati
 * derivedFrom MS
 * derivedFrom ^short = "QuestionnaireResponse or other source this smoking status observation was derived from"
 
-* value[x] 1..1
+* value[x] 0..1
 * value[x] only CodeableConcept
 * value[x] ^short = "Set to CodeableConcept, as recommended in Observation Social History - Tobacco Use (IPS)"

@@ -6,7 +6,7 @@ Description: "This FHIR profile defines the person's highest completed education
 
 * code = http://loinc.org#82589-3 "Highest level of education"
 
-* value[x] 1..1
+* value[x] 0..1
 * value[x] only CodeableConcept
 * valueCodeableConcept from AtPrenudgeValueSetIsced2011EducationLevel (required)
 

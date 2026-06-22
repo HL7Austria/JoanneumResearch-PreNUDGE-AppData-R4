@@ -35,6 +35,6 @@ Description: "This FHIR profile is derived from the APS Observation Alcohol Use 
 * derivedFrom MS
 * derivedFrom ^short = "QuestionnaireResponse or other source this smoking status observation was derived from"
 
-* value[x] 1..1
+* value[x] 0..1
 * value[x] only Quantity
 * value[x] ^short = "Set to Quantity (drinks/day), as recommended in Observation Social History - Alcohol Use (IPS)"
