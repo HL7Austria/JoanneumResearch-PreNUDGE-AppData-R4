@@ -31,7 +31,7 @@ Usage: #definition
   * answerOption[+].valueCoding = $isced#not-stated "Keine Angabe"
   * item[+]
     * linkId = "highest-completed-education-help"
-    * text = "Orientierungshilfe mit typischen Beispielen: ISCED 1 Volksschule; ISCED 2 Mittelschule oder AHS-Unterstufe; ISCED 3 Berufsschule, Lehre oder AHS-Oberstufe; ISCED 4 Gesundheits- und Krankenpflegeschule; ISCED 5 Kolleg; ISCED 6 Bachelor; ISCED 7 Master oder Diplomstudium; ISCED 8 Doktorat oder PhD."
+    * text = "Orientierungshilfe mit typischen Beispielen: ISCED 0 Kindergarten, Vorschule; ISCED 1 Volksschule; ISCED 2 Mittelschule, AHS-Unterstufe; ISCED 3 Polytechnische Schule, berufsbildende mittlere oder höhere Schule, AHS-Oberstufe; ISCED 4 Lehre mit Matura, Gesundheits- und Krankenpflegeschule, Meister- oder Diplomprüfung; ISCED 5 Kolleg, tertiäre Hebammenakademie bzw. medizinisch-technische Ausbildungen im Kurzzyklus; ISCED 6 Bachelor; ISCED 7 Master oder Diplomstudium; ISCED 8 Doktorat oder PhD."
     * type = #display
   * item[+]
     * linkId = "comment"
