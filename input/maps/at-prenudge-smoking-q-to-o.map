@@ -66,4 +66,20 @@ group SmokingStatusGroupToObservation(source groupItem : QR, target tgt : Obs) {
   -> tgt.value = cc('http://snomed.info/sct', '266919005', 'Never smoked tobacco') "mapPastNoToNeverSmoker";
   } "evaluatePastNo";
   } "pastSmokingNever";
+
+  // SK1 = Weiß nicht
+  groupItem.item as sk1 where sk1.linkId = 'sk1' then {
+  sk1.answer as answer then {
+  answer.value as coding where coding.system = 'https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/athis-answers' and coding.code = 'meta-unknown'
+  -> tgt.dataAbsentReason = cc('http://terminology.hl7.org/CodeSystem/data-absent-reason', 'asked-unknown', 'Asked But Unknown') "mapSk1Unknown";
+  } "evaluateSk1Unknown";
+  } "sk1Unknown";
+
+  // SK1 = Keine Angabe
+  groupItem.item as sk1 where sk1.linkId = 'sk1' then {
+  sk1.answer as answer then {
+  answer.value as coding where coding.system = 'https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/athis-answers' and coding.code = 'meta-not-stated'
+  -> tgt.dataAbsentReason = cc('http://terminology.hl7.org/CodeSystem/data-absent-reason', 'asked-declined', 'Asked But Declined') "mapSk1NotStated";
+  } "evaluateSk1NotStated";
+  } "sk1NotStated";
 }

@@ -95,3 +95,22 @@ Description: "Example of an ATHIS-based smoking status questionnaire response fo
   * item[+]
     * linkId = "sk6c"
     * answer[0].valueCoding = $athis#yn-no-never "Nein, noch nie genutzt/konsumiert"
+
+Instance: SmokingStatusResponseNotStated
+InstanceOf: AtPrenudgeQuestionnaireResponse
+Title: "Smoking Status Q ATHIS - Not Stated Example"
+Usage: #example
+Description: "Example of an ATHIS-based smoking status questionnaire response where the respondent declined to answer the current tobacco smoking question. The derived observation uses dataAbsentReason asked-declined."
+
+* questionnaire = Canonical(SmokingStatusQuestionnaire)
+* status = #completed
+* subject = Reference(Patient/example)
+* authored = "2026-03-13T08:00:00Z"
+* identifier.system = "https://www.joanneum.at"
+* identifier.value = "qr-smokingstatus-2026-03-13-not-stated"
+
+* item[0]
+  * linkId = "smoking-status-athis"
+  * item[0]
+    * linkId = "sk1"
+    * answer[0].valueCoding = $athis#meta-not-stated "Keine Angabe"
