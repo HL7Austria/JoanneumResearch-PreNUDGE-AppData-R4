@@ -20,16 +20,14 @@ meta.profile = 'https://fhir.hl7.at/prenudge/appdata/r4/StructureDefinition/at-p
 src -> tgt.code = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-workability', 'work-soc-category-score', 'Work-SoC category score') "SetCode";
 
 src.item as workSocGroup where linkId = 'work-soc' then {
-  workSocGroup.item as scoreGroup where linkId = 'work-soc-scores' then {
-    scoreGroup.item as scoreItem where linkId = 'work-soc-comprehensibility-score'
-    then MapComprehensibilityScore(scoreItem, tgt) "MapComprehensibilityScore";
+  workSocGroup.item as scoreItem where linkId = 'work-soc-comprehensibility-score'
+  then MapComprehensibilityScore(scoreItem, tgt) "MapComprehensibilityScore";
 
-    scoreGroup.item as scoreItem where linkId = 'work-soc-manageability-score'
-    then MapManageabilityScore(scoreItem, tgt) "MapManageabilityScore";
+  workSocGroup.item as scoreItem where linkId = 'work-soc-manageability-score'
+  then MapManageabilityScore(scoreItem, tgt) "MapManageabilityScore";
 
-    scoreGroup.item as scoreItem where linkId = 'work-soc-meaningfulness-score'
-    then MapMeaningfulnessScore(scoreItem, tgt) "MapMeaningfulnessScore";
-  } "ProcessWorkSocScores";
+  workSocGroup.item as scoreItem where linkId = 'work-soc-meaningfulness-score'
+  then MapMeaningfulnessScore(scoreItem, tgt) "MapMeaningfulnessScore";
 } "ProcessWorkSoc";
 
 // TODO: Comment/Note mapping disabled due to MaLaC-HD limitation

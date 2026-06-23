@@ -137,63 +137,45 @@ Usage: #definition
       * valueInteger = 7
 
   * item[+]
+    * linkId = "work-soc-comprehensibility-score"
+    * code = $workability#work-soc-comprehensibility "Work-SoC comprehensibility score"
+    * text = "Work-SoC Verstehbarkeit Score"
+    * type = #decimal
+    * required = false
+    * readOnly = true
+    * extension[+]
+      * url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression"
+      * valueExpression
+        * language = #text/fhirpath
+        * expression = "(%resource.item.where(linkId = 'work-soc').item.where(linkId = 'work-soc-1').answer.valueInteger.first() + %resource.item.where(linkId = 'work-soc').item.where(linkId = 'work-soc-3').answer.valueInteger.first() + %resource.item.where(linkId = 'work-soc').item.where(linkId = 'work-soc-6').answer.valueInteger.first() + %resource.item.where(linkId = 'work-soc').item.where(linkId = 'work-soc-9').answer.valueInteger.first()) / 4"
+
+  * item[+]
+    * linkId = "work-soc-manageability-score"
+    * code = $workability#work-soc-manageability "Work-SoC manageability score"
+    * text = "Work-SoC Handhabbarkeit Score"
+    * type = #decimal
+    * required = false
+    * readOnly = true
+    * extension[+]
+      * url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression"
+      * valueExpression
+        * language = #text/fhirpath
+        * expression = "(%resource.item.where(linkId = 'work-soc').item.where(linkId = 'work-soc-4').answer.valueInteger.first() + %resource.item.where(linkId = 'work-soc').item.where(linkId = 'work-soc-7').answer.valueInteger.first()) / 2"
+
+  * item[+]
+    * linkId = "work-soc-meaningfulness-score"
+    * code = $workability#work-soc-meaningfulness "Work-SoC meaningfulness score"
+    * text = "Work-SoC Sinnhaftigkeit Score"
+    * type = #decimal
+    * required = false
+    * readOnly = true
+    * extension[+]
+      * url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression"
+      * valueExpression
+        * language = #text/fhirpath
+        * expression = "(%resource.item.where(linkId = 'work-soc').item.where(linkId = 'work-soc-2').answer.valueInteger.first() + %resource.item.where(linkId = 'work-soc').item.where(linkId = 'work-soc-5').answer.valueInteger.first() + %resource.item.where(linkId = 'work-soc').item.where(linkId = 'work-soc-8').answer.valueInteger.first()) / 3"
+
+  * item[+]
     * linkId = "comment"
     * text = "Haben Sie zu Ihren Antworten noch einen Kommentar oder etwas hinzuzufügen?"
     * type = #string
-
-  * item[+]
-    * linkId = "work-soc-scores"
-    * code = $workability#work-soc-score-items "Work-SoC calculated score item group"
-    * text = "Berechnete Work-SoC Kategorien-Scores"
-    * type = #group
-
-    * item[0]
-      * linkId = "work-soc-comprehensibility-score"
-      * code = $workability#work-soc-comprehensibility "Work-SoC comprehensibility score"
-      * text = "Work-SoC Verstehbarkeit Score"
-      * type = #decimal
-      * required = false
-      * readOnly = true
-      * extension[+]
-        * url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression"
-        * valueExpression
-          * language = #text/fhirpath
-          * expression = "(%resource.item.where(linkId = 'work-soc').item.where(linkId = 'work-soc-1').answer.valueInteger.first() + %resource.item.where(linkId = 'work-soc').item.where(linkId = 'work-soc-3').answer.valueInteger.first() + %resource.item.where(linkId = 'work-soc').item.where(linkId = 'work-soc-6').answer.valueInteger.first() + %resource.item.where(linkId = 'work-soc').item.where(linkId = 'work-soc-9').answer.valueInteger.first()) / 4"
-      * item[0]
-        * linkId = "work-soc-comprehensibility-score-comment"
-        * text = "Kommentar"
-        * type = #string
-
-    * item[+]
-      * linkId = "work-soc-manageability-score"
-      * code = $workability#work-soc-manageability "Work-SoC manageability score"
-      * text = "Work-SoC Handhabbarkeit Score"
-      * type = #decimal
-      * required = false
-      * readOnly = true
-      * extension[+]
-        * url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression"
-        * valueExpression
-          * language = #text/fhirpath
-          * expression = "(%resource.item.where(linkId = 'work-soc').item.where(linkId = 'work-soc-4').answer.valueInteger.first() + %resource.item.where(linkId = 'work-soc').item.where(linkId = 'work-soc-7').answer.valueInteger.first()) / 2"
-      * item[0]
-        * linkId = "work-soc-manageability-score-comment"
-        * text = "Kommentar"
-        * type = #string
-
-    * item[+]
-      * linkId = "work-soc-meaningfulness-score"
-      * code = $workability#work-soc-meaningfulness "Work-SoC meaningfulness score"
-      * text = "Work-SoC Sinnhaftigkeit Score"
-      * type = #decimal
-      * required = false
-      * readOnly = true
-      * extension[+]
-        * url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression"
-        * valueExpression
-          * language = #text/fhirpath
-          * expression = "(%resource.item.where(linkId = 'work-soc').item.where(linkId = 'work-soc-2').answer.valueInteger.first() + %resource.item.where(linkId = 'work-soc').item.where(linkId = 'work-soc-5').answer.valueInteger.first() + %resource.item.where(linkId = 'work-soc').item.where(linkId = 'work-soc-8').answer.valueInteger.first()) / 3"
-      * item[0]
-        * linkId = "work-soc-meaningfulness-score-comment"
-        * text = "Kommentar"
-        * type = #string

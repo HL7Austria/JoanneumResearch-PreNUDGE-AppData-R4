@@ -44,20 +44,17 @@ Description: "Example of a Work-SoC questionnaire response with nine raw item an
     * linkId = "work-soc-9"
     * answer[0].valueInteger = 4
   * item[+]
+    * linkId = "work-soc-comprehensibility-score"
+    * answer[0].valueDecimal = 2.75
+  * item[+]
+    * linkId = "work-soc-manageability-score"
+    * answer[0].valueDecimal = 3.5
+  * item[+]
+    * linkId = "work-soc-meaningfulness-score"
+    * answer[0].valueDecimal = 5
+  * item[+]
     * linkId = "comment"
     * answer[0].valueString = "Die Arbeitssituation ist derzeit wechselhaft."
-
-  * item[+]
-    * linkId = "work-soc-scores"
-    * item[0]
-      * linkId = "work-soc-comprehensibility-score"
-      * answer[0].valueDecimal = 2.75
-    * item[+]
-      * linkId = "work-soc-manageability-score"
-      * answer[0].valueDecimal = 3.5
-    * item[+]
-      * linkId = "work-soc-meaningfulness-score"
-      * answer[0].valueDecimal = 5
 
 
 Instance: wai-response-example
