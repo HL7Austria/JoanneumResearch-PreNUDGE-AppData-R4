@@ -23,38 +23,40 @@ group EducationQuestionnaireResponseToObservation(source src : QR, target tgt : 
     id -> reference.reference = append('QuestionnaireResponse/', id) "setDerivedFromReference";
   } "setDerivedFrom";
 
+  // optimized for IG Publisher
+  // to work with MaLaC-HD, tgt.value -> tgt.valueCodeableConcept
   src.item as educationItem where educationItem.linkId = 'highest-completed-education' then {
   educationItem.answer as answer where answer.valueCoding.code = 'isced-0' ->
-    tgt.valueCodeableConcept = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-isced-2011-education-level', 'isced-0', 'ISCED 0 - Elementarbereich') "mapIsced0";
+    tgt.value = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-isced-2011-education-level', 'isced-0', 'ISCED 0 - Elementarbereich') "mapIsced0";
 
   educationItem.answer as answer where answer.valueCoding.code = 'isced-1' ->
-    tgt.valueCodeableConcept = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-isced-2011-education-level', 'isced-1', 'ISCED 1 - Primarbereich') "mapIsced1";
+    tgt.value = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-isced-2011-education-level', 'isced-1', 'ISCED 1 - Primarbereich') "mapIsced1";
 
   educationItem.answer as answer where answer.valueCoding.code = 'isced-2' ->
-    tgt.valueCodeableConcept = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-isced-2011-education-level', 'isced-2', 'ISCED 2 - Sekundarbereich I') "mapIsced2";
+    tgt.value = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-isced-2011-education-level', 'isced-2', 'ISCED 2 - Sekundarbereich I') "mapIsced2";
 
   educationItem.answer as answer where answer.valueCoding.code = 'isced-3' ->
-    tgt.valueCodeableConcept = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-isced-2011-education-level', 'isced-3', 'ISCED 3 - Sekundarbereich II') "mapIsced3";
+    tgt.value = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-isced-2011-education-level', 'isced-3', 'ISCED 3 - Sekundarbereich II') "mapIsced3";
 
   educationItem.answer as answer where answer.valueCoding.code = 'isced-4' ->
-    tgt.valueCodeableConcept = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-isced-2011-education-level', 'isced-4', 'ISCED 4 - Postsekundärer, nicht-tertiärer Bereich') "mapIsced4";
+    tgt.value = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-isced-2011-education-level', 'isced-4', 'ISCED 4 - Postsekundärer, nicht-tertiärer Bereich') "mapIsced4";
 
   educationItem.answer as answer where answer.valueCoding.code = 'isced-5' ->
-    tgt.valueCodeableConcept = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-isced-2011-education-level', 'isced-5', 'ISCED 5 - Kurzes tertiäres Bildungsprogramm') "mapIsced5";
+    tgt.value = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-isced-2011-education-level', 'isced-5', 'ISCED 5 - Kurzes tertiäres Bildungsprogramm') "mapIsced5";
 
   educationItem.answer as answer where answer.valueCoding.code = 'isced-6' ->
-    tgt.valueCodeableConcept = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-isced-2011-education-level', 'isced-6', 'ISCED 6 - Bachelor- bzw. gleichwertiges Bildungsprogramm') "mapIsced6";
+    tgt.value = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-isced-2011-education-level', 'isced-6', 'ISCED 6 - Bachelor- bzw. gleichwertiges Bildungsprogramm') "mapIsced6";
 
   educationItem.answer as answer where answer.valueCoding.code = 'isced-7' ->
-    tgt.valueCodeableConcept = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-isced-2011-education-level', 'isced-7', 'ISCED 7 - Master- bzw. gleichwertiges Bildungsprogramm') "mapIsced7";
+    tgt.value = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-isced-2011-education-level', 'isced-7', 'ISCED 7 - Master- bzw. gleichwertiges Bildungsprogramm') "mapIsced7";
 
   educationItem.answer as answer where answer.valueCoding.code = 'isced-8' ->
-    tgt.valueCodeableConcept = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-isced-2011-education-level', 'isced-8', 'ISCED 8 - Doktorat oder gleichwertig') "mapIsced8";
+    tgt.value = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-isced-2011-education-level', 'isced-8', 'ISCED 8 - Doktorat oder gleichwertig') "mapIsced8";
 
   educationItem.answer as answer where answer.valueCoding.code = 'unknown' ->
-    tgt.valueCodeableConcept = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-isced-2011-education-level', 'unknown', 'Weiß nicht') "mapUnknown";
+    tgt.value = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-isced-2011-education-level', 'unknown', 'Weiß nicht') "mapUnknown";
 
   educationItem.answer as answer where answer.valueCoding.code = 'not-stated' ->
-    tgt.valueCodeableConcept = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-isced-2011-education-level', 'not-stated', 'Keine Angabe') "mapNotStated";
+    tgt.value = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-isced-2011-education-level', 'not-stated', 'Keine Angabe') "mapNotStated";
   } "mapEducationItem";
 }
