@@ -1,0 +1,95 @@
+{
+    "resourceType": "Observation",
+    "meta": {
+        "profile": [
+            "https://fhir.hl7.at/prenudge/appdata/r4/StructureDefinition/at-prenudge-work-soc-score-observation"
+        ]
+    },
+    "identifier": [
+        {
+            "system": "https://www.joanneum.at",
+            "value": "qr-work-soc-2026-03-20-001"
+        }
+    ],
+    "status": "final",
+    "code": {
+        "coding": [
+            {
+                "system": "https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-workability",
+                "code": "work-soc-category-score",
+                "display": "Work-SoC category score"
+            }
+        ]
+    },
+    "subject": {
+        "reference": "Patient/example"
+    },
+    "issued": "2026-03-20T09:00:00Z",
+    "method": {
+        "coding": [
+            {
+                "system": "http://snomed.info/sct",
+                "code": "87982008",
+                "display": "Manual"
+            }
+        ]
+    },
+    "derivedFrom": [
+        {
+            "reference": "QuestionnaireResponse/work-soc-response-example"
+        }
+    ],
+    "component": [
+        {
+            "code": {
+                "coding": [
+                    {
+                        "system": "https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-workability",
+                        "code": "work-soc-comprehensibility",
+                        "display": "Work-SoC comprehensibility score"
+                    }
+                ]
+            },
+            "valueQuantity": {
+                "value": 2.75,
+                "unit": "score",
+                "system": "http://unitsofmeasure.org",
+                "code": "{score}"
+            }
+        },
+        {
+            "code": {
+                "coding": [
+                    {
+                        "system": "https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-workability",
+                        "code": "work-soc-manageability",
+                        "display": "Work-SoC manageability score"
+                    }
+                ]
+            },
+            "valueQuantity": {
+                "value": 3.5,
+                "unit": "score",
+                "system": "http://unitsofmeasure.org",
+                "code": "{score}"
+            }
+        },
+        {
+            "code": {
+                "coding": [
+                    {
+                        "system": "https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-workability",
+                        "code": "work-soc-meaningfulness",
+                        "display": "Work-SoC meaningfulness score"
+                    }
+                ]
+            },
+            "valueQuantity": {
+                "value": 5.0,
+                "unit": "score",
+                "system": "http://unitsofmeasure.org",
+                "code": "{score}"
+            }
+        }
+    ]
+}
