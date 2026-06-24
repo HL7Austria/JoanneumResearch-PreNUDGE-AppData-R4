@@ -14,7 +14,7 @@ Usage: #definition
 
 * item[+]
   * linkId = "bmi"
-  * text = "Body-Mass-Index (BMI)"
+  * text = "Body Mass Index (BMI)"
   * type = #group
 
   * item[+]

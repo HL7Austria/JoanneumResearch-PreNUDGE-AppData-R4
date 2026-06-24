@@ -22,7 +22,7 @@ We focus on narrow standardization of the following **PreNUDGE measurements**:
 - **Workability** 
   - Work-related Sense of Coherence (Work-SoC) - [**questionnaire**](Questionnaire-WorkSocQuestionnaire.html) with a calculated score as an [**observation**](StructureDefinition-at-prenudge-work-soc-score-observation.html)
   - Work Ability Index (WAI) - [**questionnaire**](Questionnaire-WorkAbilityIndexQuestionnaire.html) only
-- Anthropometry: **Body Mass Index** (kg/m²) (from a [**questionnaire**](Questionnaire-BmiQuestionnaire.html) and from an [**observation**](StructureDefinition-at-prenudge-bmi-observation.html))
+- Anthropometry: **Body Mass Index** (BMI) in kg/m² (from a [**questionnaire**](Questionnaire-BmiQuestionnaire.html) and from an [**observation**](StructureDefinition-at-prenudge-bmi-observation.html))
 - For Demo Purposes: **Blood glucose** in mg/dL (from a [**questionnaire**](Questionnaire-BloodGlucoseQuestionnaire.html) and from a [**device as an observation**](StructureDefinition-at-prenudge-bloodglucose-observation.html))
 
 For viewing the full questionnaires use tools like [lhcforms](https://lhcfhirtools.nlm.nih.gov/lhcforms).
