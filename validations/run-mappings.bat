@@ -12,5 +12,9 @@ malac-hd -s -m ..\input\maps\at-prenudge-smoking-q-to-o.map -ti ..\fsh-generated
 
 malac-hd -s -m ..\input\maps\at-prenudge-smoking-q-to-o.map -ti ..\fsh-generated\resources\QuestionnaireResponse-SmokingStatusResponseNever.json  -to 07_smoking_never.json
 
+malac-hd -s -m ..\input\maps\at-prenudge-education-q-to-o.map -ti ..\fsh-generated\resources\QuestionnaireResponse-education-response-bachelor-example.json  -to 08_education_bachelor.json
+
+malac-hd -s -m ..\input\maps\at-prenudge-education-q-to-o.map -ti ..\fsh-generated\resources\QuestionnaireResponse-education-response-upper-secondary-example.json  -to 09_education_upper-secondary.json
+
 @rem -co convert output liefert ein Phyton Skript, womit man das debugging machen kann
 @rem malac-hd -s -m ..\input\maps\at-prenudge-sleep-duration-mapping.map -co sleep-duration.py

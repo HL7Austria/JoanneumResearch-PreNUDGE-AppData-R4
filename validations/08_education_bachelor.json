@@ -1,0 +1,46 @@
+{
+    "resourceType": "Observation",
+    "identifier": [
+        {
+            "system": "https://www.joanneum.at",
+            "value": "qr-education-2026-03-20-001"
+        }
+    ],
+    "status": "final",
+    "code": {
+        "coding": [
+            {
+                "system": "http://loinc.org",
+                "code": "82589-3",
+                "display": "Highest level of education"
+            }
+        ]
+    },
+    "subject": {
+        "reference": "Patient/example"
+    },
+    "effectiveDateTime": "2026-03-20T09:00:00+00:00",
+    "valueCodeableConcept": {
+        "coding": [
+            {
+                "system": "https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-isced-2011-education-level",
+                "code": "isced-6",
+                "display": "ISCED 6 - Bachelor- bzw. gleichwertiges Bildungsprogramm"
+            }
+        ]
+    },
+    "method": {
+        "coding": [
+            {
+                "system": "http://snomed.info/sct",
+                "code": "87982008",
+                "display": "Manual"
+            }
+        ]
+    },
+    "derivedFrom": [
+        {
+            "reference": "QuestionnaireResponse/education-response-bachelor-example"
+        }
+    ]
+}
