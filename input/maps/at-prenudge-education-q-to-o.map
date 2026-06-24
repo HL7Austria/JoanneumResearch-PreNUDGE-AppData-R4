@@ -12,7 +12,8 @@ group EducationQuestionnaireResponseToObservation(source src : QR, target tgt : 
   src -> tgt.status = 'final' "setFinalStatus";
   src.identifier as identifier -> tgt.identifier = identifier "copyIdentifier";
   src.subject as subject -> tgt.subject = subject "copySubject";
-  src.authored as authored -> tgt.effective = authored "copyAuthoredToEffective", tgt.issued = authored "copyAuthoredToIssued";
+  src.authored as authored -> tgt.effective = authored "copyAuthoredToEffective";
+  src.authored as authored -> tgt.issued = authored "copyAuthoredToIssued";
 
   src -> tgt.code = cc('http://loinc.org', '82589-3', 'Highest level of education') "setEducationCode";
 
