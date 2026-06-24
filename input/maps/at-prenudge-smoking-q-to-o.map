@@ -35,16 +35,16 @@ group SmokingStatusGroupToObservation(source groupItem : QR, target tgt : Obs) {
   // SK1 = Ja, täglich -> current every day smoker.
   groupItem.item as sk1 where sk1.linkId = 'sk1' then {
   sk1.answer as answer then {
-  answer.value as coding where coding.system = 'https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/athis-answers' and coding.code = 'yn-yes-daily'
-  -> tgt.value = cc('http://snomed.info/sct', '449868002', 'Smokes tobacco daily') "mapCurrentDailySmoker";
+  answer.valueCoding as coding where coding.system = 'https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/athis-answers' and coding.code = 'yn-yes-daily'
+  -> tgt.valueCodeableConcept = cc('http://snomed.info/sct', '449868002', 'Smokes tobacco daily') "mapCurrentDailySmoker";
   } "evaluateSk1Daily";
   } "sk1Daily";
 
   // SK1 = Ja, gelegentlich -> current occasional smoker.
   groupItem.item as sk1 where sk1.linkId = 'sk1' then {
   sk1.answer as answer then {
-  answer.value as coding where coding.system = 'https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/athis-answers' and coding.code = 'yn-yes-occasionally'
-  -> tgt.value = cc('http://snomed.info/sct', '428041000124106', 'Occasional tobacco smoker') "mapCurrentOccasionalSmoker";
+  answer.valueCoding as coding where coding.system = 'https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/athis-answers' and coding.code = 'yn-yes-occasionally'
+  -> tgt.valueCodeableConcept = cc('http://snomed.info/sct', '428041000124106', 'Occasional tobacco smoker') "mapCurrentOccasionalSmoker";
   } "evaluateSk1Occasional";
   } "sk1Occasional";
 
@@ -52,25 +52,25 @@ group SmokingStatusGroupToObservation(source groupItem : QR, target tgt : Obs) {
   // The past-tobacco-smoking item is enabled only when SK1 is negative.
   groupItem.item as past where past.linkId = 'past-tobacco-smoking' then {
   past.answer as answer then {
-  answer.value as coding where coding.system = 'https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/athis-answers' and coding.code = 'yn-yes-daily'
-  -> tgt.value = cc('http://snomed.info/sct', '8517006', 'Ex-smoker') "mapPastDailyToFormerSmoker";
-  answer.value as coding where coding.system = 'https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/athis-answers' and coding.code = 'yn-yes-occasionally'
-  -> tgt.value = cc('http://snomed.info/sct', '8517006', 'Ex-smoker') "mapPastOccasionalToFormerSmoker";
+  answer.valueCoding as coding where coding.system = 'https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/athis-answers' and coding.code = 'yn-yes-daily'
+  -> tgt.valueCodeableConcept = cc('http://snomed.info/sct', '8517006', 'Ex-smoker') "mapPastDailyToFormerSmoker";
+  answer.valueCoding as coding where coding.system = 'https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/athis-answers' and coding.code = 'yn-yes-occasionally'
+  -> tgt.valueCodeableConcept = cc('http://snomed.info/sct', '8517006', 'Ex-smoker') "mapPastOccasionalToFormerSmoker";
   } "evaluatePastSmoking";
   } "pastSmokingFormer";
 
   // SK1 = Nein and past tobacco smoking = Nein -> never smoker.
   groupItem.item as past where past.linkId = 'past-tobacco-smoking' then {
   past.answer as answer then {
-  answer.value as coding where coding.system = 'https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/athis-answers' and coding.code = 'yn-no'
-  -> tgt.value = cc('http://snomed.info/sct', '266919005', 'Never smoked tobacco') "mapPastNoToNeverSmoker";
+  answer.valueCoding as coding where coding.system = 'https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/athis-answers' and coding.code = 'yn-no'
+  -> tgt.valueCodeableConcept = cc('http://snomed.info/sct', '266919005', 'Never smoked tobacco') "mapPastNoToNeverSmoker";
   } "evaluatePastNo";
   } "pastSmokingNever";
 
   // SK1 = Weiß nicht
   groupItem.item as sk1 where sk1.linkId = 'sk1' then {
   sk1.answer as answer then {
-  answer.value as coding where coding.system = 'https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/athis-answers' and coding.code = 'meta-unknown'
+  answer.valueCoding as coding where coding.system = 'https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/athis-answers' and coding.code = 'meta-unknown'
   -> tgt.dataAbsentReason = cc('http://terminology.hl7.org/CodeSystem/data-absent-reason', 'asked-unknown', 'Asked But Unknown') "mapSk1Unknown";
   } "evaluateSk1Unknown";
   } "sk1Unknown";
@@ -78,7 +78,7 @@ group SmokingStatusGroupToObservation(source groupItem : QR, target tgt : Obs) {
   // SK1 = Keine Angabe
   groupItem.item as sk1 where sk1.linkId = 'sk1' then {
   sk1.answer as answer then {
-  answer.value as coding where coding.system = 'https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/athis-answers' and coding.code = 'meta-not-stated'
+  answer.valueCoding as coding where coding.system = 'https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/athis-answers' and coding.code = 'meta-not-stated'
   -> tgt.dataAbsentReason = cc('http://terminology.hl7.org/CodeSystem/data-absent-reason', 'asked-declined', 'Asked But Declined') "mapSk1NotStated";
   } "evaluateSk1NotStated";
   } "sk1NotStated";
