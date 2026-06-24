@@ -1,0 +1,135 @@
+map "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/BmiQuestionnaireResponseToObservations" = "BmiQuestionnaireResponseToObservations"
+
+/// url = "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/BmiQuestionnaireResponseToObservations"
+/// name = "BmiQuestionnaireResponseToObservations"
+/// title = "BMI Q to Body Height, Body Weight and BMI Observations Bundle"
+/// status = "active"
+
+uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" alias QR as source
+uses "http://hl7.org/fhir/StructureDefinition/Bundle" alias Bundle as target
+uses "http://hl7.org/fhir/StructureDefinition/Observation" alias Obs as target
+
+group BmiQuestionnaireResponseToObservations(source src : QR, target tgt : Bundle) {
+src -> tgt.type = 'collection' "SetBundleType";
+
+src -> tgt.entry as heightEntry,
+heightEntry.resource = create('Observation') as heightObs then {
+src then MapBodyHeightObservation(src, heightObs) "MapBodyHeightObservation";
+} "CreateBodyHeightEntry";
+
+src -> tgt.entry as weightEntry,
+weightEntry.resource = create('Observation') as weightObs then {
+src then MapBodyWeightObservation(src, weightObs) "MapBodyWeightObservation";
+} "CreateBodyWeightEntry";
+
+src -> tgt.entry as bmiEntry,
+bmiEntry.resource = create('Observation') as bmiObs then {
+src then MapBodyMassIndexObservation(src, bmiObs) "MapBodyMassIndexObservation";
+} "CreateBmiEntry";
+}
+
+group SetCommonObservationFields(source src : QR, target tgt : Obs) {
+src -> tgt.status = 'final' "setFinalStatus";
+
+src.subject as subject -> tgt.subject = subject "copySubject";
+
+src.authored as authored -> tgt.effective = authored "copyAuthoredToEffective";
+
+src.authored as authored -> tgt.issued = authored "copyAuthoredToIssued";
+
+src -> tgt.method = cc('http://snomed.info/sct', '87982008', 'Manual') "setManualMethod";
+
+src.id as id -> tgt.derivedFrom = create('Reference') as reference then {
+id -> reference.reference = append('QuestionnaireResponse/', id) "setDerivedFromReference";
+} "setDerivedFrom";
+}
+
+group MapBodyHeightObservation(source src : QR, target tgt : Obs) {
+src then SetCommonObservationFields(src, tgt) "SetCommonFields";
+
+src -> tgt.meta as meta,
+meta.profile = 'https://fhir.hl7.at/prenudge/appdata/r4/StructureDefinition/at-prenudge-bodyheight-observation' "SetProfile";
+
+src -> tgt.category = cc('http://terminology.hl7.org/CodeSystem/observation-category', 'vital-signs', 'Vital Signs') "SetCategory";
+
+src -> tgt.code = cc('http://loinc.org', '8302-2', 'Body height') "SetCode";
+
+src.identifier as identifier -> tgt.identifier = create('Identifier') as targetIdentifier then {
+identifier.system as system -> targetIdentifier.system = system "SetIdentifierSystem";
+identifier.value as value -> targetIdentifier.value = append(value, '-bodyheight') "SetIdentifierValue";
+} "SetIdentifier";
+
+src.item as bmiGroup where bmiGroup.linkId = 'bmi' then {
+bmiGroup.item as heightItem where heightItem.linkId = 'height-cm' then {
+heightItem.answer as answer then {
+answer.value as val then {
+val.value as numVal -> tgt.value = create('Quantity') as qty,
+qty.value = numVal,
+qty.unit = 'cm',
+qty.system = 'http://unitsofmeasure.org',
+qty.code = 'cm' "SetValue";
+} "ExtractPrimitiveValue";
+} "ProcessAnswer";
+} "ProcessHeightItem";
+} "ProcessBmiGroup";
+}
+
+group MapBodyWeightObservation(source src : QR, target tgt : Obs) {
+src then SetCommonObservationFields(src, tgt) "SetCommonFields";
+
+src -> tgt.meta as meta,
+meta.profile = 'https://fhir.hl7.at/prenudge/appdata/r4/StructureDefinition/at-prenudge-bodyweight-observation' "SetProfile";
+
+src -> tgt.category = cc('http://terminology.hl7.org/CodeSystem/observation-category', 'vital-signs', 'Vital Signs') "SetCategory";
+
+src -> tgt.code = cc('http://loinc.org', '29463-7', 'Body weight') "SetCode";
+
+src.identifier as identifier -> tgt.identifier = create('Identifier') as targetIdentifier then {
+identifier.system as system -> targetIdentifier.system = system "SetIdentifierSystem";
+identifier.value as value -> targetIdentifier.value = append(value, '-bodyweight') "SetIdentifierValue";
+} "SetIdentifier";
+
+src.item as bmiGroup where bmiGroup.linkId = 'bmi' then {
+bmiGroup.item as weightItem where weightItem.linkId = 'weight-kg' then {
+weightItem.answer as answer then {
+answer.value as val then {
+val.value as numVal -> tgt.value = create('Quantity') as qty,
+qty.value = numVal,
+qty.unit = 'kg',
+qty.system = 'http://unitsofmeasure.org',
+qty.code = 'kg' "SetValue";
+} "ExtractPrimitiveValue";
+} "ProcessAnswer";
+} "ProcessWeightItem";
+} "ProcessBmiGroup";
+}
+
+group MapBodyMassIndexObservation(source src : QR, target tgt : Obs) {
+src then SetCommonObservationFields(src, tgt) "SetCommonFields";
+
+src -> tgt.meta as meta,
+meta.profile = 'https://fhir.hl7.at/prenudge/appdata/r4/StructureDefinition/at-prenudge-bmi-observation' "SetProfile";
+
+src -> tgt.category = cc('http://terminology.hl7.org/CodeSystem/observation-category', 'vital-signs', 'Vital Signs') "SetCategory";
+
+src -> tgt.code = cc('http://loinc.org', '39156-5', 'Body mass index (BMI) [Ratio]') "SetCode";
+
+src.identifier as identifier -> tgt.identifier = create('Identifier') as targetIdentifier then {
+identifier.system as system -> targetIdentifier.system = system "SetIdentifierSystem";
+identifier.value as value -> targetIdentifier.value = append(value, '-bmi') "SetIdentifierValue";
+} "SetIdentifier";
+
+src.item as bmiGroup where bmiGroup.linkId = 'bmi' then {
+bmiGroup.item as bmiItem where bmiItem.linkId = 'bmi-kg-m2' then {
+bmiItem.answer as answer then {
+answer.value as val then {
+val.value as numVal -> tgt.value = create('Quantity') as qty,
+qty.value = numVal,
+qty.unit = 'kg/m2',
+qty.system = 'http://unitsofmeasure.org',
+qty.code = 'kg/m2' "SetValue";
+} "ExtractPrimitiveValue";
+} "ProcessAnswer";
+} "ProcessBmiItem";
+} "ProcessBmiGroup";
+}
