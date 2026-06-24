@@ -18,5 +18,7 @@ malac-hd -s -m ..\input\maps\at-prenudge-education-q-to-o.map -ti ..\fsh-generat
 
 malac-hd -s -m ..\input\maps\at-prenudge-work-soc-q-to-o.map -ti ..\fsh-generated\resources\QuestionnaireResponse-work-soc-response-example.json  -to 10_work-soc.json
 
+malac-hd -s -m ..\input\maps\at-prenudge-bmi-q-to-o.map -ti ..\fsh-generated\resources\QuestionnaireResponse-bmi-questionnaire-response-example.json  -to 11_bmi.json
+
 @rem -co convert output liefert ein Phyton Skript, womit man das debugging machen kann
 @rem malac-hd -s -m ..\input\maps\at-prenudge-sleep-duration-mapping.map -co sleep-duration.py
