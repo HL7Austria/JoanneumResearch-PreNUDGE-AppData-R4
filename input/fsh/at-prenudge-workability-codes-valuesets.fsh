@@ -21,9 +21,6 @@ Description: "Local PreNUDGE codes for workability questionnaires and derived Wo
 * #work-soc-item-9 "Work-SoC item 9"
 
 // Work-SoC derived observation and component codes
-* #work-soc-score-items "Work-SoC calculated score item group"
-* #work-soc-score-items ^definition = "Group containing calculated Work-SoC category score items."
-
 * #work-soc-category-score "Work-SoC category score"
 
 * #work-soc-comprehensibility "Work-SoC comprehensibility score"

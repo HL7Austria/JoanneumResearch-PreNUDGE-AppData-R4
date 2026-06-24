@@ -139,7 +139,7 @@ Usage: #definition
   * item[+]
     * linkId = "work-soc-comprehensibility-score"
     * code = $workability#work-soc-comprehensibility "Work-SoC comprehensibility score"
-    * text = "Work-SoC Verstehbarkeit Score"
+    * text = "Score Verstehbarkeit: (Item 1 + Item 3 + Item 6 + Item 9) / 4"
     * type = #decimal
     * required = false
     * readOnly = true
@@ -152,7 +152,7 @@ Usage: #definition
   * item[+]
     * linkId = "work-soc-manageability-score"
     * code = $workability#work-soc-manageability "Work-SoC manageability score"
-    * text = "Work-SoC Handhabbarkeit Score"
+    * text = "Score Handhabbarkeit: (Item 4 + Item 7) / 2"
     * type = #decimal
     * required = false
     * readOnly = true
@@ -165,7 +165,7 @@ Usage: #definition
   * item[+]
     * linkId = "work-soc-meaningfulness-score"
     * code = $workability#work-soc-meaningfulness "Work-SoC meaningfulness score"
-    * text = "Work-SoC Sinnhaftigkeit Score"
+    * text = "Score Sinnhaftigkeit: (Item 2 + Item 5 + Item 8) / 3"
     * type = #decimal
     * required = false
     * readOnly = true
