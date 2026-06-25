@@ -23,6 +23,7 @@ We focus on narrow standardization of the following **PreNUDGE measurements**:
   - Work-related Sense of Coherence (Work-SoC) - [**questionnaire**](Questionnaire-WorkSocQuestionnaire.html) with a calculated score as an [**observation**](StructureDefinition-at-prenudge-work-soc-score-observation.html)
   - Work Ability Index (WAI) - [**questionnaire**](Questionnaire-WorkAbilityIndexQuestionnaire.html) only
 - Anthropometry: **Body Mass Index** (BMI) in kg/m² (from a [**questionnaire**](Questionnaire-BmiQuestionnaire.html) and from an [**observation**](StructureDefinition-at-prenudge-bmi-observation.html))
+- Psychosocial Factors: **Self reported emotional burden** (PHQ-2; „Whooley Questions“) (from a [**questionnaire**](Questionnaire-WhooleyQuestionnaire.html), result mapped to an [**observation**](StructureDefinition-at-prenudge-whooley-observation.html))
 - For Demo Purposes: **Blood glucose** in mg/dL (from a [**questionnaire**](Questionnaire-BloodGlucoseQuestionnaire.html) and from a [**device as an observation**](StructureDefinition-at-prenudge-bloodglucose-observation.html))
 
 For viewing the full questionnaires use tools like [lhcforms](https://lhcfhirtools.nlm.nih.gov/lhcforms).
@@ -35,7 +36,6 @@ Additional PreNUDGE measurements, also narrow standardized, will be specified an
 - Physical Activity: Sitting hours (per day) (from a questionnaire from a wearable device as an observation)
 - Nutrition: Portions of fruit and vegetables (per day) (from a questionnaire)
 - Nutrition: Consumption frequency of sugary and salty foods (per week) (from a questionnaire)
-- Psychosocial Factors: Self reported emotional burden (from a questionnaire)
 - Psychosocial Factors: Self reported stress (from a questionnaire with a calculated score as an observation)
 
 The following sociodemographic data are provided as patient demographic data, preferably from ID Austria. They are not collected using PreNUDGE questionnaires and are not represented as observations.

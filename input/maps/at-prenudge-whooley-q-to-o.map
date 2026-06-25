@@ -1,0 +1,55 @@
+map "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/WhooleyQuestionnaireResponseToObservation" = "WhooleyQuestionnaireResponseToObservation"
+
+/// url = "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/WhooleyQuestionnaireResponseToObservation"
+/// name = "WhooleyQuestionnaireResponseToObservation"
+/// title = "PHQ-2/Whooley Q to O"
+/// status = "active"
+
+uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" alias QR as source
+uses "http://hl7.org/fhir/StructureDefinition/Observation" alias Obs as target
+
+group WhooleyQuestionnaireResponseToObservation(source src : QR, target tgt : Obs) {
+  src -> tgt.status = 'final' "setFinalStatus";
+  src.identifier as identifier -> tgt.identifier = identifier "copyIdentifier";
+  src.subject as subject -> tgt.subject = subject "copySubject";
+  src.authored as authored -> tgt.effective = authored "copyAuthoredToEffective";
+  src.authored as authored -> tgt.issued = authored "copyAuthoredToIssued";
+
+  // LOINC 55757-9: closest available code for a PHQ-2 screening result.
+  // The Whooley Ja/Nein variant over the last month differs from the standard scored PHQ-2.
+  src -> tgt.code = cc('http://loinc.org', '55757-9', 'Patient Health Questionnaire 2 item (PHQ-2) [Reported]') "setCode";
+
+  src -> tgt.method = cc('http://snomed.info/sct', '87982008', 'Manual') "setManualMethod";
+
+  src.id as id -> tgt.derivedFrom = create('Reference') as reference then {
+    id -> reference.reference = append('QuestionnaireResponse/', id) "setDerivedFromReference";
+  } "setDerivedFrom";
+
+  src.item as whooleyGroup where whooleyGroup.linkId = 'whooley'
+  then WhooleyGroupToObservation(whooleyGroup, tgt) "mapWhooleyGroup";
+}
+
+// Routes based on q1 answer.
+// If q1 = SNOMED 373066001 (Ja): delegates to WhooleyQ2Check to test q2.
+// If q1 = SNOMED 373067005 (Nein): sets Negative result immediately.
+group WhooleyGroupToObservation(source groupItem : QR, target tgt : Obs) {
+  groupItem.item as q1 where q1.linkId = '/whooley-q1' then {
+    q1.answer as a1 where a1.valueCoding.code = '373066001'
+    then WhooleyQ2Check(groupItem, tgt) "whenQ1Ja";
+  } "q1Ja";
+
+  groupItem.item as q1 where q1.linkId = '/whooley-q1' then {
+    q1.answer as a1 where a1.valueCoding.code = '373067005'
+    -> tgt.value = cc('http://snomed.info/sct', '260385009', 'Negative (qualifier value)') "q1Nein";
+  } "q1Nein";
+}
+
+// Called only when q1 = Ja. Sets Positive if q2 = Ja, Negative if q2 = Nein.
+group WhooleyQ2Check(source groupItem : QR, target tgt : Obs) {
+  groupItem.item as q2 where q2.linkId = '/whooley-q2' then {
+    q2.answer as a2 where a2.valueCoding.code = '373066001'
+    -> tgt.value = cc('http://snomed.info/sct', '10828004', 'Positive (qualifier value)') "bothJa";
+    q2.answer as a2 where a2.valueCoding.code = '373067005'
+    -> tgt.value = cc('http://snomed.info/sct', '260385009', 'Negative (qualifier value)') "q2Nein";
+  } "processQ2";
+}
