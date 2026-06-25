@@ -1,9 +1,8 @@
-Profile: AtPrenudgeObservationAlcoholUse
-Parent: AtApsObservationAlcoholUse
-//TODO: check if for alcohol we also need the overall prenudge observation, this here would be much cleaner and easier to implement
-Id: at-prenudge-alcoholuse-observation
-Title: "AT PreNUDGE Observation Alcohol Use"
-Description: "This FHIR profile is derived from the APS Observation Alcohol Use profile. Additional fields from the PreNUDGE Observation profile are added."
+Profile: AtPrenudgeObservationSmokingStatus
+Parent: AtApsObservationTobaccoUse
+Id: at-prenudge-smokingstatus-observation
+Title: "AT PreNUDGE Observation Smoking Status"
+Description: "This FHIR profile is defining the current smoking status observation for PreNUDGE. It is derived from the APS Observation Tobacco Use profile, which imposes the IPS Observation Social History - Tobacco Use profile. The value is derived from the ATHIS-based SmokingStatusQuestionnaire, primarily from SK1 and, if SK1 is negative, from the past tobacco smoking question. Additional fields from the PreNUDGE Observation profile are added."
 
 // -------------------------------------------------------------------------------------------------------------------
 // from PreNUDGE Observation profile, as multiple inheritance not possible in R4
@@ -32,9 +31,12 @@ Description: "This FHIR profile is derived from the APS Observation Alcohol Use 
 * component ^short = "Components should only be used when multiple values are inseparably connected to a single measurement (e.g., score domains)."
 // -------------------------------------------------------------------------------------------------------------------
 
+// additional fields
+//* code = http://loinc.org#72166-2 "Tobacco smoking status" // inherit from IPS
+
 * derivedFrom MS
 * derivedFrom ^short = "QuestionnaireResponse or other source this smoking status observation was derived from"
 
 * value[x] 0..1
-* value[x] only Quantity
-* value[x] ^short = "Set to Quantity (drinks/day), as recommended in Observation Social History - Alcohol Use (IPS)"
+* value[x] only CodeableConcept
+* value[x] ^short = "Set to CodeableConcept, as recommended in Observation Social History - Tobacco Use (IPS)"

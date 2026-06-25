@@ -6,7 +6,7 @@ Description: "This FHIR profile defines the Sleep Duration Observation recording
 
 * code = http://loinc.org#93832-4 "Sleep duration"
 
-* value[x] 1..1
+* value[x] 0..1
 * value[x] only Quantity
 * valueQuantity.value 1..1
 * valueQuantity.unit = "h"

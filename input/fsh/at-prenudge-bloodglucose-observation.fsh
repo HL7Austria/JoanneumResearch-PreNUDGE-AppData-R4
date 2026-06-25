@@ -6,7 +6,7 @@ Description: "This FHIR profile is defining the Blood Glucose Observation, simil
 
 * code = http://loinc.org#41653-7 "Glucose [Mass/volume] in Capillary blood by Glucometer"
 
-* value[x] 1..1
+* value[x] 0..1
 * value[x] only Quantity
 * valueQuantity.value 1..1
 * valueQuantity.unit = "mg/dL"

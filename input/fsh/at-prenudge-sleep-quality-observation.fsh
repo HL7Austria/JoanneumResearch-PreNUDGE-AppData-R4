@@ -7,7 +7,7 @@ Description: "Records the self-assessed sleep quality from PROMIS (My sleep qual
 
 * code = http://loinc.org#61987-4 "My sleep quality was...in past 7 days [PROMIS]"
 
-* value[x] 1..1
+* value[x] 0..1
 * value[x] only CodeableConcept
 
 * derivedFrom 0..* MS

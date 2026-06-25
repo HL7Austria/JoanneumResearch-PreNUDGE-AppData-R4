@@ -10,7 +10,7 @@ For more, see [Background](background.html).
 
 This Implementation Guide (IG) explains how application providers can use the **PreNUDGE FHIR API** to deliver **health indicators**.
 
-We focus on narrow standardization of **four PreNUDGE measurements**:
+We focus on narrow standardization of the following **PreNUDGE measurements**:
 - **Physical Activity**: 
     - ⏳Minutes of moderate and vigorous/intense physical activity (per week) (from [**EHIS-PAQ Q4–Q7 / ATHIS PE4–PE7 questionnaire**](Questionnaire-EhisPaqPhysicalActivityQuestionnaire.html) and (from a wearable device) as an [**observation**](StructureDefinition-at-prenudge-physical-activity-minutes-observation.html))
     - Daily activity as Steps per day (from a [**EHIS-PAQ Q2–Q3 / ATHIS PE2–PE3 questionnaire**](Questionnaire-StepCountEhisPaqQuestionnaire.html), [**quantity questionnaire**](Questionnaire-StepCountQuantityQuestionnaire.html) and (from a wearable device) as an [**observation**](StructureDefinition-at-prenudge-stepcount-observation.html))
@@ -22,22 +22,33 @@ We focus on narrow standardization of **four PreNUDGE measurements**:
 - **Sleep** duration and quality 
   - Duration - from [**questionnaire**](Questionnaire-SleepDurationQuestionnaire.html) or as an [**observation**](StructureDefinition-at-prenudge-sleep-duration-observation.html)
   - Quality - question 16 from the [**WHOQOL-BRE questionnaire**](Questionnaire-WhoQolBrefQuestionnaire.html) or same question 16 from a  [**single quesion questionnaire**](Questionnaire-SleepQualityQuestionnaire.html) or as an [**observation**](StructureDefinition-at-prenudge-sleep-quality-observation.html)
+- Sociodemographic Data: **Highest completed education** (ISCED level) (from a [**questionnaire**](Questionnaire-EducationQuestionnaire.html) and from an [**observation**](StructureDefinition-at-prenudge-education-observation.html))
+- **Workability** 
+  - Work-related Sense of Coherence (Work-SoC) - [**questionnaire**](Questionnaire-WorkSocQuestionnaire.html) with a calculated score as an [**observation**](StructureDefinition-at-prenudge-work-soc-score-observation.html)
+  - Work Ability Index (WAI) - [**questionnaire**](Questionnaire-WorkAbilityIndexQuestionnaire.html) only
+- Anthropometry: **Body Mass Index** (BMI) in kg/m² (from a [**questionnaire**](Questionnaire-BmiQuestionnaire.html) and from an [**observation**](StructureDefinition-at-prenudge-bmi-observation.html))
 - For Demo Purposes: **Blood glucose** in mg/dL (from a [**questionnaire**](Questionnaire-BloodGlucoseQuestionnaire.html) and from a [**device as an observation**](StructureDefinition-at-prenudge-bloodglucose-observation.html))
 
 For viewing the full questionnaires use tools like [lhcforms](https://lhcfhirtools.nlm.nih.gov/lhcforms).
 
 Each **questionnaire variant** maps **one-way** to its corresponding **observation variant**. The mappings can be found at [StructureMaps](artifacts.html#terminology-structure-maps) and can be executed with [MaLaC-HD](https://gitlab.com/cdehealth/malac-hd). These transformations will be performed on the server side.
 
-Additional PreNUDGE measurements, also narrow standardized, will be specified analogously to these four, based on feedback from the informative ballot. The following are to be specified:
-- Smoking: Current status (from a questionnaire and from an observation IPS style)
+Additional PreNUDGE measurements, also narrow standardized, will be specified analogously to the ones mentioned above, based on feedback from the informative ballot. The following are to be specified:
 - Nutrition: Portions of fruit and vegetables (per day) (from a questionnaire)
 - Nutrition: Consumption frequency of sugary and salty foods (per week) (from a questionnaire)
-- Sociodemographic Data: Age (from a questionnaire)
-- Sociodemographic Data: Gender (from a questionnaire)
-- Sociodemographic Data: Highest completed education (ISCED level) (from a questionnaire)
 - Psychosocial Factors: Self reported emotional burden (from a questionnaire)
 - Psychosocial Factors: Self reported stress (from a questionnaire with a calculated score as an observation)
-- Anthropometry: Body Mass Index (kg/m²) (from a questionnaire and from a wearable device as an observation)
-- Workability (score per category) (from a questionnaire with a calculated score as an observation)
+
+The following sociodemographic data are provided as patient demographic data, preferably from ID Austria. They are not collected using PreNUDGE questionnaires and are not represented as observations.
+- **Date of birth / age**: The date of birth is represented using the mandatory `Patient.birthDate` element in the AT APS Patient profile. Age is derived from `Patient.birthDate` at the relevant point in time and is not stored as a separate PreNUDGE observation. The corresponding ID Austria attribute is `birthdate` (`urn:oid:1.2.40.0.10.2.1.1.55`).
+- **Gender**: Administrative gender is represented using the mandatory `Patient.gender` element in the AT APS Patient profile. The corresponding ID Austria attribute is `gender` (`urn:eidgvat:attributes.gender`).
 
 Besides these narrow standardized measurements, **broad standardized measurements** called [**other quantities observations**](StructureDefinition-at-prenudge-observation-other-quantities.html) and [**other not quantities observations**](StructureDefinition-at-prenudge-observation-other-not-quantities.html) are also supported. Please be aware that such broad standardized measurements do not have a corresponding questionnaire.
+
+### Observation values and missing data
+
+PreNUDGE Observations SHOULD contain `value[x]` when a clinically or analytically meaningful value can be derived. If no such value can be derived, `value[x]` SHALL be absent and `dataAbsentReason` SHALL be provided.
+
+This applies especially to observations derived from questionnaires. The original `QuestionnaireResponse` remains the source record for the submitted answer, including answers such as "unknown" or "not stated". The derived `Observation` represents the clinically or analytically usable result.
+
+If neither `value[x]` nor `dataAbsentReason` is present, the Observation is incomplete and does not conform to the PreNUDGE data quality expectation.
