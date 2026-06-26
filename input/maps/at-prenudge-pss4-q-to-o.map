@@ -1,0 +1,84 @@
+map "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/Pss4QuestionnaireResponseToObservation" = "Pss4QuestionnaireResponseToObservation"
+
+/// url = "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/Pss4QuestionnaireResponseToObservation"
+/// name = "Pss4QuestionnaireResponseToObservation"
+/// title = "PSS-4 Q score to O score"
+/// status = "active"
+
+uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" alias QR as source
+uses "http://hl7.org/fhir/StructureDefinition/Observation" alias Obs as target
+
+imports "http://hl7.org/fhir/StructureMap/*"
+imports "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/QuestionnaireResponseToObservationBase"
+
+group Pss4QuestionnaireResponseToObservation(source src : QR, target tgt : Obs) {
+  src then SetObservationBase(src, tgt) "Base";
+  src -> tgt.meta as meta,
+    meta.profile = 'https://fhir.hl7.at/prenudge/appdata/r4/StructureDefinition/at-prenudge-pss4-score-observation' "SetProfile";
+  src -> tgt.code = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/at-prenudge-pss-codes-codesystem', 'pss4', 'PSS-4 Perceived Stress Scale (4-item)') "SetCode";
+  src.authored as authored -> tgt.effectiveDateTime = create('dateTime') as dt,
+    dt.value = authored "SetEffective";
+
+  src.item as pss4Group where linkId = 'pss4' then {
+    // Map individual item codings → Observation components (raw categorical answers)
+    pss4Group.item as q1 where linkId = 'pss4-q1'
+      then MapPss4Q1(q1, tgt) "MapQ1";
+    pss4Group.item as q2 where linkId = 'pss4-q2'
+      then MapPss4Q2(q2, tgt) "MapQ2";
+    pss4Group.item as q3 where linkId = 'pss4-q3'
+      then MapPss4Q3(q3, tgt) "MapQ3";
+    pss4Group.item as q4 where linkId = 'pss4-q4'
+      then MapPss4Q4(q4, tgt) "MapQ4";
+    // Map pre-computed total score → Observation.value
+    pss4Group.item as totalItem where linkId = 'pss4-total-score'
+      then MapPss4TotalScore(totalItem, tgt) "MapTotal";
+  } "ProcessPss4";
+}
+
+group MapPss4Q1(source src : QR, target tgt : Obs) {
+  src.answer as answer then {
+    answer.valueCoding as vc -> tgt.component as comp,
+      comp.code = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/at-prenudge-pss-codes-codesystem', 'pss4-q1', 'PSS-4 Item 1 (Kontrollverlust)'),
+      comp.value = create('CodeableConcept') as cc2,
+      cc2.coding = vc "SetComponent";
+  } "ProcessAnswer";
+}
+
+group MapPss4Q2(source src : QR, target tgt : Obs) {
+  src.answer as answer then {
+    answer.valueCoding as vc -> tgt.component as comp,
+      comp.code = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/at-prenudge-pss-codes-codesystem', 'pss4-q2', 'PSS-4 Item 2 (Selbstwirksamkeit — positiv)'),
+      comp.value = create('CodeableConcept') as cc2,
+      cc2.coding = vc "SetComponent";
+  } "ProcessAnswer";
+}
+
+group MapPss4Q3(source src : QR, target tgt : Obs) {
+  src.answer as answer then {
+    answer.valueCoding as vc -> tgt.component as comp,
+      comp.code = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/at-prenudge-pss-codes-codesystem', 'pss4-q3', 'PSS-4 Item 3 (Kontrolle — positiv)'),
+      comp.value = create('CodeableConcept') as cc2,
+      cc2.coding = vc "SetComponent";
+  } "ProcessAnswer";
+}
+
+group MapPss4Q4(source src : QR, target tgt : Obs) {
+  src.answer as answer then {
+    answer.valueCoding as vc -> tgt.component as comp,
+      comp.code = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/at-prenudge-pss-codes-codesystem', 'pss4-q4', 'PSS-4 Item 4 (Überforderung)'),
+      comp.value = create('CodeableConcept') as cc2,
+      cc2.coding = vc "SetComponent";
+  } "ProcessAnswer";
+}
+
+// Pre-computed integer total score from the hidden pss4-total-score QR item.
+// Two-level .value unwrap (integer) — MaLaC-HD safe pattern (no evaluate()).
+group MapPss4TotalScore(source src : QR, target tgt : Obs) {
+  src.answer as answer then {
+    answer.valueInteger as val then {
+      val.value as numVal -> tgt.value = create('Quantity') as qty,
+        qty.value = numVal, qty.unit = 'score',
+        qty.system = 'http://unitsofmeasure.org', qty.code = '{score}' "SetQuantity";
+    } "ExtractValue";
+  } "ProcessAnswer";
+}

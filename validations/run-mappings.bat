@@ -22,5 +22,9 @@ malac-hd -s -m ..\input\maps\at-prenudge-bmi-q-to-o.map -ti ..\fsh-generated\res
 
 malac-hd -s -m ..\input\maps\at-prenudge-whooley-q-to-o.map -ti ..\fsh-generated\resources\QuestionnaireResponse-whooley-response-positive-example.json  -to 12_self_reported_emotional_burden.json
 
+malac-hd -s -m ..\input\maps\at-prenudge-pss4-q-to-o.map -ti ..\fsh-generated\resources\QuestionnaireResponse-pss4-response-example.json  -to 13_self-reported_stress_pss4.json
+
+malac-hd -s -m ..\input\maps\at-prenudge-pss10-q-to-o.map -ti ..\fsh-generated\resources\QuestionnaireResponse-pss10-response-example.json  -to 14_self-reported_stress_pss10.json
+
 @rem -co convert output liefert ein Phyton Skript, womit man das debugging machen kann
 @rem malac-hd -s -m ..\input\maps\at-prenudge-sleep-duration-mapping.map -co sleep-duration.py

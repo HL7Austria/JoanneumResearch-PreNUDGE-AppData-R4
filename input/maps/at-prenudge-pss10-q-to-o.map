@@ -1,0 +1,151 @@
+map "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/Pss10QuestionnaireResponseToObservation" = "Pss10QuestionnaireResponseToObservation"
+
+/// url = "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/Pss10QuestionnaireResponseToObservation"
+/// name = "Pss10QuestionnaireResponseToObservation"
+/// title = "PSS-10 Q score to O score"
+/// status = "active"
+
+uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" alias QR as source
+uses "http://hl7.org/fhir/StructureDefinition/Observation" alias Obs as target
+
+imports "http://hl7.org/fhir/StructureMap/*"
+imports "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/QuestionnaireResponseToObservationBase"
+
+group Pss10QuestionnaireResponseToObservation(source src : QR, target tgt : Obs) {
+  src then SetObservationBase(src, tgt) "Base";
+  src -> tgt.meta as meta,
+    meta.profile = 'https://fhir.hl7.at/prenudge/appdata/r4/StructureDefinition/at-prenudge-pss10-score-observation' "SetProfile";
+  // LOINC 106860-0: Perceived stress scale-10 total score [PSS-10]
+  src -> tgt.code = cc('http://loinc.org', '106860-0', 'Perceived stress scale-10 total score [PSS-10]') "SetCode";
+  src.authored as authored -> tgt.effectiveDateTime = create('dateTime') as dt,
+    dt.value = authored "SetEffective";
+
+  src.item as pss10Group where linkId = 'pss10' then {
+    // Map individual item codings → Observation components (raw categorical answers)
+    pss10Group.item as q1 where linkId = 'pss10-q1'
+      then MapPss10Q1(q1, tgt) "MapQ1";
+    pss10Group.item as q2 where linkId = 'pss10-q2'
+      then MapPss10Q2(q2, tgt) "MapQ2";
+    pss10Group.item as q3 where linkId = 'pss10-q3'
+      then MapPss10Q3(q3, tgt) "MapQ3";
+    pss10Group.item as q4 where linkId = 'pss10-q4'
+      then MapPss10Q4(q4, tgt) "MapQ4";
+    pss10Group.item as q5 where linkId = 'pss10-q5'
+      then MapPss10Q5(q5, tgt) "MapQ5";
+    pss10Group.item as q6 where linkId = 'pss10-q6'
+      then MapPss10Q6(q6, tgt) "MapQ6";
+    pss10Group.item as q7 where linkId = 'pss10-q7'
+      then MapPss10Q7(q7, tgt) "MapQ7";
+    pss10Group.item as q8 where linkId = 'pss10-q8'
+      then MapPss10Q8(q8, tgt) "MapQ8";
+    pss10Group.item as q9 where linkId = 'pss10-q9'
+      then MapPss10Q9(q9, tgt) "MapQ9";
+    pss10Group.item as q10 where linkId = 'pss10-q10'
+      then MapPss10Q10(q10, tgt) "MapQ10";
+    // Map pre-computed total score → Observation.value
+    pss10Group.item as totalItem where linkId = 'pss10-total-score'
+      then MapPss10TotalScore(totalItem, tgt) "MapTotal";
+  } "ProcessPss10";
+}
+
+group MapPss10Q1(source src : QR, target tgt : Obs) {
+  src.answer as answer then {
+    answer.valueCoding as vc -> tgt.component as comp,
+      comp.code = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/at-prenudge-pss-codes-codesystem', 'pss10-q1', 'PSS-10 Item 1'),
+      comp.value = create('CodeableConcept') as cc2,
+      cc2.coding = vc "SetComponent";
+  } "ProcessAnswer";
+}
+
+group MapPss10Q2(source src : QR, target tgt : Obs) {
+  src.answer as answer then {
+    answer.valueCoding as vc -> tgt.component as comp,
+      comp.code = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/at-prenudge-pss-codes-codesystem', 'pss10-q2', 'PSS-10 Item 2'),
+      comp.value = create('CodeableConcept') as cc2,
+      cc2.coding = vc "SetComponent";
+  } "ProcessAnswer";
+}
+
+group MapPss10Q3(source src : QR, target tgt : Obs) {
+  src.answer as answer then {
+    answer.valueCoding as vc -> tgt.component as comp,
+      comp.code = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/at-prenudge-pss-codes-codesystem', 'pss10-q3', 'PSS-10 Item 3'),
+      comp.value = create('CodeableConcept') as cc2,
+      cc2.coding = vc "SetComponent";
+  } "ProcessAnswer";
+}
+
+group MapPss10Q4(source src : QR, target tgt : Obs) {
+  src.answer as answer then {
+    answer.valueCoding as vc -> tgt.component as comp,
+      comp.code = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/at-prenudge-pss-codes-codesystem', 'pss10-q4', 'PSS-10 Item 4 (positiv)'),
+      comp.value = create('CodeableConcept') as cc2,
+      cc2.coding = vc "SetComponent";
+  } "ProcessAnswer";
+}
+
+group MapPss10Q5(source src : QR, target tgt : Obs) {
+  src.answer as answer then {
+    answer.valueCoding as vc -> tgt.component as comp,
+      comp.code = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/at-prenudge-pss-codes-codesystem', 'pss10-q5', 'PSS-10 Item 5 (positiv)'),
+      comp.value = create('CodeableConcept') as cc2,
+      cc2.coding = vc "SetComponent";
+  } "ProcessAnswer";
+}
+
+group MapPss10Q6(source src : QR, target tgt : Obs) {
+  src.answer as answer then {
+    answer.valueCoding as vc -> tgt.component as comp,
+      comp.code = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/at-prenudge-pss-codes-codesystem', 'pss10-q6', 'PSS-10 Item 6'),
+      comp.value = create('CodeableConcept') as cc2,
+      cc2.coding = vc "SetComponent";
+  } "ProcessAnswer";
+}
+
+group MapPss10Q7(source src : QR, target tgt : Obs) {
+  src.answer as answer then {
+    answer.valueCoding as vc -> tgt.component as comp,
+      comp.code = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/at-prenudge-pss-codes-codesystem', 'pss10-q7', 'PSS-10 Item 7 (positiv)'),
+      comp.value = create('CodeableConcept') as cc2,
+      cc2.coding = vc "SetComponent";
+  } "ProcessAnswer";
+}
+
+group MapPss10Q8(source src : QR, target tgt : Obs) {
+  src.answer as answer then {
+    answer.valueCoding as vc -> tgt.component as comp,
+      comp.code = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/at-prenudge-pss-codes-codesystem', 'pss10-q8', 'PSS-10 Item 8 (positiv)'),
+      comp.value = create('CodeableConcept') as cc2,
+      cc2.coding = vc "SetComponent";
+  } "ProcessAnswer";
+}
+
+group MapPss10Q9(source src : QR, target tgt : Obs) {
+  src.answer as answer then {
+    answer.valueCoding as vc -> tgt.component as comp,
+      comp.code = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/at-prenudge-pss-codes-codesystem', 'pss10-q9', 'PSS-10 Item 9'),
+      comp.value = create('CodeableConcept') as cc2,
+      cc2.coding = vc "SetComponent";
+  } "ProcessAnswer";
+}
+
+group MapPss10Q10(source src : QR, target tgt : Obs) {
+  src.answer as answer then {
+    answer.valueCoding as vc -> tgt.component as comp,
+      comp.code = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/at-prenudge-pss-codes-codesystem', 'pss10-q10', 'PSS-10 Item 10'),
+      comp.value = create('CodeableConcept') as cc2,
+      cc2.coding = vc "SetComponent";
+  } "ProcessAnswer";
+}
+
+// Pre-computed integer total score from the hidden pss10-total-score QR item.
+// Two-level .value unwrap (integer) — MaLaC-HD safe pattern (no evaluate()).
+group MapPss10TotalScore(source src : QR, target tgt : Obs) {
+  src.answer as answer then {
+    answer.valueInteger as val then {
+      val.value as numVal -> tgt.value = create('Quantity') as qty,
+        qty.value = numVal, qty.unit = 'score',
+        qty.system = 'http://unitsofmeasure.org', qty.code = '{score}' "SetQuantity";
+    } "ExtractValue";
+  } "ProcessAnswer";
+}
