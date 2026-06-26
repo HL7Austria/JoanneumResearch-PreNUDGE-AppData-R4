@@ -1,0 +1,47 @@
+{
+    "resourceType": "Observation",
+    "identifier": [
+        {
+            "system": "https://www.joanneum.at",
+            "value": "qr-whooley-2026-04-15-positive"
+        }
+    ],
+    "status": "final",
+    "code": {
+        "coding": [
+            {
+                "system": "http://loinc.org",
+                "code": "73832-8",
+                "display": "Adult depression screening assessment"
+            }
+        ]
+    },
+    "subject": {
+        "reference": "Patient/example"
+    },
+    "effectiveDateTime": "2026-04-15T10:00:00+00:00",
+    "issued": "2026-04-15T10:00:00Z",
+    "valueCodeableConcept": {
+        "coding": [
+            {
+                "system": "http://snomed.info/sct",
+                "code": "10828004",
+                "display": "Positive (qualifier value)"
+            }
+        ]
+    },
+    "method": {
+        "coding": [
+            {
+                "system": "http://snomed.info/sct",
+                "code": "87982008",
+                "display": "Manual"
+            }
+        ]
+    },
+    "derivedFrom": [
+        {
+            "reference": "QuestionnaireResponse/whooley-response-positive-example"
+        }
+    ]
+}

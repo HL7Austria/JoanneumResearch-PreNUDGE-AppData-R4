@@ -17,7 +17,7 @@ group WhooleyQuestionnaireResponseToObservation(source src : QR, target tgt : Ob
 
   // LOINC 55757-9: closest available code for a PHQ-2 screening result.
   // The Whooley Ja/Nein variant over the last month differs from the standard scored PHQ-2.
-  src -> tgt.code = cc('http://loinc.org', '55757-9', 'Patient Health Questionnaire 2 item (PHQ-2) [Reported]') "setCode";
+  src -> tgt.code = cc('http://loinc.org', '73832-8', 'Adult depression screening assessment') "setCode";
 
   src -> tgt.method = cc('http://snomed.info/sct', '87982008', 'Manual') "setManualMethod";
 
@@ -40,7 +40,7 @@ group WhooleyGroupToObservation(source groupItem : QR, target tgt : Obs) {
 
   groupItem.item as q1 where q1.linkId = '/whooley-q1' then {
     q1.answer as a1 where a1.valueCoding.code = '373067005'
-    -> tgt.value = cc('http://snomed.info/sct', '260385009', 'Negative (qualifier value)') "q1Nein";
+    -> tgt.valueCodeableConcept = cc('http://snomed.info/sct', '260385009', 'Negative (qualifier value)') "q1Nein";
   } "q1Nein";
 }
 
@@ -48,8 +48,8 @@ group WhooleyGroupToObservation(source groupItem : QR, target tgt : Obs) {
 group WhooleyQ2Check(source groupItem : QR, target tgt : Obs) {
   groupItem.item as q2 where q2.linkId = '/whooley-q2' then {
     q2.answer as a2 where a2.valueCoding.code = '373066001'
-    -> tgt.value = cc('http://snomed.info/sct', '10828004', 'Positive (qualifier value)') "bothJa";
+    -> tgt.valueCodeableConcept = cc('http://snomed.info/sct', '10828004', 'Positive (qualifier value)') "bothJa";
     q2.answer as a2 where a2.valueCoding.code = '373067005'
-    -> tgt.value = cc('http://snomed.info/sct', '260385009', 'Negative (qualifier value)') "q2Nein";
+    -> tgt.valueCodeableConcept = cc('http://snomed.info/sct', '260385009', 'Negative (qualifier value)') "q2Nein";
   } "processQ2";
 }
