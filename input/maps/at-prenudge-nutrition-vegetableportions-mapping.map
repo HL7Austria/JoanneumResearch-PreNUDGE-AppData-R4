@@ -21,10 +21,12 @@ group NutritionVegetablePortionsQuestionnaireResponseToObservation(source src : 
 
 group MapVegetablePortions(source src : QR, target tgt : Obs) {
   src.answer as answer then {
-    answer.valueInteger as intVal -> tgt.value = create('Quantity') as qty,
-      qty.value = intVal,
-      qty.unit = 'Portionen',
-      qty.system = 'http://unitsofmeasure.org',
-      qty.code = '{serving}' "SetQuantity";
+    answer.valueInteger as intObj then {
+      intObj.value as numVal -> tgt.value = create('Quantity') as qty,
+        qty.value = numVal,
+        qty.unit = 'Portionen',
+        qty.system = 'http://unitsofmeasure.org',
+        qty.code = '{serving}' "SetQuantity";
+    } "ExtractValue";
   } "ProcessAnswer";
 }
