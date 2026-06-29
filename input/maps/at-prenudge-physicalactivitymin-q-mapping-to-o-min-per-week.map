@@ -1,0 +1,96 @@
+//   Q7 total leisure time → component[aggregateActivity] (hours×60 + minutes, pre-computed by questionnaire calculatedExpression on Q7-total-minutes)
+//   component[vigorousActivity] : NOT set (absent)
+//   component[moderateActivity] : NOT set (absent)
+//
+// Invariant behaviour:
+//   pa-panel-01  : satisfied — aggregateActivity is present
+//   pa-agg-01    : antecedent = (mod.exists() or vig.exists()) = false → implies = true
+//                  → invariant passes silently (no warning)
+//   pa-wearable-01: N/A — method = Manual
+//   pa-manual-comp-01: satisfied — classificationMethod absent
+
+map "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/PhysicalActivityMinutesQtoO" = "Physical Activity Minutes Q to O"
+
+// Physical Activity EHIS-PAQ Q7 / ATHIS PE7 to O (aggregate-only variant)
+
+uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" alias QR  as source
+uses "http://hl7.org/fhir/StructureDefinition/Observation"            alias Obs as target
+
+imports "http://hl7.org/fhir/StructureMap/*"
+imports "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/QuestionnaireResponseToObservationBase"
+
+// ---------------------------------------------------------------------------
+// Main entry group
+// ---------------------------------------------------------------------------
+group PhysicalActivityQuestionnaireResponseToObservation(source src : QR, target tgt : Obs) {
+
+  // Shared base: identifier copy, derivedFrom, subject, issued.
+  // SetObservationBase also sets method = SCT 87982008 (Manual) — correct for
+  // all questionnaire-derived observations in this IG.
+  src then SetObservationBase(src, tgt) "Base";
+
+  // Explicitly confirm method = Manual (base already does this; listed for clarity).
+  src -> tgt.method = cc('http://snomed.info/sct', '87982008', 'Manual') "SetMethodManual";
+
+  // Target profile
+  src -> tgt.meta = create('Meta') as meta,
+         meta.profile = 'https://fhir.hl7.at/prenudge/appdata/r4/StructureDefinition/at-prenudge-physical-activity-minutes-observation' "SetProfile";
+
+  // Panel code
+  src -> tgt.code = cc('http://loinc.org', '101691-4', 'Duration of physical activity') "SetCode";
+
+  // effectiveDateTime from authored (EHIS-PAQ Q7 has no embedded date item)
+  src.authored as authored -> tgt.effectiveDateTime = authored "SetEffectiveDateTime";
+
+  // Map Q7 group to component[aggregateActivity]
+  src.item as q7 where linkId = 'Q7' then MapQ7ToAggregate(q7, tgt) "ProcessQ7";
+
+  // component[moderateActivity] : NOT mapped
+  //   Q7 asks for total leisure activity time without separating intensity levels.
+  //   There is no questionnaire source for a moderate-only figure.
+
+  // component[vigorousActivity] : NOT mapped
+  //   Total leisure time maps directly to aggregateActivity (see MapQ7ToAggregate).
+
+  // component[classificationMethod] : NOT mapped
+  //   method = Manual → component must be absent or self-rp (pa-manual-comp-01).
+  //   The map does not set it; a consuming system may add self-rp post-transform
+  //   if explicit documentation of the classification basis is required.
+}
+
+// ---------------------------------------------------------------------------
+// Q7 → component[aggregateActivity]  (LOINC 101691-4)
+//
+// Formula: aggregateMinutes = (Q7-hours × 60) + Q7-minutes
+//
+// The arithmetic is performed by the questionnaire via the SDC
+// calculatedExpression extension on item Q7-total-minutes (FHIRPath:
+//   (%resource.item.where(linkId='Q7').item.where(linkId='Q7-hours').answer.valueInteger * 60)
+//   + %resource.item.where(linkId='Q7').item.where(linkId='Q7-minutes').answer.valueInteger
+// ). This map reads the pre-computed integer — no evaluate() needed.
+//
+// MaLaC-HD 1.6.0 integer extraction pattern used here:
+//   answer.valueInteger as intElem then { intElem.value as numVal → ... }
+//   The double .value unwrap gives MaLaC-HD a raw primitive it can copy
+//   into Quantity.value without a type-coercion crash (direct integer→decimal
+//   copy fails in MaLaC-HD). All Quantity fields are set in one rule so that
+//   no cross-scope variable reference occurs (also a MaLaC-HD limitation).
+// ---------------------------------------------------------------------------
+group MapQ7ToAggregate(source src : QR, target tgt : Obs) {
+
+  // src is the Q7 group item; Q7-total-minutes is a calculated child item.
+  src.item as totMins where linkId = 'Q7-total-minutes' then {
+    totMins.answer as ans then {
+      ans.valueInteger as intElem then {
+        intElem.value as numVal ->
+          tgt.component as aggComp,
+          aggComp.code = cc('http://loinc.org', '101691-4', 'Duration of physical activity'),
+          aggComp.value = create('Quantity') as qty,
+          qty.value = numVal,
+          qty.unit = 'min/wk',
+          qty.system = 'http://unitsofmeasure.org',
+          qty.code = 'min/wk' "SetAggregateComponent";
+      } "UnwrapInteger";
+    } "GetAnswer";
+  } "GetTotalMins";
+}

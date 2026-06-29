@@ -1,0 +1,62 @@
+{
+    "resourceType": "Observation",
+    "meta": {
+        "profile": [
+            "https://fhir.hl7.at/prenudge/appdata/r4/StructureDefinition/at-prenudge-physical-activity-minutes-observation"
+        ]
+    },
+    "identifier": [
+        {
+            "system": "https://www.joanneum.at",
+            "value": "qr-pa-2026-03-24-001"
+        }
+    ],
+    "status": "final",
+    "code": {
+        "coding": [
+            {
+                "system": "http://loinc.org",
+                "code": "101691-4",
+                "display": "Duration of physical activity"
+            }
+        ]
+    },
+    "subject": {
+        "reference": "Patient/example"
+    },
+    "effectiveDateTime": "2026-03-24T08:00:00+01:00",
+    "issued": "2026-03-24T08:00:00+01:00",
+    "method": {
+        "coding": [
+            {
+                "system": "http://snomed.info/sct",
+                "code": "87982008",
+                "display": "Manual"
+            }
+        ]
+    },
+    "derivedFrom": [
+        {
+            "reference": "QuestionnaireResponse/physical-activity-ehispaq-response-example"
+        }
+    ],
+    "component": [
+        {
+            "code": {
+                "coding": [
+                    {
+                        "system": "http://loinc.org",
+                        "code": "101691-4",
+                        "display": "Duration of physical activity"
+                    }
+                ]
+            },
+            "valueQuantity": {
+                "value": 150.0,
+                "unit": "min/wk",
+                "system": "http://unitsofmeasure.org",
+                "code": "min/wk"
+            }
+        }
+    ]
+}
