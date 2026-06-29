@@ -1,0 +1,49 @@
+{
+    "resourceType": "Observation",
+    "meta": {
+        "profile": [
+            "https://fhir.hl7.at/prenudge/appdata/r4/StructureDefinition/at-prenudge-stepcount-observation"
+        ]
+    },
+    "identifier": [
+        {
+            "system": "https://www.joanneum.at",
+            "value": "qr-sc-2026-02-28-001"
+        }
+    ],
+    "status": "final",
+    "code": {
+        "coding": [
+            {
+                "system": "http://loinc.org",
+                "code": "41950-7",
+                "display": "Number of steps in 24 hour Measured"
+            }
+        ]
+    },
+    "subject": {
+        "reference": "Patient/example"
+    },
+    "effectiveDateTime": "2026-02-27T00:00:00",
+    "issued": "2026-02-28T20:00:00Z",
+    "valueQuantity": {
+        "value": 8432.0,
+        "unit": "{steps}/d",
+        "system": "http://unitsofmeasure.org",
+        "code": "{steps}/d"
+    },
+    "method": {
+        "coding": [
+            {
+                "system": "http://snomed.info/sct",
+                "code": "87982008",
+                "display": "Manual"
+            }
+        ]
+    },
+    "derivedFrom": [
+        {
+            "reference": "QuestionnaireResponse/stepcount-quantity-response-normal-example"
+        }
+    ]
+}
