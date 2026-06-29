@@ -1,4 +1,4 @@
-//   Q7 total leisure time → component[aggregateActivity] verbatim (hours×60 + minutes)
+//   Q7 total leisure time → component[aggregateActivity] (hours×60 + minutes, pre-computed by questionnaire calculatedExpression on Q7-total-minutes)
 //   component[vigorousActivity] : NOT set (absent)
 //   component[moderateActivity] : NOT set (absent)
 //
@@ -63,38 +63,34 @@ group PhysicalActivityQuestionnaireResponseToObservation(source src : QR, target
 //
 // Formula: aggregateMinutes = (Q7-hours × 60) + Q7-minutes
 //
-// This is a direct transcription of the patient-reported total time.
-// No intensity weighting is applied because Q7 does not capture intensity.
-// The ×2 vigorous weighting (WHO/IPAQ) is ONLY applied when a wearable
-// separately measures moderate and vigorous minutes (wearable variant).
+// The arithmetic is performed by the questionnaire via the SDC
+// calculatedExpression extension on item Q7-total-minutes (FHIRPath:
+//   (%resource.item.where(linkId='Q7').item.where(linkId='Q7-hours').answer.valueInteger * 60)
+//   + %resource.item.where(linkId='Q7').item.where(linkId='Q7-minutes').answer.valueInteger
+// ). This map reads the pre-computed integer — no evaluate() needed.
 //
-// Note on FML arithmetic / MaLaC-HD compatibility:
-//   This map uses evaluate() with integer arithmetic (* 60, +) which is NOT
-//   supported by MaLaC-HD 1.6.0. MaLaC-HD fails at parse time with
-//   "Param type 14 not implemented" (integer literal in FHIRPath expression).
-//   The questionnaire captures hours and minutes as separate integer items,
-//   so no MaLaC-HD compatible rewrite exists without redesigning the questionnaire
-//   or changing the output unit. Use matchbox or another evaluate()-capable engine.
+// MaLaC-HD 1.6.0 integer extraction pattern used here:
+//   answer.valueInteger as intElem then { intElem.value as numVal → ... }
+//   The double .value unwrap gives MaLaC-HD a raw primitive it can copy
+//   into Quantity.value without a type-coercion crash (direct integer→decimal
+//   copy fails in MaLaC-HD). All Quantity fields are set in one rule so that
+//   no cross-scope variable reference occurs (also a MaLaC-HD limitation).
 // ---------------------------------------------------------------------------
 group MapQ7ToAggregate(source src : QR, target tgt : Obs) {
 
-  src -> tgt.component as aggComp then {
-    // Component discriminator code: LOINC 101691-4
-    // Note: same code as panel Observation.code — collision documented in profile.
-    // obs-7 is not violated because Observation.value[x] is absent.
-    src -> aggComp.code = cc('http://loinc.org', '101691-4', 'Duration of physical activity') "SetAggregateCode";
-
-    src -> aggComp.value = create('Quantity') as qty then {
-
-      // aggregateMinutes = (Q7-hours × 60) + Q7-minutes
-      src -> qty.value = evaluate(src,
-        (item.where(linkId = 'Q7-hours').answer.valueInteger * 60)
-        + item.where(linkId = 'Q7-minutes').answer.valueInteger
-      ) "ComputeAggregateMinutes";
-
-      src -> qty.unit   = 'min/wk'                    "SetUnit";
-      src -> qty.system = 'http://unitsofmeasure.org'  "SetSystem";
-      src -> qty.code   = 'min/wk'                    "SetUCUM";
-    } "SetAggregateQuantity";
-  } "MapAggregateComponent";
+  // src is the Q7 group item; Q7-total-minutes is a calculated child item.
+  src.item as totMins where linkId = 'Q7-total-minutes' then {
+    totMins.answer as ans then {
+      ans.valueInteger as intElem then {
+        intElem.value as numVal ->
+          tgt.component as aggComp,
+          aggComp.code = cc('http://loinc.org', '101691-4', 'Duration of physical activity'),
+          aggComp.value = create('Quantity') as qty,
+          qty.value = numVal,
+          qty.unit = 'min/wk',
+          qty.system = 'http://unitsofmeasure.org',
+          qty.code = 'min/wk' "SetAggregateComponent";
+      } "UnwrapInteger";
+    } "GetAnswer";
+  } "GetTotalMins";
 }

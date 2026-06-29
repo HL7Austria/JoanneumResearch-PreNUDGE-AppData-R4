@@ -302,9 +302,10 @@ that computes both intensity levels and the WHO/IPAQ weighted aggregate."""
 //          applied to physical-activity-ehispaq-response-example (Q7 = 2h30min).
 // Values:  aggregateActivity = 150 min/wk  (= (2 × 60) + 30)
 //
-// Mapping formula (StructureMap):
-//   aggregateMinutes = (Q7-hours × 60) + Q7-minutes
-//                    = (2 × 60) + 30 = 150 min/wk
+// Mapping formula:
+//   Questionnaire calculatedExpression on Q7-total-minutes computes
+//   (Q7-hours × 60) + Q7-minutes = (2 × 60) + 30 = 150 min/wk.
+//   PhysicalActivityMinutesQtoO reads Q7-total-minutes directly (no evaluate()).
 // No intensity weighting applied — Q7 reports total leisure time, not
 // intensity-split data. The ×2 WHO/IPAQ weighting is only meaningful when
 // separate moderate and vigorous durations are known (scenarios d and e).
@@ -339,7 +340,7 @@ classificationMethod is absent; pa-manual-comp-01 is satisfied by absence."""
 * derivedFrom[+]    = Reference(QuestionnaireResponse/physical-activity-ehispaq-response-example)
 
 // aggregateActivity = 150 min/wk
-// Derived directly from Q7: (Q7-hours × 60) + Q7-minutes = (2×60)+30 = 150.
+// Read from Q7-total-minutes (calculatedExpression result): (2×60)+30 = 150.
 // LOINC 101691-4 reused at component level — see profile collision comment.
 * component[+]
   * code                    = $loinc#101691-4 "Duration of physical activity"

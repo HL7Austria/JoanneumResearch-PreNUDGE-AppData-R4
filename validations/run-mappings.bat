@@ -20,5 +20,7 @@ malac-hd -s -m ..\input\maps\at-prenudge-work-soc-q-to-o.map -ti ..\fsh-generate
 
 malac-hd -s -m ..\input\maps\at-prenudge-bmi-q-to-o.map -ti ..\fsh-generated\resources\QuestionnaireResponse-bmi-questionnaire-response-example.json  -to 11_bmi.json
 
+malac-hd -s -m ..\input\maps\at-prenudge-q-to-o-base.map -m ..\input\maps\at-prenudge-physicalactivitymin-q-mapping-to-o-min-per-week.map -ti ..\fsh-generated\resources\QuestionnaireResponse-physical-activity-ehispaq-response-example.json -to 14_physical_activity_min.json
+
 @rem -co convert output liefert ein Phyton Skript, womit man das debugging machen kann
 @rem malac-hd -s -m ..\input\maps\at-prenudge-sleep-duration-mapping.map -co sleep-duration.py

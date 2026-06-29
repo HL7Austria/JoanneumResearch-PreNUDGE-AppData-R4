@@ -1,4 +1,5 @@
-Alias: $athisCS = https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/athis-answers
+Alias: $athisCS       = https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/athis-answers
+Alias: $calcExpr      = http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression
 
 Instance:   EhisPaqPhysicalActivityQuestionnaire
 InstanceOf: at-prenudge-questionnaire
@@ -106,6 +107,17 @@ Q4–Q6 are captured only."""
     * extension[+]
       * url          = "http://hl7.org/fhir/StructureDefinition/maxValue"
       * valueInteger = 59
+  * item[+]
+    // Pre-computed total minutes: read by PhysicalActivityMinutesQtoO StructureMap
+    // instead of using evaluate() (not supported in MaLaC-HD 1.6.0).
+    * linkId   = "Q7-total-minutes"
+    * type     = #integer
+    * readOnly = true
+    * text     = "Gesamtminuten pro Woche (berechnet)"
+    * extension[$calcExpr]
+      * valueExpression
+        * language   = #text/fhirpath
+        * expression = "(%resource.item.where(linkId='Q7').item.where(linkId='Q7-hours').answer.valueInteger * 60) + %resource.item.where(linkId='Q7').item.where(linkId='Q7-minutes').answer.valueInteger"
   * item[+]
     * linkId   = "Q7-comment"
     * type     = #string

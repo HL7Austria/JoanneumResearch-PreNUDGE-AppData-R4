@@ -52,6 +52,7 @@ Q7 maps to physical-activity-questionnaire-example via the StructureMap."""
 
 // Q7: 2 Stunden 30 Minuten = 150 min/Woche
 // Q7 is #group; sub-items appear directly under item.item[] (FHIR R4 group pattern).
+// Q7-total-minutes is the calculatedExpression result: (2 × 60) + 30 = 150.
 * item[+]
   * linkId = "Q7"
   * item[+]
@@ -60,6 +61,9 @@ Q7 maps to physical-activity-questionnaire-example via the StructureMap."""
   * item[+]
     * linkId = "Q7-minutes"
     * answer[+].valueInteger = 30
+  * item[+]
+    * linkId = "Q7-total-minutes"
+    * answer[+].valueInteger = 150
   * item[+]
     * linkId = "Q7-comment"
     * answer[+].valueString = ""
