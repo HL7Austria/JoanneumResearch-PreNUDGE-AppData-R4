@@ -15,26 +15,26 @@ jobs:
     steps:
 
     - name: Checkout the implementation guide
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       with:
         repository: HL7Austria/JoanneumResearch-PreNUDGE-AppData-R4
         path: .
 
     - name: Extract branch name
       run: |
-        if ["${{ github.event.pull_request.head.ref }}" == ""]; then
-          echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        if [ "${{ github.event.pull_request.head.ref }}" == "" ]; then
+          echo "branch=$(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_OUTPUT
         else
-          echo "##[set-output name=branch;]$(echo ${{ github.event.pull_request.head.ref }})"
+          echo "branch=${{ github.event.pull_request.head.ref }}" >> $GITHUB_OUTPUT
         fi
       id: extract_branch
 
     - name: Extract last commit date
       shell: bash
-      run: echo "##[set-output name=date;]$(git log -1 --format="%at" | xargs -I{} date -d @{} +%d.%m.%Y)"
+      run: echo "date=$(git log -1 --format="%at" | xargs -I{} date -d @{} +%d.%m.%Y)" >> $GITHUB_OUTPUT
       id: extract_date
 
-    - uses: bluwy/substitute-string-action@v1
+    - uses: bluwy/substitute-string-action@v2
       id: substitute_index
       with:
         _input-file: input/landing_page/_index.yml
@@ -44,7 +44,7 @@ jobs:
         _output-file: input/landing_page/_index.yml
 
     - name: Install NPM
-      uses: actions/setup-node@v2.1.2
+      uses: actions/setup-node@v4
       with:
         check-latest: true
 
@@ -76,9 +76,13 @@ jobs:
       run: |
         mv ./input/landing_page/_index.yml ./output/
 
+    - name: Remove large QA files
+      run: |
+        rm -f ./output/qa-ipreview.html
+
     - name: Deploy Implementation Guide
       if: success()
-      uses: peaceiris/actions-gh-pages@v3
+      uses: peaceiris/actions-gh-pages@v4
       with:
         personal_token: ${{ secrets.ROBO_OLIVER }}
         external_repository: HL7Austria/hl7austria.github.io

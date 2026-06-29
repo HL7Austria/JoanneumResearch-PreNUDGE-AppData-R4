@@ -20,6 +20,24 @@ malac-hd -s -m ..\input\maps\at-prenudge-work-soc-q-to-o.map -ti ..\fsh-generate
 
 malac-hd -s -m ..\input\maps\at-prenudge-bmi-q-to-o.map -ti ..\fsh-generated\resources\QuestionnaireResponse-bmi-questionnaire-response-example.json  -to 11_bmi.json
 
+malac-hd -s -m ..\input\maps\at-prenudge-q-to-o-base.map -m ..\input\maps\at-prenudge-physicalactivitymin-q-mapping-to-o-min-per-week.map -ti ..\fsh-generated\resources\QuestionnaireResponse-physical-activity-ehispaq-response-example.json -to 14_physical_activity_min.json
+
+malac-hd -s -m ..\input\maps\at-prenudge-q-to-o-base.map -m ..\input\maps\at-prenudge-muscle-strengthening-ehis-paq-mapping.map -ti ..\fsh-generated\resources\QuestionnaireResponse-muscle-strengthening-ehis-paq-response-example.json -to 15_muscle_strengthening_ehis_paq_obs.json
+
+malac-hd -s -m ..\input\maps\at-prenudge-q-to-o-base.map -m ..\input\maps\at-prenudge-muscle-strengthening-mapping.map -ti ..\fsh-generated\resources\QuestionnaireResponse-muscle-strengthening-quantity-response-example.json -to 15_muscle_strengthening_quantity_obs.json
+
+malac-hd -s -m ..\input\maps\at-prenudge-q-to-o-base.map -m ..\input\maps\at-prenudge-stepcount-mapping.map -ti ..\fsh-generated\resources\QuestionnaireResponse-stepcount-quantity-response-normal-example.json -to 17_stepcount_normal.json
+
+malac-hd -s -m ..\input\maps\at-prenudge-q-to-o-base.map -m ..\input\maps\at-prenudge-stepcount-mapping.map -ti ..\fsh-generated\resources\QuestionnaireResponse-stepcount-quantity-response-high-example.json -to 18_stepcount_high.json
+
+malac-hd -s -m ..\input\maps\at-prenudge-q-to-o-base.map -m ..\input\maps\at-prenudge-sitting-hours-mapping.map -ti ..\fsh-generated\resources\QuestionnaireResponse-sitting-hours-ehis-paq-response-example.json -to 19_sitting_hours_obs.json
+
+malac-hd -s -m ..\input\maps\at-prenudge-nutrition-sugarsalty-mapping.map -ti ..\fsh-generated\resources\QuestionnaireResponse-nutrition-sugarsalty-response-daily-example.json  -to 12_nutrition-sugarsalty.json
+
+malac-hd -s -m ..\input\maps\at-prenudge-nutrition-fruitportions-mapping.map -ti ..\fsh-generated\resources\QuestionnaireResponse-nutrition-fruitvegetable-response-daily-example.json  -to 13_nutrition-fruitportions.json
+
+malac-hd -s -m ..\input\maps\at-prenudge-nutrition-vegetableportions-mapping.map -ti ..\fsh-generated\resources\QuestionnaireResponse-nutrition-fruitvegetable-response-daily-example.json  -to 14_nutrition-vegetableportions.json
+
 malac-hd -s -m ..\input\maps\at-prenudge-whooley-q-to-o.map -ti ..\fsh-generated\resources\QuestionnaireResponse-whooley-response-positive-example.json  -to 12_self_reported_emotional_burden.json
 
 malac-hd -s -m ..\input\maps\at-prenudge-pss4-q-to-o.map -ti ..\fsh-generated\resources\QuestionnaireResponse-pss4-response-example.json  -to 13_self-reported_stress_pss4.json

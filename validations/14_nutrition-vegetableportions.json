@@ -1,0 +1,48 @@
+{
+    "resourceType": "Observation",
+    "meta": {
+        "profile": [
+            "https://fhir.hl7.at/prenudge/appdata/r4/StructureDefinition/at-prenudge-nutrition-vegetableportions-observation"
+        ]
+    },
+    "identifier": [
+        {
+            "system": "https://www.joanneum.at",
+            "value": "qr-nut-fv-2026-06-01-001"
+        }
+    ],
+    "status": "final",
+    "code": {
+        "coding": [
+            {
+                "system": "http://loinc.org",
+                "code": "89764-8",
+                "display": "Servings of vegetables per day [PhenX]"
+            }
+        ]
+    },
+    "subject": {
+        "reference": "Patient/example"
+    },
+    "issued": "2026-06-01T09:00:00Z",
+    "valueQuantity": {
+        "value": 2.0,
+        "unit": "Portionen",
+        "system": "http://unitsofmeasure.org",
+        "code": "{serving}"
+    },
+    "method": {
+        "coding": [
+            {
+                "system": "http://snomed.info/sct",
+                "code": "87982008",
+                "display": "Manual"
+            }
+        ]
+    },
+    "derivedFrom": [
+        {
+            "reference": "QuestionnaireResponse/nutrition-fruitvegetable-response-daily-example"
+        }
+    ]
+}
