@@ -22,6 +22,10 @@ malac-hd -s -m ..\input\maps\at-prenudge-bmi-q-to-o.map -ti ..\fsh-generated\res
 
 malac-hd -s -m ..\input\maps\at-prenudge-q-to-o-base.map -m ..\input\maps\at-prenudge-physicalactivitymin-q-mapping-to-o-min-per-week.map -ti ..\fsh-generated\resources\QuestionnaireResponse-physical-activity-ehispaq-response-example.json -to 14_physical_activity_min.json
 
+malac-hd -s -m ..\input\maps\at-prenudge-q-to-o-base.map -m ..\input\maps\at-prenudge-muscle-strengthening-ehis-paq-mapping.map -ti ..\fsh-generated\resources\QuestionnaireResponse-muscle-strengthening-ehis-paq-response-example.json -to 15_muscle_strengthening_ehis_paq_obs.json
+
+malac-hd -s -m ..\input\maps\at-prenudge-q-to-o-base.map -m ..\input\maps\at-prenudge-muscle-strengthening-mapping.map -ti ..\fsh-generated\resources\QuestionnaireResponse-muscle-strengthening-quantity-response-example.json -to 15_muscle_strengthening_quantity_obs.json
+
 malac-hd -s -m ..\input\maps\at-prenudge-q-to-o-base.map -m ..\input\maps\at-prenudge-stepcount-mapping.map -ti ..\fsh-generated\resources\QuestionnaireResponse-stepcount-quantity-response-normal-example.json -to 17_stepcount_normal.json
 
 malac-hd -s -m ..\input\maps\at-prenudge-q-to-o-base.map -m ..\input\maps\at-prenudge-stepcount-mapping.map -ti ..\fsh-generated\resources\QuestionnaireResponse-stepcount-quantity-response-high-example.json -to 18_stepcount_high.json
