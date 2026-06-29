@@ -30,6 +30,8 @@ malac-hd -s -m ..\input\maps\at-prenudge-q-to-o-base.map -m ..\input\maps\at-pre
 
 malac-hd -s -m ..\input\maps\at-prenudge-q-to-o-base.map -m ..\input\maps\at-prenudge-stepcount-mapping.map -ti ..\fsh-generated\resources\QuestionnaireResponse-stepcount-quantity-response-high-example.json -to 18_stepcount_high.json
 
+malac-hd -s -m ..\input\maps\at-prenudge-q-to-o-base.map -m ..\input\maps\at-prenudge-sitting-hours-mapping.map -ti ..\fsh-generated\resources\QuestionnaireResponse-sitting-hours-ehis-paq-response-example.json -to 19_sitting_hours_obs.json
+
 malac-hd -s -m ..\input\maps\at-prenudge-nutrition-sugarsalty-mapping.map -ti ..\fsh-generated\resources\QuestionnaireResponse-nutrition-sugarsalty-response-daily-example.json  -to 12_nutrition-sugarsalty.json
 
 malac-hd -s -m ..\input\maps\at-prenudge-nutrition-fruitportions-mapping.map -ti ..\fsh-generated\resources\QuestionnaireResponse-nutrition-fruitvegetable-response-daily-example.json  -to 13_nutrition-fruitportions.json

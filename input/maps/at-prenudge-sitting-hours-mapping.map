@@ -1,11 +1,18 @@
 // StructureMap: EhisPaqSittingHoursQuestionnaire Response → Observation
 //
-// Key computation: Q9-hours (integer) → valueQuantity.value (h)
-//   Q9-minutes is intentionally dropped: MaLaC-HD does not support evaluate()
-//   with complex FHIRPath expressions, so arithmetic combining hours and minutes
-//   cannot be performed. Integer-hour granularity is acceptable for self-reported
-//   sitting time. Engines that support evaluate() (e.g. matchbox) can extend
-//   this map to add (Q9-minutes / 60) for sub-hour precision.
+// Key computation: Q9-hours + (Q9-minutes / 60) → valueQuantity.value (h)
+//   The arithmetic is performed by the questionnaire via the SDC
+//   calculatedExpression extension on item Q9-total-hours (FHIRPath:
+//     (%resource.item.where(linkId='Q9').item.where(linkId='Q9-hours').answer.valueInteger)
+//     + (%resource.item.where(linkId='Q9').item.where(linkId='Q9-minutes').answer.valueInteger / 60)
+//   ). This map reads the pre-computed decimal — no evaluate() needed.
+//
+// MaLaC-HD 1.6.0 decimal extraction pattern used here:
+//   answer.valueDecimal as decElem then { decElem.value as numVal → ... }
+//   The double .value unwrap gives MaLaC-HD a raw primitive it can copy
+//   into Quantity.value without a type-coercion crash. All Quantity fields
+//   are set in one rule so that no cross-scope variable reference occurs
+//   (also a MaLaC-HD limitation).
 //
 // Mapping behaviour:
 //   SetObservationBase (imported from at-prenudge-q-to-o-base.map) sets:
@@ -20,8 +27,8 @@
 //     code         = LOINC 87705-0
 //     effectiveDateTime from QR.authored (Q9 has no embedded date sub-item)
 //   Item extraction:
-//     linkId = 'Q9'       (verbatim from EhisPaqSittingHoursQuestionnaire)
-//     Q9-hours (integer, Q9-minutes dropped) → Observation.valueQuantity (h)
+//     linkId = 'Q9'            (verbatim from EhisPaqSittingHoursQuestionnaire)
+//     Q9-total-hours (decimal, SDC calculatedExpression) → Observation.valueQuantity (h)
 
 map "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/SittingHoursQuestionnaireResponseToObservation" = "SittingHoursQuestionnaireResponseToObservation"
 
@@ -63,22 +70,22 @@ group SittingHoursQuestionnaireResponseToObservation(source src : QR, target tgt
 // ---------------------------------------------------------------------------
 // Q9 → Observation.valueQuantity (h)
 //
-// Only Q9-hours (integer) is mapped to Observation.valueQuantity.value.
-// Q9-minutes is not included because MaLaC-HD does not support evaluate()
-// with complex FHIRPath expressions (arithmetic or multi-token paths).
-// Sub-hour precision requires an engine that supports evaluate(), e.g. matchbox.
+// Q9-total-hours (decimal, SDC calculatedExpression) is read using the
+// MaLaC-HD 1.6.0 two-level .value unwrap pattern (valueDecimal → .value).
+// The arithmetic Q9-hours + (Q9-minutes / 60) is pre-computed by the
+// questionnaire; this map copies the result without evaluate().
 // ---------------------------------------------------------------------------
 group MapQ9ToSittingHours(source src : QR, target tgt : Obs) {
-  src.item as hoursItem where linkId = 'Q9-hours' then {
-    hoursItem.answer as hoursAnswer then {
-      hoursAnswer.valueInteger as hoursElem then {
-        hoursElem.value as numVal ->
+  src.item as totHours where linkId = 'Q9-total-hours' then {
+    totHours.answer as ans then {
+      ans.valueDecimal as decElem then {
+        decElem.value as numVal ->
           tgt.value = create('Quantity') as qty,
           qty.value = numVal,
           qty.unit = 'h',
           qty.system = 'http://unitsofmeasure.org',
           qty.code = 'h' "SetSittingQuantity";
-      } "ExtractValue";
-    } "ExtractHoursAnswer";
-  } "ProcessHoursItem";
+      } "UnwrapDecimal";
+    } "GetAnswer";
+  } "GetTotalHours";
 }

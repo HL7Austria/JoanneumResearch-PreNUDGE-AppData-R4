@@ -26,7 +26,7 @@ Profile: AtPrenudgeObservationSittingHours
 Parent: AtPrenudgeObservation
 Id: at-prenudge-sitting-hours-observation
 Title: "AT PreNUDGE Observation Sitting Hours"
-Description: "This FHIR profile defines the Sitting Hours Observation recording the average number of sitting or resting hours per day (excluding sleep). Applicable for both automated wearable measurements (method = Automated) and self-reported values derived from EhisPaqSittingHoursQuestionnaire via SittingHoursQuestionnaireResponseToObservation (method = Manual). Sleep hours must be subtracted by the originating app before recording the value."
+Description: "This FHIR profile defines the Sitting Hours Observation recording the average number of sitting or resting hours per day (excluding sleep). Applicable for both automated wearable measurements (method = Automated) and self-reported values derived from EhisPaqSittingHoursQuestionnaire via SittingHoursQuestionnaireResponseToObservation (method = Manual). Device-derived sitting hours are computed as: Sitting Hours = 24 h − Active Hours − Sleep Hours, where Active Hours (Stehstunden) are hours in which a person has moved at least once (≥ 50 steps per hour). Sleep hours must be subtracted by the originating app before recording the value."
 
 // LOINC 87705-0 "Sedentary activity 24 hour"
 // Status TRIAL; best available LOINC code for wearable-derived daily
