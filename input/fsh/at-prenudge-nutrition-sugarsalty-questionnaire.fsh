@@ -1,3 +1,5 @@
+Alias: $athis = https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/athis-answers
+
 Instance: NutritionSugarSaltyQuestionnaire
 InstanceOf: AtPrenudgeQuestionnaire
 Usage: #definition
@@ -16,7 +18,11 @@ Usage: #definition
   * type = #choice
   * required = true
   * repeats = false
-  * answerValueSet = Canonical(AtPrenudgeValueSetNutritionSugarSaltyFrequency)
+  * answerOption[+].valueCoding = $athis#diet-daily-or-more "Täglich oder mehrmals täglich"
+  * answerOption[+].valueCoding = $athis#diet-4-6-per-week "4 bis 6 Mal pro Woche"
+  * answerOption[+].valueCoding = $athis#diet-1-3-per-week "1 bis 3 Mal pro Woche"
+  * answerOption[+].valueCoding = $athis#diet-less-than-once-per-week "Weniger als einmal pro Woche"
+  * answerOption[+].valueCoding = $athis#diet-never "Nie"
   * item[+]
     * linkId = "DH6-comment"
     * text = "Haben Sie zu Ihrer Antwort noch einen Kommentar oder etwas hinzuzufügen?"

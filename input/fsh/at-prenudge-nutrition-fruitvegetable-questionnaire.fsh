@@ -18,7 +18,12 @@ Usage: #definition
   * type = #choice
   * required = true
   * repeats = false
-  * answerValueSet = Canonical(AtPrenudgeValueSetNutritionConsumptionFrequency)
+  * answerOption[+].valueCoding = $athis#diet-daily-or-more "Täglich oder mehrmals täglich"
+  * answerOption[+].valueCoding = $athis#diet-4-6-per-week "4 bis 6 Mal pro Woche"
+  * answerOption[+].valueCoding = $athis#diet-1-3-per-week "1 bis 3 Mal pro Woche"
+  * answerOption[+].valueCoding = $athis#diet-less-than-once-per-week "Weniger als einmal pro Woche"
+  * answerOption[+].valueCoding = $athis#diet-never "Nie"
+  * answerOption[+].valueCoding = $athis#meta-unknown "Weiß nicht"
   * item[+]
     * linkId = "DH1-comment"
     * text = "Haben Sie zu Ihrer Antwort noch einen Kommentar oder etwas hinzuzufügen?"
@@ -51,7 +56,12 @@ Usage: #definition
   * type = #choice
   * required = true
   * repeats = false
-  * answerValueSet = Canonical(AtPrenudgeValueSetNutritionConsumptionFrequency)
+  * answerOption[+].valueCoding = $athis#diet-daily-or-more "Täglich oder mehrmals täglich"
+  * answerOption[+].valueCoding = $athis#diet-4-6-per-week "4 bis 6 Mal pro Woche"
+  * answerOption[+].valueCoding = $athis#diet-1-3-per-week "1 bis 3 Mal pro Woche"
+  * answerOption[+].valueCoding = $athis#diet-less-than-once-per-week "Weniger als einmal pro Woche"
+  * answerOption[+].valueCoding = $athis#diet-never "Nie"
+  * answerOption[+].valueCoding = $athis#meta-unknown "Weiß nicht"
   * item[+]
     * linkId = "DH3-comment"
     * text = "Haben Sie zu Ihrer Antwort noch einen Kommentar oder etwas hinzuzufügen?"
