@@ -1,7 +1,7 @@
 CodeSystem: AtPrenudgeCodeSystemAthis
 Id: athis-answers
 Title: "ATHIS – Antwortmöglichkeiten"
-Description: "Vollständige Antwortmöglichkeiten aus dem ATHIS Fragebogen (Österreichische Gesundheitsbefragung, STATISTIK AUSTRIA, Version 31.03.2025). Codes sind englisch; Display-Werte bleiben deutsch. Gruppiert nach Skalentypen. Hinweis: Bestehende PreNUDGE CodeSystems bleiben gültig – whoqol-bref-scale (LQ16-Zufriedenheitsskala), prenudge-nutrition-consumption-frequency (DH1/DH3 numerische Codes), prenudge-alcoholuse-frequency (AL1 SNOMED-basiert)."
+Description: "Vollständige Antwortmöglichkeiten aus dem ATHIS Fragebogen (Österreichische Gesundheitsbefragung, STATISTIK AUSTRIA, Version 31.03.2025). Codes sind englisch; Display-Werte bleiben deutsch. Gruppiert nach Skalentypen. Hinweis: Bestehende PreNUDGE CodeSystems bleiben gültig – whoqol-bref-scale (LQ16-Zufriedenheitsskala), prenudge-alcoholuse-frequency (AL1 SNOMED-basiert)."
 * ^url = "https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/athis-answers"
 * ^status = #active
 * ^experimental = false

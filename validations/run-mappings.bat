@@ -22,5 +22,12 @@ malac-hd -s -m ..\input\maps\at-prenudge-bmi-q-to-o.map -ti ..\fsh-generated\res
 
 malac-hd -s -m ..\input\maps\at-prenudge-q-to-o-base.map -m ..\input\maps\at-prenudge-physicalactivitymin-q-mapping-to-o-min-per-week.map -ti ..\fsh-generated\resources\QuestionnaireResponse-physical-activity-ehispaq-response-example.json -to 14_physical_activity_min.json
 
+malac-hd -s -m ..\input\maps\at-prenudge-nutrition-sugarsalty-mapping.map -ti ..\fsh-generated\resources\QuestionnaireResponse-nutrition-sugarsalty-response-daily-example.json  -to 12_nutrition-sugarsalty.json
+
+malac-hd -s -m ..\input\maps\at-prenudge-nutrition-fruitportions-mapping.map -ti ..\fsh-generated\resources\QuestionnaireResponse-nutrition-fruitvegetable-response-daily-example.json  -to 13_nutrition-fruitportions.json
+
+malac-hd -s -m ..\input\maps\at-prenudge-nutrition-vegetableportions-mapping.map -ti ..\fsh-generated\resources\QuestionnaireResponse-nutrition-fruitvegetable-response-daily-example.json  -to 14_nutrition-vegetableportions.json
+
+
 @rem -co convert output liefert ein Phyton Skript, womit man das debugging machen kann
 @rem malac-hd -s -m ..\input\maps\at-prenudge-sleep-duration-mapping.map -co sleep-duration.py
