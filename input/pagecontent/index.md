@@ -24,10 +24,9 @@ We focus on narrow standardization of the following **PreNUDGE measurements**:
   - Work Ability Index (WAI) - [**questionnaire**](Questionnaire-WorkAbilityIndexQuestionnaire.html) only
 - Anthropometry: **Body Mass Index** (BMI) in kg/m² (from a [**questionnaire**](Questionnaire-BmiQuestionnaire.html) and from an [**observation**](StructureDefinition-at-prenudge-bmi-observation.html))
 - For Demo Purposes: **Blood glucose** in mg/dL (from a [**questionnaire**](Questionnaire-BloodGlucoseQuestionnaire.html) and from a [**device as an observation**](StructureDefinition-at-prenudge-bloodglucose-observation.html))
-- **Nutrition**: Portions of fruit and vegetables (per day)
-    - From a [**questionnaire**](Questionnaire-NutritionFruitVegetableQuestionnaire.html) and as a [**fruit portions observation**](StructureDefinition-at-prenudge-nutrition-fruitportions-observation.html) and a [**vegetable portions observation**](StructureDefinition-at-prenudge-nutrition-vegetableportions-observation.html)
-- **Nutrition**: Consumption frequency of sugary and salty foods (per week)
-    - From a [**questionnaire**](Questionnaire-NutritionSugarSaltyQuestionnaire.html) and as an [**observation**](StructureDefinition-at-prenudge-nutrition-sugarsalty-observation.html)
+- **Nutrition**: 
+    - Portions of fruit and vegetables (per day) from a [**questionnaire**](Questionnaire-NutritionFruitVegetableQuestionnaire.html) and as a [**fruit portions observation**](StructureDefinition-at-prenudge-nutrition-fruitportions-observation.html) and a [**vegetable portions observation**](StructureDefinition-at-prenudge-nutrition-vegetableportions-observation.html)
+    - Consumption frequency of sugary and salty foods (per week) from a [**questionnaire**](Questionnaire-NutritionSugarSaltyQuestionnaire.html) and as an [**observation**](StructureDefinition-at-prenudge-nutrition-sugarsalty-observation.html)
 
 For viewing the full questionnaires use tools like [lhcforms](https://lhcfhirtools.nlm.nih.gov/lhcforms).
 
