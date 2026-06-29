@@ -1,0 +1,51 @@
+{
+    "resourceType": "Observation",
+    "meta": {
+        "profile": [
+            "https://fhir.hl7.at/prenudge/appdata/r4/StructureDefinition/at-prenudge-nutrition-sugarsalty-observation"
+        ]
+    },
+    "identifier": [
+        {
+            "system": "https://www.joanneum.at",
+            "value": "qr-nut-ss-2026-06-01-001"
+        }
+    ],
+    "status": "final",
+    "code": {
+        "coding": [
+            {
+                "system": "http://snomed.info/sct",
+                "code": "364395008",
+                "display": "Pattern of food and drink intake (observable entity)"
+            }
+        ]
+    },
+    "subject": {
+        "reference": "Patient/example"
+    },
+    "issued": "2026-06-01T09:15:00Z",
+    "valueCodeableConcept": {
+        "coding": [
+            {
+                "system": "https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/athis-answers",
+                "code": "diet-daily-or-more",
+                "display": "T\u00e4glich oder mehrmals t\u00e4glich"
+            }
+        ]
+    },
+    "method": {
+        "coding": [
+            {
+                "system": "http://snomed.info/sct",
+                "code": "87982008",
+                "display": "Manual"
+            }
+        ]
+    },
+    "derivedFrom": [
+        {
+            "reference": "QuestionnaireResponse/nutrition-sugarsalty-response-daily-example"
+        }
+    ]
+}
