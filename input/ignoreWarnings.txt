@@ -3,3 +3,11 @@
 # StructureMap BackboneElement path validation: QuestionnaireResponse.item sub-elements cannot be typed as a group input in FML R4. The path src.answer actually refers to QuestionnaireResponse.item.answer which is valid, but the IG Publisher validates against the declared group input type (QuestionnaireResponse) instead of the actual passed element.
 Der Quellpfad src.answer bezieht sich auf den Pfad QuestionnaireResponse.answer, der unbekannt ist
 Der Zielpfad tgt.effectiveDateTime bezieht sich auf den Pfad Observation.effectiveDateTime, der unbekannt ist
+
+# StructureMap BackboneElement path validation: QuestionnaireResponse.item sub-elements cannot be typed as a group input in FML R4. The path answer.valueCoding actually refers to QuestionnaireResponse.item.answer.valueCoding which is valid in the runtime input, but the IG Publisher validates against the declared group input type instead of the actual passed element.
+Der Quellpfad answer.valueCoding bezieht sich auf den Pfad QuestionnaireResponse.item.answer.valueCoding, der unbekannt ist
+The source path answer.valueCoding refers to the path QuestionnaireResponse.item.answer.valueCoding, which is unknown
+
+# StructureMap Choice element validation: Observation.value[x] is serialized as valueCodeableConcept in JSON and is required by MaLaC-HD for runtime transformation, but the IG Publisher validates against the generic FHIR choice element model.
+Der Zielpfad tgt.valueCodeableConcept bezieht sich auf den Pfad Observation.valueCodeableConcept, der unbekannt ist
+The target path tgt.valueCodeableConcept refers to the path Observation.valueCodeableConcept, which is unknown
