@@ -40,4 +40,4 @@ Description: "Example QuestionnaireResponse for EhisPaqSittingHoursQuestionnaire
     * answer[+].valueDecimal = 6.5
   * item[+]
     * linkId = "Q9-comment"
-    * answer[+].valueString = ""
+    * answer[+].valueString = "Viel Zeit im Büro am Schreibtisch."

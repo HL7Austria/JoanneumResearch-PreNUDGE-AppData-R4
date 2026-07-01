@@ -10,7 +10,7 @@ Description: "Example of daily consumption of sugary, fatty, and salty foods, de
   * system = "https://www.joanneum.at"
   * value = "qr-nut-ss-2026-06-01-001"
 * status = #final
-* code = http://snomed.info/sct#364395008 "Pattern of food and drink intake (observable entity)"
+* code = http://snomed.info/sct#364395008 "Dietary intake (observable entity)"
 * subject = Reference(Patient/example)
 * effectiveDateTime = "2026-06-01"
 * issued = "2026-06-01T09:15:00Z"
@@ -30,7 +30,7 @@ Description: "Example of less-than-once-weekly consumption of sugary, fatty, and
   * system = "https://www.joanneum.at"
   * value = "qr-nut-ss-2026-06-02-001"
 * status = #final
-* code = http://snomed.info/sct#364395008 "Pattern of food and drink intake (observable entity)"
+* code = http://snomed.info/sct#364395008 "Dietary intake (observable entity)"
 * subject = Reference(Patient/example)
 * effectiveDateTime = "2026-06-02"
 * issued = "2026-06-02T09:15:00Z"

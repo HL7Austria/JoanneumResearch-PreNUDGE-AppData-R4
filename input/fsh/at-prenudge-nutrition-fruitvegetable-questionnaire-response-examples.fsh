@@ -24,7 +24,7 @@ Description: "Example response for a daily fruit and vegetable eater: fruit dail
 
 * item[+]
   * linkId = "DH2"
-  * text = "DH2: Wie viele Portionen Obst essen Sie pro Tag? Eine Portion entspricht einer Handvoll Obst."
+  * text = "DH2: Wie viele Portionen Obst essen Sie pro Tag? Eine Portion entspricht einer Handvoll Obst.\n\nEine Handvoll Obst kann sein:\n- 1 Apfel, 1 Banane, 1 Pfirsich, 2 Zwetschken, 2 Mandarinen, 2 Kiwis, 3 Marillen, 7 Erdbeeren, eine halbe Grapefruit\n- drei große Löffel ungezuckerter Obstsalat\n- bei halben Portionen aufrunden."
   * answer[+]
     * valueInteger = 3
     * item[+]
@@ -42,7 +42,7 @@ Description: "Example response for a daily fruit and vegetable eater: fruit dail
 
 * item[+]
   * linkId = "DH4"
-  * text = "DH4: Wie viele Portionen Gemüse oder Salat essen Sie pro Tag? Eine Portion entspricht einer Handvoll Gemüse oder Salat."
+  * text = "DH4: Wie viele Portionen Gemüse oder Salat essen Sie pro Tag? Eine Portion entspricht einer Handvoll Gemüse oder Salat.\n\nEine Handvoll Gemüse oder Salat kann sein:\n- 2 Brokkoli-Stämme, 8 Karfiol-Rosen, 4 gehäufte Suppenlöffel Kraut oder Spinat\n- 3 gehäufte Suppenlöffel gedünstetes Gemüse\n- ein mittlerer Paradeiser, ein 5 cm großes Stück Gurke\n- bei halben Portionen aufrunden."
   * answer[+]
     * valueInteger = 2
     * item[+]

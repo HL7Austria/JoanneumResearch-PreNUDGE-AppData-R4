@@ -48,7 +48,6 @@ in h)."""
 * item[+]
   * linkId   = "Intro_Q9"
   * type     = #display
-  * required = false
   * text     = "Bei der nächsten Frage geht es um die Zeit, die Sie mit Sitzen oder Ruhen verbringen, bei der Arbeit, zu Hause, zur Fortbewegung oder mit Freund:innen, zum Beispiel am Schreibtisch sitzen, mit Freund:innen zusammensitzen."
 
 // ─── Q9 (≡ ATHIS PE9): Sitting / resting hours and minutes per day (#group) ──
@@ -65,13 +64,11 @@ in h)."""
   * item[+]
     * linkId   = "Q9-help"
     * type     = #display
-    * required = false
     * text     = "Angabe von Stunden und Minuten pro Tag"
   // ── Examples sub-item ────────────────────────────────────────────────────
   * item[+]
     * linkId   = "Q9-examples"
     * type     = #display
-    * required = false
     * text     = """Beispiele für „Sitzen und Ruhen" sind: Am Schreibtisch sitzen, Mit der Familie oder mit Freund:innen zusammensitzen, Auto, Bus, Zug fahren, Lesen, Fernsehen"""
   // ── Q9-hours: integer 0–23 ───────────────────────────────────────────────
   * item[+]

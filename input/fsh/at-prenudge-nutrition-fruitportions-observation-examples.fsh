@@ -8,7 +8,7 @@ Description: "Example of 3 daily fruit portions, derived from a questionnaire re
   * system = "https://www.joanneum.at"
   * value = "qr-nut-fv-2026-06-01-001"
 * status = #final
-* code = http://loinc.org#89765-5 "Servings of fruit per day [PhenX]"
+* code = http://loinc.org#80457-5 "Fruit servings 24 hour Estimated"
 * subject = Reference(Patient/example)
 * effectiveDateTime = "2026-06-01"
 * issued = "2026-06-01T09:00:00Z"
@@ -31,7 +31,7 @@ Description: "Example of 5 daily fruit portions, indicating high fruit intake."
   * system = "https://www.joanneum.at"
   * value = "obs-nut-fp-2026-06-02-001"
 * status = #final
-* code = http://loinc.org#89765-5 "Servings of fruit per day [PhenX]"
+* code = http://loinc.org#80457-5 "Fruit servings 24 hour Estimated"
 * subject = Reference(Patient/example)
 * effectiveDateTime = "2026-06-02"
 * issued = "2026-06-02T09:00:00Z"

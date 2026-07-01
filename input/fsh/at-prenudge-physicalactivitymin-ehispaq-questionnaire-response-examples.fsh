@@ -28,7 +28,7 @@ Q7 maps to physical-activity-questionnaire-example via the StructureMap."""
     * valueCoding = $athisCS#activity-3-days "3 Tage pro Woche"
     * item[+]
       * linkId = "Q4-comment"
-      * answer[+].valueString = ""
+      * answer[+].valueString = "Fahre bei gutem Wetter mit dem Rad zur Arbeit."
 
 // Q5: 30 bis 59 Minuten pro Tag (Fahrrad)
 * item[+]
@@ -38,7 +38,7 @@ Q7 maps to physical-activity-questionnaire-example via the StructureMap."""
     * valueCoding = $athisCS#activity-30-59-min "30 bis 59 Minuten pro Tag"
     * item[+]
       * linkId = "Q5-comment"
-      * answer[+].valueString = ""
+      * answer[+].valueString = "Der Arbeitsweg dauert etwa 40 Minuten."
 
 // Q6: 5 Tage pro Woche (Freizeit-Sport)
 * item[+]
@@ -48,7 +48,7 @@ Q7 maps to physical-activity-questionnaire-example via the StructureMap."""
     * valueCoding = $athisCS#activity-5-days "5 Tage pro Woche"
     * item[+]
       * linkId = "Q6-comment"
-      * answer[+].valueString = ""
+      * answer[+].valueString = "Gehe fast täglich laufen oder schwimmen."
 
 // Q7: 2 Stunden 30 Minuten = 150 min/Woche
 // Q7 is #group; sub-items appear directly under item.item[] (FHIR R4 group pattern).
@@ -66,4 +66,4 @@ Q7 maps to physical-activity-questionnaire-example via the StructureMap."""
     * answer[+].valueInteger = 150
   * item[+]
     * linkId = "Q7-comment"
-    * answer[+].valueString = ""
+    * answer[+].valueString = "Insgesamt etwa 2,5 Stunden Sport pro Woche."

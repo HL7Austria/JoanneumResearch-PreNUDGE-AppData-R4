@@ -15,7 +15,7 @@ Description: "Example response for daily or multiple-times-daily consumption of 
 
 * item[+]
   * linkId = "DH6"
-  * text = "DH6: Wie oft konsumieren Sie fett-, zucker- und salzreiche Lebensmittel, wie Süßigkeiten, Mehlspeisen, Knabbereien und trinken Sie energiereiche Getränke wie Limonaden?"
+  * text = "DH6: Wie oft konsumieren Sie fett-, zucker- und salzreiche Lebensmittel, wie Süßigkeiten, Mehlspeisen, Knabbereien und trinken Sie energiereiche Getränke wie Limonaden?\n\nDazu zählen: zuckerhaltige Erfrischungsgetränke (\"Softdrinks\") wie Cola, Fanta, Sprite, Eistee, Energy-Drinks; zuckerhaltige Limonaden; zuckerhaltige Sirup-Getränke.\n\nNicht dazu zählen: Erfrischungsgetränke mit ausschließlich künstlichen Süßstoffen; Diät-, Light- und Zero-Getränke; gezuckerter Tee oder Kaffee."
   * answer[+]
     * valueCoding = $athis#diet-daily-or-more "Täglich oder mehrmals täglich"
     * item[+]
@@ -37,7 +37,7 @@ Description: "Example response for less-than-once-weekly consumption of sugary, 
 
 * item[+]
   * linkId = "DH6"
-  * text = "DH6: Wie oft konsumieren Sie fett-, zucker- und salzreiche Lebensmittel, wie Süßigkeiten, Mehlspeisen, Knabbereien und trinken Sie energiereiche Getränke wie Limonaden?"
+  * text = "DH6: Wie oft konsumieren Sie fett-, zucker- und salzreiche Lebensmittel, wie Süßigkeiten, Mehlspeisen, Knabbereien und trinken Sie energiereiche Getränke wie Limonaden?\n\nDazu zählen: zuckerhaltige Erfrischungsgetränke (\"Softdrinks\") wie Cola, Fanta, Sprite, Eistee, Energy-Drinks; zuckerhaltige Limonaden; zuckerhaltige Sirup-Getränke.\n\nNicht dazu zählen: Erfrischungsgetränke mit ausschließlich künstlichen Süßstoffen; Diät-, Light- und Zero-Getränke; gezuckerter Tee oder Kaffee."
   * answer[+]
     * valueCoding = $athis#diet-less-than-once-per-week "Weniger als einmal pro Woche"
     * item[+]

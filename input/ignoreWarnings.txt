@@ -1,5 +1,24 @@
 == Suppressed Messages ==
 
 # StructureMap BackboneElement path validation: QuestionnaireResponse.item sub-elements cannot be typed as a group input in FML R4. The path src.answer actually refers to QuestionnaireResponse.item.answer which is valid, but the IG Publisher validates against the declared group input type (QuestionnaireResponse) instead of the actual passed element.
+# Message text depends on the IG Publisher's run language (English on the CI/public build, German on local builds) - both variants are listed for every path pattern below.
 Der Quellpfad src.answer bezieht sich auf den Pfad QuestionnaireResponse.answer, der unbekannt ist
 Der Zielpfad tgt.effectiveDateTime bezieht sich auf den Pfad Observation.effectiveDateTime, der unbekannt ist
+The source path src.answer refers to the path QuestionnaireResponse.answer which is unknown
+The target path tgt.effectiveDateTime refers to the path Observation.effectiveDateTime which is unknown
+
+# Same root cause, additional path spellings used by newer StructureMaps (education, smoking status, whooley, physical activity minutes, sitting hours)
+Der Zielpfad tgt.valueCodeableConcept bezieht sich auf den Pfad Observation.valueCodeableConcept, der unbekannt ist
+Der Quellpfad answer.valueCoding bezieht sich auf den Pfad QuestionnaireResponse.item.answer.valueCoding, der unbekannt ist
+Der Quellpfad ans.valueInteger bezieht sich auf den Pfad QuestionnaireResponse.item.answer.valueInteger, der unbekannt ist
+Der Quellpfad ans.valueDecimal bezieht sich auf den Pfad QuestionnaireResponse.item.answer.valueDecimal, der unbekannt ist
+The target path tgt.valueCodeableConcept refers to the path Observation.valueCodeableConcept which is unknown
+The source path answer.valueCoding refers to the path QuestionnaireResponse.item.answer.valueCoding which is unknown
+The source path ans.valueInteger refers to the path QuestionnaireResponse.item.answer.valueInteger which is unknown
+The source path ans.valueDecimal refers to the path QuestionnaireResponse.item.answer.valueDecimal which is unknown
+
+# Whooley questionnaire deliberately uses the German 'Ja'/'Nein' display for SNOMED CT 373066001/373067005 instead of the English canonical term, so citizen-facing UIs render the answer without a separate translation lookup. SNOMED CT has no official de-AT designation for these concepts, so the validator's display-name check reports it as a mismatch whenever a SNOMED-aware terminology service is available. This suppresses the IG Publisher build-time warning only - it does not affect runtime validation on a FHIR server that itself checks SNOMED display names.
+Wrong Display Name 'Ja' for http://snomed.info/sct#373066001. There are no valid display names found for language(s) 'de-AT'. Default display is 'Yes'
+Wrong Display Name 'Nein' for http://snomed.info/sct#373067005. There are no valid display names found for language(s) 'de-AT'. Default display is 'No'
+Wrong Display Name 'Ja' for http://snomed.info/sct#373066001. Valid display is one of 2 choices: 'Yes (qualifier value)' (en) or 'Yes' (en) (for the language(s) 'en-US')
+Wrong Display Name 'Nein' for http://snomed.info/sct#373067005. Valid display is one of 2 choices: 'No (qualifier value)' (en) or 'No' (en) (for the language(s) 'en-US')

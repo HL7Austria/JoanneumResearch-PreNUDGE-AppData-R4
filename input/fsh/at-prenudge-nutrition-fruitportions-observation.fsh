@@ -2,9 +2,9 @@ Profile: AtPrenudgeObservationNutritionFruitPortions
 Parent: AtPrenudgeObservation
 Id: at-prenudge-nutrition-fruitportions-observation
 Title: "AT PreNUDGE Observation Nutrition Fruit Portions"
-Description: "Records self-reported daily portions of fruit based on ATHIS 2025 question DH2. Applicable only for respondents who eat fruit daily (DH1 = 'Täglich oder mehrmals täglich'). Observation code: LOINC 89765-5 'Servings of fruit per day [PhenX]'."
+Description: "Records self-reported daily portions of fruit based on ATHIS 2025 question DH2. Applicable only for respondents who eat fruit daily (DH1 = 'Täglich oder mehrmals täglich'). Observation code: LOINC 80457-5 'Fruit servings 24 hour Estimated'."
 
-* code = http://loinc.org#89765-5 "Servings of fruit per day [PhenX]"
+* code = http://loinc.org#80457-5 "Fruit servings 24 hour Estimated"
 * value[x] 1..1
 * value[x] only Quantity
 * valueQuantity.value 1..1
