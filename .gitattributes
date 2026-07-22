@@ -1,4 +1,0 @@
-; peaceiris/actions-gh-pages versucht Assets zu optimieren und korrumpiert das package.tgz
-*.zip binary
-*.tgz binary
-*.tar binary
