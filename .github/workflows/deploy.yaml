@@ -84,8 +84,8 @@ jobs:
       run: |
         # Teilt Git mit, dass tgz-Dateien im Zielverzeichnis strikt binär sind
         echo "*.zip binary" > ./output/.gitattributes
-        echo "*.tgz binary" > ./output/.gitattributes
-        echo "*.tar binary" > ./output/.gitattributes
+        echo "*.tgz binary" >> ./output/.gitattributes
+        echo "*.tar binary" >> ./output/.gitattributes
 
     - name: Deploy Implementation Guide
       if: success()
