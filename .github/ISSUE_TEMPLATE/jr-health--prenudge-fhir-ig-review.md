@@ -1,14 +1,11 @@
 ---
-name: 'HL7 AT: Ballot Comment'
-about: Submit a ballot comment on this IG
+name: 'PreNUDGE: FHIR IG Review'
+about: Submit a review on this IG
 title: ''
 labels: ''
 assignees: ''
 
 ---
-
-**Real Submitter**
-Who is the real submitter, in case the creation of the issue was done by proxy.
 
 **Page**
 Page the comment refers to (e.g. workflow.html).
@@ -17,7 +14,7 @@ Page the comment refers to (e.g. workflow.html).
 Line number or anchor the comment refers to (e.g. #app-pairing).
 
 **Element**
-Element the comment refers to (e.g. gh:bpk, ssn).
+Element the comment refers to (e.g. PreNUDGE IAM).
 
 **Description**
 A clear and concise description of the comment.
