@@ -6,7 +6,7 @@ Usage: #example
 Title: "WHOQOL-BREF Q"
 Description: "Example of a completed WHOQOL-BREF QuestionnaireResponse including all 26 items and calculated scores."
 
-* questionnaire = "https://fhir.hl7.at/prenudge/appdata/r4/Questionnaire/QolQuestionnaire"
+* questionnaire = "https://fhir.hl7.at/prenudge/appdata/r4/Questionnaire/WhoQolBrefQuestionnaire"
 * status = #completed
 * authored = "2026-02-28T10:30:00Z"
 * subject = Reference(Patient/example)
@@ -41,7 +41,7 @@ Description: "Example of a completed WHOQOL-BREF QuestionnaireResponse including
     * answer[+].valueInteger = 4
   * item[+]
     * linkId = "Q4"
-    * text = "Wie sehr sind Sie auf medizinische Behandlung angewiesen, um im Alltag funktionieren zu können?"
+    * text = "Wie sehr sind Sie auf medizinische Behandlung angewiesen, um das tägliche Leben zu meistern?"
     * answer[+].valueCoding = $whoqol-scale#I1 "Überhaupt nicht"
   * item[+]
     * linkId = "Q4-reversed"
