@@ -10,7 +10,7 @@ Usage: #definition
 * status = #active
 * experimental = false
 * subjectType = #Patient
-* description = "A simple questionnaire asking for the person's highest completed education level using ISCED 2011 levels."
+* description = "A simple questionnaire asking for the person's highest completed education level using eight ISCED-based answer categories."
 
 * item[+]
   * linkId = "highest-completed-education"
@@ -18,21 +18,16 @@ Usage: #definition
   * text = "Was ist Ihr höchster abgeschlossener Bildungsabschluss?"
   * type = #choice
   * required = true
-  * answerOption[+].valueCoding = $isced#isced-0 "ISCED 0 - Elementarbereich"
-  * answerOption[+].valueCoding = $isced#isced-1 "ISCED 1 - Primarbereich"
-  * answerOption[+].valueCoding = $isced#isced-2 "ISCED 2 - Sekundarbereich I"
-  * answerOption[+].valueCoding = $isced#isced-3 "ISCED 3 - Sekundarbereich II"
-  * answerOption[+].valueCoding = $isced#isced-4 "ISCED 4 - Postsekundarer, nicht tertiärer Bereich"
-  * answerOption[+].valueCoding = $isced#isced-5 "ISCED 5 - Kurzes tertiäres Bildungsprogramm"
-  * answerOption[+].valueCoding = $isced#isced-6 "ISCED 6 - Bachelor- bzw. gleichwertiges Bildungsprogramm"
-  * answerOption[+].valueCoding = $isced#isced-7 "ISCED 7 - Master- bzw. gleichwertiges Bildungsprogramm"
-  * answerOption[+].valueCoding = $isced#isced-8 "ISCED 8 - Promotion bzw. gleichwertiges Bildungsprogramm"
+  * answerOption[+].valueCoding = $isced#isced-1 "ISCED 1: Volksschule"
+  * answerOption[+].valueCoding = $isced#isced-2 "ISCED 2: Hauptschule, Mittelschulen, Unterstufen von AHS"
+  * answerOption[+].valueCoding = $isced#isced-3a "ISCED 3a: Polytechnische Schule"
+  * answerOption[+].valueCoding = $isced#isced-3b "ISCED 3b: Berufsbildende mittlere Schulen (HASCH, Fachschulen)"
+  * answerOption[+].valueCoding = $isced#isced-3c "ISCED 3c: Berufsbildende höhere Schulen (HAK, HBLA, HTL) und AHS-Oberstufe"
+  * answerOption[+].valueCoding = $isced#isced-4 "ISCED 4: Lehre mit Matura, Gesundheits- und Krankenpflegeschule (nicht-tertiär), Meister- oder Diplomprüfung"
+  * answerOption[+].valueCoding = $isced#isced-5 "ISCED 5: Kolleg, tertiäre Hebammenakademien bzw. medizinisch-technische Ausbildungen im Kurzzyklus"
+  * answerOption[+].valueCoding = $isced#isced-6-8 "ISCED 6–8: Hochschulabschlüsse (Bachelor, Master, Doktor)"
   * answerOption[+].valueCoding = $isced#unknown "Weiß nicht"
   * answerOption[+].valueCoding = $isced#not-stated "Keine Angabe"
-  * item[+]
-    * linkId = "highest-completed-education-help"
-    * text = "Orientierungshilfe mit typischen Beispielen: ISCED 0 Kindergarten, Vorschule; ISCED 1 Volksschule; ISCED 2 Mittelschule, AHS-Unterstufe; ISCED 3 Polytechnische Schule, berufsbildende mittlere oder höhere Schule, AHS-Oberstufe; ISCED 4 Lehre mit Matura, Gesundheits- und Krankenpflegeschule, Meister- oder Diplomprüfung; ISCED 5 Kolleg, tertiäre Hebammenakademie bzw. medizinisch-technische Ausbildungen im Kurzzyklus; ISCED 6 Bachelor; ISCED 7 Master oder Diplomstudium; ISCED 8 Doktorat oder PhD."
-    * type = #display
   * item[+]
     * linkId = "comment"
     * text = "Haben Sie zu Ihrer Antwort noch einen Kommentar oder etwas hinzuzufügen?"

@@ -32,10 +32,10 @@ We focus on narrow standardization of the following **PreNUDGE measurements**:
   - **Self-reported stress** (PSS-4 / PSS-10) - perceived stress over the past month/four weeks
     - PSS-4 (4-item) - from a [**questionnaire**](Questionnaire-Pss4Questionnaire.html) with calculated score as an [**observation**](StructureDefinition-at-prenudge-pss4-score-observation.html)
     - PSS-10 (10-item) - from a [**questionnaire**](Questionnaire-Pss10Questionnaire.html) with calculated score as an [**observation**](StructureDefinition-at-prenudge-pss10-score-observation.html)
-- For Demo Purposes: **Blood glucose** in mg/dL (from a [**questionnaire**](Questionnaire-BloodGlucoseQuestionnaire.html) and from a [**device as an observation**](StructureDefinition-at-prenudge-bloodglucose-observation.html))
 - **Nutrition**: 
     - Portions of fruit and vegetables (per day) from a [**questionnaire**](Questionnaire-NutritionFruitVegetableQuestionnaire.html) and as a [**fruit portions observation**](StructureDefinition-at-prenudge-nutrition-fruitportions-observation.html) and a [**vegetable portions observation**](StructureDefinition-at-prenudge-nutrition-vegetableportions-observation.html)
     - Consumption frequency of sugary and salty foods (per week) from a [**questionnaire**](Questionnaire-NutritionSugarSaltyQuestionnaire.html) and as an [**observation**](StructureDefinition-at-prenudge-nutrition-sugarsalty-observation.html)
+- _For Demo Purposes: **Blood glucose** in mg/dL (from a [**questionnaire**](Questionnaire-BloodGlucoseQuestionnaire.html) and from a [**device as an observation**](StructureDefinition-at-prenudge-bloodglucose-observation.html))_
 
 For viewing the full questionnaires use tools like [lhcforms](https://lhcfhirtools.nlm.nih.gov/lhcforms).
 

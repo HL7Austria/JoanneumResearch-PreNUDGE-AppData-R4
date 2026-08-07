@@ -25,8 +25,8 @@
         "coding": [
             {
                 "system": "https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-isced-2011-education-level",
-                "code": "isced-3",
-                "display": "ISCED 3 - Sekundarbereich II"
+                "code": "isced-3c",
+                "display": "ISCED 3c: Berufsbildende höhere Schulen (HAK, HBLA, HTL) und AHS-Oberstufe"
             }
         ]
     },

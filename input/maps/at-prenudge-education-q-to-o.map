@@ -24,37 +24,34 @@ group EducationQuestionnaireResponseToObservation(source src : QR, target tgt : 
   } "setDerivedFrom";
 
   src.item as educationItem where educationItem.linkId = 'highest-completed-education' then {
-  educationItem.answer as answer where answer.valueCoding.code = 'isced-0' ->
-    tgt.valueCodeableConcept = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-isced-2011-education-level', 'isced-0', 'ISCED 0 - Elementarbereich') "mapIsced0";
-
   educationItem.answer as answer where answer.valueCoding.code = 'isced-1' ->
-    tgt.valueCodeableConcept = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-isced-2011-education-level', 'isced-1', 'ISCED 1 - Primarbereich') "mapIsced1";
+    tgt.valueCodeableConcept = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-isced-2011-education-level', 'isced-1', 'ISCED 1: Volksschule') "mapIsced1";
 
   educationItem.answer as answer where answer.valueCoding.code = 'isced-2' ->
-    tgt.valueCodeableConcept = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-isced-2011-education-level', 'isced-2', 'ISCED 2 - Sekundarbereich I') "mapIsced2";
+    tgt.valueCodeableConcept = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-isced-2011-education-level', 'isced-2', 'ISCED 2: Hauptschule, Mittelschulen, Unterstufen von AHS') "mapIsced2";
 
-  educationItem.answer as answer where answer.valueCoding.code = 'isced-3' ->
-    tgt.valueCodeableConcept = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-isced-2011-education-level', 'isced-3', 'ISCED 3 - Sekundarbereich II') "mapIsced3";
+  educationItem.answer as answer where answer.valueCoding.code = 'isced-3a' ->
+    tgt.valueCodeableConcept = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-isced-2011-education-level', 'isced-3a', 'ISCED 3a: Polytechnische Schule') "mapIsced3a";
+
+  educationItem.answer as answer where answer.valueCoding.code = 'isced-3b' ->
+    tgt.valueCodeableConcept = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-isced-2011-education-level', 'isced-3b', 'ISCED 3b: Berufsbildende mittlere Schulen (HASCH, Fachschulen)') "mapIsced3b";
+
+  educationItem.answer as answer where answer.valueCoding.code = 'isced-3c' ->
+    tgt.valueCodeableConcept = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-isced-2011-education-level', 'isced-3c', 'ISCED 3c: Berufsbildende höhere Schulen (HAK, HBLA, HTL) und AHS-Oberstufe') "mapIsced3c";
 
   educationItem.answer as answer where answer.valueCoding.code = 'isced-4' ->
-    tgt.valueCodeableConcept = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-isced-2011-education-level', 'isced-4', 'ISCED 4 - Postsekundärer, nicht-tertiärer Bereich') "mapIsced4";
+    tgt.valueCodeableConcept = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-isced-2011-education-level', 'isced-4', 'ISCED 4: Lehre mit Matura, Gesundheits- und Krankenpflegeschule (nicht-tertiär), Meister- oder Diplomprüfung') "mapIsced4";
 
   educationItem.answer as answer where answer.valueCoding.code = 'isced-5' ->
-    tgt.valueCodeableConcept = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-isced-2011-education-level', 'isced-5', 'ISCED 5 - Kurzes tertiäres Bildungsprogramm') "mapIsced5";
+    tgt.valueCodeableConcept = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-isced-2011-education-level', 'isced-5', 'ISCED 5: Kolleg, tertiäre Hebammenakademien bzw. medizinisch-technische Ausbildungen im Kurzzyklus') "mapIsced5";
 
-  educationItem.answer as answer where answer.valueCoding.code = 'isced-6' ->
-    tgt.valueCodeableConcept = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-isced-2011-education-level', 'isced-6', 'ISCED 6 - Bachelor- bzw. gleichwertiges Bildungsprogramm') "mapIsced6";
+  educationItem.answer as answer where answer.valueCoding.code = 'isced-6-8' ->
+    tgt.valueCodeableConcept = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-isced-2011-education-level', 'isced-6-8', 'ISCED 6–8: Hochschulabschlüsse (Bachelor, Master, Doktor)') "mapIsced6To8";
 
-  educationItem.answer as answer where answer.valueCoding.code = 'isced-7' ->
-    tgt.valueCodeableConcept = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-isced-2011-education-level', 'isced-7', 'ISCED 7 - Master- bzw. gleichwertiges Bildungsprogramm') "mapIsced7";
-
-  educationItem.answer as answer where answer.valueCoding.code = 'isced-8' ->
-    tgt.valueCodeableConcept = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-isced-2011-education-level', 'isced-8', 'ISCED 8 - Doktorat oder gleichwertig') "mapIsced8";
-
-  educationItem.answer as answer where answer.valueCoding.code = 'unknown' ->
+    educationItem.answer as answer where answer.valueCoding.code = 'unknown' ->
     tgt.valueCodeableConcept = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-isced-2011-education-level', 'unknown', 'Weiß nicht') "mapUnknown";
 
-  educationItem.answer as answer where answer.valueCoding.code = 'not-stated' ->
+    educationItem.answer as answer where answer.valueCoding.code = 'not-stated' ->
     tgt.valueCodeableConcept = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-isced-2011-education-level', 'not-stated', 'Keine Angabe') "mapNotStated";
   } "mapEducationItem";
 }

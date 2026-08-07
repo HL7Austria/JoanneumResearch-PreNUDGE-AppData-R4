@@ -3,7 +3,7 @@ Alias: $isced = https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-isce
 Instance: education-bachelor-example
 InstanceOf: AtPrenudgeObservationEducation
 Usage: #example
-Title: "Education O mapped from Q - Bachelor's Level Example"
+Title: "Education O mapped from Q - ISCED 6–8 Higher Education Example"
 Description: "Example of a highest completed education observation mapped from the EducationQuestionnaire."
 
 * identifier[+]
@@ -15,7 +15,7 @@ Description: "Example of a highest completed education observation mapped from t
 * effectiveDateTime = "2026-03-20T09:00:00Z"
 * issued = "2026-03-20T09:00:00Z"
 * method = http://snomed.info/sct#87982008 "Manual"
-* valueCodeableConcept = $isced#isced-6 "ISCED 6 - Bachelor- bzw. gleichwertiges Bildungsprogramm"
+* valueCodeableConcept = $isced#isced-6-8 "ISCED 6–8: Hochschulabschlüsse (Bachelor, Master, Doktor)"
 * note[+].text = "Bachelorabschluss an einer Fachhochschule."
 * derivedFrom = Reference(QuestionnaireResponse/education-response-bachelor-example)
 
@@ -23,7 +23,7 @@ Description: "Example of a highest completed education observation mapped from t
 Instance: education-upper-secondary-example
 InstanceOf: AtPrenudgeObservationEducation
 Usage: #example
-Title: "Education O mapped from Q - Upper Secondary Education Example"
+Title: "Education O mapped from Q - ISCED 3c Example"
 Description: "Example of a highest completed education observation mapped from the EducationQuestionnaire."
 
 * identifier[+]
@@ -35,5 +35,5 @@ Description: "Example of a highest completed education observation mapped from t
 * effectiveDateTime = "2026-03-21T10:30:00Z"
 * issued = "2026-03-21T10:30:00Z"
 * method = http://snomed.info/sct#87982008 "Manual"
-* valueCodeableConcept = $isced#isced-3 "ISCED 3 - Sekundarbereich II"
+* valueCodeableConcept = $isced#isced-3c "ISCED 3c: Berufsbildende höhere Schulen (HAK, HBLA, HTL) und AHS-Oberstufe"
 * derivedFrom = Reference(QuestionnaireResponse/education-response-upper-secondary-example)
