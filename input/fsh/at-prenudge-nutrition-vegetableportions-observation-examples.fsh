@@ -42,3 +42,21 @@ Description: "Example of 4 daily vegetable and salad portions, indicating high v
   * system = "http://unitsofmeasure.org"
   * code = #{serving}
 * note[+].text = "Selbstberichtet: hoher Gemüsekonsum, 4 Portionen täglich."
+
+Instance: nutrition-vegetableportions-not-stated-example
+InstanceOf: AtPrenudgeObservationNutritionVegetablePortions
+Usage: #example
+Title: "Nutrition Vegetable Portions O mapped from Q - Not Stated Example"
+Description: "Example derived from the universal ATHIS answer 'Keine Angabe' to DH3."
+
+* identifier[+]
+  * system = "https://www.joanneum.at"
+  * value = "qr-nut-fv-2026-06-03-metadata"
+* status = #final
+* code = http://loinc.org#80459-1 "Vegetable servings 24 hour Estimated"
+* subject = Reference(Patient/example)
+* effectiveDateTime = "2026-06-03"
+* issued = "2026-06-03T09:00:00Z"
+* method = http://snomed.info/sct#87982008 "Manual"
+* dataAbsentReason = http://terminology.hl7.org/CodeSystem/data-absent-reason#asked-declined "Asked But Declined"
+* derivedFrom = Reference(QuestionnaireResponse/nutrition-fruitvegetable-response-metadata-example)

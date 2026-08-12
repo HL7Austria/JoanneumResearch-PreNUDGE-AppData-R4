@@ -79,3 +79,22 @@ Description: "Example response for a non-daily fruit and vegetable eater: fruit 
     * item[+]
       * linkId = "DH3-comment"
       * answer[+].valueString = "Gemüse hauptsächlich am Wochenende."
+
+Instance: nutrition-fruitvegetable-response-metadata-example
+InstanceOf: AtPrenudgeQuestionnaireResponse
+Usage: #example
+Title: "Nutrition Fruit & Veg Q - ATHIS Metadata Answers Example"
+Description: "Example response using 'Weiß nicht' for fruit frequency and 'Keine Angabe' for vegetable frequency."
+
+* questionnaire = Canonical(NutritionFruitVegetableQuestionnaire)
+* status = #completed
+* subject = Reference(Patient/example)
+* authored = "2026-06-03T09:00:00Z"
+* identifier.system = "https://www.joanneum.at"
+* identifier.value = "qr-nut-fv-2026-06-03-metadata"
+* item[+]
+  * linkId = "DH1"
+  * answer[+].valueCoding = $athis#meta-unknown "Weiß nicht"
+* item[+]
+  * linkId = "DH3"
+  * answer[+].valueCoding = $athis#meta-not-stated "Keine Angabe"

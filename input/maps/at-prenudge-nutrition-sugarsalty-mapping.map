@@ -21,7 +21,11 @@ group NutritionSugarSaltyFrequencyQuestionnaireResponseToObservation(source src 
 
 group MapSugarSaltyFrequency(source src : QR, target tgt : Obs) {
   src.answer as answer then {
-    answer.valueCoding as coding -> tgt.value = create('CodeableConcept') as cc,
+    answer.valueCoding as coding where coding.code != 'meta-unknown' and coding.code != 'meta-not-stated' -> tgt.value = create('CodeableConcept') as cc,
       cc.coding = coding "SetValueCoding";
+    answer.valueCoding as coding where coding.code = 'meta-unknown' ->
+      tgt.dataAbsentReason = cc('http://terminology.hl7.org/CodeSystem/data-absent-reason', 'asked-unknown', 'Asked But Unknown') "MapUnknown";
+    answer.valueCoding as coding where coding.code = 'meta-not-stated' ->
+      tgt.dataAbsentReason = cc('http://terminology.hl7.org/CodeSystem/data-absent-reason', 'asked-declined', 'Asked But Declined') "MapNotStated";
   } "ProcessAnswer";
 }

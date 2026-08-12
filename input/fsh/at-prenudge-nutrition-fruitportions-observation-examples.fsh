@@ -42,3 +42,21 @@ Description: "Example of 5 daily fruit portions, indicating high fruit intake."
   * system = "http://unitsofmeasure.org"
   * code = #{serving}
 * note[+].text = "Selbstberichtet: hoher Obstkonsum, 5 Portionen täglich."
+
+Instance: nutrition-fruitportions-unknown-example
+InstanceOf: AtPrenudgeObservationNutritionFruitPortions
+Usage: #example
+Title: "Nutrition Fruit Portions O mapped from Q - Unknown Example"
+Description: "Example derived from the universal ATHIS answer 'Weiß nicht' to DH1."
+
+* identifier[+]
+  * system = "https://www.joanneum.at"
+  * value = "qr-nut-fv-2026-06-03-metadata"
+* status = #final
+* code = http://loinc.org#80457-5 "Fruit servings 24 hour Estimated"
+* subject = Reference(Patient/example)
+* effectiveDateTime = "2026-06-03"
+* issued = "2026-06-03T09:00:00Z"
+* method = http://snomed.info/sct#87982008 "Manual"
+* dataAbsentReason = http://terminology.hl7.org/CodeSystem/data-absent-reason#asked-unknown "Asked But Unknown"
+* derivedFrom = Reference(QuestionnaireResponse/nutrition-fruitvegetable-response-metadata-example)

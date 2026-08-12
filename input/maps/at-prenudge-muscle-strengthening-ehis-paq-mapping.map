@@ -81,4 +81,10 @@ group MapQ8CodingToQuantity(source coding : Coding, target tgt : Obs) {
 
   coding.code as c where $this = 'activity-7-days' ->
     tgt.value = create('Quantity') as qty, qty.value = '7', qty.unit = '{sessions}/wk', qty.system = 'http://unitsofmeasure.org', qty.code = '{sessions}/wk' "Map7Days";
+
+  coding.code as c where $this = 'meta-unknown' ->
+    tgt.dataAbsentReason = cc('http://terminology.hl7.org/CodeSystem/data-absent-reason', 'asked-unknown', 'Asked But Unknown') "MapUnknown";
+
+  coding.code as c where $this = 'meta-not-stated' ->
+    tgt.dataAbsentReason = cc('http://terminology.hl7.org/CodeSystem/data-absent-reason', 'asked-declined', 'Asked But Declined') "MapNotStated";
 }

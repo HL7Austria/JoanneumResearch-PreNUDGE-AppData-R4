@@ -16,7 +16,17 @@ group NutritionFruitPortionsQuestionnaireResponseToObservation(source src : QR, 
   src -> tgt.meta = create('Meta') as meta,
     meta.profile = 'https://fhir.hl7.at/prenudge/appdata/r4/StructureDefinition/at-prenudge-nutrition-fruitportions-observation' "SetProfile";
   src -> tgt.code = cc('http://loinc.org', '89765-5', 'Servings of fruit per day [PhenX]') "SetCode";
+  src.item as item where linkId = 'DH1' then MapFruitFrequencyAbsence(item, tgt) "ProcessDH1Absence";
   src.item as item where linkId = 'DH2' then MapFruitPortions(item, tgt) "ProcessDH2";
+}
+
+group MapFruitFrequencyAbsence(source src : QR, target tgt : Obs) {
+  src.answer as answer then {
+    answer.valueCoding as coding where coding.code = 'meta-unknown' ->
+      tgt.dataAbsentReason = cc('http://terminology.hl7.org/CodeSystem/data-absent-reason', 'asked-unknown', 'Asked But Unknown') "MapUnknown";
+    answer.valueCoding as coding where coding.code = 'meta-not-stated' ->
+      tgt.dataAbsentReason = cc('http://terminology.hl7.org/CodeSystem/data-absent-reason', 'asked-declined', 'Asked But Declined') "MapNotStated";
+  } "ProcessAbsenceAnswer";
 }
 
 group MapFruitPortions(source src : QR, target tgt : Obs) {

@@ -28,3 +28,21 @@ Description: "Example QuestionnaireResponse for EhisPaqMuscleStrengtheningQuesti
     * item[+]
       * linkId = "Q8-comment"
       * answer[+].valueString = "Krafttraining Montag, Mittwoch, Freitag."
+
+Instance:   muscle-strengthening-ehis-paq-response-unknown-example
+InstanceOf: at-prenudge-questionnaireresponse
+Usage:      #example
+Title:      "EHIS-PAQ Q8 / ATHIS PE8 Muscle Strengthening Q - Unknown Example"
+Description: "Example QuestionnaireResponse using the universal ATHIS answer 'Weiß nicht'."
+
+* meta.profile  = "https://fhir.hl7.at/prenudge/appdata/r4/StructureDefinition/at-prenudge-questionnaireresponse"
+* identifier[+]
+  * system = "https://www.joanneum.at"
+  * value  = "qr-ms-athis-2026-06-01-unknown"
+* questionnaire = "https://fhir.hl7.at/prenudge/appdata/r4/Questionnaire/EhisPaqMuscleStrengtheningQuestionnaire"
+* status        = #completed
+* subject       = Reference(Patient/example)
+* authored      = "2026-06-01T10:05:00+02:00"
+* item[+]
+  * linkId = "Q8"
+  * answer[+].valueCoding = $athisCS#meta-unknown "Weiß nicht"

@@ -39,3 +39,21 @@ Description: "Example of less-than-once-weekly consumption of sugary, fatty, and
   * coding[+] = $athis#diet-less-than-once-per-week "Weniger als einmal pro Woche"
 * note[+].text = "Selbstberichtet: seltener Konsum zuckerhaltiger und fettreicher Lebensmittel."
 * derivedFrom = Reference(QuestionnaireResponse/nutrition-sugarsalty-response-rare-example)
+
+Instance: nutrition-sugarsalty-not-stated-example
+InstanceOf: AtPrenudgeObservationNutritionSugarSaltyFrequency
+Usage: #example
+Title: "Nutrition Sugar Salty Frequency O mapped from Q - Not Stated Example"
+Description: "Example derived from the universal ATHIS answer 'Keine Angabe'."
+
+* identifier[+]
+  * system = "https://www.joanneum.at"
+  * value = "qr-nut-ss-2026-06-03-not-stated"
+* status = #final
+* code = http://snomed.info/sct#364395008 "Dietary intake (observable entity)"
+* subject = Reference(Patient/example)
+* effectiveDateTime = "2026-06-03"
+* issued = "2026-06-03T09:15:00Z"
+* method = http://snomed.info/sct#87982008 "Manual"
+* dataAbsentReason = http://terminology.hl7.org/CodeSystem/data-absent-reason#asked-declined "Asked But Declined"
+* derivedFrom = Reference(QuestionnaireResponse/nutrition-sugarsalty-response-not-stated-example)

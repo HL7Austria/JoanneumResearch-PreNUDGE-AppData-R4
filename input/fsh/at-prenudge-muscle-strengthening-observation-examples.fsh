@@ -103,3 +103,25 @@ Description: "Example of a self-reported muscle strengthening sessions count (3 
   * code = #{sessions}/wk
 * note[+].text = "Selbstberichtet. Krafttraining Montag, Mittwoch, Freitag."
 * derivedFrom = Reference(QuestionnaireResponse/muscle-strengthening-ehis-paq-response-example)
+
+
+// ─────────────────────────────────────────────────────────────────────────────
+// (d) EHIS-PAQ Q8 / ATHIS PE8 — UNKNOWN
+// ─────────────────────────────────────────────────────────────────────────────
+Instance: muscle-strengthening-ehis-paq-unknown-example
+InstanceOf: AtPrenudgeObservationMuscleStrengthening
+Usage: #example
+Title: "Muscle Strengthening Sessions O mapped from ATHIS - Unknown Example"
+Description: "Example derived from an ATHIS 'Weiß nicht' response; no numeric frequency is asserted."
+
+* identifier[+]
+  * system = "https://www.joanneum.at"
+  * value = "obs-ms-ehis-2026-06-01-unknown"
+* status = #final
+* code = $loinc#82291-6 "Frequency of muscle-strengthening physical activity"
+* subject = Reference(Patient/example)
+* effectiveDateTime = "2026-06-01T10:05:00+02:00"
+* issued = "2026-06-01T10:05:00+02:00"
+* method = $SCT#87982008 "Manual"
+* dataAbsentReason = http://terminology.hl7.org/CodeSystem/data-absent-reason#asked-unknown "Asked But Unknown"
+* derivedFrom = Reference(QuestionnaireResponse/muscle-strengthening-ehis-paq-response-unknown-example)

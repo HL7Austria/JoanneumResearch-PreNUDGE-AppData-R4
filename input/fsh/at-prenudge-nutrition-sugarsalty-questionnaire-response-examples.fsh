@@ -43,3 +43,19 @@ Description: "Example response for less-than-once-weekly consumption of sugary, 
     * item[+]
       * linkId = "DH6-comment"
       * answer[+].valueString = "Versuche, Süßigkeiten zu vermeiden."
+
+Instance: nutrition-sugarsalty-response-not-stated-example
+InstanceOf: AtPrenudgeQuestionnaireResponse
+Usage: #example
+Title: "Nutrition Sugar Salty Q - Not Stated Example"
+Description: "Example response using the universal ATHIS answer 'Keine Angabe'."
+
+* questionnaire = Canonical(NutritionSugarSaltyQuestionnaire)
+* status = #completed
+* subject = Reference(Patient/example)
+* authored = "2026-06-03T09:15:00Z"
+* identifier.system = "https://www.joanneum.at"
+* identifier.value = "qr-nut-ss-2026-06-03-not-stated"
+* item[+]
+  * linkId = "DH6"
+  * answer[+].valueCoding = $athis#meta-not-stated "Keine Angabe"
