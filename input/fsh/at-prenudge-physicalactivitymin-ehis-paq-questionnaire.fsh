@@ -34,6 +34,8 @@ Q4–Q6 are captured only."""
   * answerOption[+].valueCoding = $athisCS#activity-5-days          "5 Tage pro Woche"
   * answerOption[+].valueCoding = $athisCS#activity-6-days          "6 Tage pro Woche"
   * answerOption[+].valueCoding = $athisCS#activity-7-days          "7 Tage pro Woche"
+  * answerOption[+].valueCoding = $athisCS#meta-unknown             "Weiß nicht"
+  * answerOption[+].valueCoding = $athisCS#meta-not-stated          "Keine Angabe"
   * item[+]
     * linkId   = "Q4-comment"
     * type     = #string
@@ -53,6 +55,8 @@ Q4–Q6 are captured only."""
   * answerOption[+].valueCoding = $athisCS#activity-1h-under-2h "1 Stunde bis unter 2 Stunden pro Tag"
   * answerOption[+].valueCoding = $athisCS#activity-2h-under-3h "2 Stunden bis unter 3 Stunden pro Tag"
   * answerOption[+].valueCoding = $athisCS#activity-3h-or-more  "3 Stunden pro Tag oder mehr"
+  * answerOption[+].valueCoding = $athisCS#meta-unknown         "Weiß nicht"
+  * answerOption[+].valueCoding = $athisCS#meta-not-stated      "Keine Angabe"
   * item[+]
     * linkId   = "Q5-comment"
     * type     = #string
@@ -74,6 +78,8 @@ Q4–Q6 are captured only."""
   * answerOption[+].valueCoding = $athisCS#activity-5-days          "5 Tage pro Woche"
   * answerOption[+].valueCoding = $athisCS#activity-6-days          "6 Tage pro Woche"
   * answerOption[+].valueCoding = $athisCS#activity-7-days          "7 Tage pro Woche"
+  * answerOption[+].valueCoding = $athisCS#meta-unknown             "Weiß nicht"
+  * answerOption[+].valueCoding = $athisCS#meta-not-stated          "Keine Angabe"
   * item[+]
     * linkId   = "Q6-comment"
     * type     = #string

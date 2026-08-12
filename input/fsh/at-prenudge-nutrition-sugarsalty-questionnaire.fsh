@@ -23,6 +23,8 @@ Usage: #definition
   * answerOption[+].valueCoding = $athis#diet-1-3-per-week "1 bis 3 Mal pro Woche"
   * answerOption[+].valueCoding = $athis#diet-less-than-once-per-week "Weniger als einmal pro Woche"
   * answerOption[+].valueCoding = $athis#diet-never "Nie"
+  * answerOption[+].valueCoding = $athis#meta-unknown "Weiß nicht"
+  * answerOption[+].valueCoding = $athis#meta-not-stated "Keine Angabe"
   * item[+]
     * linkId = "DH6-comment"
     * text = "Haben Sie zu Ihrer Antwort noch einen Kommentar oder etwas hinzuzufügen?"

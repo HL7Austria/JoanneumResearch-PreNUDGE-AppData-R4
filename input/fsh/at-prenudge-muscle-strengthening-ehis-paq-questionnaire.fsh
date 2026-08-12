@@ -61,6 +61,8 @@ is preferred."""
   * answerOption[+].valueCoding = $athisCS#activity-5-days "5 Tage pro Woche"
   * answerOption[+].valueCoding = $athisCS#activity-6-days "6 Tage pro Woche"
   * answerOption[+].valueCoding = $athisCS#activity-7-days "7 Tage pro Woche"
+  * answerOption[+].valueCoding = $athisCS#meta-unknown "Weiß nicht"
+  * answerOption[+].valueCoding = $athisCS#meta-not-stated "Keine Angabe"
   * item[+]
     * linkId   = "Q8-comment"
     * type     = #string

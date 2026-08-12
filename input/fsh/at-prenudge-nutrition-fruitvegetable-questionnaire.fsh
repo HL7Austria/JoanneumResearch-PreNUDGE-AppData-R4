@@ -24,6 +24,7 @@ Usage: #definition
   * answerOption[+].valueCoding = $athis#diet-less-than-once-per-week "Weniger als einmal pro Woche"
   * answerOption[+].valueCoding = $athis#diet-never "Nie"
   * answerOption[+].valueCoding = $athis#meta-unknown "Weiß nicht"
+  * answerOption[+].valueCoding = $athis#meta-not-stated "Keine Angabe"
   * item[+]
     * linkId = "DH1-comment"
     * text = "Haben Sie zu Ihrer Antwort noch einen Kommentar oder etwas hinzuzufügen?"
@@ -62,6 +63,7 @@ Usage: #definition
   * answerOption[+].valueCoding = $athis#diet-less-than-once-per-week "Weniger als einmal pro Woche"
   * answerOption[+].valueCoding = $athis#diet-never "Nie"
   * answerOption[+].valueCoding = $athis#meta-unknown "Weiß nicht"
+  * answerOption[+].valueCoding = $athis#meta-not-stated "Keine Angabe"
   * item[+]
     * linkId = "DH3-comment"
     * text = "Haben Sie zu Ihrer Antwort noch einen Kommentar oder etwas hinzuzufügen?"

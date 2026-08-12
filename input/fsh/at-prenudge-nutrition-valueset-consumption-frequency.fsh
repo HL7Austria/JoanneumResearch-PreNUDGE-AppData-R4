@@ -1,7 +1,7 @@
 ValueSet: AtPrenudgeValueSetNutritionConsumptionFrequency
 Id: prenudge-nutrition-consumption-frequency-vs
 Title: "AT PreNUDGE Nutrition Consumption Frequency"
-Description: "All frequency options for fruit and vegetable consumption questions DH1 and DH3 from ATHIS 2025. Includes the 'Weiß nicht' option (code 'unknown')."
+Description: "All frequency options for fruit and vegetable consumption questions DH1 and DH3 from ATHIS 2025, including the two universal ATHIS metadata answers."
 * ^url = "https://fhir.hl7.at/prenudge/appdata/r4/ValueSet/prenudge-nutrition-consumption-frequency-vs"
 * ^status = #active
 * ^experimental = false
@@ -11,3 +11,4 @@ Description: "All frequency options for fruit and vegetable consumption question
 * https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/athis-answers#diet-less-than-once-per-week "Weniger als einmal pro Woche"
 * https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/athis-answers#diet-never "Nie"
 * https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/athis-answers#meta-unknown "Weiß nicht"
+* https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/athis-answers#meta-not-stated "Keine Angabe"

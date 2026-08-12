@@ -51,6 +51,8 @@ duration of that walking per day (Q3/PE3, coded using ATHIS group 9 answer set).
   * answerOption[+].valueCoding = $athisCS#activity-1h-under-2h "1 Stunde bis unter 2 Stunden pro Tag"
   * answerOption[+].valueCoding = $athisCS#activity-2h-under-3h "2 Stunden bis unter 3 Stunden pro Tag"
   * answerOption[+].valueCoding = $athisCS#activity-3h-or-more  "3 Stunden pro Tag oder mehr"
+  * answerOption[+].valueCoding = $athisCS#meta-unknown         "Weiß nicht"
+  * answerOption[+].valueCoding = $athisCS#meta-not-stated      "Keine Angabe"
 
   * item[+]
     * linkId = "Q3-comment"

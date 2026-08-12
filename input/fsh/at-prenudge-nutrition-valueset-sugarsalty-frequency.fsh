@@ -1,7 +1,7 @@
 ValueSet: AtPrenudgeValueSetNutritionSugarSaltyFrequency
 Id: prenudge-nutrition-sugarsalty-frequency-vs
 Title: "AT PreNUDGE Nutrition Sugar Salty Consumption Frequency"
-Description: "Frequency options for sugary, fatty, and salty food consumption (ATHIS 2025 question DH6). Excludes 'Weiß nicht' because DH6 does not offer that option."
+Description: "Analytical frequency values for sugary, fatty, and salty food consumption (ATHIS 2025 question DH6). The questionnaire's universal metadata answers are represented in Observation.dataAbsentReason and are therefore excluded from this ValueSet."
 * ^url = "https://fhir.hl7.at/prenudge/appdata/r4/ValueSet/prenudge-nutrition-sugarsalty-frequency-vs"
 * ^status = #active
 * ^experimental = false
