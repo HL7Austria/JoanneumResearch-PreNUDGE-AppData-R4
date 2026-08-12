@@ -16,8 +16,6 @@ Description: "Local representation of the eight ISCED-based answer categories fo
 * #isced-4 "ISCED 4: Lehre mit Matura, Gesundheits- und Krankenpflegeschule (nicht-tertiär), Meister- oder Diplomprüfung"
 * #isced-5 "ISCED 5: Kolleg, tertiäre Hebammenakademien bzw. medizinisch-technische Ausbildungen im Kurzzyklus"
 * #isced-6-8 "ISCED 6–8: Hochschulabschlüsse (Bachelor, Master, Doktor)"
-* #unknown "Weiß nicht"
-* #not-stated "Keine Angabe"
 
 ValueSet: AtPrenudgeValueSetIsced2011EducationLevel
 Id: prenudge-isced-2011-education-level

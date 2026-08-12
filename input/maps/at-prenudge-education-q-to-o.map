@@ -47,11 +47,5 @@ group EducationQuestionnaireResponseToObservation(source src : QR, target tgt : 
 
   educationItem.answer as answer where answer.valueCoding.code = 'isced-6-8' ->
     tgt.valueCodeableConcept = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-isced-2011-education-level', 'isced-6-8', 'ISCED 6–8: Hochschulabschlüsse (Bachelor, Master, Doktor)') "mapIsced6To8";
-
-    educationItem.answer as answer where answer.valueCoding.code = 'unknown' ->
-    tgt.valueCodeableConcept = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-isced-2011-education-level', 'unknown', 'Weiß nicht') "mapUnknown";
-
-    educationItem.answer as answer where answer.valueCoding.code = 'not-stated' ->
-    tgt.valueCodeableConcept = cc('https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-isced-2011-education-level', 'not-stated', 'Keine Angabe') "mapNotStated";
   } "mapEducationItem";
 }

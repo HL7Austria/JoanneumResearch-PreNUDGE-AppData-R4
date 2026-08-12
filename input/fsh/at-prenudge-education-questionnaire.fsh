@@ -26,8 +26,6 @@ Usage: #definition
   * answerOption[+].valueCoding = $isced#isced-4 "ISCED 4: Lehre mit Matura, Gesundheits- und Krankenpflegeschule (nicht-tertiär), Meister- oder Diplomprüfung"
   * answerOption[+].valueCoding = $isced#isced-5 "ISCED 5: Kolleg, tertiäre Hebammenakademien bzw. medizinisch-technische Ausbildungen im Kurzzyklus"
   * answerOption[+].valueCoding = $isced#isced-6-8 "ISCED 6–8: Hochschulabschlüsse (Bachelor, Master, Doktor)"
-  * answerOption[+].valueCoding = $isced#unknown "Weiß nicht"
-  * answerOption[+].valueCoding = $isced#not-stated "Keine Angabe"
   * item[+]
     * linkId = "comment"
     * text = "Haben Sie zu Ihrer Antwort noch einen Kommentar oder etwas hinzuzufügen?"
