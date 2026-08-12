@@ -118,10 +118,12 @@ Description: "Vollständige Antwortmöglichkeiten aus dem ATHIS Fragebogen (Öst
 
 // =============================================================================
 // GRUPPE 8: Ernährungshäufigkeit  [Prefix: diet-]
-// Skala A (DH1, DH3, DH5): täglich → nie + meta-unknown.
-// Skala B (DH6): wie A, ohne Weiß nicht.
+// Skala A (DH1, DH3, DH5): täglich → nie.
+// Skala B (DH6): wie A.
 // Skala C (DH7, DH8_neu): abweichende Formulierung Stufe 1 und 4.
 // Skala D (DH8 Fisch): feinere Monatsgranularität.
+// ATHIS-basierte Questionnaire-Auswahlfragen ergänzen grundsätzlich beide
+// universellen Metacodes aus Gruppe 1.
 // =============================================================================
 
 * #diet-daily-or-more "Täglich oder mehrmals täglich"
