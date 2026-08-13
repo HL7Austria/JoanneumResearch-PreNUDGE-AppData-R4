@@ -51,8 +51,10 @@ Besides these narrow standardized measurements, **broad standardized measurement
 
 ### Observation values and missing data
 
-PreNUDGE Observations SHOULD contain `value[x]` when a clinically or analytically meaningful value can be derived. If no such value can be derived, `value[x]` SHALL be absent and `dataAbsentReason` SHALL be provided.
+Atomic PreNUDGE Observations SHOULD contain `value[x]` when a clinically or analytically meaningful value can be derived. If no such value can be derived, `value[x]` SHALL be absent and `dataAbsentReason` SHALL be provided. FHIR's `obs-6` invariant ensures that root-level `value[x]` and `dataAbsentReason` are not both present.
 
 This applies especially to observations derived from questionnaires. The original `QuestionnaireResponse` remains the source record for the submitted answer, including answers such as "unknown" or "not stated". The derived `Observation` represents the clinically or analytically usable result.
 
-If neither `value[x]` nor `dataAbsentReason` is present, the Observation is incomplete and does not conform to the PreNUDGE data quality expectation.
+Panel and score Observations may intentionally omit root-level `value[x]` because their results are represented in `component`. In that case, at least one component SHALL contain either `component.value[x]` or `component.dataAbsentReason`. Profiles for fully calculated scores may require all defined component values instead.
+
+An Observation is incomplete and does not conform to the PreNUDGE data quality expectation if it contains none of the following: root-level `value[x]`, root-level `dataAbsentReason`, `component.value[x]`, or `component.dataAbsentReason`.

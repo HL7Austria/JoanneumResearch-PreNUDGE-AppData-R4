@@ -23,6 +23,9 @@ Description: "This FHIR profile is derived from the APS Observation Alcohol Use 
 * method from AtPrenudgeValueSetMethodManualAutomated
 * method ^short = "Manual if derived from a QuestionnaireResponse; Automated only if a plausible automated source is documented"
 
+* dataAbsentReason MS
+* dataAbsentReason ^short = "Reason why no clinically or analytically meaningful result is available"
+
 * note MS
 * note ^short = "Comments about the observation including patient comments have to be possible"
 
@@ -32,8 +35,10 @@ Description: "This FHIR profile is derived from the APS Observation Alcohol Use 
 * component ^short = "Components should only be used when multiple values are inseparably connected to a single measurement (e.g., score domains)."
 // -------------------------------------------------------------------------------------------------------------------
 
+* obeys at-prenudge-result-present
+
 * derivedFrom MS
-* derivedFrom ^short = "QuestionnaireResponse or other source this smoking status observation was derived from"
+* derivedFrom ^short = "QuestionnaireResponse or other source this alcohol use observation was derived from"
 
 * value[x] 0..1
 * value[x] only Quantity

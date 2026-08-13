@@ -22,6 +22,9 @@ Description: "This FHIR profile is defining the current smoking status observati
 * method from AtPrenudgeValueSetMethodManualAutomated
 * method ^short = "Manual if derived from a QuestionnaireResponse; Automated only if a plausible automated source is documented"
 
+* dataAbsentReason MS
+* dataAbsentReason ^short = "Reason why no clinically or analytically meaningful result is available"
+
 * note MS
 * note ^short = "Comments about the observation including patient comments have to be possible"
 
@@ -30,6 +33,8 @@ Description: "This FHIR profile is defining the current smoking status observati
 
 * component ^short = "Components should only be used when multiple values are inseparably connected to a single measurement (e.g., score domains)."
 // -------------------------------------------------------------------------------------------------------------------
+
+* obeys at-prenudge-result-present
 
 // additional fields
 //* code = http://loinc.org#72166-2 "Tobacco smoking status" // inherit from IPS

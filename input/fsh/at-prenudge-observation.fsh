@@ -8,6 +8,8 @@ Description: "This FHIR profile is defining the overall Observation for PreNUDGE
 
 * ^abstract = true
 
+* obeys at-prenudge-result-present
+
 * identifier 1..
 * identifier ^short = "Business Identifier for observation, at least one is assigned by the data provider"
 * identifier.system 1..
@@ -23,6 +25,9 @@ Description: "This FHIR profile is defining the overall Observation for PreNUDGE
 * method 1..
 * method from AtPrenudgeValueSetMethodManualAutomated
 
+* dataAbsentReason MS
+* dataAbsentReason ^short = "Reason why no clinically or analytically meaningful result is available"
+
 * note MS 
 * note ^short = "Comments about the observation including patient comments have to be possible"
 
@@ -30,3 +35,10 @@ Description: "This FHIR profile is defining the overall Observation for PreNUDGE
 * device ^short = "(Measurement) Devices should be documented when used"
 
 * component ^short = "Components should only be used when multiple values are inseparably connected to a single measurement (e.g., score domains)."
+* component.dataAbsentReason MS
+* component.dataAbsentReason ^short = "Reason why no clinically or analytically meaningful component result is available"
+
+Invariant: at-prenudge-result-present
+Description: "A PreNUDGE Observation must contain a root result, a root data absent reason, or at least one component result or component data absent reason."
+Severity: #error
+Expression: "value.exists() or dataAbsentReason.exists() or component.where(value.exists() or dataAbsentReason.exists()).exists()"

@@ -25,13 +25,13 @@ Profile: AtPrenudgeObservationMuscleStrengthening
 Parent: AtPrenudgeObservation
 Id: at-prenudge-muscle-strengthening-observation
 Title: "AT PreNUDGE Observation Muscle Strengthening Sessions"
-Description: "This FHIR profile defines the Muscle Strengthening Sessions Observation recording the number of muscle-strengthening exercise sessions (e.g. weight training, resistance exercises with weights, resistance bands, or bodyweight) per week. Applicable for both automated wearable measurements (method = Automated) and self-reported values derived from MuscleStrengtheningQuantityQuestionnaire (method = Manual). The value must be 0 or greater."
+Description: "This FHIR profile defines the Muscle Strengthening Sessions Observation recording the number of muscle-strengthening exercise sessions (e.g. weight training, resistance exercises with weights, resistance bands, or bodyweight) per week. Applicable for both automated wearable measurements (method = Automated) and self-reported values derived from questionnaires (method = Manual). A numeric value must be 0 or greater; ATHIS metadata answers are represented using dataAbsentReason."
 
 // LOINC 82291-6 "Frequency of muscle-strengthening physical activity"
 // Active; unit /wk; Physical Activity panel 82287-4. See header comment.
 * code = http://loinc.org#82291-6 "Frequency of muscle-strengthening physical activity"
 
-* value[x] 1..1
+* value[x] 0..1
 * value[x] only Quantity
 * valueQuantity.value 1..1
 * valueQuantity.unit = "{sessions}/wk"
@@ -47,4 +47,4 @@ Description: "This FHIR profile defines the Muscle Strengthening Sessions Observ
 Invariant: muscle-strengthening-range
 Severity: #error
 Description: "Muscle strengthening sessions per week must be 0 or greater."
-Expression: "value.ofType(Quantity).value >= 0"
+Expression: "value.empty() or value.ofType(Quantity).value >= 0"
