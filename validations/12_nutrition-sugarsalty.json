@@ -17,7 +17,7 @@
             {
                 "system": "http://snomed.info/sct",
                 "code": "364395008",
-                "display": "Pattern of food and drink intake (observable entity)"
+                "display": "Dietary intake (observable entity)"
             }
         ]
     },

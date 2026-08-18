@@ -15,7 +15,7 @@ group NutritionSugarSaltyFrequencyQuestionnaireResponseToObservation(source src 
   src then SetObservationBase(src, tgt) "Base";
   src -> tgt.meta = create('Meta') as meta,
     meta.profile = 'https://fhir.hl7.at/prenudge/appdata/r4/StructureDefinition/at-prenudge-nutrition-sugarsalty-observation' "SetProfile";
-  src -> tgt.code = cc('http://snomed.info/sct', '364395008', 'Pattern of food and drink intake (observable entity)') "SetCode";
+  src -> tgt.code = cc('http://snomed.info/sct', '364395008', 'Dietary intake (observable entity)') "SetCode";
   src.item as item where linkId = 'DH6' then MapSugarSaltyFrequency(item, tgt) "ProcessDH6";
 }
 
