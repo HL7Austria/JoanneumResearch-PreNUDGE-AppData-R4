@@ -15,7 +15,7 @@ group NutritionVegetablePortionsQuestionnaireResponseToObservation(source src : 
   src then SetObservationBase(src, tgt) "Base";
   src -> tgt.meta = create('Meta') as meta,
     meta.profile = 'https://fhir.hl7.at/prenudge/appdata/r4/StructureDefinition/at-prenudge-nutrition-vegetableportions-observation' "SetProfile";
-  src -> tgt.code = cc('http://loinc.org', '89764-8', 'Servings of vegetables per day [PhenX]') "SetCode";
+  src -> tgt.code = cc('http://loinc.org', '80459-1', 'Vegetable servings 24 hour Estimated') "SetCode";
   src.item as item where linkId = 'DH3' then MapVegetableFrequencyAbsence(item, tgt) "ProcessDH3Absence";
   src.item as item where linkId = 'DH4' then MapVegetablePortions(item, tgt) "ProcessDH4";
 }

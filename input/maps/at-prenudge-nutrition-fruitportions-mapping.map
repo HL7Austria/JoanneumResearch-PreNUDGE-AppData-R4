@@ -15,7 +15,7 @@ group NutritionFruitPortionsQuestionnaireResponseToObservation(source src : QR, 
   src then SetObservationBase(src, tgt) "Base";
   src -> tgt.meta = create('Meta') as meta,
     meta.profile = 'https://fhir.hl7.at/prenudge/appdata/r4/StructureDefinition/at-prenudge-nutrition-fruitportions-observation' "SetProfile";
-  src -> tgt.code = cc('http://loinc.org', '89765-5', 'Servings of fruit per day [PhenX]') "SetCode";
+  src -> tgt.code = cc('http://loinc.org', '80457-5', 'Fruit servings 24 hour Estimated') "SetCode";
   src.item as item where linkId = 'DH1' then MapFruitFrequencyAbsence(item, tgt) "ProcessDH1Absence";
   src.item as item where linkId = 'DH2' then MapFruitPortions(item, tgt) "ProcessDH2";
 }

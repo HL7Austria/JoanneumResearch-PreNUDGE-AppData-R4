@@ -16,8 +16,8 @@
         "coding": [
             {
                 "system": "http://loinc.org",
-                "code": "89764-8",
-                "display": "Servings of vegetables per day [PhenX]"
+                "code": "80459-1",
+                "display": "Vegetable servings 24 hour Estimated"
             }
         ]
     },

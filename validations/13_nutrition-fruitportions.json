@@ -16,8 +16,8 @@
         "coding": [
             {
                 "system": "http://loinc.org",
-                "code": "89765-5",
-                "display": "Servings of fruit per day [PhenX]"
+                "code": "80457-5",
+                "display": "Fruit servings 24 hour Estimated"
             }
         ]
     },
