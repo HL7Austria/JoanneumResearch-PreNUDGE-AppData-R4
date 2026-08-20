@@ -88,7 +88,8 @@ Q4–Q6 are captured only."""
 
 // ─── Q7 (≡ ATHIS PE7): Total leisure PA duration (#group) ────────────────
 // Two integer sub-items (Q7-hours, Q7-minutes) + Q7-comment.
-// Mapped to component[aggregateActivity] via StructureMap.
+// Mapped to component[aggregateActivity] (plain/unweighted) via StructureMap — Q7 never
+// separates moderate from vigorous, so no ×2 weighting applies to this value.
 * item[+]
   * linkId   = "Q7"
   * type     = #group

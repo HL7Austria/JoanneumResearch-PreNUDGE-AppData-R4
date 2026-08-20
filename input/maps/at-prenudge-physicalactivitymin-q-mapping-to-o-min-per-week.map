@@ -1,11 +1,17 @@
-//   Q7 total leisure time → component[aggregateActivity] (hours×60 + minutes, pre-computed by questionnaire calculatedExpression on Q7-total-minutes)
-//   component[vigorousActivity] : NOT set (absent)
-//   component[moderateActivity] : NOT set (absent)
+//   Q7 total leisure time → component[aggregateActivity] (plain/unweighted, LOINC
+//     101691-4; hours×60 + minutes, pre-computed by questionnaire calculatedExpression
+//     on Q7-total-minutes)
+//   component[vigorousActivity]            : NOT set (absent)
+//   component[moderateActivity]            : NOT set (absent)
+//   component[aggregateActivityWeighted]   : NOT set (absent) — Q7 never separates
+//     moderate from vigorous, so no ×2 weighting was ever applicable to this value;
+//     it belongs on the plain aggregateActivity component, not the weighted one.
 //
 // Invariant behaviour:
 //   pa-panel-01  : satisfied — aggregateActivity is present
 //   pa-agg-01    : antecedent = (mod.exists() or vig.exists()) = false → implies = true
 //                  → invariant passes silently (no warning)
+//   pa-agg-02    : same antecedent = false → passes silently (no warning)
 //   pa-wearable-01: N/A — method = Manual
 //   pa-manual-comp-01: satisfied — classificationMethod absent
 
@@ -42,7 +48,7 @@ group PhysicalActivityQuestionnaireResponseToObservation(source src : QR, target
   // effectiveDateTime from authored (EHIS-PAQ Q7 has no embedded date item)
   src.authored as authored -> tgt.effectiveDateTime = authored "SetEffectiveDateTime";
 
-  // Map Q7 group to component[aggregateActivity]
+  // Map Q7 group to component[aggregateActivity] (plain, LOINC 101691-4)
   src.item as q7 where linkId = 'Q7' then MapQ7ToAggregate(q7, tgt) "ProcessQ7";
 
   // component[moderateActivity] : NOT mapped
@@ -52,6 +58,11 @@ group PhysicalActivityQuestionnaireResponseToObservation(source src : QR, target
   // component[vigorousActivity] : NOT mapped
   //   Total leisure time maps directly to aggregateActivity (see MapQ7ToAggregate).
 
+  // component[aggregateActivityWeighted] (SNOMED CT 68130003) : NOT mapped
+  //   No ×2 weighting is applicable when moderate/vigorous cannot be distinguished;
+  //   a consuming system may copy aggregateActivity's value post-transform if it
+  //   needs this component too (see profile comment on scenario (f)).
+
   // component[classificationMethod] : NOT mapped
   //   method = Manual → component must be absent or self-rp (pa-manual-comp-01).
   //   The map does not set it; a consuming system may add self-rp post-transform
@@ -59,7 +70,7 @@ group PhysicalActivityQuestionnaireResponseToObservation(source src : QR, target
 }
 
 // ---------------------------------------------------------------------------
-// Q7 → component[aggregateActivity]  (LOINC 101691-4)
+// Q7 → component[aggregateActivity]  (LOINC 101691-4 "Duration of physical activity", plain/unweighted)
 //
 // Formula: aggregateMinutes = (Q7-hours × 60) + Q7-minutes
 //
