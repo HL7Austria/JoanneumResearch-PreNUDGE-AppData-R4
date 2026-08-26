@@ -33,12 +33,12 @@ group WhooleyQuestionnaireResponseToObservation(source src : QR, target tgt : Ob
 // If q1 = SNOMED 373066001 (Ja): delegates to WhooleyQ2Check to test q2.
 // If q1 = SNOMED 373067005 (Nein): sets Negative result immediately.
 group WhooleyGroupToObservation(source groupItem : QR, target tgt : Obs) {
-  groupItem.item as q1 where q1.linkId = '/whooley-q1' then {
+  groupItem.item as q1 where q1.linkId = 'whooley-q1' then {
     q1.answer as a1 where a1.valueCoding.code = '373066001'
     then WhooleyQ2Check(groupItem, tgt) "whenQ1Ja";
   } "q1Ja";
 
-  groupItem.item as q1 where q1.linkId = '/whooley-q1' then {
+  groupItem.item as q1 where q1.linkId = 'whooley-q1' then {
     q1.answer as a1 where a1.valueCoding.code = '373067005'
     -> tgt.valueCodeableConcept = cc('http://snomed.info/sct', '260385009', 'Negative (qualifier value)') "q1Nein";
   } "q1Nein";
@@ -46,7 +46,7 @@ group WhooleyGroupToObservation(source groupItem : QR, target tgt : Obs) {
 
 // Called only when q1 = Ja. Sets Positive if q2 = Ja, Negative if q2 = Nein.
 group WhooleyQ2Check(source groupItem : QR, target tgt : Obs) {
-  groupItem.item as q2 where q2.linkId = '/whooley-q2' then {
+  groupItem.item as q2 where q2.linkId = 'whooley-q2' then {
     q2.answer as a2 where a2.valueCoding.code = '373066001'
     -> tgt.valueCodeableConcept = cc('http://snomed.info/sct', '10828004', 'Positive (qualifier value)') "bothJa";
     q2.answer as a2 where a2.valueCoding.code = '373067005'

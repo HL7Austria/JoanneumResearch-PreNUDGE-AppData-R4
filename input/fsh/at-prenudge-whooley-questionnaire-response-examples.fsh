@@ -16,10 +16,10 @@ Description: "Example of a Whooley (PHQ-2 Ja/Nein-Version) questionnaire respons
 * item[0]
   * linkId = "whooley"
   * item[0]
-    * linkId = "/whooley-q1"
+    * linkId = "whooley-q1"
     * answer[0].valueCoding = $sct#373066001 "Ja"
   * item[+]
-    * linkId = "/whooley-q2"
+    * linkId = "whooley-q2"
     * answer[0].valueCoding = $sct#373066001 "Ja"
 
 
@@ -39,8 +39,8 @@ Description: "Example of a Whooley (PHQ-2 Ja/Nein-Version) questionnaire respons
 * item[0]
   * linkId = "whooley"
   * item[0]
-    * linkId = "/whooley-q1"
+    * linkId = "whooley-q1"
     * answer[0].valueCoding = $sct#373066001 "Ja"
   * item[+]
-    * linkId = "/whooley-q2"
+    * linkId = "whooley-q2"
     * answer[0].valueCoding = $sct#373067005 "Nein"
