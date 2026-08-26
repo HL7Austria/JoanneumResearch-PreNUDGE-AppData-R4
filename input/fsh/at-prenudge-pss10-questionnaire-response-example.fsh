@@ -22,60 +22,70 @@ Description: "Example of a completed PSS-10 QuestionnaireResponse with all ten i
   * linkId = "pss10"
   * item[0]
     * linkId = "pss10-q1"
+    * text = "Wie oft hatten Sie sich im letzten Monat darüber aufgeregt, dass etwas völlig Unerwartetes eingetreten ist?"
     * answer[0].valueCoding = $pssFreqCS#sometimes "Manchmal"
   * item[+]
     * linkId = "pss10-q1-ordinal"
     * answer[0].valueInteger = 2
   * item[+]
     * linkId = "pss10-q2"
+    * text = "Wie oft hatten Sie im letzten Monat das Gefühl, wichtige Dinge in Ihrem Leben nicht beeinflussen zu können?"
     * answer[0].valueCoding = $pssFreqCS#rarely "Selten"
   * item[+]
     * linkId = "pss10-q2-ordinal"
     * answer[0].valueInteger = 1
   * item[+]
     * linkId = "pss10-q3"
+    * text = "Wie oft hatten Sie sich im letzten Monat nervös und \"gestresst\" gefühlt?"
     * answer[0].valueCoding = $pssFreqCS#often "Häufig"
   * item[+]
     * linkId = "pss10-q3-ordinal"
     * answer[0].valueInteger = 3
   * item[+]
     * linkId = "pss10-q4"
+    * text = "Wie oft hatten Sie sich im letzten Monat sicher im Umgang mit persönlichen Aufgaben und Problemen gefühlt?"
     * answer[0].valueCoding = $pssFreqCS#sometimes "Manchmal"
   * item[+]
     * linkId = "pss10-q4-ordinal"
     * answer[0].valueInteger = 2
   * item[+]
     * linkId = "pss10-q5"
+    * text = "Wie oft hatten Sie im letzten Monat das Gefühl, dass sich die Dinge nach Ihren Vorstellungen entwickeln?"
     * answer[0].valueCoding = $pssFreqCS#rarely "Selten"
   * item[+]
     * linkId = "pss10-q5-ordinal"
     * answer[0].valueInteger = 1
   * item[+]
     * linkId = "pss10-q6"
+    * text = "Wie oft hatten Sie im letzten Monat das Gefühl, mit all den anstehenden Aufgaben und Problemen nicht richtig umgehen zu können?"
     * answer[0].valueCoding = $pssFreqCS#sometimes "Manchmal"
   * item[+]
     * linkId = "pss10-q6-ordinal"
     * answer[0].valueInteger = 2
   * item[+]
     * linkId = "pss10-q7"
+    * text = "Wie oft hatten Sie im letzten Monat das Gefühl, mit Ärger in Ihrem Leben klar zu kommen?"
     * answer[0].valueCoding = $pssFreqCS#often "Häufig"
   * item[+]
     * linkId = "pss10-q7-ordinal"
     * answer[0].valueInteger = 3
   * item[+]
     * linkId = "pss10-q8"
+    * text = "Wie oft hatten Sie im letzten Monat das Gefühl, alles im Griff zu haben?"
     * answer[0].valueCoding = $pssFreqCS#sometimes "Manchmal"
   * item[+]
     * linkId = "pss10-q8-ordinal"
     * answer[0].valueInteger = 2
   * item[+]
     * linkId = "pss10-q9"
+    * text = "Wie oft hatten Sie sich im letzten Monat darüber geärgert, wichtige Dinge nicht beeinflussen zu können?"
     * answer[0].valueCoding = $pssFreqCS#rarely "Selten"
   * item[+]
     * linkId = "pss10-q9-ordinal"
     * answer[0].valueInteger = 1
   * item[+]
     * linkId = "pss10-q10"
+    * text = "Wie oft hatten Sie im letzten Monat das Gefühl, dass sich die Probleme so aufgestaut haben, dass Sie diese nicht mehr bewältigen können?"
     * answer[0].valueCoding = $pssFreqCS#sometimes "Manchmal"
   * item[+]
     * linkId = "pss10-q10-ordinal"
