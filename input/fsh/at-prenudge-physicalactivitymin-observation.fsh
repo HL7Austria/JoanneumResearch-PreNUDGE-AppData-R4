@@ -166,6 +166,7 @@ Two aggregate flavors may be sent independently of each other:
                                   (e.g. a single questionnaire total). See pa-agg-02.
   - aggregateActivityWeighted  — WHO/IPAQ moderate-equivalent total: moderateActivity
                                   (or 0) + (vigorousActivity × 2, or 0). See pa-agg-01.
+                                  
 Both, either, or neither aggregate MAY be present; pa-panel-01 only requires that at
 least one component (of any kind) exists. Sending only an aggregate (without
 moderateActivity/vigorousActivity) is valid and expected whenever the source cannot
