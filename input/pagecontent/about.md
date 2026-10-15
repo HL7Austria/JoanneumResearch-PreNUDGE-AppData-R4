@@ -26,7 +26,7 @@ Participants of the ballot steering group:
 | Hassan Jabri | medicus.ai |
 | Jonas Kamsker    | dccx |
 | Patrick Mayr | AIT Austrian Institute of Technology GmbH |
-| Artem Sborets | medicus.ai |
+| Artem Sborets | dccx |
 | Nikola Tanjga       | tanjga.eu on behalf of Joanneum Research |
 | Hannah Täubl | Joanneum Research |
 | Thomas Truskaller   | Joanneum Research               |
