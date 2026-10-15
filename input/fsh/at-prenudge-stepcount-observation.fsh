@@ -2,7 +2,7 @@ Profile: AtPrenudgeObservationStepCount
 Parent: AtPrenudgeObservation
 Id: at-prenudge-stepcount-observation
 Title: "AT PreNUDGE Observation Step Count"
-Description: "This FHIR profile is defining the Step Count Observation. The step count only allows values inbetween 0 and 150,000 steps per 24 hours."
+Description: "This FHIR profile is defining the Step Count Observation. The step count only allows values between 0 and 150,000 steps per 24 hours."
 
 * code = http://loinc.org#41950-7 "Number of steps in 24 hour Measured"
 
@@ -17,5 +17,5 @@ Description: "This FHIR profile is defining the Step Count Observation. The step
 
 Invariant: stepcount-range
 Severity: #error
-Description: "Step count must be inbetween 0 and 150,000."
+Description: "Step count must be between 0 and 150,000."
 Expression: "value.ofType(Quantity).value >= 0 and value.ofType(Quantity).value <= 150000"

@@ -11,7 +11,7 @@ Description: "This FHIR profile is defining the overall Questionnaire Response f
 * identifier.value 1..
 
 * authored 1..
-* identifier ^short = "Mandatory date the answers were gathered"
+* authored ^short = "Mandatory date the answers were gathered"
 
 * status = #completed
-* status ^short = "In PreNUDGE only completed QuestionnaireResponses are beeing accepted"
+* status ^short = "In PreNUDGE only completed QuestionnaireResponses are being accepted"

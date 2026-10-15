@@ -2,7 +2,7 @@ Profile: AtPrenudgeObservationBloodGlucose
 Parent: AtPrenudgeObservation
 Id: at-prenudge-bloodglucose-observation
 Title: "AT PreNUDGE Observation Blood Glucose (only in mg/dL)"
-Description: "This FHIR profile is defining the Blood Glucose Observation, similar to the Observation Social History - Alcohol Use from the IPS. The blood glucose option only allows values inbetween 0 and 999 mg/dL."
+Description: "This FHIR profile is defining the Blood Glucose Observation. The blood glucose option only allows values between 0 and 999 mg/dL."
 
 * code = http://loinc.org#41653-7 "Glucose [Mass/volume] in Capillary blood by Glucometer"
 
@@ -32,5 +32,5 @@ Description: "This FHIR profile is defining the Blood Glucose Observation, simil
 
 Invariant: bloodglucose-range
 Severity: #error
-Description: "Blood glucose must be inbetween 0 and 999 mg/dL."
+Description: "Blood glucose must be between 0 and 999 mg/dL."
 Expression: "value.ofType(Quantity).value >= 0 and value.ofType(Quantity).value <= 999"

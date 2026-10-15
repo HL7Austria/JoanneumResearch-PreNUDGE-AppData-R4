@@ -8,7 +8,7 @@ Usage: #definition
 * status = #active
 * experimental = false
 * subjectType = #Patient
-* description = "A simple questionnaire for asking how high the blood glucose level is right now. The blood glucose option only allows values inbetween 0 and 999 mg/dL."
+* description = "A simple questionnaire for asking how high the blood glucose level is right now. The blood glucose option only allows values between 0 and 999 mg/dL."
 
 * item[+]
   * linkId = "blood-glucose"

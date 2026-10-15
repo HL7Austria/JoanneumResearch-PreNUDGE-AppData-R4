@@ -8,7 +8,7 @@ Usage: #definition
 * status = #active
 * experimental = false
 * subjectType = #Patient
-* description = "A simple questionnaire for asking how many steps the patient has taken today. Only allows values inbetween 0 and 150,000."
+* description = "A simple questionnaire for asking how many steps the patient has taken today. Only allows values between 0 and 150,000."
 
 * item[+]
   * linkId = "step-count"
