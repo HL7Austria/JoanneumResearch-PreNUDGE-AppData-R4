@@ -60,8 +60,8 @@ Expression: "component.exists()"
 
 /// pa-agg-01 — conditional WEIGHTED aggregate formula check
 //
-// Antecedent: at least one of moderateActivity (77592-4) or vigorousActivity
-//   (77593-2) is present.
+// Antecedent: at least one of moderateActivity (101689-8) or vigorousActivity
+//   (101690-6) is present.
 //
 // Consequent: aggregateActivityWeighted (SNOMED CT 68130003 "Physical activity")
 //   SHOULD equal
@@ -83,22 +83,22 @@ Invariant: pa-agg-01
 Description: "When moderateActivity or vigorousActivity are present, aggregateActivityWeighted SHOULD equal moderateActivity (or 0) + (vigorousActivity × 2, or 0)"
 Severity: #warning
 Expression: """
-(component.where(code.coding.where(code = '77592-4').exists()).exists()
- or component.where(code.coding.where(code = '77593-2').exists()).exists())
+(component.where(code.coding.where(code = '101689-8').exists()).exists()
+ or component.where(code.coding.where(code = '101690-6').exists()).exists())
 implies
 component.where(code.coding.where(code = '68130003').exists()).value.ofType(Quantity).value =
-  iif(component.where(code.coding.where(code = '77592-4').exists()).exists(),
-      component.where(code.coding.where(code = '77592-4').exists()).value.ofType(Quantity).value,
+  iif(component.where(code.coding.where(code = '101689-8').exists()).exists(),
+      component.where(code.coding.where(code = '101689-8').exists()).value.ofType(Quantity).value,
       0)
-  + (iif(component.where(code.coding.where(code = '77593-2').exists()).exists(),
-         component.where(code.coding.where(code = '77593-2').exists()).value.ofType(Quantity).value,
+  + (iif(component.where(code.coding.where(code = '101690-6').exists()).exists(),
+         component.where(code.coding.where(code = '101690-6').exists()).value.ofType(Quantity).value,
          0) * 2)
 """
 
 /// pa-agg-02 — conditional UNWEIGHTED aggregate formula check
 //
-// Same antecedent as pa-agg-01: at least one of moderateActivity (77592-4) or
-//   vigorousActivity (77593-2) is present.
+// Same antecedent as pa-agg-01: at least one of moderateActivity (101689-8) or
+//   vigorousActivity (101690-6) is present.
 //
 // Consequent: aggregateActivity (LOINC 101691-4 "Duration of physical activity")
 //   SHOULD equal
@@ -113,15 +113,15 @@ Invariant: pa-agg-02
 Description: "When moderateActivity or vigorousActivity are present, aggregateActivity SHOULD equal moderateActivity (or 0) + vigorousActivity (or 0), with no intensity weighting"
 Severity: #warning
 Expression: """
-(component.where(code.coding.where(code = '77592-4').exists()).exists()
- or component.where(code.coding.where(code = '77593-2').exists()).exists())
+(component.where(code.coding.where(code = '101689-8').exists()).exists()
+ or component.where(code.coding.where(code = '101690-6').exists()).exists())
 implies
 component.where(code.coding.where(code = '101691-4').exists()).value.ofType(Quantity).value =
-  iif(component.where(code.coding.where(code = '77592-4').exists()).exists(),
-      component.where(code.coding.where(code = '77592-4').exists()).value.ofType(Quantity).value,
+  iif(component.where(code.coding.where(code = '101689-8').exists()).exists(),
+      component.where(code.coding.where(code = '101689-8').exists()).value.ofType(Quantity).value,
       0)
-  + iif(component.where(code.coding.where(code = '77593-2').exists()).exists(),
-        component.where(code.coding.where(code = '77593-2').exists()).value.ofType(Quantity).value,
+  + iif(component.where(code.coding.where(code = '101690-6').exists()).exists(),
+        component.where(code.coding.where(code = '101690-6').exists()).value.ofType(Quantity).value,
         0)
 """
 
@@ -159,6 +159,11 @@ Description:    """Observation profile for recording physical activity duration 
 (moderate, vigorous, and two alternative aggregate components) derived from either a
 wearable device or the EHIS-PAQ/ATHIS questionnaire (Q7/PE7).
 
+Weekly durations are recorded in min/wk. For values that refer to a calendar
+week, effectiveDateTime is Monday at 00:00 in the local time of the reporting
+week. EHIS-PAQ/ATHIS Q7/PE7 describes a typical week without a calendar date.
+For this source, effectiveDateTime records when the questionnaire was answered.
+
 Two aggregate flavors may be sent independently of each other:
   - aggregateActivity          — plain/unweighted total: moderateActivity (or 0) +
                                   vigorousActivity (or 0). Also used standalone when
@@ -193,6 +198,7 @@ Example component combinations (not exhaustive):
 * obeys pa-agg-01
 * obeys pa-agg-02
 * obeys pa-wearable-01
+* effectiveDateTime ^comment = "For a value referring to a calendar week, use Monday at 00:00 in the local time of that week. For an EHIS-PAQ/ATHIS Q7/PE7 typical-week value, use QuestionnaireResponse.authored."
 * obeys pa-manual-comp-01
 
 // Panel code (LOINC 101691-4 "Duration of physical activity")
@@ -234,14 +240,14 @@ Example component combinations (not exhaustive):
     classificationMethod      0..1 MS
 
 // --- moderateActivity ---
-* component[moderateActivity].code = $loinc#77592-4 "Moderate physical activity [IPAQ]"
+* component[moderateActivity].code = $loinc#101689-8 "Duration of moderate activity"
 * component[moderateActivity].value[x] only Quantity
 * component[moderateActivity].valueQuantity.unit = "min/wk"
 * component[moderateActivity].valueQuantity.system = "http://unitsofmeasure.org"
 * component[moderateActivity].valueQuantity.code = #min/wk
 
 // --- vigorousActivity ---
-* component[vigorousActivity].code = $loinc#77593-2 "Vigorous physical activity [IPAQ]"
+* component[vigorousActivity].code = $loinc#101690-6 "Duration of vigorous activity"
 * component[vigorousActivity].value[x] only Quantity
 * component[vigorousActivity].valueQuantity.unit = "min/wk"
 * component[vigorousActivity].valueQuantity.system = "http://unitsofmeasure.org"
