@@ -15,9 +15,9 @@ Description: "Example of a highest completed education questionnaire response us
 
 * item[0]
   * linkId = "highest-completed-education"
-  * text = "Was ist Ihr höchster abgeschlossener Bildungsabschluss?"
+  * text = "Was ist Ihre höchste erfolgreich abgeschlossene Ausbildung / Ihr höchster Schul- bzw. Berufsbildungsabschluss?"
   * answer[0]
-    * valueCoding = $isced#isced-6-8 "ISCED 6–8: Hochschulabschlüsse (Bachelor, Master, Doktor)"
+    * valueCoding = $isced#isced-6-8 "ISCED 6–8: Hochschulabschlüsse (Bachelor, Master, Diplomstudium, Doktorat)"
     * item[+]
       * linkId = "comment"
       * answer[0].valueString = "Bachelorabschluss an einer Fachhochschule."
@@ -26,8 +26,8 @@ Description: "Example of a highest completed education questionnaire response us
 Instance: education-response-upper-secondary-example
 InstanceOf: AtPrenudgeQuestionnaireResponse
 Usage: #example
-Title: "Education Q - ISCED 3c Example"
-Description: "Example of a highest completed education questionnaire response using the ISCED 3c category."
+Title: "Education Q - ISCED 3 Example"
+Description: "Example of a highest completed education questionnaire response for AHS upper secondary education, in the ISCED 3 group."
 
 * questionnaire = Canonical(EducationQuestionnaire)
 * status = #completed
@@ -38,5 +38,5 @@ Description: "Example of a highest completed education questionnaire response us
 
 * item[0]
   * linkId = "highest-completed-education"
-  * text = "Was ist Ihr höchster abgeschlossener Bildungsabschluss?"
-  * answer[0].valueCoding = $isced#isced-3c "ISCED 3c: Berufsbildende höhere Schulen (HAK, HBLA, HTL) und AHS-Oberstufe"
+  * text = "Was ist Ihre höchste erfolgreich abgeschlossene Ausbildung / Ihr höchster Schul- bzw. Berufsbildungsabschluss?"
+  * answer[0].valueCoding = $isced#isced-3 "ISCED 3: Lehre, BMS (z. B. HASCH, Fachschulen), AHS-Oberstufe"

@@ -26,7 +26,7 @@
             {
                 "system": "https://fhir.hl7.at/prenudge/appdata/r4/CodeSystem/prenudge-isced-2011-education-level",
                 "code": "isced-6-8",
-                "display": "ISCED 6–8: Hochschulabschlüsse (Bachelor, Master, Doktor)"
+                "display": "ISCED 6–8: Hochschulabschlüsse (Bachelor, Master, Diplomstudium, Doktorat)"
             }
         ]
     },

@@ -10,22 +10,20 @@ Usage: #definition
 * status = #active
 * experimental = false
 * subjectType = #Patient
-* description = "A simple questionnaire asking for the person's highest completed education level using eight ISCED-based answer categories."
+* description = "A simple questionnaire asking for the person's highest completed education level using six ISCED-based answer categories."
 
 * item[+]
   * linkId = "highest-completed-education"
   * code = http://loinc.org#82589-3 "Highest level of education"
-  * text = "Was ist Ihr höchster abgeschlossener Bildungsabschluss?"
+  * text = "Was ist Ihre höchste erfolgreich abgeschlossene Ausbildung / Ihr höchster Schul- bzw. Berufsbildungsabschluss?"
   * type = #choice
   * required = true
   * answerOption[+].valueCoding = $isced#isced-1 "ISCED 1: Volksschule"
-  * answerOption[+].valueCoding = $isced#isced-2 "ISCED 2: Hauptschule, Mittelschulen, Unterstufen von AHS"
-  * answerOption[+].valueCoding = $isced#isced-3a "ISCED 3a: Polytechnische Schule"
-  * answerOption[+].valueCoding = $isced#isced-3b "ISCED 3b: Berufsbildende mittlere Schulen (HASCH, Fachschulen)"
-  * answerOption[+].valueCoding = $isced#isced-3c "ISCED 3c: Berufsbildende höhere Schulen (HAK, HBLA, HTL) und AHS-Oberstufe"
-  * answerOption[+].valueCoding = $isced#isced-4 "ISCED 4: Lehre mit Matura, Gesundheits- und Krankenpflegeschule (nicht-tertiär), Meister- oder Diplomprüfung"
-  * answerOption[+].valueCoding = $isced#isced-5 "ISCED 5: Kolleg, tertiäre Hebammenakademien bzw. medizinisch-technische Ausbildungen im Kurzzyklus"
-  * answerOption[+].valueCoding = $isced#isced-6-8 "ISCED 6–8: Hochschulabschlüsse (Bachelor, Master, Doktor)"
+  * answerOption[+].valueCoding = $isced#isced-2 "ISCED 2: Hauptschule, Mittelschule, AHS-Unterstufe, Polytechnische Schule"
+  * answerOption[+].valueCoding = $isced#isced-3 "ISCED 3: Lehre, BMS (z. B. HASCH, Fachschulen), AHS-Oberstufe"
+  * answerOption[+].valueCoding = $isced#isced-4 "ISCED 4: Berufsreifeprüfung, Gesundheits- und Krankenpflegeschule"
+  * answerOption[+].valueCoding = $isced#isced-5 "ISCED 5: BHS-Abschluss (HAK, HLW, HTL), Kolleg, Meisterprüfung"
+  * answerOption[+].valueCoding = $isced#isced-6-8 "ISCED 6–8: Hochschulabschlüsse (Bachelor, Master, Diplomstudium, Doktorat)"
   * item[+]
     * linkId = "comment"
     * text = "Haben Sie zu Ihrer Antwort noch einen Kommentar oder etwas hinzuzufügen?"

@@ -15,7 +15,7 @@ Description: "Example of a highest completed education observation mapped from t
 * effectiveDateTime = "2026-03-20T09:00:00Z"
 * issued = "2026-03-20T09:00:00Z"
 * method = http://snomed.info/sct#87982008 "Manual"
-* valueCodeableConcept = $isced#isced-6-8 "ISCED 6–8: Hochschulabschlüsse (Bachelor, Master, Doktor)"
+* valueCodeableConcept = $isced#isced-6-8 "ISCED 6–8: Hochschulabschlüsse (Bachelor, Master, Diplomstudium, Doktorat)"
 * note[+].text = "Bachelorabschluss an einer Fachhochschule."
 * derivedFrom = Reference(QuestionnaireResponse/education-response-bachelor-example)
 
@@ -23,7 +23,7 @@ Description: "Example of a highest completed education observation mapped from t
 Instance: education-upper-secondary-example
 InstanceOf: AtPrenudgeObservationEducation
 Usage: #example
-Title: "Education O mapped from Q - ISCED 3c Example"
+Title: "Education O mapped from Q - ISCED 3 Example"
 Description: "Example of a highest completed education observation mapped from the EducationQuestionnaire."
 
 * identifier[+]
@@ -35,5 +35,5 @@ Description: "Example of a highest completed education observation mapped from t
 * effectiveDateTime = "2026-03-21T10:30:00Z"
 * issued = "2026-03-21T10:30:00Z"
 * method = http://snomed.info/sct#87982008 "Manual"
-* valueCodeableConcept = $isced#isced-3c "ISCED 3c: Berufsbildende höhere Schulen (HAK, HBLA, HTL) und AHS-Oberstufe"
+* valueCodeableConcept = $isced#isced-3 "ISCED 3: Lehre, BMS (z. B. HASCH, Fachschulen), AHS-Oberstufe"
 * derivedFrom = Reference(QuestionnaireResponse/education-response-upper-secondary-example)
