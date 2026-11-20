@@ -12,6 +12,13 @@ Usage: #definition
 * subjectType = #Patient
 * description = "Standalone questionnaire for self-assessing sleep quality based on WHOQOL-BREF question Q16 ('Wie zufrieden sind Sie mit Ihrem Schlaf?')."
 
+// The full WHOQOL-BREF gives the two-week recall period in the section introduction.
+// Show it separately here so the Q16 wording matches the full questionnaire and the Health Profile.
+* item[+]
+  * linkId = "recall-period"
+  * type = #display
+  * text = "Bitte denken Sie bei Ihrer Antwort an die vergangenen zwei Wochen."
+
 // NOTE:
 // duplicate in at-prenudge-qol-questionnaire.fsh
 // LHC-Forms does not support SDC-Extension sdc-questionnaire-subQuestionnaire
