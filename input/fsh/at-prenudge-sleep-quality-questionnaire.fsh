@@ -17,6 +17,7 @@ Usage: #definition
 // LHC-Forms does not support SDC-Extension sdc-questionnaire-subQuestionnaire
 * item[+]
   * linkId = "Q16"
+  * code = http://loinc.org#98933-5 "Satisfaction with sleep in last 2 weeks"
   * text = "Wie zufrieden sind Sie mit Ihrem Schlaf?"
   * type = #choice
   * required = true

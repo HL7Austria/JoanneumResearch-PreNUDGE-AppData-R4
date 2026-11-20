@@ -17,7 +17,8 @@ Usage: #definition
 * copyright = "© World Health Organization. Usage with permission from WHO."
 * subjectType = #Patient
 * language = #de-AT
-* code = http://snomed.info/sct#405152002
+* code[+] = http://loinc.org#98917-8 "WHO Quality of life-BREF [WHOQOL_BREF]"
+* code[+] = http://snomed.info/sct#405152002
 
 // ============================================================
 // Einleitung
@@ -273,6 +274,7 @@ Usage: #definition
 // LHC-Forms does not support SDC-Extension sdc-questionnaire-subQuestionnaire
   * item[+]
     * linkId = "Q16"
+    * code = http://loinc.org#98933-5 "Satisfaction with sleep in last 2 weeks"
     * text = "Wie zufrieden sind Sie mit Ihrem Schlaf?"
     * type = #choice
     * required = true
