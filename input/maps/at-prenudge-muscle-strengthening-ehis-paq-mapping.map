@@ -4,6 +4,7 @@
 // (coded answer options require code-to-value translation via valueCoding).
 //
 // Mapping logic:
+//   ATHIS CS activity-never-or-rarely → 0 {sessions}/wk
 //   ATHIS CS activity-1-day  → 1 {sessions}/wk
 //   ATHIS CS activity-2-days → 2 {sessions}/wk
 //   ...
@@ -61,6 +62,9 @@ group MapQ8(source src : QR, target tgt : Obs) {
 }
 
 group MapQ8CodingToQuantity(source coding : Coding, target tgt : Obs) {
+  coding.code as c where $this = 'activity-never-or-rarely' ->
+    tgt.value = create('Quantity') as qty, qty.value = '0', qty.unit = '{sessions}/wk', qty.system = 'http://unitsofmeasure.org', qty.code = '{sessions}/wk' "MapNeverOrRarely";
+
   coding.code as c where $this = 'activity-1-day' ->
     tgt.value = create('Quantity') as qty, qty.value = '1', qty.unit = '{sessions}/wk', qty.system = 'http://unitsofmeasure.org', qty.code = '{sessions}/wk' "Map1Day";
 
