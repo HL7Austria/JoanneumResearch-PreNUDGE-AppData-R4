@@ -67,6 +67,7 @@ Description: "Example of a low fasting blood glucose measurement (62 mg/dL), i
 * issued = "2026-03-03T10:31:00Z"
 * effectiveDateTime = "2026-03-03T06:15:00Z"
 * method = http://snomed.info/sct#8359006 "Automated"
+* device = Reference(Device/device-glucometer-example)
 * valueQuantity
   * value = 62
   * unit = "mg/dL"

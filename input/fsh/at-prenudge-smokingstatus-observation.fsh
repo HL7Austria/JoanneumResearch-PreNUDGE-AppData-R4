@@ -20,7 +20,7 @@ Description: "This FHIR profile is defining the current smoking status observati
 
 * method 1..
 * method from AtPrenudgeValueSetMethodManualAutomated
-* method ^short = "Manual if derived from a QuestionnaireResponse; Automated only if a plausible automated source is documented"
+* method ^short = "Manual for self-reported values; Automated only if transferred from a device or health platform without manual entry and the device is documented"
 
 * dataAbsentReason MS
 * dataAbsentReason ^short = "Reason why no clinically or analytically meaningful result is available"

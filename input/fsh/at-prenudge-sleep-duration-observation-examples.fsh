@@ -13,6 +13,7 @@ Description: "Example of a normal average sleep duration (7.5 h) measured by a w
 * effectiveDateTime = "2026-03-10"
 * issued = "2026-03-10T07:00:00Z"
 * method = http://snomed.info/sct#8359006 "Automated"
+* device = Reference(Device/device-wearable-example)
 * valueQuantity
   * value = 7.5
   * unit = "h"
@@ -58,6 +59,7 @@ Description: "Example of a short average sleep duration (5.5 h) measured by a we
 * effectiveDateTime = "2026-03-11"
 * issued = "2026-03-11T07:00:00Z"
 * method = http://snomed.info/sct#8359006 "Automated"
+* device = Reference(Device/device-wearable-example)
 * valueQuantity
   * value = 5.5
   * unit = "h"
