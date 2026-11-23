@@ -68,7 +68,7 @@ neither moderate nor vigorous is present."""
 * status            = #final
 * code              = $loinc#101691-4 "Duration of physical activity"
 * subject           = Reference(Patient/example)
-* effectiveDateTime = "2026-03-24T08:00:00+01:00"
+* effectiveDateTime = "2026-03-16T00:00:00+01:00"
 * issued            = "2026-03-24T08:00:00+01:00"
 * method            = $SCT#87982008 "Manual"
 
@@ -125,13 +125,13 @@ This scenario may arise when a source captures moderate activity but omits the a
 * status            = #final
 * code              = $loinc#101691-4 "Duration of physical activity"
 * subject           = Reference(Patient/example)
-* effectiveDateTime = "2026-03-24T08:00:00+01:00"
+* effectiveDateTime = "2026-03-16T00:00:00+01:00"
 * issued            = "2026-03-24T08:00:00+01:00"
 * method            = $SCT#87982008 "Manual"
 
 // moderateActivity = 150 min/wk
 * component[+]
-  * code                    = $loinc#77592-4 "Moderate physical activity [IPAQ]"
+  * code                    = $loinc#101689-8 "Duration of moderate activity"
   * valueQuantity.value     = 150
   * valueQuantity.unit      = "min/wk"
   * valueQuantity.system    = "http://unitsofmeasure.org"
@@ -178,13 +178,13 @@ separately and includes only the WHO/IPAQ-weighted aggregate."""
 * status            = #final
 * code              = $loinc#101691-4 "Duration of physical activity"
 * subject           = Reference(Patient/example)
-* effectiveDateTime = "2026-03-24T08:00:00+01:00"
+* effectiveDateTime = "2026-03-16T00:00:00+01:00"
 * issued            = "2026-03-24T08:00:00+01:00"
 * method            = $SCT#87982008 "Manual"
 
 // moderateActivity = 90 min/wk
 * component[+]
-  * code                    = $loinc#77592-4 "Moderate physical activity [IPAQ]"
+  * code                    = $loinc#101689-8 "Duration of moderate activity"
   * valueQuantity.value     = 90
   * valueQuantity.unit      = "min/wk"
   * valueQuantity.system    = "http://unitsofmeasure.org"
@@ -239,7 +239,7 @@ separately count moderate bouts."""
 * status            = #final
 * code              = $loinc#101691-4 "Duration of physical activity"
 * subject           = Reference(Patient/example)
-* effectiveDateTime = "2026-03-24T08:00:00+01:00"
+* effectiveDateTime = "2026-03-16T00:00:00+01:00"
 * issued            = "2026-03-24T08:00:00+01:00"
 * method            = $SCT#8359006 "Automated"
 * device            = Reference(Device/device-wearable-example)
@@ -247,7 +247,7 @@ separately count moderate bouts."""
 // vigorousActivity = 75 min/wk
 // Vigorous ×2 weighting (WHO/IPAQ): 1 min vigorous ≡ 2 min moderate-equivalent.
 * component[+]
-  * code                    = $loinc#77593-2 "Vigorous physical activity [IPAQ]"
+  * code                    = $loinc#101690-6 "Duration of vigorous activity"
   * valueQuantity.value     = 75
   * valueQuantity.unit      = "min/wk"
   * valueQuantity.system    = "http://unitsofmeasure.org"
@@ -312,14 +312,14 @@ that also sends the plain aggregate."""
 * status            = #final
 * code              = $loinc#101691-4 "Duration of physical activity"
 * subject           = Reference(Patient/example)
-* effectiveDateTime = "2026-03-24T08:00:00+01:00"
+* effectiveDateTime = "2026-03-16T00:00:00+01:00"
 * issued            = "2026-03-24T08:00:00+01:00"
 * method            = $SCT#8359006 "Automated"
 * device            = Reference(Device/device-wearable-example)
 
 // moderateActivity = 120 min/wk
 * component[+]
-  * code                    = $loinc#77592-4 "Moderate physical activity [IPAQ]"
+  * code                    = $loinc#101689-8 "Duration of moderate activity"
   * valueQuantity.value     = 120
   * valueQuantity.unit      = "min/wk"
   * valueQuantity.system    = "http://unitsofmeasure.org"
@@ -328,7 +328,7 @@ that also sends the plain aggregate."""
 // vigorousActivity = 60 min/wk
 // Vigorous ×2 weighting (WHO/IPAQ): 1 min vigorous ≡ 2 min moderate-equivalent.
 * component[+]
-  * code                    = $loinc#77593-2 "Vigorous physical activity [IPAQ]"
+  * code                    = $loinc#101690-6 "Duration of vigorous activity"
   * valueQuantity.value     = 60
   * valueQuantity.unit      = "min/wk"
   * valueQuantity.system    = "http://unitsofmeasure.org"
@@ -389,7 +389,8 @@ Q7/PE7 answer: 2 Stunden + 30 Minuten → aggregateActivity (plain) = (2×60)+30
 No intensity weighting is applied because Q7 does not separate moderate from
 vigorous activity, so the value goes on the plain aggregateActivity component
 rather than aggregateActivityWeighted.  derivedFrom links back to the source
-QuestionnaireResponse.  classificationMethod is absent; pa-manual-comp-01 is
+QuestionnaireResponse. The value describes a typical week, so effectiveDateTime
+is the questionnaire answer time.  classificationMethod is absent; pa-manual-comp-01 is
 satisfied by absence."""
 
 * meta.profile = "https://fhir.hl7.at/prenudge/appdata/r4/StructureDefinition/at-prenudge-physical-activity-minutes-observation"
@@ -459,14 +460,14 @@ need either figure."""
 * status            = #final
 * code              = $loinc#101691-4 "Duration of physical activity"
 * subject           = Reference(Patient/example)
-* effectiveDateTime = "2026-03-24T08:00:00+01:00"
+* effectiveDateTime = "2026-03-16T00:00:00+01:00"
 * issued            = "2026-03-24T08:00:00+01:00"
 * method            = $SCT#8359006 "Automated"
 * device            = Reference(Device/device-wearable-example)
 
 // moderateActivity = 120 min/wk
 * component[+]
-  * code                    = $loinc#77592-4 "Moderate physical activity [IPAQ]"
+  * code                    = $loinc#101689-8 "Duration of moderate activity"
   * valueQuantity.value     = 120
   * valueQuantity.unit      = "min/wk"
   * valueQuantity.system    = "http://unitsofmeasure.org"
@@ -474,7 +475,7 @@ need either figure."""
 
 // vigorousActivity = 60 min/wk
 * component[+]
-  * code                    = $loinc#77593-2 "Vigorous physical activity [IPAQ]"
+  * code                    = $loinc#101690-6 "Duration of vigorous activity"
   * valueQuantity.value     = 60
   * valueQuantity.unit      = "min/wk"
   * valueQuantity.system    = "http://unitsofmeasure.org"

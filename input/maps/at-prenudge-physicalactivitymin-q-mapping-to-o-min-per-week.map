@@ -45,7 +45,7 @@ group PhysicalActivityQuestionnaireResponseToObservation(source src : QR, target
   // Panel code
   src -> tgt.code = cc('http://loinc.org', '101691-4', 'Duration of physical activity') "SetCode";
 
-  // effectiveDateTime from authored (EHIS-PAQ Q7 has no embedded date item)
+  // Q7 describes a typical week, so use the answer time rather than a calendar-week start.
   src.authored as authored -> tgt.effectiveDateTime = authored "SetEffectiveDateTime";
 
   // Map Q7 group to component[aggregateActivity] (plain, LOINC 101691-4)

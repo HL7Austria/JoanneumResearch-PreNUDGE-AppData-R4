@@ -46,3 +46,21 @@ Description: "Example QuestionnaireResponse using the universal ATHIS answer 'We
 * item[+]
   * linkId = "Q8"
   * answer[+].valueCoding = $athisCS#meta-unknown "Weiß nicht"
+
+Instance:   muscle-strengthening-ehis-paq-response-zero-example
+InstanceOf: at-prenudge-questionnaireresponse
+Usage:      #example
+Title:      "EHIS-PAQ Q8 / ATHIS PE8 Muscle Strengthening Q - Never or Rarely Example"
+Description: "Example QuestionnaireResponse for muscle-strengthening exercise never or less than once a week."
+
+* meta.profile = "https://fhir.hl7.at/prenudge/appdata/r4/StructureDefinition/at-prenudge-questionnaireresponse"
+* identifier[+]
+  * system = "https://www.joanneum.at"
+  * value  = "qr-ms-athis-2026-06-01-zero"
+* questionnaire = "https://fhir.hl7.at/prenudge/appdata/r4/Questionnaire/EhisPaqMuscleStrengtheningQuestionnaire"
+* status   = #completed
+* subject  = Reference(Patient/example)
+* authored = "2026-06-01T10:10:00+02:00"
+* item[+]
+  * linkId = "Q8"
+  * answer[+].valueCoding = $athisCS#activity-never-or-rarely "Nie oder seltener als einmal pro Woche"
