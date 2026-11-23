@@ -59,6 +59,7 @@ Description: "Example of a low step count (1,204 steps per day), typical for a m
 * effectiveDateTime = "2026-03-03"
 * issued = "2026-03-28T20:00:00Z"
 * method = http://snomed.info/sct#8359006 "Automated"
+* device = Reference(Device/device-wearable-example)
 * valueQuantity
   * value = 1204
   * unit = "{steps}/d"

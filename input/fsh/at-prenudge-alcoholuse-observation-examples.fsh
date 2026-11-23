@@ -10,7 +10,7 @@ Description: "Example of an alcohol use observation for a daily drinker (1 drink
 * status = #final
 * code = http://loinc.org#74013-4 "Alcoholic drinks per day"
 * subject = Reference(Patient/example)
-* effectiveDateTime = "2026-02-20"
+* effectiveDateTime = "2026-02-20T00:00:00Z"
 * issued = "2026-02-20T00:00:00Z"
 * method = http://snomed.info/sct#87982008 "Manual"
 * valueQuantity
@@ -32,7 +32,7 @@ Description: "Example of an alcohol use observation for a lifetime non-drinker (
 * status = #final
 * code = http://loinc.org#74013-4 "Alcoholic drinks per day"
 * subject = Reference(Patient/example)
-* effectiveDateTime = "2026-02-27"
+* effectiveDateTime = "2026-02-27T00:00:00Z"
 * issued = "2026-02-27T00:00:00Z"
 * method = http://snomed.info/sct#87982008 "Manual"
 * valueQuantity
@@ -57,7 +57,7 @@ Description: "Example of an alcohol use observation for a moderate drinker consu
 * subject = Reference(Patient/example)
 * effectiveDateTime = "2026-03-03"
 * issued = "2026-03-03T00:00:00Z"
-* method = http://snomed.info/sct#8359006 "Automated"
+* method = http://snomed.info/sct#87982008 "Manual"
 * valueQuantity
   * value = 0.5
   * unit = "drinks/day"
