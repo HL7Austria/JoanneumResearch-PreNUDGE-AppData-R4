@@ -16,8 +16,6 @@ malac-hd -s -m ..\input\maps\at-prenudge-education-q-to-o.map -ti ..\fsh-generat
 
 malac-hd -s -m ..\input\maps\at-prenudge-education-q-to-o.map -ti ..\fsh-generated\resources\QuestionnaireResponse-education-response-upper-secondary-example.json  -to 09_education_upper-secondary.json
 
-malac-hd -s -m ..\input\maps\at-prenudge-work-soc-q-to-o.map -ti ..\fsh-generated\resources\QuestionnaireResponse-work-soc-response-example.json  -to 10_work-soc.json
-
 malac-hd -s -m ..\input\maps\at-prenudge-bmi-q-to-o.map -ti ..\fsh-generated\resources\QuestionnaireResponse-bmi-questionnaire-response-example.json  -to 11_bmi.json
 
 malac-hd -s -m ..\input\maps\at-prenudge-q-to-o-base.map -m ..\input\maps\at-prenudge-physicalactivitymin-q-mapping-to-o-min-per-week.map -ti ..\fsh-generated\resources\QuestionnaireResponse-physical-activity-ehispaq-response-example.json -to 14_physical_activity_min.json
