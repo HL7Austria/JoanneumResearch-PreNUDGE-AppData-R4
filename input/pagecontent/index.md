@@ -21,7 +21,7 @@ We focus on narrow standardization of the following **PreNUDGE measurements**:
 - **Smoking**: Current smoking/tobacco use status (from a [**questionnaire**](Questionnaire-SmokingStatusQuestionnaire.html) and from an [**observation IPS style**](StructureDefinition-at-prenudge-smokingstatus-observation.html))
 - **Sleep** duration and quality 
   - Duration - from [**questionnaire**](Questionnaire-SleepDurationQuestionnaire.html) or as an [**observation**](StructureDefinition-at-prenudge-sleep-duration-observation.html)
-  - Quality - question 16 from the [**WHOQOL-BRE questionnaire**](Questionnaire-WhoQolBrefQuestionnaire.html) or same question 16 from a  [**single quesion questionnaire**](Questionnaire-SleepQualityQuestionnaire.html) or as an [**observation**](StructureDefinition-at-prenudge-sleep-quality-observation.html)
+  - Self-assessment of sleep quality – satisfaction with sleep in the past two weeks, collected via question 16 of the [**WHOQOL-BREF questionnaire**](Questionnaire-WhoQolBrefQuestionnaire.html) or the [**standalone sleep questionnaire**](Questionnaire-SleepQualityQuestionnaire.html) and reported as an [**observation**](StructureDefinition-at-prenudge-sleep-quality-observation.html).
 - Sociodemographic Data: **Highest completed education** (ISCED level) (from a [**questionnaire**](Questionnaire-EducationQuestionnaire.html) and from an [**observation**](StructureDefinition-at-prenudge-education-observation.html))
 - **Workability** 
   - Work-related Sense of Coherence (Work-SoC) - [**questionnaire**](Questionnaire-WorkSocQuestionnaire.html) with a calculated score as an [**observation**](StructureDefinition-at-prenudge-work-soc-score-observation.html)

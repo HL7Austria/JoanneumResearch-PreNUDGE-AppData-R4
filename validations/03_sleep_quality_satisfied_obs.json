@@ -16,8 +16,8 @@
         "coding": [
             {
                 "system": "http://loinc.org",
-                "code": "61987-4",
-                "display": "My sleep quality was...in past 7 days [PROMIS]"
+                "code": "98933-5",
+                "display": "Satisfaction with sleep in last 2 weeks"
             }
         ]
     },
@@ -30,8 +30,8 @@
         "coding": [
             {
                 "system": "http://loinc.org",
-                "code": "LA8967-7",
-                "display": "Good"
+                "code": "LA29495-1",
+                "display": "Satisfied"
             }
         ]
     },
