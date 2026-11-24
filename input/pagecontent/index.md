@@ -34,7 +34,7 @@ We focus on narrow standardization of the following **PreNUDGE measurements**:
     - PSS-10 (10-item) - from a [**questionnaire**](Questionnaire-Pss10Questionnaire.html) with calculated score as an [**observation**](StructureDefinition-at-prenudge-pss10-score-observation.html)
 - **Nutrition**: 
     - Portions of fruit and vegetables (per day) from a [**questionnaire**](Questionnaire-NutritionFruitVegetableQuestionnaire.html) and as a [**fruit portions observation**](StructureDefinition-at-prenudge-nutrition-fruitportions-observation.html) and a [**vegetable portions observation**](StructureDefinition-at-prenudge-nutrition-vegetableportions-observation.html)
-    - Consumption frequency of sugary and salty foods (per week) from a [**questionnaire**](Questionnaire-NutritionSugarSaltyQuestionnaire.html) and as an [**observation**](StructureDefinition-at-prenudge-nutrition-sugarsalty-observation.html)
+    - Consumption frequency of fatty, sugary and salty foods and energy-dense drinks in a typical week, collected with a [**questionnaire**](Questionnaire-NutritionSugarSaltyQuestionnaire.html) and reported as a categorical [**observation**](StructureDefinition-at-prenudge-nutrition-sugarsalty-observation.html). 
 - _For Demo Purposes: **Blood glucose** in mg/dL (from a [**questionnaire**](Questionnaire-BloodGlucoseQuestionnaire.html) and from a [**device as an observation**](StructureDefinition-at-prenudge-bloodglucose-observation.html))_
 
 For viewing the full questionnaires use tools like [lhcforms](https://lhcfhirtools.nlm.nih.gov/lhcforms).
