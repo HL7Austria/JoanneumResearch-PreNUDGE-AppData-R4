@@ -24,6 +24,7 @@
     "subject": {
         "reference": "Patient/example"
     },
+    "effectiveDateTime": "2026-06-01T09:15:00Z",
     "issued": "2026-06-01T09:15:00Z",
     "valueCodeableConcept": {
         "coding": [

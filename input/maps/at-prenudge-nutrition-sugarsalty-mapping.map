@@ -13,6 +13,8 @@ imports "https://fhir.hl7.at/prenudge/appdata/r4/StructureMap/QuestionnaireRespo
 
 group NutritionSugarSaltyFrequencyQuestionnaireResponseToObservation(source src : QR, target tgt : Obs) {
   src then SetObservationBase(src, tgt) "Base";
+  // The response authoring time is when the dietary answers were gathered.
+  src.authored as authored -> tgt.effectiveDateTime = authored "SetEffectiveDateTime";
   src -> tgt.meta = create('Meta') as meta,
     meta.profile = 'https://fhir.hl7.at/prenudge/appdata/r4/StructureDefinition/at-prenudge-nutrition-sugarsalty-observation' "SetProfile";
   src -> tgt.code = cc('http://snomed.info/sct', '364395008', 'Dietary intake (observable entity)') "SetCode";
