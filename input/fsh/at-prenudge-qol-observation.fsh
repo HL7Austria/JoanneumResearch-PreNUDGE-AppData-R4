@@ -4,7 +4,10 @@ Id:  at-prenudge-whoqol-bref-score-observation
 Title: "AT PreNUDGE Observation WHOQOL-BREF Score"
 Description: "Observation profile for recording WHOQOL-BREF domain scores. The overall score is represented in Observation.value, individual domain scores are recorded as components."
 
-* code = http://snomed.info/sct#405152002
+* code ^patternCodeableConcept.coding[0].system = "http://loinc.org"
+* code ^patternCodeableConcept.coding[0].code = #98917-8
+* code ^patternCodeableConcept.coding[1].system = "http://snomed.info/sct"
+* code ^patternCodeableConcept.coding[1].code = #405152002
 
 * value[x] 0..0
 * value[x] ^short = "Not used. All scores are represented as components."
