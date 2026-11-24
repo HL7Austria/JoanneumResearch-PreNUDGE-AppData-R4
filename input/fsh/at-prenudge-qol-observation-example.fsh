@@ -8,7 +8,8 @@ Description: "Example of a WHOQOL-BREF score observation with a general score an
   * system = "https://www.joanneum.at"
   * value = "qr-whoqol-2026-02-28-001"
 * status = #final
-* code = http://snomed.info/sct#405152002 "Quality of life"
+* code.coding[+] = http://loinc.org#98917-8 "WHO Quality of life-BREF [WHOQOL_BREF]"
+* code.coding[+] = http://snomed.info/sct#405152002 "Quality of life"
 * subject = Reference(Patient/example)
 * effectiveDateTime = "2026-02-28T10:30:00Z"
 * issued = "2026-02-28T10:30:00Z"
@@ -26,7 +27,7 @@ Description: "Example of a WHOQOL-BREF score observation with a general score an
 * component[physical]
   * code = http://snomed.info/sct#19388002 "Physical"
   * valueQuantity
-    * value = 78.6
+    * value = 75.0
     * unit = "score"
     * system = "http://unitsofmeasure.org"
     * code = #{score}
@@ -34,7 +35,7 @@ Description: "Example of a WHOQOL-BREF score observation with a general score an
 * component[psychological]
   * code = http://snomed.info/sct#60224009 "Psychologic"
   * valueQuantity
-    * value = 70.8
+    * value = 62.5
     * unit = "score"
     * system = "http://unitsofmeasure.org"
     * code = #{score}
@@ -50,7 +51,7 @@ Description: "Example of a WHOQOL-BREF score observation with a general score an
 * component[environment]
   * code = http://snomed.info/sct#276339004 "Environment"
   * valueQuantity
-    * value = 62.5
+    * value = 59.4
     * unit = "score"
     * system = "http://unitsofmeasure.org"
     * code = #{score}

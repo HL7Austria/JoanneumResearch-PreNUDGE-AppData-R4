@@ -17,7 +17,8 @@ Usage: #definition
 * copyright = "© World Health Organization. Usage with permission from WHO."
 * subjectType = #Patient
 * language = #de-AT
-* code = http://snomed.info/sct#405152002
+* code[+] = http://loinc.org#98917-8 "WHO Quality of life-BREF [WHOQOL_BREF]"
+* code[+] = http://snomed.info/sct#405152002
 
 // ============================================================
 // Einleitung
@@ -36,6 +37,7 @@ Usage: #definition
 
   * item[+]
     * linkId = "Q1"
+    * code = http://loinc.org#98918-6
     * text = "Wie würden Sie Ihre Lebensqualität beurteilen?"
     * type = #choice
     * required = true
@@ -47,6 +49,7 @@ Usage: #definition
 
   * item[+]
     * linkId = "Q2"
+    * code = http://loinc.org#98919-4
     * text = "Wie zufrieden sind Sie mit Ihrer Gesundheit?"
     * type = #choice
     * required = true
@@ -71,6 +74,7 @@ Usage: #definition
 
   * item[+]
     * linkId = "Q3"
+    * code = http://loinc.org#98920-2
     * text = "Wie stark werden Sie durch Schmerzen daran gehindert, notwendige Dinge zu tun?"
     * type = #choice
     * required = true
@@ -97,6 +101,7 @@ Usage: #definition
 
   * item[+]
     * linkId = "Q4"
+    * code = http://loinc.org#98921-0
     * text = "Wie sehr sind Sie auf medizinische Behandlung angewiesen, um das tägliche Leben zu meistern?"
     * type = #choice
     * required = true
@@ -123,6 +128,7 @@ Usage: #definition
 
   * item[+]
     * linkId = "Q5"
+    * code = http://loinc.org#98922-8
     * text = "Wie sehr genießen Sie das Leben?"
     * type = #choice
     * required = true
@@ -134,6 +140,7 @@ Usage: #definition
 
   * item[+]
     * linkId = "Q6"
+    * code = http://loinc.org#98923-6
     * text = "In welchem Ausmaß empfinden Sie Ihr Leben als sinnvoll?"
     * type = #choice
     * required = true
@@ -145,6 +152,7 @@ Usage: #definition
 
   * item[+]
     * linkId = "Q7"
+    * code = http://loinc.org#98924-4
     * text = "Wie gut können Sie sich konzentrieren?"
     * type = #choice
     * required = true
@@ -156,6 +164,7 @@ Usage: #definition
 
   * item[+]
     * linkId = "Q8"
+    * code = http://loinc.org#98925-1
     * text = "Wie sicher fühlen Sie sich in Ihrem täglichen Leben?"
     * type = #choice
     * required = true
@@ -167,6 +176,7 @@ Usage: #definition
 
   * item[+]
     * linkId = "Q9"
+    * code = http://loinc.org#98926-9
     * text = "Wie gesund ist Ihre unmittelbare Umgebung?"
     * type = #choice
     * required = true
@@ -191,6 +201,7 @@ Usage: #definition
 
   * item[+]
     * linkId = "Q10"
+    * code = http://loinc.org#98927-7
     * text = "Haben Sie genug Energie für das tägliche Leben?"
     * type = #choice
     * required = true
@@ -202,6 +213,7 @@ Usage: #definition
 
   * item[+]
     * linkId = "Q11"
+    * code = http://loinc.org#98928-5
     * text = "Können Sie Ihr Aussehen akzeptieren?"
     * type = #choice
     * required = true
@@ -213,6 +225,7 @@ Usage: #definition
 
   * item[+]
     * linkId = "Q12"
+    * code = http://loinc.org#98929-3
     * text = "Haben Sie genug Geld, um Ihre Bedürfnisse erfüllen zu können?"
     * type = #choice
     * required = true
@@ -224,6 +237,7 @@ Usage: #definition
 
   * item[+]
     * linkId = "Q13"
+    * code = http://loinc.org#98930-1
     * text = "Wie verfügbar sind die Informationen für Sie, die Sie im Alltag brauchen?"
     * type = #choice
     * required = true
@@ -235,6 +249,7 @@ Usage: #definition
 
   * item[+]
     * linkId = "Q14"
+    * code = http://loinc.org#98931-9
     * text = "Haben Sie ausreichend Möglichkeiten zu Freizeitaktivitäten?"
     * type = #choice
     * required = true
@@ -246,6 +261,7 @@ Usage: #definition
 
   * item[+]
     * linkId = "Q15"
+    * code = http://loinc.org#98932-7
     * text = "Wie gut können Sie sich fortbewegen?"
     * type = #choice
     * required = true
@@ -273,6 +289,7 @@ Usage: #definition
 // LHC-Forms does not support SDC-Extension sdc-questionnaire-subQuestionnaire
   * item[+]
     * linkId = "Q16"
+    * code = http://loinc.org#98933-5 "Satisfaction with sleep in last 2 weeks"
     * text = "Wie zufrieden sind Sie mit Ihrem Schlaf?"
     * type = #choice
     * required = true
@@ -284,6 +301,7 @@ Usage: #definition
 
   * item[+]
     * linkId = "Q17"
+    * code = http://loinc.org#98934-3
     * text = "Wie zufrieden sind Sie mit Ihrer Fähigkeit, alltägliche Dinge erledigen zu können?"
     * type = #choice
     * required = true
@@ -295,6 +313,7 @@ Usage: #definition
 
   * item[+]
     * linkId = "Q18"
+    * code = http://loinc.org#98935-0
     * text = "Wie zufrieden sind Sie mit Ihrer Arbeitsfähigkeit?"
     * type = #choice
     * required = true
@@ -306,6 +325,7 @@ Usage: #definition
 
   * item[+]
     * linkId = "Q19"
+    * code = http://loinc.org#98936-8
     * text = "Wie zufrieden sind Sie mit sich selbst?"
     * type = #choice
     * required = true
@@ -317,6 +337,7 @@ Usage: #definition
 
   * item[+]
     * linkId = "Q20"
+    * code = http://loinc.org#98937-6
     * text = "Wie zufrieden sind Sie mit Ihren persönlichen Beziehungen?"
     * type = #choice
     * required = true
@@ -328,6 +349,7 @@ Usage: #definition
 
   * item[+]
     * linkId = "Q21"
+    * code = http://loinc.org#98938-4
     * text = "Wie zufrieden sind Sie mit Ihrem Sexualleben?"
     * type = #choice
     * required = true
@@ -339,6 +361,7 @@ Usage: #definition
 
   * item[+]
     * linkId = "Q22"
+    * code = http://loinc.org#98939-2
     * text = "Wie zufrieden sind Sie mit der Unterstützung durch Ihre Freunde?"
     * type = #choice
     * required = true
@@ -350,6 +373,7 @@ Usage: #definition
 
   * item[+]
     * linkId = "Q23"
+    * code = http://loinc.org#98940-0
     * text = "Wie zufrieden sind Sie mit Ihren Wohnbedingungen?"
     * type = #choice
     * required = true
@@ -361,6 +385,7 @@ Usage: #definition
 
   * item[+]
     * linkId = "Q24"
+    * code = http://loinc.org#98941-8
     * text = "Wie zufrieden sind Sie mit Ihren Möglichkeiten, Gesundheitsdienste in Anspruch nehmen zu können?"
     * type = #choice
     * required = true
@@ -372,6 +397,7 @@ Usage: #definition
 
   * item[+]
     * linkId = "Q25"
+    * code = http://loinc.org#98942-6
     * text = "Wie zufrieden sind Sie mit den Beförderungsmitteln, die Ihnen zur Verfügung stehen?"
     * type = #choice
     * required = true
@@ -396,6 +422,7 @@ Usage: #definition
 
   * item[+]
     * linkId = "Q26"
+    * code = http://loinc.org#98943-4
     * text = "Wie häufig haben Sie negative Gefühle wie Traurigkeit, Verzweiflung, Angst oder Depression?"
     * type = #choice
     * required = true
